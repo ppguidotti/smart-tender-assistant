@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+# OS / editor
+.DS_Store
+.vscode/
+
+# Local data
+data/*
+!data/samples/
+!data/samples/.gitkeep
+
+# Generated outputs
+outputs/
+
+# Dati reali / documenti di gara
+data/raw/
