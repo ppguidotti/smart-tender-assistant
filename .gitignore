@@ -9,12 +9,10 @@ __pycache__/
 .vscode/
 
 # Local data
-data/*
-!data/samples/
+data/raw/
+data/samples/*
 !data/samples/.gitkeep
 
 # Generated outputs
 outputs/
 
-# Dati reali / documenti di gara
-data/raw/
