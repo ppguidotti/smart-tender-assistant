@@ -1,0 +1,88 @@
+[
+  {
+    "evidence_id": "ev-cert-iso9001",
+    "type": "CERTIFICATION",
+    "title": "Certificazione ISO 9001:2015",
+    "description": "Sistema di gestione per la qualità per servizi ICT e consulenza tecnologica. Ambito: progettazione, erogazione e manutenzione di sistemi informativi.",
+    "valid_from": "2023-03-15",
+    "valid_until": "2026-03-14",
+    "proof_attachments": ["/data/evidences/ev-cert-iso9001/iso9001_cert.pdf"],
+    "metadata": {"issuer": "DNV Business Assurance", "cert_no": "IT-C-12345", "scope": "Servizi ICT"}
+  },
+  {
+    "evidence_id": "ev-cert-iso27001",
+    "type": "CERTIFICATION",
+    "title": "Certificazione ISO/IEC 27001:2022",
+    "description": "Sistema di gestione della sicurezza delle informazioni. Ambito: infrastruttura IT, sviluppo software, cloud management.",
+    "valid_from": "2024-01-20",
+    "valid_until": "2027-01-19",
+    "proof_attachments": [
+      "/data/evidences/ev-cert-iso27001/iso27001_cert.pdf",
+      "/data/evidences/ev-cert-iso27001/bsi_audit_report.pdf"
+    ],
+    "metadata": {"issuer": "BSI Group Italy", "cert_no": "IT27001-456", "scope": "ICT e cloud"}
+  },
+  {
+    "evidence_id": "ev-ref-eni2024",
+    "type": "REFERENCE",
+    "title": "Referenza ENI S.p.A. — Supporto ICT 2022-2024",
+    "description": "Contratto di supporto ICT per 24 mesi. Valore: €2.3M. Attività: gestione infrastruttura, help desk L2/L3, security monitoring.",
+    "valid_from": "2022-01-01",
+    "valid_until": "2024-12-31",
+    "proof_attachments": ["/data/evidences/ev-ref-eni2024/eni_reference_letter.pdf"],
+    "metadata": {"client": "ENI S.p.A.", "value_eur": "2300000", "contact": "direzione.ict@eni.com"}
+  },
+  {
+    "evidence_id": "ev-ref-comune-mi",
+    "type": "REFERENCE",
+    "title": "Referenza Comune di Milano — Sistema gestione pratiche",
+    "description": "Sviluppo e manutenzione del sistema di gestione pratiche edilizie. Integrazione SUAP regionale. Valore: €450K.",
+    "valid_from": "2021-06-01",
+    "valid_until": "2023-05-31",
+    "proof_attachments": [],
+    "metadata": {"client": "Comune di Milano", "value_eur": "450000", "rup": "Ing. Marco Bianchi"}
+  },
+  {
+    "evidence_id": "ev-ref-regione-er",
+    "type": "REFERENCE",
+    "title": "Referenza Regione Emilia-Romagna — Portale servizi digitali",
+    "description": "Progettazione, sviluppo e go-live del portale servizi ai cittadini (700K utenti). Stack: React, FastAPI, PostgreSQL su infrastruttura LEPIDA.",
+    "valid_from": "2023-03-01",
+    "valid_until": "2025-02-28",
+    "proof_attachments": ["/data/evidences/ev-ref-regione-er/regione_er_attestazione.pdf"],
+    "metadata": {"client": "Regione Emilia-Romagna", "value_eur": "980000", "users": "700000"}
+  },
+  {
+    "evidence_id": "ev-comp-itil",
+    "type": "COMPETENCY",
+    "title": "ITIL v4 Foundation — 3 risorse certificate",
+    "description": "Tre risorse del team delivery certificate ITIL v4 Foundation (PeopleCert). Copertura ruoli: Service Manager, Change Manager, Problem Manager.",
+    "valid_from": "2024-09-01",
+    "valid_until": null,
+    "proof_attachments": [
+      "/data/evidences/ev-comp-itil/itil_cert_rossi.pdf",
+      "/data/evidences/ev-comp-itil/itil_cert_ferrari.pdf"
+    ],
+    "metadata": {"certifying_body": "PeopleCert", "resources_count": "3", "roles": "Service/Change/Problem Manager"}
+  },
+  {
+    "evidence_id": "ev-fin-fatturato2024",
+    "type": "FINANCIAL",
+    "title": "Fatturato servizi analoghi 2024 — €3.8M",
+    "description": "Fatturato relativo a servizi ICT analoghi nell'anno solare 2024, attestato da revisore contabile. Supera la soglia minima richiesta dalla maggior parte delle gare PA.",
+    "valid_from": "2025-04-30",
+    "valid_until": null,
+    "proof_attachments": ["/data/evidences/ev-fin-fatturato2024/bilancio2024_estratto.pdf"],
+    "metadata": {"year": "2024", "amount_eur": "3800000", "auditor": "Studio Colombo e Associati"}
+  },
+  {
+    "evidence_id": "ev-part-aruba",
+    "type": "PARTNERSHIP",
+    "title": "Partnership Aruba S.p.A. — Cloud QC3 (ACN)",
+    "description": "Accordo di partnership con Aruba S.p.A. per erogazione servizi cloud su piattaforma qualificata ACN livello QC3. Valido per gare con requisito cloud PA.",
+    "valid_from": "2024-07-01",
+    "valid_until": "2027-06-30",
+    "proof_attachments": ["/data/evidences/ev-part-aruba/partnership_agreement_aruba.pdf"],
+    "metadata": {"partner": "Aruba S.p.A.", "cloud_level": "QC3", "acn_ref": "CSP-QC3-IT-ARUBA-001"}
+  }
+]

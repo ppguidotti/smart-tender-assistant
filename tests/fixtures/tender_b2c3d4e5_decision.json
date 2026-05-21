@@ -1,0 +1,137 @@
+{
+  "schema_version": {"major": 1, "minor": 0},
+  "tender_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "decision": "GO_WITH_RESERVATIONS",
+  "decision_timestamp": "2026-05-15T11:42:00Z",
+  "hard_gate": {
+    "passed": true,
+    "blocking_requirements": [],
+    "blocking_reasons": []
+  },
+  "soft_score": {
+    "technical_score_estimate": 72.5,
+    "max_score_available": 100.0,
+    "competitiveness": "MEDIUM"
+  },
+  "risk_assessment": {
+    "overall_risk": "MEDIUM",
+    "max_penalty_exposure_pct": 10.0,
+    "auto_termination_clauses": [
+      "Risoluzione automatica per mancato avvio servizi entro 60gg dalla stipula",
+      "Risoluzione per superamento tetto penali (10% valore contrattuale)"
+    ],
+    "vendor_lock_in_detected": false,
+    "sla_complexity": "MEDIUM",
+    "risk_factors": [
+      {
+        "type": "referenze_insufficienti",
+        "severity": "HIGH",
+        "description": "Solo 2 referenze PA su 3 richieste. Rischio di esclusione in fase di verifica documentale se non si trova una terza referenza valida.",
+        "source": {
+          "document_id": "d0c1d2e3-f4a5-6789-0bcd-ef1234567890",
+          "document_name": "Capitolato_Tecnico.pdf",
+          "section_id": "art-6",
+          "section_title": "Art. 6 — Capacità economico-finanziaria",
+          "page": 10,
+          "char_start": 530,
+          "char_end": 850
+        }
+      },
+      {
+        "type": "qualificazione_cloud_indiretta",
+        "severity": "HIGH",
+        "description": "Qualificazione ACN posseduta dal partner (Aruba) ma non dall'operatore. Interpretazione giuridica incerta: potrebbe essere accettata o meno dalla stazione appaltante.",
+        "source": {
+          "document_id": "d0c1d2e3-f4a5-6789-0bcd-ef1234567890",
+          "document_name": "Capitolato_Tecnico.pdf",
+          "section_id": "art-12",
+          "section_title": "Art. 12 — Infrastruttura tecnologica",
+          "page": 22,
+          "char_start": 100,
+          "char_end": 450
+        }
+      },
+      {
+        "type": "penali_contrattuali",
+        "severity": "MEDIUM",
+        "description": "Penale SLA fino al 10% del valore contrattuale mensile. Esposizione gestibile con monitoraggio proattivo.",
+        "source": {
+          "document_id": "d0c1d2e3-f4a5-6789-0bcd-ef1234567890",
+          "document_name": "Capitolato_Tecnico.pdf",
+          "section_id": "art-14",
+          "section_title": "Art. 14 — Livelli di servizio (SLA)",
+          "page": 26,
+          "char_start": 300,
+          "char_end": 650
+        }
+      },
+      {
+        "type": "scadenza_migrazione",
+        "severity": "LOW",
+        "description": "Piano di migrazione richiesto entro 30gg dalla stipula. Tempistica sfidante ma fattibile con template esistente.",
+        "source": {
+          "document_id": "d0c1d2e3-f4a5-6789-0bcd-ef1234567890",
+          "document_name": "Capitolato_Tecnico.pdf",
+          "section_id": "art-15",
+          "section_title": "Art. 15 — Piano di migrazione",
+          "page": 28,
+          "char_start": 100,
+          "char_end": 400
+        }
+      }
+    ]
+  },
+  "summary": {
+    "total_requirements": 14,
+    "met_full": 10,
+    "met_partial": 3,
+    "unmet": 1,
+    "critical_gaps": 0,
+    "avg_confidence": 0.92
+  },
+  "rationale": "La gara è partecipabile (nessun gap CRITICAL) ma presenta due rischi MAJOR che richiedono azione immediata: (1) la terza referenza PA mancante potrebbe causare esclusione in sede di verifica, e (2) la qualificazione ACN indiretta tramite partner potrebbe non essere accettata. Si raccomanda di procedere solo dopo aver verificato entrambi i punti con il team legale.",
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "text": "Censire urgentemente nel profilo aziendale eventuali contratti PA non ancora documentati per colmare il gap delle referenze (REQ-005). Verificare in particolare contratti quadro, ordini MEPA e convenzioni Consip.",
+      "targets_requirement_id": "REQ-005"
+    },
+    {
+      "priority": "HIGH",
+      "text": "Richiedere parere legale sull'accettabilità della qualificazione ACN tramite partner cloud (Aruba QC3). In alternativa, valutare la costituzione di un RTI con Aruba come mandante per la componente infrastrutturale.",
+      "targets_requirement_id": "REQ-009"
+    },
+    {
+      "priority": "MEDIUM",
+      "text": "Avviare formazione ITIL v4 Foundation per almeno 2 risorse del team proposto. Costo contenuto (~€500/persona) e alto impatto sul punteggio tecnico (+5 punti).",
+      "targets_requirement_id": "REQ-008"
+    },
+    {
+      "priority": "LOW",
+      "text": "Sollecitare BSI per accelerare l'audit di certificazione ISO 27001, idealmente prima della scadenza dell'offerta.",
+      "targets_requirement_id": "REQ-003"
+    }
+  ],
+  "next_actions": [
+    {
+      "action": "Verifica referenze PA mancanti nel CRM aziendale",
+      "deadline": "2026-05-22",
+      "owner_role": "PRESALES"
+    },
+    {
+      "action": "Richiesta parere legale su qualificazione ACN indiretta",
+      "deadline": "2026-05-23",
+      "owner_role": "LEGAL"
+    },
+    {
+      "action": "Iscrizione team a corso ITIL v4 Foundation",
+      "deadline": "2026-05-25",
+      "owner_role": "TECH_LEAD"
+    },
+    {
+      "action": "Preparazione documentazione di gara (busta amministrativa)",
+      "deadline": "2026-05-28",
+      "owner_role": "PRESALES"
+    }
+  ]
+}

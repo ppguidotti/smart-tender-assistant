@@ -1,0 +1,59 @@
+{
+  "tender_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "documents_required": [
+    {
+      "document_type": "DURC",
+      "description": "Documento Unico di Regolarità Contributiva in corso di validità, rilasciato da INPS/INAIL/Casse Edili. Validità 120 giorni.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-001",
+      "deadline": "2026-05-28",
+      "owner_role": "PRESALES"
+    },
+    {
+      "document_type": "Dichiarazione art. 80",
+      "description": "Dichiarazione sostitutiva di assenza di cause di esclusione ai sensi dell'art. 80 D.Lgs. 50/2016, resa da tutti i soggetti di cui al comma 3.",
+      "template_available": true,
+      "template_path": "/data/templates/dichiarazione_art80_v3.docx",
+      "source_requirement_id": "REQ-002",
+      "deadline": "2026-05-28",
+      "owner_role": "LEGAL"
+    },
+    {
+      "document_type": "PassOE",
+      "description": "Codice PassOE generato dal sistema AVCpass ANAC, da allegare obbligatoriamente alla documentazione amministrativa.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-001",
+      "deadline": "2026-05-26",
+      "owner_role": "ADMIN"
+    },
+    {
+      "document_type": "Certificato ISO 27001",
+      "description": "Copia del certificato ISO/IEC 27001:2022 in corso di validità, rilasciato da ente accreditato ACCREDIA o equivalente europeo.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-003",
+      "deadline": null,
+      "owner_role": "TECH_LEAD"
+    },
+    {
+      "document_type": "DPA",
+      "description": "Data Processing Agreement per trattamento dati personali per conto dell'ente, conforme all'art. 28 GDPR. Da sottoscrivere bilateralmente prima della stipula.",
+      "template_available": true,
+      "template_path": "/data/templates/dpa_standard_v2.docx",
+      "source_requirement_id": "REQ-006",
+      "deadline": "2026-05-30",
+      "owner_role": "LEGAL"
+    },
+    {
+      "document_type": "Offerta tecnica",
+      "description": "Documento di offerta tecnica redatto secondo lo Schema Allegato B al capitolato. Massimo 40 pagine, formato PDF/A.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-010",
+      "deadline": "2026-05-30",
+      "owner_role": "PRESALES"
+    }
+  ]
+}

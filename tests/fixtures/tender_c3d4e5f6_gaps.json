@@ -1,0 +1,188 @@
+{
+  "results": [
+    {
+      "requirement_id": "REQ-001",
+      "match_status": "FULL",
+      "match_confidence": 0.96,
+      "matching_evidences": [
+        {"evidence_id": "EV-001", "type": "DOCUMENT", "title": "Visura camerale CCIAA Bologna", "description": "Iscrizione attiva per attività ICT, codice ATECO 62.01", "valid_from": "2024-01-15", "valid_until": null, "proof_attachments": ["evidences/EV-001/visura_2024.pdf"], "metadata": {}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Visura camerale attiva con codice ATECO 62.01 coerente con l'oggetto dell'appalto (servizi ICT)."
+    },
+    {
+      "requirement_id": "REQ-002",
+      "match_status": "FULL",
+      "match_confidence": 0.98,
+      "matching_evidences": [
+        {"evidence_id": "EV-002", "type": "CERTIFICATION", "title": "ISO 9001:2015 — Servizi IT", "description": "Certificazione rilasciata da DNV per progettazione, sviluppo ed erogazione servizi IT", "valid_from": "2024-03-01", "valid_until": "2027-02-28", "proof_attachments": ["evidences/EV-002/iso9001_cert.pdf"], "metadata": {"ente_certificatore": "DNV"}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Certificazione ISO 9001:2015 valida, rilasciata da ente accreditato (DNV), scope coerente con servizi IT."
+    },
+    {
+      "requirement_id": "REQ-003",
+      "match_status": "PARTIAL",
+      "match_confidence": 0.72,
+      "matching_evidences": [
+        {"evidence_id": "EV-003", "type": "CERTIFICATION", "title": "ISO 27001 — In corso di certificazione", "description": "Processo di certificazione avviato con BSI, pre-audit superato, audit di certificazione previsto per luglio 2026", "valid_from": null, "valid_until": null, "proof_attachments": ["evidences/EV-003/pre_audit_report.pdf"], "metadata": {"ente_certificatore": "BSI", "stato": "in_corso"}}
+      ],
+      "gap": {
+        "severity": "MINOR",
+        "description": "Certificazione ISO 27001 non ancora ottenuta. Pre-audit superato, certificazione prevista per luglio 2026.",
+        "remediation_suggestion": "Accelerare il processo di certificazione ISO 27001. Presentare il report del pre-audit come evidenza della conformità sostanziale.",
+        "remediation_effort": "MEDIUM",
+        "remediation_time_estimate": "60 giorni"
+      },
+      "needs_human_review": false,
+      "reasoning": "Requisito preferenziale: la certificazione non è ancora formalmente ottenuta ma il processo è in corso. Il gap è MINOR perché il requisito è PREFERENZIALE."
+    },
+    {
+      "requirement_id": "REQ-004",
+      "match_status": "FULL",
+      "match_confidence": 0.94,
+      "matching_evidences": [
+        {"evidence_id": "EV-004", "type": "FINANCIAL", "title": "Fatturato specifico ICT 2023-2025", "description": "Fatturato servizi ICT a PA: 2023 €620k, 2024 €710k, 2025 €850k — tutti sopra soglia €500k", "valid_from": "2023-01-01", "valid_until": "2025-12-31", "proof_attachments": ["evidences/EV-004/bilancio_2023.pdf", "evidences/EV-004/bilancio_2024.pdf", "evidences/EV-004/bilancio_2025.pdf"], "metadata": {}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Fatturato specifico ampiamente sopra soglia per tutti e tre gli anni del triennio richiesto."
+    },
+    {
+      "requirement_id": "REQ-005",
+      "match_status": "PARTIAL",
+      "match_confidence": 0.65,
+      "matching_evidences": [
+        {"evidence_id": "EV-005a", "type": "REFERENCE", "title": "Contratto ASL Bologna — Help desk IT", "description": "Servizi di help desk e gestione infrastruttura IT, importo €180.000, 2023-2025", "valid_from": "2023-06-01", "valid_until": "2025-05-31", "proof_attachments": ["evidences/EV-005a/attestazione_buon_esito.pdf"], "metadata": {}},
+        {"evidence_id": "EV-005b", "type": "REFERENCE", "title": "Contratto Comune di Rimini — Migrazione cloud", "description": "Migrazione infrastruttura on-prem a cloud, importo €210.000", "valid_from": "2024-01-01", "valid_until": "2024-12-31", "proof_attachments": ["evidences/EV-005b/attestazione_buon_esito.pdf"], "metadata": {}}
+      ],
+      "gap": {
+        "severity": "MAJOR",
+        "description": "Disponibili solo 2 referenze PA su 3 richieste, entrambe sopra soglia €150k. Manca la terza referenza.",
+        "remediation_suggestion": "Verificare se esistono altri contratti PA nel triennio non ancora censiti nel profilo. In alternativa, valutare se il contratto con l'Università di Bologna (€120k) possa essere presentato nonostante sia sotto soglia, argomentando la complessità del servizio.",
+        "remediation_effort": "HIGH",
+        "remediation_time_estimate": "15 giorni"
+      },
+      "needs_human_review": true,
+      "reasoning": "2 referenze su 3 trovate. La terza potrebbe esistere ma non è censita nel profilo. Inviato a review umana per verifica."
+    },
+    {
+      "requirement_id": "REQ-006",
+      "match_status": "FULL",
+      "match_confidence": 0.95,
+      "matching_evidences": [
+        {"evidence_id": "EV-006", "type": "DOCUMENT", "title": "Nomina DPO e template DPA", "description": "DPO nominato: Dott. Rossi, iscritto registro DPO. Template DPA conforme Art. 28 GDPR disponibile.", "valid_from": "2024-01-01", "valid_until": null, "proof_attachments": ["evidences/EV-006/nomina_dpo.pdf", "evidences/EV-006/dpa_template.pdf"], "metadata": {}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "DPO nominato con documentazione completa, template DPA conforme Art. 28 disponibile."
+    },
+    {
+      "requirement_id": "REQ-007",
+      "match_status": "FULL",
+      "match_confidence": 0.97,
+      "matching_evidences": [
+        {"evidence_id": "EV-007", "type": "DOCUMENT", "title": "Conto corrente dedicato L. 136/2010", "description": "Conto corrente dedicato aperto presso Intesa Sanpaolo, comunicazione inviata a tutte le PA clienti", "valid_from": "2020-03-15", "valid_until": null, "proof_attachments": ["evidences/EV-007/comunicazione_cc_dedicato.pdf"], "metadata": {}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Conto corrente dedicato attivo e documentato, conforme L. 136/2010."
+    },
+    {
+      "requirement_id": "REQ-008",
+      "match_status": "NONE",
+      "match_confidence": 0.85,
+      "matching_evidences": [],
+      "gap": {
+        "severity": "MINOR",
+        "description": "Nessuna certificazione ITIL v4 o PMP presente nel profilo del personale proposto.",
+        "remediation_suggestion": "Iscrivere almeno 2 risorse del team ai corsi ITIL v4 Foundation (esame online, 3 giorni preparazione). Costo stimato: €500/persona.",
+        "remediation_effort": "LOW",
+        "remediation_time_estimate": "30 giorni"
+      },
+      "needs_human_review": false,
+      "reasoning": "Requisito PREFERENZIALE con match NONE → gap MINOR. Non blocca la partecipazione ma impatta il punteggio tecnico (fino a -5 punti)."
+    },
+    {
+      "requirement_id": "REQ-009",
+      "match_status": "PARTIAL",
+      "match_confidence": 0.60,
+      "matching_evidences": [
+        {"evidence_id": "EV-009", "type": "PARTNERSHIP", "title": "Partnership Aruba Cloud", "description": "Partnership Silver con Aruba Cloud. Aruba è qualificato ACN livello QC3, data center in Italia.", "valid_from": "2025-01-01", "valid_until": "2025-12-31", "proof_attachments": ["evidences/EV-009/partnership_aruba.pdf"], "metadata": {"livello_acn": "QC3"}}
+      ],
+      "gap": {
+        "severity": "MAJOR",
+        "description": "L'azienda non è direttamente qualificata ACN. Dispone di una partnership con Aruba Cloud (QC3) ma la qualificazione è del partner, non propria. Il capitolato richiede qualificazione dell'operatore.",
+        "remediation_suggestion": "Verificare con ACN se la qualificazione del partner cloud (Aruba QC3) è sufficiente per il requisito, oppure avviare la procedura di qualificazione diretta come CSP. In alternativa, strutturare l'offerta come RTI con Aruba.",
+        "remediation_effort": "HIGH",
+        "remediation_time_estimate": "90 giorni"
+      },
+      "needs_human_review": true,
+      "reasoning": "La qualificazione ACN è del partner (Aruba), non propria. L'interpretazione del requisito è ambigua: potrebbe bastare la qualificazione del CSP utilizzato. Necessaria verifica legale."
+    },
+    {
+      "requirement_id": "REQ-010",
+      "match_status": "FULL",
+      "match_confidence": 0.90,
+      "matching_evidences": [
+        {"evidence_id": "EV-010", "type": "COMPETENCY", "title": "Track record SLA 99.9%+", "description": "SLA 99.95% mantenuto su contratti ASL Bologna e Comune di Rimini per 24 mesi consecutivi, documentato da report di monitoring.", "valid_from": "2023-06-01", "valid_until": "2025-05-31", "proof_attachments": ["evidences/EV-010/sla_report_asl.pdf", "evidences/EV-010/sla_report_rimini.pdf"], "metadata": {}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Track record documentato di SLA 99.95%, superiore al requisito di 99.9%."
+    },
+    {
+      "requirement_id": "REQ-011",
+      "match_status": "FULL",
+      "match_confidence": 0.88,
+      "matching_evidences": [
+        {"evidence_id": "EV-011", "type": "COMPETENCY", "title": "Template piano di migrazione", "description": "Template standard per piani di migrazione, utilizzato in 3 progetti precedenti. Include sezioni: cronoprogramma, analisi rischi, piano di rollback, test di validazione.", "valid_from": null, "valid_until": null, "proof_attachments": ["evidences/EV-011/migration_plan_template.docx"], "metadata": {}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Template di piano di migrazione disponibile e già utilizzato in progetti analoghi. Copre tutti gli elementi richiesti dal capitolato."
+    },
+    {
+      "requirement_id": "REQ-012",
+      "match_status": "FULL",
+      "match_confidence": 0.99,
+      "matching_evidences": [
+        {"evidence_id": "EV-012", "type": "FINANCIAL", "title": "Disponibilità cauzione provvisoria", "description": "Convenzione con Zurich Insurance per emissione fideiussioni. Cauzione 2% su €1.250.000 = €25.000.", "valid_from": "2024-01-01", "valid_until": "2026-12-31", "proof_attachments": [], "metadata": {}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Convenzione assicurativa attiva per emissione fideiussioni, importo coerente."
+    },
+    {
+      "requirement_id": "REQ-013",
+      "match_status": "FULL",
+      "match_confidence": 0.99,
+      "matching_evidences": [],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Requisito INFORMATIVO: nessun gap possibile. La durata contrattuale (36+12 mesi) è stata registrata come dato informativo."
+    },
+    {
+      "requirement_id": "REQ-014",
+      "match_status": "FULL",
+      "match_confidence": 0.95,
+      "matching_evidences": [
+        {"evidence_id": "EV-014", "type": "DOCUMENT", "title": "Policy aziendale subappalto", "description": "Procedura interna per gestione subappalto, conforme D.lgs. 36/2023 Art. 119. Limite interno fissato al 40%.", "valid_from": "2025-01-01", "valid_until": null, "proof_attachments": ["evidences/EV-014/policy_subappalto.pdf"], "metadata": {}}
+      ],
+      "gap": null,
+      "needs_human_review": false,
+      "reasoning": "Policy aziendale subappalto conforme, limite interno (40%) entro il tetto del capitolato (49%)."
+    }
+  ],
+  "summary": {
+    "total_analyzed": 14,
+    "full_match": 10,
+    "partial_match": 3,
+    "no_match": 1,
+    "unknown": 0,
+    "critical_gaps": 0,
+    "sent_to_review_queue": 2
+  }
+}

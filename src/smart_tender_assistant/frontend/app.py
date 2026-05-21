@@ -33,12 +33,12 @@ def _build_navigation() -> None:
 
     home = st.Page(str(pages_dir / "home.py"), title="Lista gare", icon="🏠", default=True)
     detail = st.Page(str(pages_dir / "tender_detail.py"), title="Dettaglio gara", icon="📋")
+    profile = st.Page(str(pages_dir / "profile.py"), title="Profilo aziendale", icon="👤")
+    review = st.Page(str(pages_dir / "review_queue.py"), title="Review Queue", icon="🔍")
 
     nav = st.navigation(
-        {
-            "Gare": [home, detail],
-        },
-        position="sidebar",
+        [home, detail, profile, review],
+        position="hidden",
     )
 
     # Header sidebar
@@ -46,11 +46,13 @@ def _build_navigation() -> None:
         st.markdown(
             f'<div style="padding:0.5rem 0 1rem 0">'
             f'<span style="color:{COLOR_VEM_NAVY};font-weight:700;font-size:1.1rem">'
-            f"Smart Tender Assistant</span><br/>"
-            f'<span style="font-size:0.75rem;color:#888">GenAI Innovation Sprint 2026</span>'
+            f"Smart Tender Assistant</span>"
             f"</div>",
             unsafe_allow_html=True,
         )
+        st.page_link(home, label="Lista gare", icon="🏠")
+        st.page_link(profile, label="Profilo aziendale", icon="👤")
+        st.page_link(review, label="Review Queue", icon="🔍")
 
     nav.run()
 

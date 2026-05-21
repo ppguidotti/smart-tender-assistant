@@ -1,0 +1,70 @@
+[
+  {
+    "timestamp": "2026-05-19T10:22:00Z",
+    "actor": "SYSTEM",
+    "action": "DECISION_PRODUCED",
+    "detail": "Ha prodotto la decisione GO (score 88.0/100, nessun gap CRITICAL o MAJOR)",
+    "target": "decision/d4e5f6a7",
+    "payload": {
+      "decision": "GO",
+      "soft_score": 88.0,
+      "critical_gaps": 0,
+      "major_gaps": 0,
+      "duration_ms": 870
+    }
+  },
+  {
+    "timestamp": "2026-05-19T10:21:00Z",
+    "actor": "SYSTEM",
+    "action": "GAP_ANALYSIS_COMPLETED",
+    "detail": "Ha completato la gap analysis (14 requisiti, 0 CRITICAL, 0 MAJOR, 2 MINOR)",
+    "target": "tender/d4e5f6a7",
+    "payload": {
+      "requirements_analyzed": 14,
+      "full_match": 12,
+      "partial_match": 2,
+      "no_match": 0,
+      "critical_gaps": 0,
+      "major_gaps": 0,
+      "minor_gaps": 2,
+      "model": "gemini-2.0-flash",
+      "duration_ms": 6890
+    }
+  },
+  {
+    "timestamp": "2026-05-19T10:17:00Z",
+    "actor": "SYSTEM",
+    "action": "REQUIREMENTS_EXTRACTED",
+    "detail": "Ha estratto 14 requisiti dal capitolato (confidenza media 0.94)",
+    "target": "tender/d4e5f6a7",
+    "payload": {
+      "requirements_count": 14,
+      "avg_confidence": 0.94,
+      "low_confidence_count": 0,
+      "model": "gemini-2.0-flash",
+      "duration_ms": 4210
+    }
+  },
+  {
+    "timestamp": "2026-05-19T10:15:00Z",
+    "actor": "SYSTEM",
+    "action": "DOCUMENT_PARSED",
+    "detail": "Ha completato il parsing del documento (24 pagine, 16.100 caratteri)",
+    "target": "document/capitolato_d4e5f6a7",
+    "payload": {
+      "pages": 24,
+      "characters": 16100,
+      "mime_type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "parser": "tika-2.9.1",
+      "duration_ms": 1020
+    }
+  },
+  {
+    "timestamp": "2026-05-19T10:14:00Z",
+    "actor": "ppguidotti",
+    "action": "TENDER_CREATED",
+    "detail": "Ha creato la gara \"Fornitura licenze software gestionale enti locali\"",
+    "target": "tender/d4e5f6a7",
+    "payload": null
+  }
+]

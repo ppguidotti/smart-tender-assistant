@@ -7,7 +7,7 @@ Solo i tipi che il frontend consuma — non include ParsedDocument (roba B1).
 from __future__ import annotations
 
 from datetime import date, datetime
-from typing import Literal
+from typing import Any, Literal
 from uuid import UUID
 
 from pydantic import BaseModel, Field, field_validator
@@ -69,6 +69,7 @@ class Evidence(BaseModel):
     valid_until: date | None = None
     proof_attachments: list[str] = Field(default_factory=list)
     metadata: dict[str, str] = Field(default_factory=dict)
+    active: bool = True
 
 
 # ---------------------------------------------------------------------------
@@ -253,6 +254,13 @@ class DocumentTodo(BaseModel, frozen=True):
     owner_role: str
 
 
+class AdminChecklist(BaseModel):
+    """Lista documenti amministrativi da preparare per la partecipazione (output di B6)."""
+
+    tender_id: UUID
+    documents_required: list[DocumentTodo] = Field(default_factory=list)
+
+
 class AuditEntry(BaseModel, frozen=True):
     """Singola voce nell'audit trail."""
 
@@ -260,6 +268,8 @@ class AuditEntry(BaseModel, frozen=True):
     actor: str
     action: str
     detail: str
+    target: str | None = None
+    payload: dict[str, Any] | None = None
 
 
 # ---------------------------------------------------------------------------

@@ -45,65 +45,65 @@ def _apply_filters(
     return filtered
 
 
-def _render_sidebar_filters(
+def _render_filters(
     tenders: list[TenderListItem],
 ) -> tuple[list[str], list[str], tuple[date, date]]:
-    """Renderizza i filtri nella sidebar e restituisce i valori selezionati."""
-    st.sidebar.markdown("### Filtri")
+    """Renderizza i filtri sopra la tabella e restituisce i valori selezionati."""
+    col1, col2, col3 = st.columns(3)
 
-    # Filtro per decisione
-    decision_options = ["GO", "GO_WITH_RESERVATIONS", "NO_GO"]
-    decision_labels = {k: DECISION_LABELS[k] for k in decision_options}
-    selected_decisions: list[str] = st.sidebar.multiselect(
-        "Decisione",
-        options=decision_options,
-        format_func=lambda x: decision_labels[x],
-        default=[],
-        help="Filtra per tipo di decisione. Lascia vuoto per mostrare tutte.",
-    )
+    with col1:
+        decision_options = ["GO", "GO_WITH_RESERVATIONS", "NO_GO"]
+        decision_labels = {k: DECISION_LABELS[k] for k in decision_options}
+        selected_decisions: list[str] = st.multiselect(
+            "Decisione",
+            options=decision_options,
+            format_func=lambda x: decision_labels[x],
+            default=[],
+            help="Filtra per tipo di decisione. Lascia vuoto per mostrare tutte.",
+        )
 
-    # Filtro per stato
-    status_options = [
-        "QUEUED",
-        "PARSING",
-        "EXTRACTING",
-        "ANALYZING",
-        "SCORING",
-        "REPORTING",
-        "COMPLETED",
-        "FAILED",
-    ]
-    status_labels = {k: STATUS_LABELS[k] for k in status_options}
-    selected_statuses: list[str] = st.sidebar.multiselect(
-        "Stato dell'analisi",
-        options=status_options,
-        format_func=lambda x: status_labels[x],
-        default=[],
-        help="Filtra per stato dell'analisi. Lascia vuoto per mostrare tutti.",
-    )
+    with col2:
+        status_options = [
+            "QUEUED",
+            "PARSING",
+            "EXTRACTING",
+            "ANALYZING",
+            "SCORING",
+            "REPORTING",
+            "COMPLETED",
+            "FAILED",
+        ]
+        status_labels = {k: STATUS_LABELS[k] for k in status_options}
+        selected_statuses: list[str] = st.multiselect(
+            "Stato dell'analisi",
+            options=status_options,
+            format_func=lambda x: status_labels[x],
+            default=[],
+            help="Filtra per stato dell'analisi. Lascia vuoto per mostrare tutti.",
+        )
 
-    # Filtro per data
-    if tenders:
-        min_date = min(t.created_at.date() for t in tenders)
-        max_date = max(t.created_at.date() for t in tenders)
-    else:
-        min_date = date.today() - timedelta(days=30)
-        max_date = date.today()
+    with col3:
+        if tenders:
+            min_date = min(t.created_at.date() for t in tenders)
+            max_date = max(t.created_at.date() for t in tenders)
+        else:
+            min_date = date.today() - timedelta(days=30)
+            max_date = date.today()
 
-    date_range = st.sidebar.date_input(
-        "Intervallo date",
-        value=(min_date, max_date),
-        min_value=min_date,
-        max_value=max_date,
-        help="Filtra per data di creazione della gara.",
-    )
+        date_range = st.date_input(
+            "Intervallo date",
+            value=(min_date, max_date),
+            min_value=min_date,
+            max_value=max_date,
+            help="Filtra per data di creazione della gara.",
+        )
 
-    # Gestisci il caso in cui l'utente seleziona una sola data
-    if isinstance(date_range, tuple) and len(date_range) == 2:
-        date_start, date_end = date_range
-    else:
-        date_start = date_range if isinstance(date_range, date) else min_date
-        date_end = max_date
+        # Gestisci il caso in cui l'utente seleziona una sola data
+        if isinstance(date_range, tuple) and len(date_range) == 2:
+            date_start, date_end = date_range
+        else:
+            date_start = date_range if isinstance(date_range, date) else min_date
+            date_end = max_date
 
     return selected_decisions, selected_statuses, (date_start, date_end)
 
@@ -158,7 +158,7 @@ def _render_tender_table(tenders: list[TenderListItem]) -> None:
             if st.button(
                 tender.name,
                 key=f"tender_{tender.tender_id}",
-                use_container_width=True,
+                width="stretch",
                 type="tertiary",
             ):
                 st.session_state["selected_tender_id"] = str(tender.tender_id)
@@ -205,19 +205,20 @@ def _render_tender_table(tenders: list[TenderListItem]) -> None:
 # Inietta CSS personalizzato
 inject_custom_css()
 
-st.title("Gare d'appalto")
-
 # Carica dati
 all_tenders = _load_tenders()
 
-# Sidebar filters
-decision_filter, status_filter, date_range = _render_sidebar_filters(all_tenders)
-
-# Azioni principali
-col_left, col_right = st.columns([4, 1])
-with col_right:
-    if st.button("Nuova gara", type="primary", use_container_width=True):
+# Header principale con pulsante Nuova Gara
+col_title, col_new = st.columns([4, 1])
+with col_title:
+    st.title("Gare d'appalto")
+with col_new:
+    st.markdown("<div style='height:1.8rem;'></div>", unsafe_allow_html=True)
+    if st.button("Nuova gara", type="primary", width="stretch"):
         st.info("Funzionalità in arrivo — upload documento e avvio analisi.")
+
+# Filtri sopra la tabella
+decision_filter, status_filter, date_range = _render_filters(all_tenders)
 
 # Filtro applicato
 filtered_tenders = _apply_filters(all_tenders, decision_filter, status_filter, date_range)

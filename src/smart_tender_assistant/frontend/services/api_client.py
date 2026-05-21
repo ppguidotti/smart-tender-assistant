@@ -15,6 +15,8 @@ import streamlit as st
 
 from smart_tender_assistant.frontend.config import get_settings
 from smart_tender_assistant.frontend.models.schemas import (
+    AdminChecklist,
+    AuditEntry,
     Evidence,
     GapAnalysisResult,
     GapAnalysisSummary,
@@ -46,6 +48,10 @@ class TenderApiClient(Protocol):
     def get_company_profile(self) -> list[Evidence]: ...
 
     def list_review_queue(self) -> list[ReviewItem]: ...
+
+    def get_admin_checklist(self, tender_id: str) -> AdminChecklist | None: ...
+
+    def get_audit_trail(self, tender_id: str) -> list[AuditEntry]: ...
 
 
 # ---------------------------------------------------------------------------
@@ -122,6 +128,24 @@ class MockApiClient:
         data = _load_json(path)
         return [ReviewItem.model_validate(item) for item in data]
 
+    def get_admin_checklist(self, tender_id: str) -> AdminChecklist | None:
+        """Restituisce la checklist amministrativa. None se B6 non ancora girato."""
+        short_id = tender_id.split("-")[0]
+        path = self._fixtures / f"tender_{short_id}_checklist.json"
+        if not path.exists():
+            return None
+        data = _load_json(path)
+        return AdminChecklist.model_validate(data)
+
+    def get_audit_trail(self, tender_id: str) -> list[AuditEntry]:
+        """Restituisce l'audit trail della gara, lista vuota se non disponibile."""
+        short_id = tender_id.split("-")[0]
+        path = self._fixtures / f"tender_{short_id}_audit.json"
+        if not path.exists():
+            return []
+        data = _load_json(path)
+        return [AuditEntry.model_validate(item) for item in data]
+
 
 # ---------------------------------------------------------------------------
 # HTTP implementation — stub per quando B8 esisterà
@@ -157,6 +181,12 @@ class HttpApiClient:
         raise NotImplementedError("HTTP client non ancora implementato")
 
     def list_review_queue(self) -> list[ReviewItem]:
+        raise NotImplementedError("HTTP client non ancora implementato")
+
+    def get_admin_checklist(self, tender_id: str) -> AdminChecklist | None:
+        raise NotImplementedError("HTTP client non ancora implementato")
+
+    def get_audit_trail(self, tender_id: str) -> list[AuditEntry]:
         raise NotImplementedError("HTTP client non ancora implementato")
 
 

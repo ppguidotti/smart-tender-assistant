@@ -1,0 +1,50 @@
+{
+  "tender_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+  "documents_required": [
+    {
+      "document_type": "DURC",
+      "description": "Documento Unico di Regolarità Contributiva in corso di validità (validità 120 giorni).",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-001",
+      "deadline": "2026-06-03",
+      "owner_role": "PRESALES"
+    },
+    {
+      "document_type": "Dichiarazione art. 80",
+      "description": "Dichiarazione sostitutiva assenza cause di esclusione D.Lgs. 50/2016 per tutti i soggetti di cui al comma 3.",
+      "template_available": true,
+      "template_path": "/data/templates/dichiarazione_art80_v3.docx",
+      "source_requirement_id": "REQ-002",
+      "deadline": "2026-06-03",
+      "owner_role": "LEGAL"
+    },
+    {
+      "document_type": "Referenze PA",
+      "description": "Elenco referenze di servizi analoghi svolti per PA negli ultimi 5 anni, con importo, periodo, contatto committente verificabile.",
+      "template_available": true,
+      "template_path": "/data/templates/elenco_referenze_v1.docx",
+      "source_requirement_id": "REQ-005",
+      "deadline": "2026-06-01",
+      "owner_role": "PRESALES"
+    },
+    {
+      "document_type": "Piano di sicurezza operativa",
+      "description": "Documento di pianificazione operativa per interventi in campo, con valutazione dei rischi e misure di sicurezza per cantieri e siti di rete.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-009",
+      "deadline": "2026-06-05",
+      "owner_role": "TECH_LEAD"
+    },
+    {
+      "document_type": "PassOE",
+      "description": "Codice PassOE generato dal sistema AVCpass ANAC da allegare alla busta amministrativa.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-001",
+      "deadline": "2026-06-01",
+      "owner_role": "ADMIN"
+    }
+  ]
+}

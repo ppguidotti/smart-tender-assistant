@@ -1,0 +1,68 @@
+{
+  "tender_id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+  "documents_required": [
+    {
+      "document_type": "DURC",
+      "description": "Documento Unico di Regolarità Contributiva in corso di validità (validità 120 giorni).",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-001",
+      "deadline": "2026-06-10",
+      "owner_role": "PRESALES"
+    },
+    {
+      "document_type": "Dichiarazione art. 80",
+      "description": "Dichiarazione sostitutiva assenza cause di esclusione D.Lgs. 50/2016.",
+      "template_available": true,
+      "template_path": "/data/templates/dichiarazione_art80_v3.docx",
+      "source_requirement_id": "REQ-002",
+      "deadline": "2026-06-10",
+      "owner_role": "LEGAL"
+    },
+    {
+      "document_type": "Qualificazione cloud ACN",
+      "description": "Attestazione di qualificazione come Cloud Service Provider livello QC3 rilasciata da ACN (ex AGID). Requisito escludente.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-007",
+      "deadline": null,
+      "owner_role": "TECH_LEAD"
+    },
+    {
+      "document_type": "Certificato ISO 27001",
+      "description": "Certificato ISO/IEC 27001:2022 in corso di validità per la gestione della sicurezza delle informazioni, rilasciato da ente accreditato.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-003",
+      "deadline": null,
+      "owner_role": "TECH_LEAD"
+    },
+    {
+      "document_type": "DPA",
+      "description": "Data Processing Agreement per trattamento dati sanitari (categoria particolare ai sensi art. 9 GDPR). Revisione obbligatoria dal DPO prima della firma.",
+      "template_available": true,
+      "template_path": "/data/templates/dpa_sanitario_v1.docx",
+      "source_requirement_id": "REQ-006",
+      "deadline": "2026-06-12",
+      "owner_role": "LEGAL"
+    },
+    {
+      "document_type": "Piano di migrazione",
+      "description": "Documento di pianificazione della migrazione cloud con gantt dettagliato, risk assessment e piano di rollback. Schema conforme all'Allegato C.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-011",
+      "deadline": "2026-06-12",
+      "owner_role": "TECH_LEAD"
+    },
+    {
+      "document_type": "PassOE",
+      "description": "Codice PassOE generato dal sistema AVCpass ANAC da allegare alla busta amministrativa.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-001",
+      "deadline": "2026-06-08",
+      "owner_role": "ADMIN"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+[
+  {
+    "timestamp": "2026-05-16T09:15:00Z",
+    "actor": "SYSTEM",
+    "action": "DECISION_PRODUCED",
+    "detail": "Ha prodotto la decisione NO_GO (hard gate fallito: 1 gap CRITICAL)",
+    "target": "decision/b2c3d4e5",
+    "payload": {
+      "decision": "NO_GO",
+      "hard_gate_passed": false,
+      "blocking_requirements": ["REQ-003"],
+      "duration_ms": 980
+    }
+  },
+  {
+    "timestamp": "2026-05-16T09:14:00Z",
+    "actor": "SYSTEM",
+    "action": "GAP_ANALYSIS_COMPLETED",
+    "detail": "Ha completato la gap analysis (14 requisiti, 1 CRITICAL, 1 MAJOR, 2 MINOR)",
+    "target": "tender/b2c3d4e5",
+    "payload": {
+      "requirements_analyzed": 14,
+      "full_match": 10,
+      "partial_match": 2,
+      "no_match": 2,
+      "critical_gaps": 1,
+      "major_gaps": 1,
+      "minor_gaps": 2,
+      "model": "gemini-2.0-flash",
+      "duration_ms": 7650
+    }
+  },
+  {
+    "timestamp": "2026-05-16T09:10:00Z",
+    "actor": "SYSTEM",
+    "action": "REQUIREMENTS_EXTRACTED",
+    "detail": "Ha estratto 14 requisiti dal capitolato (confidenza media 0.88)",
+    "target": "tender/b2c3d4e5",
+    "payload": {
+      "requirements_count": 14,
+      "avg_confidence": 0.88,
+      "low_confidence_count": 2,
+      "model": "gemini-2.0-flash",
+      "duration_ms": 5130
+    }
+  },
+  {
+    "timestamp": "2026-05-16T09:08:00Z",
+    "actor": "SYSTEM",
+    "action": "DOCUMENT_PARSED",
+    "detail": "Ha completato il parsing del documento (31 pagine, 21.200 caratteri)",
+    "target": "document/capitolato_b2c3d4e5",
+    "payload": {
+      "pages": 31,
+      "characters": 21200,
+      "mime_type": "application/pdf",
+      "parser": "tika-2.9.1",
+      "duration_ms": 1480
+    }
+  },
+  {
+    "timestamp": "2026-05-16T09:07:00Z",
+    "actor": "mrossi",
+    "action": "TENDER_CREATED",
+    "detail": "Ha creato la gara \"Manutenzione reti e sistemi — Provincia di Modena\"",
+    "target": "tender/b2c3d4e5",
+    "payload": null
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "tender_id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+  "documents_required": [
+    {
+      "document_type": "DURC",
+      "description": "Documento Unico di Regolarità Contributiva in corso di validità (validità 120 giorni).",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-001",
+      "deadline": "2026-06-18",
+      "owner_role": "PRESALES"
+    },
+    {
+      "document_type": "Dichiarazione art. 80",
+      "description": "Dichiarazione sostitutiva assenza cause di esclusione D.Lgs. 50/2016.",
+      "template_available": true,
+      "template_path": "/data/templates/dichiarazione_art80_v3.docx",
+      "source_requirement_id": "REQ-002",
+      "deadline": "2026-06-18",
+      "owner_role": "LEGAL"
+    },
+    {
+      "document_type": "Licenza software",
+      "description": "Copia della licenza software con specifica del numero di istanze, utenti nominativi/concorrenti e condizioni di sublicenza ad enti locali.",
+      "template_available": false,
+      "template_path": null,
+      "source_requirement_id": "REQ-008",
+      "deadline": null,
+      "owner_role": "TECH_LEAD"
+    },
+    {
+      "document_type": "Dichiarazione conformità CAD",
+      "description": "Dichiarazione di conformità al Codice dell'Amministrazione Digitale (D.Lgs. 82/2005) per i sistemi offerti, con riferimento agli artt. 68 e 69 sull'interoperabilità.",
+      "template_available": true,
+      "template_path": "/data/templates/dichiarazione_cad_v1.docx",
+      "source_requirement_id": "REQ-006",
+      "deadline": "2026-06-20",
+      "owner_role": "LEGAL"
+    }
+  ]
+}

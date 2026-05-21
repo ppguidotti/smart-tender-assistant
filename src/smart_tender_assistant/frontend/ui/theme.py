@@ -84,6 +84,24 @@ CATEGORY_COLORS: dict[str, str] = {
     "AMMINISTRATIVA": "#64748B",
 }
 
+EVIDENCE_TYPE_COLORS: dict[str, str] = {
+    "CERTIFICATION": "#6366F1",
+    "REFERENCE": "#0EA5E9",
+    "COMPETENCY": "#8B5CF6",
+    "FINANCIAL": "#10B981",
+    "DOCUMENT": "#64748B",
+    "PARTNERSHIP": "#F59E0B",
+}
+
+EVIDENCE_TYPE_LABELS: dict[str, str] = {
+    "CERTIFICATION": "Certificazioni",
+    "REFERENCE": "Referenze",
+    "COMPETENCY": "Competenze",
+    "FINANCIAL": "Finanziario",
+    "DOCUMENT": "Documenti",
+    "PARTNERSHIP": "Partnership",
+}
+
 STATUS_COLORS: dict[str, str] = {
     "COMPLETED": COLOR_GO,
     "FAILED": COLOR_NO_GO,
@@ -157,7 +175,7 @@ def inject_custom_css() -> None:
             background: {COLOR_BG_SECONDARY};
         }}
 
-        /* Allinea a sinistra il testo dei bottoni terziari (nomi delle gare) */
+        /* Allinea a sinistra il testo dei bottoni terziari (nomi delle gare) e lo rende selezionabile */
         button[data-testid="stBaseButton-tertiary"],
         button[kind="tertiary"],
         div[class*="st-key-tender_"] button {{
@@ -165,13 +183,29 @@ def inject_custom_css() -> None:
             text-align: left !important;
             padding-left: 0px !important;
             width: 100% !important;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
         }}
+        button[data-testid="stBaseButton-tertiary"] div,
+        button[data-testid="stBaseButton-tertiary"] p,
+        button[data-testid="stBaseButton-tertiary"] span,
         div[class*="st-key-tender_"] button div,
         div[class*="st-key-tender_"] button p,
         div[class*="st-key-tender_"] button span {{
             text-align: left !important;
             justify-content: flex-start !important;
             margin: 0 !important;
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }}
+
+        /* Nasconde la voce 'Dettaglio gara' dalla sidebar */
+        a[data-testid="stSidebarNavLink"][href*="tender_detail"] {{
+            display: none !important;
         }}
 
         /* Nasconde solo gli elementi di deploy e menu a destra (mantiene il pulsante per la sidebar a sinistra) */

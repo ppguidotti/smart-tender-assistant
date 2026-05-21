@@ -1,0 +1,253 @@
+[
+  {
+    "item_id": "f1e2d3c4-b5a6-7890-bcde-f12345678901",
+    "item_type": "AMBIGUOUS_REQUIREMENT",
+    "tender_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "payload": {"requirement_id": "REQ-007", "ambiguity": "qualificazione_indiretta_partner"},
+    "created_at": "2026-05-21T14:30:00Z",
+    "priority": "HIGH",
+    "deadline": "2026-05-22T10:00:00Z",
+    "context": {
+      "requirement": {
+        "requirement_id": "REQ-007",
+        "tender_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "source": {
+          "document_id": "d0c1d2e3-f4a5-6789-0bcd-ef1234567890",
+          "document_name": "Capitolato_Tecnico.pdf",
+          "section_id": "art-12",
+          "section_title": "Art. 12 — Infrastruttura tecnologica",
+          "page": 22,
+          "char_start": 100,
+          "char_end": 450
+        },
+        "text_original": "Il fornitore deve possedere qualificazione come Cloud Service Provider di livello QC3 rilasciata da ACN (ex AGID), o avvalersi di un operatore qualificato in modalità di subappalto nei limiti consentiti.",
+        "text_normalized": "Qualificazione ACN CSP livello QC3 obbligatoria (diretta o tramite subappalto)",
+        "category": "QUALIFICAZIONE",
+        "type": "ESCLUDENTE",
+        "normative_references": [],
+        "required_evidences": [],
+        "confidence": 0.82,
+        "extraction_notes": "Ambiguità: 'avvalersi di un operatore qualificato' — interpretazione giuridica incerta"
+      },
+      "candidate_evidences": [
+        {
+          "evidence_id": "ev-cert-iso27001",
+          "type": "CERTIFICATION",
+          "title": "Certificazione ISO/IEC 27001:2022",
+          "description": "Sistema di gestione della sicurezza delle informazioni. Ambito: infrastruttura IT, sviluppo software, cloud management.",
+          "valid_from": "2024-01-20",
+          "valid_until": "2027-01-19",
+          "proof_attachments": ["/data/evidences/ev-cert-iso27001/iso27001_cert.pdf"],
+          "metadata": {"issuer": "BSI Group Italy", "cert_no": "IT27001-456"},
+          "active": true
+        },
+        {
+          "evidence_id": "ev-part-aruba",
+          "type": "PARTNERSHIP",
+          "title": "Partnership Aruba S.p.A. — Cloud QC3 (ACN)",
+          "description": "Accordo di partnership con Aruba S.p.A. per erogazione servizi cloud su piattaforma qualificata ACN livello QC3. Valido per gare con requisito cloud PA.",
+          "valid_from": "2024-07-01",
+          "valid_until": "2027-06-30",
+          "proof_attachments": ["/data/evidences/ev-part-aruba/partnership_agreement_aruba.pdf"],
+          "metadata": {"partner": "Aruba S.p.A.", "cloud_level": "QC3", "acn_ref": "CSP-QC3-IT-ARUBA-001"},
+          "active": true
+        }
+      ],
+      "auto_suggestion": "Usare ev-part-aruba come evidenza per REQ-007: la qualificazione QC3 Aruba copre il requisito tramite subappalto. Verificare con il team legale l'accettabilità della modalità indiretta."
+    }
+  },
+  {
+    "item_id": "e2d3c4b5-a6f7-8901-cdef-123456789012",
+    "item_type": "UNKNOWN_EVIDENCE_MATCH",
+    "tender_id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+    "payload": {"requirement_id": "REQ-003", "gap_type": "expiry_mismatch"},
+    "created_at": "2026-05-21T15:00:00Z",
+    "priority": "HIGH",
+    "deadline": null,
+    "context": {
+      "requirement": {
+        "requirement_id": "REQ-003",
+        "tender_id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+        "source": {
+          "document_id": "e1f2a3b4-c5d6-7890-abcd-ef1234567891",
+          "document_name": "Capitolato_Cloud_Sanitario.pdf",
+          "section_id": "art-8",
+          "section_title": "Art. 8 — Sicurezza delle informazioni",
+          "page": 14,
+          "char_start": 210,
+          "char_end": 540
+        },
+        "text_original": "Il fornitore deve essere in possesso di certificazione ISO/IEC 27001:2022 con validità almeno pari alla durata contrattuale (5 anni dalla stipula).",
+        "text_normalized": "Certificazione ISO/IEC 27001:2022 valida per tutta la durata contrattuale (5 anni)",
+        "category": "QUALIFICAZIONE",
+        "type": "ESCLUDENTE",
+        "normative_references": [],
+        "required_evidences": [],
+        "confidence": 0.91,
+        "extraction_notes": ""
+      },
+      "candidate_evidences": [
+        {
+          "evidence_id": "ev-cert-iso27001",
+          "type": "CERTIFICATION",
+          "title": "Certificazione ISO/IEC 27001:2022",
+          "description": "Sistema di gestione della sicurezza delle informazioni.",
+          "valid_from": "2024-01-20",
+          "valid_until": "2027-01-19",
+          "proof_attachments": ["/data/evidences/ev-cert-iso27001/iso27001_cert.pdf"],
+          "metadata": {"issuer": "BSI Group Italy", "cert_no": "IT27001-456"},
+          "active": true
+        }
+      ],
+      "auto_suggestion": "Certificazione ISO 27001 presente ma scade nel 2027, prima della fine del contratto (2031). Valutare: rinnovo anticipato del certificato o clausola contrattuale di aggiornamento."
+    }
+  },
+  {
+    "item_id": "d3c4b5a6-f7e8-9012-defa-234567890123",
+    "item_type": "NEW_REQUIREMENT_PATTERN",
+    "tender_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "payload": {"requirement_id": "REQ-013", "pattern": "requisito_accessibilita_pa"},
+    "created_at": "2026-05-20T10:00:00Z",
+    "priority": "MEDIUM",
+    "deadline": null,
+    "context": {
+      "requirement": {
+        "requirement_id": "REQ-013",
+        "tender_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "source": {
+          "document_id": "d0c1d2e3-f4a5-6789-0bcd-ef1234567890",
+          "document_name": "Capitolato_Tecnico.pdf",
+          "section_id": "art-19",
+          "section_title": "Art. 19 — Accessibilità e design inclusivo",
+          "page": 34,
+          "char_start": 80,
+          "char_end": 380
+        },
+        "text_original": "Tutti i sistemi e le interfacce utente sviluppati devono essere conformi alle WCAG 2.1 livello AA e al documento tecnico AgID sulle linee guida sull'accessibilità dei siti web PA.",
+        "text_normalized": "Conformità WCAG 2.1 AA e linee guida accessibilità AgID obbligatoria",
+        "category": "TECNICA",
+        "type": "ESCLUDENTE",
+        "normative_references": [],
+        "required_evidences": [],
+        "confidence": 0.76,
+        "extraction_notes": "Pattern nuovo: requisito accessibilità PA non ancora presente nel profilo aziendale"
+      },
+      "candidate_evidences": [],
+      "auto_suggestion": null
+    }
+  },
+  {
+    "item_id": "c4b5a6f7-e8d9-0123-efab-345678901234",
+    "item_type": "AMBIGUOUS_REQUIREMENT",
+    "tender_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "payload": {"requirement_id": "REQ-005", "ambiguity": "conteggio_referenze_pa"},
+    "created_at": "2026-05-19T09:00:00Z",
+    "priority": "MEDIUM",
+    "deadline": null,
+    "context": {
+      "requirement": {
+        "requirement_id": "REQ-005",
+        "tender_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+        "source": {
+          "document_id": "f2e3d4c5-b6a7-8901-bcde-ef1234567892",
+          "document_name": "Disciplinare_Modena.pdf",
+          "section_id": "art-6",
+          "section_title": "Art. 6 — Capacità tecnica e professionale",
+          "page": 10,
+          "char_start": 530,
+          "char_end": 850
+        },
+        "text_original": "Il concorrente deve aver eseguito negli ultimi 5 anni almeno 3 servizi analoghi per committenti pubblici, di cui almeno uno di importo superiore a €200.000.",
+        "text_normalized": "Almeno 3 referenze PA negli ultimi 5 anni (≥ 1 con importo > €200K)",
+        "category": "QUALIFICAZIONE",
+        "type": "ESCLUDENTE",
+        "normative_references": [],
+        "required_evidences": [],
+        "confidence": 0.88,
+        "extraction_notes": "Ambiguità: contratti scaduti prima del quinquennio ma con attività ricorrenti potrebbero essere computati"
+      },
+      "candidate_evidences": [
+        {
+          "evidence_id": "ev-ref-eni2024",
+          "type": "REFERENCE",
+          "title": "Referenza ENI S.p.A. — Supporto ICT 2022-2024",
+          "description": "Contratto di supporto ICT per 24 mesi. Valore: €2.3M.",
+          "valid_from": "2022-01-01",
+          "valid_until": "2024-12-31",
+          "proof_attachments": [],
+          "metadata": {"client": "ENI S.p.A.", "value_eur": "2300000"},
+          "active": true
+        },
+        {
+          "evidence_id": "ev-ref-comune-mi",
+          "type": "REFERENCE",
+          "title": "Referenza Comune di Milano — Sistema gestione pratiche",
+          "description": "Sviluppo e manutenzione del sistema di gestione pratiche edilizie. Valore: €450K.",
+          "valid_from": "2021-06-01",
+          "valid_until": "2023-05-31",
+          "proof_attachments": [],
+          "metadata": {"client": "Comune di Milano", "value_eur": "450000"},
+          "active": true
+        },
+        {
+          "evidence_id": "ev-ref-regione-er",
+          "type": "REFERENCE",
+          "title": "Referenza Regione Emilia-Romagna — Portale servizi digitali",
+          "description": "Progettazione e sviluppo portale servizi ai cittadini. Valore: €980K.",
+          "valid_from": "2023-03-01",
+          "valid_until": "2025-02-28",
+          "proof_attachments": [],
+          "metadata": {"client": "Regione Emilia-Romagna", "value_eur": "980000"},
+          "active": true
+        }
+      ],
+      "auto_suggestion": "Le referenze ENI (€2.3M) e Regione Emilia-Romagna (€980K) coprono il requisito importo > €200K. Il Comune di Milano (€450K, scaduto 2023) è nel quinquennio. Totale: 3 referenze PA valide."
+    }
+  },
+  {
+    "item_id": "b5a6f7e8-d9c0-1234-fabc-456789012345",
+    "item_type": "UNKNOWN_EVIDENCE_MATCH",
+    "tender_id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+    "payload": {"requirement_id": "REQ-008", "gap_type": "competency_gap"},
+    "created_at": "2026-05-18T14:00:00Z",
+    "priority": "LOW",
+    "deadline": null,
+    "context": {
+      "requirement": {
+        "requirement_id": "REQ-008",
+        "tender_id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+        "source": {
+          "document_id": "a3b4c5d6-e7f8-9012-abcd-ef1234567893",
+          "document_name": "Capitolato_Software_Gestionale.pdf",
+          "section_id": "art-10",
+          "section_title": "Art. 10 — Qualificazione del team",
+          "page": 18,
+          "char_start": 320,
+          "char_end": 620
+        },
+        "text_original": "Il team di progetto deve includere almeno un Project Manager certificato PMP o PRINCE2 Practitioner con esperienza documentata in progetti di digitalizzazione PA.",
+        "text_normalized": "PM certificato PMP o PRINCE2 Practitioner con esperienza PA obbligatorio",
+        "category": "QUALIFICAZIONE",
+        "type": "PREFERENZIALE",
+        "normative_references": [],
+        "required_evidences": [],
+        "confidence": 0.79,
+        "extraction_notes": ""
+      },
+      "candidate_evidences": [
+        {
+          "evidence_id": "ev-comp-itil",
+          "type": "COMPETENCY",
+          "title": "ITIL v4 Foundation — 3 risorse certificate",
+          "description": "Tre risorse del team delivery certificate ITIL v4 Foundation (PeopleCert).",
+          "valid_from": "2024-09-01",
+          "valid_until": null,
+          "proof_attachments": [],
+          "metadata": {"certifying_body": "PeopleCert", "resources_count": "3"},
+          "active": true
+        }
+      ],
+      "auto_suggestion": null
+    }
+  }
+]
