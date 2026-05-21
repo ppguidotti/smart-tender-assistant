@@ -1,0 +1,236 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# ---------------------------------------------------------------------------
+# Project metadata
+# ---------------------------------------------------------------------------
+
+[project]
+name = "smart-tender-assistant"
+version = "0.1.0"
+description = "AI-powered assistant for automated tender (RFP/RFQ) analysis: requirement extraction, gap analysis, and GO/NO-GO decision support."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [
+    { name = "Smart Tender Assistant Team" },
+]
+keywords = [
+    "genai",
+    "llm",
+    "rag",
+    "rfp-analysis",
+    "tender-management",
+    "compliance",
+    "public-procurement",
+    "italian-pa",
+    "document-ai",
+    "go-no-go",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# ---------------------------------------------------------------------------
+# Dependencies
+# ---------------------------------------------------------------------------
+# Core = always installed. Optional groups installed via:
+#   pip install -e ".[dev]"
+#   pip install -e ".[backend,frontend,dev]"
+# ---------------------------------------------------------------------------
+
+dependencies = [
+    # Shared models — used by every block
+    "pydantic>=2.7,<3.0",
+    "pydantic-settings>=2.3,<3.0",
+    # Environment & config
+    "python-dotenv>=1.0,<2.0",
+    # Structured logging
+    "structlog>=24.1,<25.0",
+]
+
+[project.optional-dependencies]
+
+# ---- Backend & document processing (B1-B9) ----
+backend = [
+    # B1 — Document ingestion
+    "tika>=2.6,<3.0",                          # Apache Tika client
+    # B2, B4 — LLM extraction & reasoning
+    "google-generativeai>=0.7,<1.0",           # Gemini API
+    # B3, B9 — Vector store
+    "qdrant-client>=1.10,<2.0",
+    # B8 — API & orchestration
+    "fastapi>=0.111,<1.0",
+    "uvicorn[standard]>=0.30,<1.0",
+    "httpx>=0.27,<1.0",
+    "tenacity>=8.4,<9.0",                      # Retry logic for LLM calls
+    # B6 — Report generation
+    "weasyprint>=62.0,<63.0",                  # HTML → PDF
+    "jinja2>=3.1,<4.0",
+]
+
+# ---- Frontend (B10) ----
+frontend = [
+    "streamlit>=1.36,<2.0",
+    "plotly>=5.22,<6.0",
+    "pandas>=2.2,<3.0",
+    "httpx>=0.27,<1.0",                        # to call B8 API
+]
+
+# ---- Development & testing ----
+dev = [
+    # Linting & formatting
+    "ruff>=0.5,<1.0",
+    "mypy>=1.10,<2.0",
+    # Testing
+    "pytest>=8.2,<9.0",
+    "pytest-asyncio>=0.23,<1.0",
+    "pytest-cov>=5.0,<6.0",
+    # Pre-commit
+    "pre-commit>=3.7,<4.0",
+]
+
+# ---- Embedding models (optional, only if running local embeddings) ----
+embeddings-local = [
+    "sentence-transformers>=3.0,<4.0",
+    "torch>=2.3,<3.0",
+]
+
+# ---------------------------------------------------------------------------
+# Scripts (entry points)
+# ---------------------------------------------------------------------------
+
+[project.scripts]
+sta-api = "smart_tender_assistant.api.main:run"
+sta-frontend = "smart_tender_assistant.frontend.app:run"
+
+# ---------------------------------------------------------------------------
+# URLs
+# ---------------------------------------------------------------------------
+
+[project.urls]
+Homepage = "https://github.com/<your-org>/smart-tender-assistant"
+Repository = "https://github.com/<your-org>/smart-tender-assistant"
+Documentation = "https://github.com/<your-org>/smart-tender-assistant/tree/main/docs"
+
+# ---------------------------------------------------------------------------
+# Hatch — package discovery
+# ---------------------------------------------------------------------------
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/smart_tender_assistant"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+# ---------------------------------------------------------------------------
+# Ruff (linting + import sorting)
+# ---------------------------------------------------------------------------
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear (likely bugs)
+    "UP",  # pyupgrade (modern Python idioms)
+    "N",   # pep8-naming
+    "SIM", # flake8-simplify
+    "RUF", # ruff-specific rules
+]
+ignore = [
+    "E501",   # line-too-long — black handles it
+    "B008",   # function call in default arg — FastAPI Depends() needs this
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["N802", "N803"]                  # test functions may use non-snake_case
+"src/smart_tender_assistant/frontend/**" = ["E402"]  # streamlit needs imports after st.set_page_config
+
+[tool.ruff.lint.isort]
+known-first-party = ["smart_tender_assistant"]
+
+# ---------------------------------------------------------------------------
+# Mypy (type checking) — strict on src/, lenient on tests/
+# ---------------------------------------------------------------------------
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+# 3rd-party libs without type stubs
+module = ["tika.*", "weasyprint.*", "qdrant_client.*"]
+ignore_missing_imports = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+# ---------------------------------------------------------------------------
+# Pytest
+# ---------------------------------------------------------------------------
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-ra",                          # show short summary of all non-passing tests
+    "--strict-markers",
+    "--strict-config",
+    "--cov=smart_tender_assistant",
+    "--cov-report=term-missing",
+    "--cov-report=html:.coverage_html",
+]
+markers = [
+    "slow: tests that take >1s (deselect with '-m \"not slow\"')",
+    "integration: tests that require Tika/Qdrant running",
+    "llm: tests that actually call the LLM API (deselect with '-m \"not llm\"')",
+]
+asyncio_mode = "auto"
+
+# ---------------------------------------------------------------------------
+# Coverage
+# ---------------------------------------------------------------------------
+
+[tool.coverage.run]
+branch = true
+source = ["src/smart_tender_assistant"]
+omit = [
+    "*/tests/*",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "if __name__ == .__main__.:",
+]
+show_missing = true
+skip_covered = false

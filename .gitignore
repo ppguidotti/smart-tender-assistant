@@ -1,0 +1,137 @@
+# ---------------------------------------------------------------------------
+# Secrets & environment
+# ---------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+.coverage_html/
+htmlcov/
+.tox/
+.nox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Linters
+.ruff_cache/
+.pylint.d/
+
+# ---------------------------------------------------------------------------
+# Project-specific
+# ---------------------------------------------------------------------------
+
+# Local data — generated PDFs, ingested files, Qdrant storage
+/data/
+!/data/.gitkeep
+
+# Qdrant storage volume (if mounted locally outside /data/)
+qdrant_storage/
+
+# Logs
+*.log
+logs/
+
+# Streamlit runtime
+.streamlit/secrets.toml
+
+# Tika temp files
+tika-server-*.jar
+tika.log
+
+# Personal Claude Code config (per-developer overrides)
+CLAUDE.local.md
+
+# Generated fixtures from real LLM runs (regenerable)
+tests/fixtures/generated/
+
+# ---------------------------------------------------------------------------
+# IDE & editors
+# ---------------------------------------------------------------------------
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.shared.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ---------------------------------------------------------------------------
+# Docker
+# ---------------------------------------------------------------------------
+docker-compose.override.yml
+
+# ---------------------------------------------------------------------------
+# OS
+# ---------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+ehthumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Jupyter (se qualcuno fa esplorazione)
+# ---------------------------------------------------------------------------
+.ipynb_checkpoints/
+*.ipynb
+
+
+
+# ---------------------------------------------------------------------------
+# Agent-specific
+# ---------------------------------------------------------------------------
+.agent/
+.claude/
