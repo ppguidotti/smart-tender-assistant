@@ -44,7 +44,8 @@ TESTO DOCUMENTO:
         requirements = result.get("requirements", [])
 
         for req in requirements:
-            req["source_document"] = source
+            req.setdefault("fonte", {})
+            req["fonte"]["documento"] = source
 
         all_requirements.extend(requirements)
 
