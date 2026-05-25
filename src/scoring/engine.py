@@ -26,7 +26,7 @@ def _score_category(
     ]
 
     if not category_requirements:
-        return 100
+        return 0
 
     weighted_sum = 0.0
     total_weight = 0.0
