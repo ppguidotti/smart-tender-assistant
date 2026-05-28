@@ -17,10 +17,14 @@ from smart_tender_assistant.frontend.config import get_settings
 from smart_tender_assistant.frontend.models.schemas import (
     AdminChecklist,
     AuditEntry,
+    BandoHTML,
+    CertExpiry,
+    ChecklistItemHTML,
     Evidence,
     GapAnalysisResult,
     GapAnalysisSummary,
     Requirement,
+    RequisitoBando,
     ReviewItem,
     TenderDecision,
     TenderListItem,
@@ -52,6 +56,15 @@ class TenderApiClient(Protocol):
     def get_admin_checklist(self, tender_id: str) -> AdminChecklist | None: ...
 
     def get_audit_trail(self, tender_id: str) -> list[AuditEntry]: ...
+
+    # HTML-style domain (prototipo STCA_Platform_v2.html)
+    def list_bandi_html(self) -> list[BandoHTML]: ...
+
+    def get_bando_requisiti(self, bando_id: str) -> list[RequisitoBando]: ...
+
+    def get_bando_checklist(self, bando_id: str) -> list[ChecklistItemHTML]: ...
+
+    def list_cert_expiry(self) -> list[CertExpiry]: ...
 
 
 # ---------------------------------------------------------------------------
@@ -146,6 +159,40 @@ class MockApiClient:
         data = _load_json(path)
         return [AuditEntry.model_validate(item) for item in data]
 
+    # --- HTML-style domain ---------------------------------------------------
+
+    def list_bandi_html(self) -> list[BandoHTML]:
+        """Restituisce la lista bandi nel formato del prototipo HTML."""
+        path = self._fixtures / "bandi_html.json"
+        if not path.exists():
+            return []
+        data = _load_json(path)
+        return [BandoHTML.model_validate(item) for item in data]
+
+    def get_bando_requisiti(self, bando_id: str) -> list[RequisitoBando]:
+        """Restituisce i requisiti di un bando dal prototipo."""
+        path = self._fixtures / f"bando_{bando_id}_requisiti.json"
+        if not path.exists():
+            return []
+        data = _load_json(path)
+        return [RequisitoBando.model_validate(item) for item in data]
+
+    def get_bando_checklist(self, bando_id: str) -> list[ChecklistItemHTML]:
+        """Restituisce la checklist conformità di un bando dal prototipo."""
+        path = self._fixtures / f"bando_{bando_id}_checklist.json"
+        if not path.exists():
+            return []
+        data = _load_json(path)
+        return [ChecklistItemHTML.model_validate(item) for item in data]
+
+    def list_cert_expiry(self) -> list[CertExpiry]:
+        """Restituisce le certificazioni in scadenza."""
+        path = self._fixtures / "certificazioni_scadenze.json"
+        if not path.exists():
+            return []
+        data = _load_json(path)
+        return [CertExpiry.model_validate(item) for item in data]
+
 
 # ---------------------------------------------------------------------------
 # HTTP implementation — stub per quando B8 esisterà
@@ -187,6 +234,18 @@ class HttpApiClient:
         raise NotImplementedError("HTTP client non ancora implementato")
 
     def get_audit_trail(self, tender_id: str) -> list[AuditEntry]:
+        raise NotImplementedError("HTTP client non ancora implementato")
+
+    def list_bandi_html(self) -> list[BandoHTML]:
+        raise NotImplementedError("HTTP client non ancora implementato")
+
+    def get_bando_requisiti(self, bando_id: str) -> list[RequisitoBando]:
+        raise NotImplementedError("HTTP client non ancora implementato")
+
+    def get_bando_checklist(self, bando_id: str) -> list[ChecklistItemHTML]:
+        raise NotImplementedError("HTTP client non ancora implementato")
+
+    def list_cert_expiry(self) -> list[CertExpiry]:
         raise NotImplementedError("HTTP client non ancora implementato")
 
 

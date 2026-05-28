@@ -1,0 +1,35 @@
+[
+  {"id":"t1","cat":"TECNICA","txt":"Fornitura licenze [PIATTAFORMA EDR] — prodotto specifico, vendor lock-in con SKU definiti","fonte":"Art. 1","tipo":"ESCLUDENTE","status":"coperto","ml":"[Vendor EDR] — Livello Elite Partner ✓","mt":"gn"},
+  {"id":"t2","cat":"TECNICA","txt":"Competenze EDR/XDR — configurazione endpoint security in modalità cloud, sostituzione on-premises","fonte":"Art. 1, 8","tipo":"ESCLUDENTE","status":"coperto","ml":"Competency XDR certificata + REF003 ✓","mt":"gn"},
+  {"id":"t3","cat":"TECNICA","txt":"Attivazione SKU-001: 890 licenze Endpoint Security Essentials Cross-Upgrade entro 01/01/AAAA","fonte":"Art. 2","tipo":"ESCLUDENTE","status":"parziale","ml":"Parziale — stock da confermare","mt":"am","nota":"Confermare disponibilità stock con account vendor Government"},
+  {"id":"t4","cat":"TECNICA","txt":"Attivazione SKU-002: 890 licenze Essentials Rinnovo Ente Pubblico 501-1000, 24 mesi entro 01/01/AAAA+1","fonte":"Art. 2","tipo":"ESCLUDENTE","status":"coperto","ml":"Livello Elite — gestibile ✓","mt":"gn"},
+  {"id":"t5","cat":"TECNICA","txt":"Attivazione SKU-003: 10 licenze Endpoint Security Pro Rinnovo Ente Pubblico 1-50, 36 mesi","fonte":"Art. 2","tipo":"ESCLUDENTE","status":"coperto","ml":"Livello Elite — gestibile ✓","mt":"gn"},
+  {"id":"t6","cat":"TECNICA","txt":"Attivazione 2.000 crediti CREM (Cyber Risk Exposure Management) — SKU-004 e SKU-005","fonte":"Art. 2","tipo":"ESCLUDENTE","status":"coperto","ml":"Crediti piattaforma — gestibile ✓","mt":"gn"},
+  {"id":"t7","cat":"TECNICA","txt":"Fornitura in modalità cloud obbligatoria — sostituzione soluzioni on-premises esistenti","fonte":"Art. 1","tipo":"ESCLUDENTE","status":"coperto","ml":"Cloud-native — coperto ✓","mt":"gn"},
+  {"id":"t8","cat":"TECNICA","txt":"Supporto tecnico post-attivazione e configurazione iniziale","fonte":"Art. 8","tipo":"ESCLUDENTE","status":"coperto","ml":"Team tecnico certificato ✓","mt":"gn"},
+
+  {"id":"n1","cat":"NORMATIVA","txt":"Accordo ex Art. 28 GDPR (DPA) tra fornitore e SA per trattamento dati personali","fonte":"Art. 8, 12, 13","tipo":"ESCLUDENTE","status":"coperto","ml":"CIPP/E + ISO/IEC 27001 ✓","mt":"gn","nota":"Penale 1‰ per mancata sottoscrizione"},
+  {"id":"n2","cat":"NORMATIVA","txt":"Rispetto D.lgs. 36/2023 — Codice dei Contratti Pubblici e D.lgs. 82/2005 CAD","fonte":"Art. 5","tipo":"ESCLUDENTE","status":"coperto","ml":"Compliance automatica ✓","mt":"gn"},
+  {"id":"n3","cat":"NORMATIVA","txt":"Piano Triennale Informatica 2024/2026 e circolari AgID","fonte":"Art. 5","tipo":"ESCLUDENTE","status":"coperto","ml":"Compliance automatica ✓","mt":"gn"},
+  {"id":"n4","cat":"NORMATIVA","txt":"Fatturazione elettronica obbligatoria con CIG e CUP — split payment art. 17-ter DPR 633/1972","fonte":"Art. 17","tipo":"ESCLUDENTE","status":"coperto","ml":"Template fattura aggiornato ✓","mt":"gn","nota":"Codice Univoco Ufficio [OMESSO] — rifiuto automatico fatture non conformi"},
+  {"id":"n5","cat":"NORMATIVA","txt":"Tracciabilità flussi finanziari — L. 136/2010. Risoluzione di diritto per mancata tracciabilità","fonte":"Art. 13, 18","tipo":"ESCLUDENTE","status":"coperto","ml":"C/C dedicato attivo ✓","mt":"gn"},
+  {"id":"n6","cat":"NORMATIVA","txt":"ISO/IEC 20000-1:2018 Service Management certificato da ente terzo accreditato","fonte":"All. tecnico","tipo":"PREFERENZIALE","status":"gap-pref","ml":"IN_SCADENZA — gap attivo","mt":"rd","nota":"Certificazione scade il 31/05/2026 — solo 8 giorni — ~3 punti tecnici a rischio"},
+  {"id":"n7","cat":"NORMATIVA","txt":"Riservatezza assoluta su documenti e informazioni acquisite — divieto di divulgazione","fonte":"Art. 8, 23","tipo":"ESCLUDENTE","status":"coperto","ml":"NDA standard aziendale ✓","mt":"gn"},
+  {"id":"n8","cat":"NORMATIVA","txt":"Conformità al Regolamento GDPR Art. 13 — informativa trattamento dati obbligatoria per partecipazione","fonte":"Art. 23","tipo":"ESCLUDENTE","status":"coperto","ml":"Informativa GDPR disponibile ✓","mt":"gn"},
+  {"id":"n9","cat":"NORMATIVA","txt":"Codice di comportamento dipendenti pubblici D.P.R. 62/2013 esteso ai collaboratori","fonte":"Art. 21","tipo":"ESCLUDENTE","status":"coperto","ml":"Clausola contrattuale standard ✓","mt":"gn"},
+
+  {"id":"q1","cat":"QUALIFICAZIONE","txt":"Iscrizione MePA — categoria merceologica \"Informatica, Elettronica, Telecomunicazioni\"","fonte":"Art. 1","tipo":"ESCLUDENTE","status":"coperto","ml":"Iscrizione MePA attiva ✓","mt":"gn","nota":"Allegato n.7 al capitolato d'oneri MePA — Beni"},
+  {"id":"q2","cat":"QUALIFICAZIONE","txt":"CCNL dichiarato: C011 Metalmeccanico industria — ai sensi D.lgs. 36/2023 art. 11 c.2","fonte":"Art. 4","tipo":"ESCLUDENTE","status":"coperto","ml":"Dichiarazione disponibile ✓","mt":"gn"},
+  {"id":"q3","cat":"QUALIFICAZIONE","txt":"DURC regolare — prerequisito per autorizzazione emissione fattura da RUP","fonte":"Art. 17","tipo":"ESCLUDENTE","status":"coperto","ml":"DURC in corso di validità ✓","mt":"gn"},
+  {"id":"q4","cat":"QUALIFICAZIONE","txt":"Personale con conoscenze tecniche adeguate per attività EDR/XDR e configurazione licenze","fonte":"Art. 8","tipo":"ESCLUDENTE","status":"coperto","ml":"Team certificato vendor ✓","mt":"gn"},
+  {"id":"q5","cat":"QUALIFICAZIONE","txt":"Conto corrente dedicato comunicato entro 7 giorni — L.136/2010 art.3","fonte":"Art. 18","tipo":"ESCLUDENTE","status":"coperto","ml":"C/C dedicato comunicato ✓","mt":"gn"},
+
+  {"id":"a1","cat":"AMMINISTRATIVA","txt":"Unica fattura elettronica per tutte le licenze (non separata per SKU)","fonte":"Art. 17","tipo":"ESCLUDENTE","status":"coperto","ml":"Processo amministrativo ✓","mt":"gn"},
+  {"id":"a2","cat":"AMMINISTRATIVA","txt":"Fattura con campi obbligatori: CIG, CUP, n. impegno, n. determina, IBAN, modalità pagamento","fonte":"Art. 17","tipo":"ESCLUDENTE","status":"coperto","ml":"Template fattura aggiornato ✓","mt":"gn"},
+  {"id":"a3","cat":"AMMINISTRATIVA","txt":"Comunicazione scioperi con almeno 7 giorni naturali di anticipo — servizio di emergenza garantito","fonte":"Art. 8","tipo":"ESCLUDENTE","status":"coperto","ml":"Clausola contratto ✓","mt":"gn"},
+  {"id":"a4","cat":"AMMINISTRATIVA","txt":"Comunicazione domicilio eletto per notifiche atti giudiziari","fonte":"Art. 20","tipo":"ESCLUDENTE","status":"coperto","ml":"Da comunicare post-aggiudicazione ✓","mt":"gn"},
+  {"id":"a5","cat":"AMMINISTRATIVA","txt":"PassOE generato per questa specifica gara su portale [ente vigilanza appalti]","fonte":"Bando","tipo":"ESCLUDENTE","status":"parziale","ml":"Da generare prima della scadenza","mt":"am"},
+  {"id":"a6","cat":"AMMINISTRATIVA","txt":"ANAC — iscrizione attiva con numero registrazione valido","fonte":"Bando","tipo":"ESCLUDENTE","status":"coperto","ml":"Iscrizione [Ente vigilanza] attiva ✓","mt":"gn"},
+  {"id":"a7","cat":"AMMINISTRATIVA","txt":"Rispetto codice antimafia e normativa antiracket","fonte":"Art. 5","tipo":"ESCLUDENTE","status":"coperto","ml":"Dichiarazione disponibile ✓","mt":"gn"},
+  {"id":"a8","cat":"AMMINISTRATIVA","txt":"Nessun DUVRI previsto — fornitura licenze e attività intellettuale","fonte":"Art. 3","tipo":"INFORMATIVO","status":"info","ml":"Non applicabile","mt":"gr"}
+]

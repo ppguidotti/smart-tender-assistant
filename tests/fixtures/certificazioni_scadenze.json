@@ -1,0 +1,7 @@
+[
+  {"nome":"ISO/IEC 20000-1 — IT Service Management","ente":"[Ente cert. C]","scad":"31/05/2026","giorni":9,"stato":"urgent","bandi":4},
+  {"nome":"[Vendor Cloud] Solutions Partner","ente":"[Vendor Cloud]","scad":"31/03/2026","giorni":-60,"stato":"scaduta","bandi":2},
+  {"nome":"[Vendor Networking] Gold Partner","ente":"[Vendor Networking]","scad":"31/12/2025","giorni":225,"stato":"warn","bandi":4},
+  {"nome":"ISO 9001:2015","ente":"[Ente cert. A]","scad":"28/02/2027","giorni":285,"stato":"ok","bandi":0},
+  {"nome":"ISO/IEC 27001:2022","ente":"[Ente cert. B]","scad":"14/09/2027","giorni":483,"stato":"ok","bandi":0}
+]

@@ -333,3 +333,72 @@ class TenderListItem(BaseModel):
     critical_gaps: int = 0
     score: float | None = None
     estimated_value: Money | None = None
+
+
+# ---------------------------------------------------------------------------
+# HTML-style domain (mirror del prototipo STCA_Platform_v2.html)
+# ---------------------------------------------------------------------------
+
+BandoStatus = Literal["analisi", "go", "no-go", "vinta", "persa", "pending", "go_cond"]
+ReqStatus = Literal["coperto", "automatico", "parziale", "gap-pref", "gap-esc", "info"]
+ReqMatchTone = Literal["gn", "am", "rd", "gr"]
+CertStatus = Literal["urgent", "scaduta", "warn", "ok"]
+
+
+class RequisitoBando(BaseModel):
+    """Requisito di un bando nel formato del prototipo HTML."""
+
+    id: str
+    cat: RequirementCategory
+    txt: str
+    fonte: str
+    tipo: RequirementType
+    status: ReqStatus
+    ml: str
+    mt: ReqMatchTone
+    nota: str | None = None
+    rev_nota: str | None = None
+
+
+class ChecklistItemHTML(BaseModel):
+    """Item della checklist conformità nel formato del prototipo HTML."""
+
+    id: str
+    cat: str
+    txt: str
+    sub: str
+    done: bool = False
+    urgente: bool = False
+    warn: bool = False
+
+
+class BandoHTML(BaseModel):
+    """Bando nel formato del prototipo HTML (S.bandi)."""
+
+    id: str
+    nome: str
+    short_nome: str | None = None
+    ente: str
+    valore: float
+    scadenza: str
+    giorni_mancanti: int
+    canale: str
+    cpv: str
+    status: BandoStatus
+    uploaded_at: str | None = None
+    files: list[str] = Field(default_factory=list)
+    analisi_completa: bool = False
+    gng_confermato: bool = False
+    requisiti: list[RequisitoBando] = Field(default_factory=list)
+    checklist: list[ChecklistItemHTML] = Field(default_factory=list)
+
+
+class CertExpiry(BaseModel, frozen=True):
+    """Certificazione in scadenza per la pagina Alert."""
+
+    nome: str
+    ente: str
+    scad: str
+    giorni: int
+    stato: CertStatus
+    bandi: int

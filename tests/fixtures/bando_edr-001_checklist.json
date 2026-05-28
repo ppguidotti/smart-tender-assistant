@@ -1,0 +1,24 @@
+[
+  {"id":"c1","cat":"Privacy & GDPR","txt":"Sottoscrizione DPA — accordo ex Art. 28 GDPR","sub":"Documento: DPA_firmato.pdf · Obbligatorio","done":true,"urgente":false,"warn":false},
+  {"id":"c2","cat":"Privacy & GDPR","txt":"Nomina responsabile trattamento dati (RT)","sub":"Documento: Nomina_RT.pdf · Obbligatorio","done":true,"urgente":false,"warn":false},
+  {"id":"c3","cat":"Privacy & GDPR","txt":"Registro attività di trattamento aggiornato — Art. 30 GDPR","sub":"Da produrre entro firma contratto","done":false,"urgente":false,"warn":true},
+
+  {"id":"c4","cat":"Sicurezza & Certificazioni","txt":"ISO/IEC 27001 in corso di validità — certificato da ente accreditato","sub":"Certificato valido fino al 14/09/2027 · [Ente cert. B]","done":true,"urgente":false,"warn":false},
+  {"id":"c5","cat":"Sicurezza & Certificazioni","txt":"ISO 9001:2015 in corso di validità","sub":"Certificato valido fino al 28/02/2027 · [Ente cert. A]","done":true,"urgente":false,"warn":false},
+  {"id":"c6","cat":"Sicurezza & Certificazioni","txt":"ISO/IEC 20000-1 — certificato valido (requisito preferenziale)","sub":"CRITICO: certificazione IN_SCADENZA 31/05/2026 — avviare rinnovo urgente","done":false,"urgente":true,"warn":false},
+
+  {"id":"c7","cat":"Fatturazione & Tracciabilità","txt":"Conto corrente dedicato comunicato — L.136/2010 art.3","sub":"IBAN + generalità delegati comunicati entro 7 gg","done":true,"urgente":false,"warn":false},
+  {"id":"c8","cat":"Fatturazione & Tracciabilità","txt":"Impegno tracciabilità flussi finanziari dichiarato","sub":"Dichiarazione allegata all'offerta","done":true,"urgente":false,"warn":false},
+  {"id":"c9","cat":"Fatturazione & Tracciabilità","txt":"PassOE generato su portale [ente vigilanza appalti] per questa gara","sub":"Da generare — portale [ente vigilanza]","done":false,"urgente":false,"warn":true},
+  {"id":"c10","cat":"Fatturazione & Tracciabilità","txt":"DURC in corso di validità alla data di presentazione offerta","sub":"Verificato automaticamente prima della presentazione","done":true,"urgente":false,"warn":false},
+
+  {"id":"c11","cat":"Delivery & Contratto","txt":"Conferma disponibilità stock SKU-001 — 890 licenze Cross-Upgrade","sub":"Da verificare con account vendor Government · Scad. 01/01/AAAA","done":false,"urgente":false,"warn":true},
+  {"id":"c12","cat":"Delivery & Contratto","txt":"Conferma calendarizzazione attivazioni entro date indicate all'Art. 2","sub":"Da concordare con DEC post-aggiudicazione","done":false,"urgente":false,"warn":false},
+  {"id":"c13","cat":"Delivery & Contratto","txt":"Comunicazione personale tecnico incaricato — Art. 8","sub":"Con conoscenze tecniche adeguate EDR/XDR","done":false,"urgente":false,"warn":false},
+
+  {"id":"c14","cat":"Offerta & Amministrativo","txt":"Offerta economica compilata con tutti i SKU richiesti","sub":"Importo complessivo: €52.500 + IVA 22%","done":true,"urgente":false,"warn":false},
+  {"id":"c15","cat":"Offerta & Amministrativo","txt":"Domicilio eletto per notifiche atti giudiziari comunicato","sub":"Necessario per eventuali comunicazioni legali","done":true,"urgente":false,"warn":false},
+  {"id":"c16","cat":"Offerta & Amministrativo","txt":"Dichiarazione rispetto codice di comportamento dipendenti pubblici","sub":"D.P.R. 62/2013 esteso ai collaboratori","done":true,"urgente":false,"warn":false},
+  {"id":"c17","cat":"Offerta & Amministrativo","txt":"CCNL C011 Metalmeccanico dichiarato nell'offerta","sub":"Ai sensi D.lgs. 36/2023 art. 11 c.2","done":true,"urgente":false,"warn":false},
+  {"id":"c18","cat":"Offerta & Amministrativo","txt":"Schema contratto verificato e accettato","sub":"Nessun DUVRI — fornitura intellettuale","done":true,"urgente":false,"warn":false}
+]

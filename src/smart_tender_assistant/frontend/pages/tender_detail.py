@@ -1,950 +1,901 @@
-"""Pagina dettaglio gara — header, tab Requisiti, tab Gap Analysis, tab Rischi."""
+"""Dettaglio gara — render-as-HTML 1:1 con `viewDetail()` del prototipo.
+
+Topbar (breadcrumb + meta) + 3 tab:
+- Requisiti & Gap — chip filtri + sezioni categoria + popover Revisiona
+- Checklist — progress + sezioni + checkbox per item + Mark all + Add item
+- Go/No-Go — gauge SVG + score breakdown + KPI + contesto + decisione
+
+Dialog "Analisi AI in corso" si apre se `session_state["start_analysis_bid"]` è set.
+"""
 
 from __future__ import annotations
 
-import json
-from collections import defaultdict
-from datetime import timezone
+import time
+from math import pi
+from typing import Iterable
 
-import plotly.graph_objects as go
 import streamlit as st
 
 from smart_tender_assistant.frontend.models.schemas import (
-    AdminChecklist,
-    AuditEntry,
-    DocumentTodo,
-    GapAnalysisResult,
-    RiskAssessment,
-    RiskFactor,
-    Requirement,
-    TenderDecision,
-    TenderListItem,
+    ChecklistItemHTML,
+    RequisitoBando,
 )
-from smart_tender_assistant.frontend.services.api_client import get_api_client
-from smart_tender_assistant.frontend.ui.components.badges import (
-    decision_badge,
-    effort_badge,
-    match_status_badge_html,
-    requirement_type_badge,
-    risk_severity_badge,
-    severity_badge_html,
+from smart_tender_assistant.frontend.ui.stca_helpers import (
+    calc_score,
+    chk_stats,
+    gap_count,
+    get_bando,
 )
-from smart_tender_assistant.frontend.ui.components.cards import evidence_card
-from smart_tender_assistant.frontend.ui.components.citations import source_citation
 from smart_tender_assistant.frontend.ui.theme import (
-    CATEGORY_COLORS,
-    COLOR_BG_SECONDARY,
-    COLOR_BORDER,
-    COLOR_GO,
-    COLOR_GO_RESERVATIONS,
-    COLOR_NO_GO,
-    COLOR_PARTIAL,
-    COLOR_TEXT_PRIMARY,
-    COLOR_TEXT_SECONDARY,
+    COLOR_AM,
+    COLOR_BD,
+    COLOR_GN,
+    COLOR_RD,
+    COLOR_T1,
+    COLOR_T2,
+    COLOR_T3,
+    bando_status_badge,
+    fmt_val,
     inject_custom_css,
 )
 
-# ---------------------------------------------------------------------------
-# Mesi italiani (fallback senza locale di sistema)
-# ---------------------------------------------------------------------------
+inject_custom_css()
 
-_MESI_IT = {
-    1: "gennaio",
-    2: "febbraio",
-    3: "marzo",
-    4: "aprile",
-    5: "maggio",
-    6: "giugno",
-    7: "luglio",
-    8: "agosto",
-    9: "settembre",
-    10: "ottobre",
-    11: "novembre",
-    12: "dicembre",
-}
 
-_TYPE_FILTER_LABELS: dict[str, str] = {
-    "ESCLUDENTE": "Escludente",
-    "PREFERENZIALE": "Preferenziale",
-    "INFORMATIVO": "Informativo",
-}
+# ───────────────────────────────────────────────────────────────
+# Dialog analisi AI (mirror startAnalysis() nell'HTML)
+# ───────────────────────────────────────────────────────────────
 
-_CATEGORY_LABELS: dict[str, str] = {
-    "QUALIFICAZIONE": "Qualificazione",
-    "NORMATIVA": "Normativa",
+
+@st.dialog("🤖 Analisi AI in corso", width="large")
+def _run_analysis_dialog(bando_id: str, filename: str) -> None:
+    st.markdown(
+        f'<div style="font-size:13px;color:{COLOR_T3};margin-bottom:14px">'
+        f"File: <strong style='color:#E87722'>{filename}</strong></div>",
+        unsafe_allow_html=True,
+    )
+
+    with st.status("M1 — Estrazione e classificazione requisiti", expanded=True) as s1:
+        st.write("Caricamento e parsing documento in corso…")
+        time.sleep(0.4)
+        st.write("Identificazione sezioni: Capitolato, Allegati, FAQ…")
+        time.sleep(0.4)
+        st.write("Classificazione requisiti per categoria…")
+        time.sleep(0.35)
+        st.success("✓ 30 requisiti estratti: 5 qualificazione, 9 normativa, 8 tecnica, 8 amm.")
+        s1.update(label="M1 — Estrazione completata ✓", state="complete")
+
+    with st.status("M2+M3 — Analisi normativa + Gap certificazioni", expanded=True) as s2:
+        st.write("[M2] Caricamento KB normativo: GDPR, D.lgs.36/2023, CAD…")
+        time.sleep(0.35)
+        st.write("[M2] Analisi conformità normativa: 9 requisiti…")
+        time.sleep(0.35)
+        st.write("[M3] Confronto certificazioni con registry aziendale…")
+        time.sleep(0.35)
+        st.write("[M3] Fuzzy matching: ISO/IEC 27001 ✓, ISO 9001 ✓, [Vendor EDR] Elite ✓…")
+        time.sleep(0.35)
+        st.warning("⚠ Gap rilevato: ISO/IEC 20000-1 — IN_SCADENZA 31/05/2026")
+        time.sleep(0.3)
+        st.success("✓ M2: copertura normativa 87% · M3: 1 gap preferenziale, 0 escludenti")
+        s2.update(label="M2+M3 — Analisi completata ✓", state="complete")
+
+    with st.status("Output — Score e raccomandazione Go/No-Go", expanded=True) as s3:
+        st.write("Calcolo score composito: M2×0.30 + M3×0.40 + Qual×0.30…")
+        time.sleep(0.35)
+        bb = get_bando(bando_id)
+        if bb is not None:
+            bb.status = "analisi"
+            bb.analisi_completa = True
+            sc = calc_score(bb.requisiti)
+        else:
+            sc = type("R", (), {"score": 76, "ra": "GO"})()
+        st.success(f"Score: {sc.score}/100 — {sc.ra}")
+        s3.update(label="Output — Score calcolato ✓", state="complete")
+
+    snum_color = "#4ADE80" if sc.ra == "GO" else "#F87171"
+    slabel = "✓ GO — Presentare offerta" if sc.ra == "GO" else f"⊘ {sc.ra}"
+    st.markdown(
+        f"""
+        <div style="background:#16162B;border-radius:12px;padding:24px;
+             margin-top:14px;text-align:center">
+          <div style="font-size:48px;font-weight:700;font-family:'JetBrains Mono',monospace;
+               color:{snum_color};line-height:1">{sc.score}</div>
+          <div style="font-size:14px;font-weight:600;color:{snum_color};margin-top:6px">
+            {slabel}
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("Apri analisi →", type="primary", key="open_after_analysis", width="stretch"):
+        st.session_state["selected_bando_id"] = bando_id
+        st.session_state.pop("start_analysis_bid", None)
+        st.session_state.pop("start_analysis_file", None)
+        st.rerun()
+
+
+if "start_analysis_bid" in st.session_state:
+    _run_analysis_dialog(
+        st.session_state["start_analysis_bid"],
+        st.session_state.get("start_analysis_file", "Capitolato.pdf"),
+    )
+
+
+# ───────────────────────────────────────────────────────────────
+# Resolve bando
+# ───────────────────────────────────────────────────────────────
+
+
+bid = st.session_state.get("selected_bando_id", "edr-001")
+b = get_bando(bid)
+
+if b is None:
+    st.warning("Nessuna gara selezionata.")
+    if st.button("← Torna alla Dashboard"):
+        st.switch_page("pages/home.py")
+    st.stop()
+
+
+# ───────────────────────────────────────────────────────────────
+# Back button + topbar
+# ───────────────────────────────────────────────────────────────
+
+
+with st.container(key="tdet_back"):
+    if st.button("← Dashboard", key="back_to_dash"):
+        st.switch_page("pages/home.py")
+
+status_html = bando_status_badge(b.status)
+meta_urgent = (
+    f'<span class="stca-urgency">⏱ {b.giorni_mancanti} giorni alla scadenza</span>'
+    f'<span class="sep">·</span>'
+    if b.giorni_mancanti > 0
+    else ""
+)
+
+st.markdown(
+    f'<div class="stca-topbar">'
+    f'<div class="stca-breadcrumb"><span class="cur">{b.short_nome or b.nome}</span>&nbsp; {status_html}</div>'
+    f'<div class="stca-meta">'
+    f"<span>🏛 {b.ente}</span><span class=\"sep\">·</span>"
+    f'<span>💶 {fmt_val(b.valore)}</span><span class="sep">·</span>'
+    f'<span>🗓 Scad. {b.scadenza}</span><span class="sep">·</span>'
+    f"{meta_urgent}"
+    f"<span>{b.canale} · CPV {b.cpv}</span>"
+    f"</div></div>",
+    unsafe_allow_html=True,
+)
+
+
+# ───────────────────────────────────────────────────────────────
+# Tabs
+# ───────────────────────────────────────────────────────────────
+
+
+tab_req, tab_chk, tab_gng = st.tabs(
+    ["📋 Requisiti & Gap", "☑ Checklist", "🎯 Go / No-Go"]
+)
+
+
+# ============================================================
+# TAB 1 — REQUISITI & GAP
+# ============================================================
+
+
+_CATS = ["TECNICA", "NORMATIVA", "QUALIFICAZIONE", "AMMINISTRATIVA"]
+_CAT_LABELS = {
     "TECNICA": "Tecnica",
+    "NORMATIVA": "Normativa",
+    "QUALIFICAZIONE": "Qualificazione",
     "AMMINISTRATIVA": "Amministrativa",
 }
 
-# Ordine canonico delle categorie
-_CATEGORY_ORDER = ["QUALIFICAZIONE", "NORMATIVA", "TECNICA", "AMMINISTRATIVA"]
+
+def _req_dot_class(r: RequisitoBando) -> str:
+    if r.status in ("coperto", "automatico"):
+        return "stca-d-gn"
+    if r.status == "parziale":
+        return "stca-d-am"
+    if r.status in ("gap-esc", "gap-pref"):
+        return "stca-d-rd"
+    return "stca-d-gr"
 
 
-# ---------------------------------------------------------------------------
-# Data loading
-# ---------------------------------------------------------------------------
+def _nota_class(r: RequisitoBando) -> str:
+    if r.status in ("gap-esc", "gap-pref"):
+        return "rn"
+    if r.status == "parziale":
+        return "wn"
+    return ""
 
 
-def _find_tender_metadata(tender_id: str) -> TenderListItem | None:
-    """Cerca i metadati della gara nella lista gare."""
-    client = get_api_client()
-    tenders = client.list_tenders()
-    for t in tenders:
-        if str(t.tender_id) == tender_id:
-            return t
-    return None
+def _tipo_tag(tipo: str) -> str:
+    cls = "esc" if tipo == "ESCLUDENTE" else "pref" if tipo == "PREFERENZIALE" else "info"
+    return f'<span class="stca-tag stca-tag-{cls}">{tipo}</span>'
 
 
-def _load_requirements(tender_id: str) -> list[Requirement]:
-    """Carica i requisiti della gara."""
-    client = get_api_client()
-    return client.get_requirements(tender_id)
+def _render_req_row(r: RequisitoBando) -> None:
+    """Riga requisito = 6 colonne (dot, txt+nota, fonte, tipo, match, action button).
 
+    L'azione apre un pannello di revisione inline sotto la riga (tramite
+    `session_state["rev_open"]`). Pattern coerente col prototipo HTML originale.
+    """
+    needs_action = r.status in ("parziale", "gap-pref", "gap-esc")
+    nota_html = (
+        f'<div class="stca-req-note {_nota_class(r)}">{r.nota}</div>' if r.nota else ""
+    )
+    rev_open = st.session_state.get("rev_open") == r.id
 
-def _load_decision(tender_id: str) -> TenderDecision | None:
-    """Carica la decisione della gara, None se non disponibile."""
-    client = get_api_client()
-    try:
-        return client.get_decision(tender_id)
-    except (FileNotFoundError, Exception):
-        return None
-
-
-def _load_admin_checklist(tender_id: str) -> AdminChecklist | None:
-    """Carica la checklist amministrativa, None se B6 non ancora girato."""
-    client = get_api_client()
-    try:
-        return client.get_admin_checklist(tender_id)
-    except Exception:
-        return None
-
-
-def _load_audit_trail(tender_id: str) -> list[AuditEntry]:
-    """Carica l'audit trail della gara, lista vuota se non disponibile."""
-    client = get_api_client()
-    try:
-        return client.get_audit_trail(tender_id)
-    except Exception:
-        return []
-
-
-# ---------------------------------------------------------------------------
-# Header
-# ---------------------------------------------------------------------------
-
-
-def _render_header(
-    tender: TenderListItem,
-    decision: TenderDecision | None,
-) -> None:
-    """Renderizza l'header della pagina con titolo, badge, score e azioni."""
-    col_header, col_actions = st.columns([4, 1])
-
-    with col_header:
-        st.title(tender.name)
-
-        cols = st.columns([1.5, 1, 1, 2.5])
-
-        with cols[0]:
-            if decision:
-                decision_badge(decision.decision, large=True)
-            elif tender.decision:
-                decision_badge(tender.decision, large=True)
-            else:
-                st.markdown(
-                    f'<span style="color:{COLOR_TEXT_SECONDARY}">In analisi…</span>',
-                    unsafe_allow_html=True,
-                )
-
-        with cols[1]:
-            if tender.score is not None:
-                st.markdown(f"### {tender.score:.0f}/100")
-            else:
-                st.markdown(
-                    f'<span style="color:{COLOR_TEXT_SECONDARY};font-size:1.2rem">—</span>',
-                    unsafe_allow_html=True,
-                )
-
-        with cols[2]:
-            short_id = str(tender.tender_id).split("-")[0]
-            st.code(short_id, language=None)
-
-        with cols[3]:
-            ts = decision.decision_timestamp if decision else tender.created_at
-            mese = _MESI_IT.get(ts.month, str(ts.month))
+    with st.container(key=f"tdet_req_row_{r.id}"):
+        c1, c2, c3, c4, c5, c6 = st.columns([0.3, 4.5, 0.9, 1.4, 2.4, 1.6])
+        with c1:
             st.markdown(
-                f'<span style="color:{COLOR_TEXT_SECONDARY};font-size:0.9rem">'
-                f"{ts.day} {mese} {ts.year}, {ts.strftime('%H:%M')}</span>",
+                f'<div class="stca-req-dot {_req_dot_class(r)}" style="margin-top:6px"></div>',
+                unsafe_allow_html=True,
+            )
+        with c2:
+            st.markdown(
+                f'<div class="stca-req-txt">{r.txt}</div>{nota_html}',
+                unsafe_allow_html=True,
+            )
+        with c3:
+            st.markdown(
+                f'<div class="stca-req-fonte" style="margin-top:2px">{r.fonte}</div>',
+                unsafe_allow_html=True,
+            )
+        with c4:
+            st.markdown(
+                f'<div style="margin-top:1px">{_tipo_tag(r.tipo)}</div>',
+                unsafe_allow_html=True,
+            )
+        with c5:
+            st.markdown(
+                f'<div style="margin-top:1px"><span class="stca-mp stca-mp-{r.mt}">{r.ml}</span></div>',
+                unsafe_allow_html=True,
+            )
+        with c6:
+            if needs_action:
+                if rev_open:
+                    label = "Chiudi"
+                    btn_type = "secondary"
+                elif r.status in ("gap-esc", "gap-pref"):
+                    label = "⚠ Gestisci"
+                    btn_type = "primary"
+                else:
+                    label = "Revisiona"
+                    btn_type = "secondary"
+                if st.button(
+                    label,
+                    key=f"rev_btn_{r.id}",
+                    type=btn_type,
+                    width="stretch",
+                ):
+                    st.session_state["rev_open"] = None if rev_open else r.id
+                    st.rerun(scope="fragment")
+
+    # Pannello revisione inline sotto la riga
+    if needs_action and rev_open:
+        with st.container(key=f"tdet_req_rev_{r.id}"):
+            _render_revision_form(r)
+
+
+def _render_revision_form(r: RequisitoBando) -> None:
+    """Form inline di revisione (mirror del rev-panel)."""
+    is_gap = r.status in ("gap-esc", "gap-pref")
+    st.markdown(
+        f'<div style="font-size:12px;font-weight:600;margin-bottom:4px">'
+        f"Revisione umana — {r.txt[:55]}{'...' if len(r.txt) > 55 else ''}</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        f'<div style="font-size:11px;color:{COLOR_T2};margin-bottom:8px">'
+        + (
+            "Questo requisito ha un gap attivo. Aggiorna lo stato se hai trovato "
+            "un'evidenza nel profilo aziendale non riconosciuta dall'AI."
+            if is_gap
+            else f"L'AI ha classificato questo come <em>{r.status}</em>. "
+            "Se hai un'evidenza che lo copre, aggiorna lo stato e inserisci una nota."
+        )
+        + "</div>",
+        unsafe_allow_html=True,
+    )
+
+    if is_gap:
+        opts = {
+            "": "Seleziona azione…",
+            "coperto": "✓ Match trovato — coperto",
+            "gap-pref": "Gap preferenziale — accetta perdita punti",
+            "gap-esc": "Gap escludente — impossibile partecipare",
+        }
+    else:
+        opts = {
+            "": "Seleziona stato aggiornato…",
+            "coperto": "✓ Coperto — evidenza confermata",
+            "parziale": "Parziale — verifica ancora in corso",
+            "gap-pref": "Gap preferenziale",
+        }
+
+    new_status = st.selectbox(
+        "Nuovo stato",
+        options=list(opts.keys()),
+        format_func=lambda k: opts[k],
+        key=f"sel_{r.id}",
+        label_visibility="collapsed",
+    )
+    note = st.text_area(
+        "Note",
+        value=r.rev_nota or "",
+        placeholder="Note (es. numero referenza, documento disponibile…)",
+        key=f"note_{r.id}",
+        label_visibility="collapsed",
+        height=70,
+    )
+    if st.button("Salva", type="primary", key=f"save_{r.id}", width="stretch"):
+        if not new_status:
+            st.toast("Seleziona uno stato prima di salvare.", icon="⚠️")
+        else:
+            r.status = new_status  # type: ignore[assignment]
+            r.rev_nota = note
+            if new_status == "coperto":
+                r.ml = "✓ Coperto — revisione umana"
+                r.mt = "gn"
+            elif new_status in ("gap-pref", "gap-esc"):
+                r.ml = (
+                    "Gap preferenziale confermato"
+                    if new_status == "gap-pref"
+                    else "Gap escludente — azione richiesta"
+                )
+                r.mt = "rd"
+            else:
+                r.mt = "am"
+            if note:
+                r.nota = note
+            st.toast("Revisione salvata — Score aggiornato", icon="✅")
+            st.rerun()
+
+
+with tab_req:
+
+    @st.fragment
+    def _tab_requisiti() -> None:
+        reqs = b.requisiti
+        gaps_n = sum(1 for r in reqs if r.status in ("gap-esc", "gap-pref"))
+        parc_n = sum(1 for r in reqs if r.status == "parziale")
+
+        # Chip filtri + legenda
+        st.session_state.setdefault("req_filter", "all")
+        filters: list[tuple[str, str]] = [("all", f"Tutti ({len(reqs)})")] + [
+            (c.lower(), f"{_CAT_LABELS[c]} ({sum(1 for r in reqs if r.cat == c)})")
+            for c in _CATS
+        ] + [("gap", f"⚠ Gap ({gaps_n + parc_n})")]
+
+        col_chips, col_legend = st.columns([3, 1])
+        with col_chips:
+            with st.container(key="tdet_req_chips"):
+                cols = st.columns(len(filters))
+                for i, (k, lbl) in enumerate(filters):
+                    is_on = st.session_state["req_filter"] == k
+                    with cols[i]:
+                        if st.button(
+                            lbl,
+                            key=f"req_chip_{k}",
+                            type="primary" if is_on else "secondary",
+                        ):
+                            st.session_state["req_filter"] = k
+                            st.rerun(scope="fragment")
+        with col_legend:
+            st.markdown(
+                """
+                <div class="stca-legend" style="justify-content:flex-end;padding-top:6px">
+                  <div class="stca-leg-i"><div class="stca-leg-dot stca-d-gn"></div>Coperto</div>
+                  <div class="stca-leg-i"><div class="stca-leg-dot stca-d-am"></div>Parziale</div>
+                  <div class="stca-leg-i"><div class="stca-leg-dot stca-d-rd"></div>Gap</div>
+                </div>
+                """,
                 unsafe_allow_html=True,
             )
 
-    with col_actions:
-        if st.button("📄 Scarica report PDF", width="stretch"):
-            st.info("Funzionalità in arrivo — generazione report PDF con B6.")
+        # Applica filtro (gap = include anche parziali per matchare il conteggio della chip)
+        f = st.session_state["req_filter"]
+        if f == "all":
+            filtered: list[RequisitoBando] = reqs
+        elif f == "gap":
+            filtered = [
+                r for r in reqs if r.status in ("gap-esc", "gap-pref", "parziale")
+            ]
+        else:
+            filtered = [r for r in reqs if r.cat.lower() == f]
+
+        # Sezioni per categoria
+        for cat in _CATS:
+            cat_reqs = [r for r in filtered if r.cat == cat]
+            if not cat_reqs:
+                continue
+            n_cat = sum(1 for r in reqs if r.cat == cat)
+            cov = sum(1 for r in cat_reqs if r.status in ("coperto", "automatico", "info"))
+            par = sum(1 for r in cat_reqs if r.status == "parziale")
+            gap = sum(1 for r in cat_reqs if r.status in ("gap-esc", "gap-pref"))
+
+            bits = []
+            if cov:
+                bits.append(
+                    f'<span style="font-size:10.5px;color:{COLOR_GN};font-weight:500">✓ {cov} coperti</span>'
+                )
+            if par:
+                bits.append(
+                    f'<span style="font-size:10.5px;color:{COLOR_AM};font-weight:500">~ {par} parziali</span>'
+                )
+            if gap:
+                bits.append(
+                    f'<span style="font-size:10.5px;color:{COLOR_RD};font-weight:500">⚠ {gap} gap</span>'
+                )
+
+            st.markdown(
+                f"""
+                <div class="stca-req-sec-hd" style="margin-top:14px">
+                  <span>{_CAT_LABELS[cat].upper()} — {n_cat} REQUISITI</span>
+                  <div style="display:flex;gap:10px">{' '.join(bits)}</div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+
+            for r in cat_reqs:
+                _render_req_row(r)
+
+    _tab_requisiti()
 
 
-# ---------------------------------------------------------------------------
-# Tab Requisiti
-# ---------------------------------------------------------------------------
+# ============================================================
+# TAB 2 — CHECKLIST
+# ============================================================
 
 
-def _render_requirement_row(req: Requirement, idx: int) -> None:
-    """Renderizza una singola riga di requisito dentro un expander."""
-    col_id, col_type, col_text, col_cite, col_conf = st.columns([0.8, 1.2, 4, 2, 1.2])
+@st.dialog("Aggiungi item alla checklist")
+def _add_item_dialog() -> None:
+    st.caption("Inserisci manualmente un adempimento non estratto automaticamente")
+    txt = st.text_input("Descrizione", placeholder="Es. Comunicare nominativo referente tecnico…")
+    cat = st.selectbox(
+        "Categoria",
+        [
+            "Privacy & GDPR",
+            "Sicurezza & Certificazioni",
+            "Fatturazione & Tracciabilità",
+            "Delivery & Contratto",
+            "Altro",
+        ],
+    )
+    prio = st.selectbox("Priorità", ["Standard", "Attenzione", "Urgente"])
+    c1, c2 = st.columns(2)
+    with c1:
+        if st.button("Annulla", width="stretch"):
+            st.rerun()
+    with c2:
+        if st.button("Aggiungi item", type="primary", width="stretch"):
+            if not txt.strip():
+                st.toast("Inserisci una descrizione.", icon="⚠️")
+            else:
+                b.checklist.append(
+                    ChecklistItemHTML(
+                        id=f"usr-{len(b.checklist) + 1}",
+                        cat=cat,
+                        txt=txt.strip(),
+                        sub="Aggiunto manualmente",
+                        done=False,
+                        urgente=(prio == "Urgente"),
+                        warn=(prio == "Attenzione"),
+                    )
+                )
+                st.toast("Item aggiunto alla checklist", icon="✅")
+                st.rerun()
 
-    with col_id:
+
+def _render_chk_item(it: ChecklistItemHTML) -> None:
+    """Item checklist = checkbox + testo + status pill."""
+    with st.container(key=f"tdet_chk_item_{it.id}"):
+        c_box, c_text, c_pill = st.columns([0.3, 5, 1.2])
+        with c_box:
+            if it.urgente:
+                # Item urgente: niente checkbox (azione manuale)
+                st.markdown(
+                    '<div class="stca-chk-box" style="margin-top:1px"></div>',
+                    unsafe_allow_html=True,
+                )
+            else:
+                new_val = st.checkbox(
+                    " ",
+                    value=it.done,
+                    key=f"chk_{b.id}_{it.id}",
+                    label_visibility="collapsed",
+                )
+                if new_val != it.done:
+                    it.done = new_val
+                    st.rerun(scope="fragment")
+        with c_text:
+            done_cls = "done" if it.done else ""
+            urgent_cls = "urgent" if it.urgente else ""
+            st.markdown(
+                f"""
+                <div class="stca-chk-item {done_cls}" style="margin:0">
+                  <div style="flex:1">
+                    <div class="stca-chk-lbl">{it.txt}</div>
+                    <div class="stca-chk-sub {urgent_cls}">{it.sub}</div>
+                  </div>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+        with c_pill:
+            if it.urgente:
+                lbl_html = (
+                    f'<span style="font-size:10px;padding:3px 8px;border-radius:100px;'
+                    f'background:{COLOR_RD};color:#fff;font-weight:600">Azione richiesta</span>'
+                )
+            elif it.done:
+                lbl_html = (
+                    f'<span style="font-size:10px;padding:3px 8px;border-radius:100px;'
+                    f'background:#F0FDF4;color:{COLOR_GN};font-weight:500">Completato</span>'
+                )
+            elif it.warn:
+                lbl_html = (
+                    f'<span style="font-size:10px;padding:3px 8px;border-radius:100px;'
+                    f'background:#FEFCE8;color:{COLOR_AM};font-weight:500">In corso</span>'
+                )
+            else:
+                lbl_html = (
+                    f'<span style="font-size:10px;padding:3px 8px;border-radius:100px;'
+                    f'background:#F8F7F5;color:{COLOR_T3};font-weight:500">Da fare</span>'
+                )
+            st.markdown(
+                f'<div style="margin-top:2px;text-align:right">{lbl_html}</div>',
+                unsafe_allow_html=True,
+            )
+
+
+with tab_chk:
+
+    @st.fragment
+    def _tab_checklist() -> None:
+        st_chk = chk_stats(b.checklist)
+        cats = list(dict.fromkeys([c.cat for c in b.checklist]))
+
+        # Toolbar: title/progress sx + bottoni dx
+        with st.container(key="tdet_chk_toolbar"):
+            col_l, col_r = st.columns([3, 2])
+            with col_l:
+                st.markdown(
+                    f"""
+                    <div style="font-size:13px;font-weight:600">Checklist conformità</div>
+                    <div style="font-size:11px;color:{COLOR_T3};margin-top:1px">
+                      {st_chk.done} / {st_chk.total} completati · {st_chk.pct}%
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+            with col_r:
+                ca, cb = st.columns(2)
+                with ca:
+                    if st.button("＋ Aggiungi item", key="add_item_btn", width="stretch"):
+                        _add_item_dialog()
+                with cb:
+                    if st.button("↓ Esporta PDF", key="export_pdf", width="stretch"):
+                        st.toast("Export PDF in arrivo — B6 ReportGenerator non ancora attivo.")
+
         st.markdown(
-            f'<code style="font-size:0.75rem;color:{COLOR_TEXT_SECONDARY}">'
-            f"{req.requirement_id}</code>",
+            f"""
+            <div class="stca-pb-wrap" style="margin:10px 0 14px">
+              <div class="stca-pb-fill" style="width:{st_chk.pct}%"></div>
+            </div>
+            """,
             unsafe_allow_html=True,
         )
 
-    with col_type:
-        requirement_type_badge(req.type)
+        # Sezioni per categoria
+        for cat in cats:
+            items = [i for i in b.checklist if i.cat == cat]
+            done_n = sum(1 for i in items if i.done)
+            color = COLOR_GN if done_n == len(items) else COLOR_T3
+            st.markdown(
+                f"""
+                <div style="font-size:9.5px;font-weight:700;color:{COLOR_T3};
+                     letter-spacing:.07em;padding:8px 0 6px;
+                     border-bottom:1px solid {COLOR_BD};margin-bottom:6px;
+                     display:flex;justify-content:space-between">
+                  <span>{cat.upper()}</span>
+                  <span style="color:{color}">{done_n}/{len(items)}</span>
+                </div>
+                """,
+                unsafe_allow_html=True,
+            )
+            for it in items:
+                _render_chk_item(it)
 
-    with col_text:
-        text = req.text_normalized
-        if len(text) > 80:
-            text = text[:77] + "…"
-        st.markdown(f'<span style="font-size:0.85rem">{text}</span>', unsafe_allow_html=True)
+        # Mark all done
+        st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+        with st.container(key="tdet_chk_mark_all"):
+            col_info, col_btn = st.columns([3, 1.4])
+            with col_info:
+                st.markdown(
+                    f'<div style="padding-top:6px;font-size:11.5px;color:{COLOR_T3}">'
+                    f"Completamento: <strong style='color:{COLOR_T1}'>"
+                    f"{st_chk.done}/{st_chk.total}</strong></div>",
+                    unsafe_allow_html=True,
+                )
+            with col_btn:
+                if st.button("Segna tutti completati ✓", key="mark_all", width="stretch"):
+                    for it in b.checklist:
+                        if not it.urgente:
+                            it.done = True
+                    st.toast("Tutti gli item non urgenti segnati come completati", icon="✅")
+                    st.rerun(scope="fragment")
 
-    with col_cite:
-        source_citation(
-            source=req.source,
-            text_original=req.text_original,
-            normative_refs=req.normative_references or None,
-            key=f"cite_{req.requirement_id}_{idx}",
-        )
-
-    with col_conf:
-        pct = int(req.confidence * 100)
-        warning = " ⚠" if req.confidence < 0.7 else ""
-        st.progress(req.confidence, text=f"{pct}%{warning}")
+    _tab_checklist()
 
 
-def _render_tab_requisiti(requirements: list[Requirement]) -> None:
-    """Renderizza il contenuto del tab Requisiti con filtri e expander per categoria."""
-    # Filtro per tipo
-    type_options = ["ESCLUDENTE", "PREFERENZIALE", "INFORMATIVO"]
-    selected_types: list[str] = st.multiselect(
-        "Filtra per tipo",
-        options=type_options,
-        format_func=lambda x: _TYPE_FILTER_LABELS.get(x, x),
-        default=[],
-        help="Lascia vuoto per mostrare tutti i tipi.",
+# ============================================================
+# TAB 3 — GO / NO-GO
+# ============================================================
+
+
+def _gauge_svg(score: int, ra: str, color: str) -> str:
+    """Gauge SVG mirror dell'HTML — single-line per evitare interpretazione code block."""
+    circ = 2 * pi * 58
+    arc = circ * (score / 100) if score > 0 else 0
+    offset = -circ * 0.25
+    return (
+        f'<svg width="170" height="170" viewBox="0 0 158 158">'
+        f'<circle cx="79" cy="79" r="58" fill="none" stroke="#E5E7EB" stroke-width="13"/>'
+        f'<circle cx="79" cy="79" r="58" fill="none" stroke="{color}" stroke-width="13" '
+        f'stroke-dasharray="{arc} {circ}" stroke-dashoffset="{offset}" stroke-linecap="round" '
+        f'style="transform:rotate(-90deg);transform-origin:79px 79px"/>'
+        f'<text x="79" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" '
+        f'font-size="30" font-weight="600" fill="{color}">{score}</text>'
+        f'<text x="79" y="85" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" '
+        f'font-size="11" fill="#8A8AA4">/100 punti</text>'
+        f'<text x="79" y="104" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" '
+        f'font-size="12" font-weight="600" fill="{color}">{ra}</text>'
+        f"</svg>"
     )
 
-    # Filtra
-    filtered = requirements
-    if selected_types:
-        filtered = [r for r in filtered if r.type in selected_types]
 
-    if not filtered:
-        st.info("Nessun requisito corrisponde ai filtri selezionati.")
-        return
+with tab_gng:
 
-    # Raggruppa per categoria
-    grouped: dict[str, list[Requirement]] = defaultdict(list)
-    for req in filtered:
-        grouped[req.category].append(req)
+    @st.fragment
+    def _tab_gng() -> None:
+        sc = calc_score(b.requisiti)
+        gaps = gap_count(b.requisiti)
+        cs = chk_stats(b.checklist)
 
-    # Render expander per ogni categoria (in ordine canonico)
-    idx = 0
-    for cat_key in _CATEGORY_ORDER:
-        reqs = grouped.get(cat_key, [])
-        if not reqs:
-            continue
+        gauge_color = (
+            "#DC2626"
+            if sc.override
+            else "#16A34A"
+            if sc.ra == "GO"
+            else "#D97706"
+            if sc.ra == "GO_CONDIZIONALE"
+            else "#DC2626"
+        )
 
-        cat_label = _CATEGORY_LABELS.get(cat_key, cat_key)
-        cat_color = CATEGORY_COLORS.get(cat_key, "#64748B")
+        motiv = (
+            "Presenza di gap escludenti: la partecipazione alla gara non è possibile "
+            "nelle condizioni attuali. Risolvere i gap prima di procedere."
+            if sc.override
+            else (
+                "Profilo aziendale fortemente allineato su tutti i requisiti escludenti. "
+                "Il vendor lock-in è favorevole (livello Elite Partner). Gap preferenziale "
+                "ISO/IEC 20000-1 in scadenza incide sulla componente M3. Gara MePA sotto "
+                "soglia: concorrenza limitata. Strategicamente conveniente."
+                if sc.ra == "GO"
+                else "Score borderline. Risolvere i gap preferenziali identificati per "
+                "rafforzare la posizione competitiva prima della presentazione."
+            )
+        )
 
-        with st.expander(
-            f"**{cat_label}** ({len(reqs)})",
-            expanded=True,
-        ):
-            # Header sottile per l'expander
+        # Gauge + score breakdown (single-line HTML per evitare code-block parsing)
+        col_gauge, col_score = st.columns([1, 2.5])
+        with col_gauge:
+            override_html = (
+                f'<div style="margin-top:8px;font-size:10.5px;padding:5px 9px;'
+                f'background:#FEF2F2;color:{COLOR_RD};border-radius:8px;text-align:center">'
+                f"⚠ Override: gap escludente</div>"
+                if sc.override
+                else ""
+            )
             st.markdown(
-                f'<div style="display:flex;padding:0.2rem 0;'
-                f"border-bottom:2px solid {cat_color};"
-                f"margin-bottom:0.4rem;font-size:0.7rem;"
-                f'color:{COLOR_TEXT_SECONDARY};font-weight:600">'
-                f'<div style="flex:0.8">ID</div>'
-                f'<div style="flex:1.2">TIPO</div>'
-                f'<div style="flex:4">TESTO</div>'
-                f'<div style="flex:2">FONTE</div>'
-                f'<div style="flex:1.2">CONFIDENZA</div>'
+                f'<div class="stca-card" style="text-align:center;padding:14px">'
+                f"{_gauge_svg(sc.score, sc.ra, gauge_color)}"
+                f'<div style="font-size:11px;color:{COLOR_T3};margin-top:4px">Score complessivo</div>'
+                f'<div style="font-size:10px;color:{COLOR_T3};margin-top:2px">Soglia Go ≥ 75</div>'
+                f"{override_html}"
                 f"</div>",
                 unsafe_allow_html=True,
             )
 
-            for req in reqs:
-                _render_requirement_row(req, idx)
-                idx += 1
-
-
-def _render_tab_gap_analysis(
-    gaps: list[GapAnalysisResult], requirements: list[Requirement]
-) -> None:
-    """Renderizza la tab Gap Analysis."""
-    if not gaps:
-        st.info("Nessun risultato di gap analysis trovato.")
-        return
-
-    # Map requisiti per join veloce
-    req_by_id = {r.requirement_id: r for r in requirements}
-
-    # Filtro Categoria
-    all_categories = list(_CATEGORY_ORDER)
-    selected_categories = st.multiselect(
-        "Filtra per categoria del requisito",
-        options=all_categories,
-        format_func=lambda x: _CATEGORY_LABELS.get(x, x),
-        default=all_categories,
-        key="gap_category_filter",
-    )
-
-    # Filtra gap in base alla categoria del requisito
-    filtered_gaps = []
-    for g in gaps:
-        req = req_by_id.get(g.requirement_id)
-        if req and req.category in selected_categories:
-            filtered_gaps.append((g, req))
-
-    if not filtered_gaps:
-        st.info("Nessun gap corrisponde ai filtri selezionati.")
-        return
-
-    # Raggruppa per severity o FULL MATCH
-    grouped = {
-        "CRITICAL": [],
-        "MAJOR": [],
-        "MINOR": [],
-        "FULL_MATCH": [],
-    }
-
-    for g, req in filtered_gaps:
-        if g.match_status == "FULL" or g.gap is None:
-            grouped["FULL_MATCH"].append((g, req))
-        else:
-            grouped[g.gap.severity].append((g, req))
-
-    # Render sezioni
-    _render_gap_section("CRITICAL", "Gap CRITICI", grouped["CRITICAL"], default_expanded=True)
-    _render_gap_section("MAJOR", "Gap MAJOR", grouped["MAJOR"], default_expanded=True)
-    _render_gap_section("MINOR", "Gap MINOR", grouped["MINOR"], default_expanded=True)
-    
-    # Sezione Full Match nascosta di default
-    if grouped["FULL_MATCH"]:
-        _render_gap_section(
-            "FULL_MATCH",
-            "Requisiti Soddisfatti (Nessun Gap)",
-            grouped["FULL_MATCH"],
-            default_expanded=False,
-        )
-
-
-def _render_gap_section(
-    severity: str,
-    title: str,
-    items: list[tuple[GapAnalysisResult, Requirement]],
-    default_expanded: bool = True,
-) -> None:
-    """Renderizza una sezione espandibile di gap."""
-    if not items:
-        return
-
-    with st.expander(f"**{title}** ({len(items)})", expanded=default_expanded):
-        for g, req in items:
-            with st.container(border=True):
-                # Header card
-                col1, col2 = st.columns([3, 1])
-                with col1:
-                    st.markdown(f"**{req.requirement_id}** — {req.text_normalized}")
-                with col2:
-                    st.markdown("<div style='text-align:right'>", unsafe_allow_html=True)
-                    st.markdown(match_status_badge_html(g.match_status), unsafe_allow_html=True)
-                    if g.gap:
-                        st.markdown("<span style='margin-left:5px;'></span>", unsafe_allow_html=True)
-                        st.markdown(severity_badge_html(g.gap.severity), unsafe_allow_html=True)
-                    st.markdown("</div>", unsafe_allow_html=True)
-                
-                # Evidenze proposte
-                with st.expander(f"Evidenze proposte ({len(g.matching_evidences)})"):
-                    if g.matching_evidences:
-                        for ev in g.matching_evidences:
-                            evidence_card(ev)
-                    else:
-                        st.write("Nessuna evidenza proposta.")
-
-                # Spiegazione del sistema
-                with st.expander("Spiegazione del sistema"):
-                    st.write(g.reasoning)
-                
-                # Remediation se presente
-                if g.gap:
-                    st.info(f"**🛠 Suggerimento:** {g.gap.remediation_suggestion}")
-                    
-                    c1, c2, _c3 = st.columns([1, 1, 2])
-                    with c1:
-                        st.write("Effort:")
-                        effort_badge(g.gap.remediation_effort)
-                    with c2:
-                        if g.gap.remediation_time_estimate:
-                            st.write(f"⏱ **{g.gap.remediation_time_estimate}**")
-                
-                # Badge In Revisione
-                if g.needs_human_review:
-                    st.markdown("<div style='margin-top:0.5rem'></div>", unsafe_allow_html=True)
-                    if st.button("⚠ In revisione (HITL)", key=f"review_{req.requirement_id}", help="Vai alla coda di revisione"):
-                        st.success("Navigazione alla Review Queue (in arrivo)")
-
-
-# ---------------------------------------------------------------------------
-# Tab Rischi
-# ---------------------------------------------------------------------------
-
-_RISK_COLORS: dict[str, str] = {
-    "LOW": COLOR_GO,
-    "MEDIUM": COLOR_GO_RESERVATIONS,
-    "HIGH": COLOR_NO_GO,
-}
-
-_RISK_LEVEL_LABELS: dict[str, str] = {
-    "LOW": "BASSO",
-    "MEDIUM": "MEDIO",
-    "HIGH": "ALTO",
-}
-
-_SLA_LABELS: dict[str, str] = {
-    "LOW": "Bassa",
-    "MEDIUM": "Media",
-    "HIGH": "Alta",
-}
-
-_SEV_SCORE: dict[str, float] = {"LOW": 33.0, "MEDIUM": 66.0, "HIGH": 100.0}
-_SEV_ORDER: dict[str, int] = {"HIGH": 0, "MEDIUM": 1, "LOW": 2}
-
-
-def _hex_to_rgb(hex_color: str) -> str:
-    h = hex_color.lstrip("#")
-    return f"{int(h[0:2], 16)}, {int(h[2:4], 16)}, {int(h[4:6], 16)}"
-
-
-def _build_radar_data(risk: RiskAssessment) -> tuple[list[str], list[float]]:
-    """Restituisce (labels, values) normalizzati 0-100 per il radar chart."""
-    labels: list[str] = [
-        "Penali esposte",
-        "Clausole auto-ris.",
-        "Vendor lock-in",
-        "Complessità SLA",
-    ]
-    values: list[float] = [
-        min(risk.max_penalty_exposure_pct / 30.0 * 100.0, 100.0),
-        min(len(risk.auto_termination_clauses) / 3.0 * 100.0, 100.0),
-        100.0 if risk.vendor_lock_in_detected else 0.0,
-        _SEV_SCORE.get(risk.sla_complexity, 0.0),
-    ]
-
-    # Assi dinamici: un asse per tipo unico, max severity per tipo
-    type_score: dict[str, float] = {}
-    for rf in risk.risk_factors:
-        v = _SEV_SCORE.get(rf.severity, 0.0)
-        type_score[rf.type] = max(type_score.get(rf.type, 0.0), v)
-
-    sorted_types = sorted(type_score.items(), key=lambda x: x[1], reverse=True)
-
-    # Cap a 5 assi dinamici — i restanti collassano in "Altri rischi"
-    if len(sorted_types) > 5:
-        top5 = sorted_types[:5]
-        others_val = max(v for _, v in sorted_types[5:])
-        top5.append(("altri_rischi", others_val))
-        sorted_types = top5
-
-    for rf_type, val in sorted_types:
-        labels.append(rf_type.replace("_", " ").capitalize())
-        values.append(val)
-
-    return labels, values
-
-
-def _render_radar_chart(risk: RiskAssessment) -> None:
-    labels, values = _build_radar_data(risk)
-    color = _RISK_COLORS.get(risk.overall_risk, COLOR_PARTIAL)
-
-    fig = go.Figure(
-        data=go.Scatterpolar(
-            r=values,
-            theta=labels,
-            fill="toself",
-            fillcolor=f"rgba({_hex_to_rgb(color)}, 0.18)",
-            line=dict(color=color, width=2),
-            marker=dict(size=5, color=color),
-            name="Rischio",
-        )
-    )
-    fig.update_layout(
-        polar=dict(
-            radialaxis=dict(
-                range=[0, 100],
-                visible=True,
-                tickvals=[25, 50, 75, 100],
-                tickfont=dict(size=8, color=COLOR_TEXT_SECONDARY),
-                gridcolor="#D3D1C7",
-                linecolor="#D3D1C7",
-            ),
-            angularaxis=dict(
-                tickfont=dict(size=11, color=COLOR_TEXT_PRIMARY),
-                gridcolor="#D3D1C7",
-                linecolor="#D3D1C7",
-            ),
-            bgcolor="#FFFFFF",
-        ),
-        paper_bgcolor="#FFFFFF",
-        margin=dict(l=50, r=50, t=20, b=20),
-        height=370,
-        showlegend=False,
-        font=dict(color=COLOR_TEXT_PRIMARY),
-    )
-    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
-
-
-def _build_synthesis(risk: RiskAssessment) -> str:
-    sentences: list[str] = []
-
-    high_count = sum(1 for rf in risk.risk_factors if rf.severity == "HIGH")
-    if high_count:
-        sentences.append(
-            f"{high_count} fattori di rischio HIGH richiedono verifica prima della presentazione"
-        )
-
-    n_clauses = len(risk.auto_termination_clauses)
-    if n_clauses:
-        sentences.append(
-            f"Presenti {n_clauses} clausole di auto-risoluzione contrattuale"
-        )
-
-    if risk.vendor_lock_in_detected:
-        sentences.append("Rilevato rischio vendor lock-in")
-
-    if not sentences:
-        return "Nessun fattore critico rilevato."
-
-    sentences[0] = sentences[0][0].upper() + sentences[0][1:]
-    return ". ".join(sentences) + "."
-
-
-def _render_overall_risk_card(risk: RiskAssessment) -> None:
-    color = _RISK_COLORS.get(risk.overall_risk, COLOR_PARTIAL)
-    label = _RISK_LEVEL_LABELS.get(risk.overall_risk, risk.overall_risk)
-
-    st.markdown(
-        f'<div style="background:{color};color:#fff;padding:1.2rem 1.4rem;'
-        f'border-radius:8px;text-align:center;margin-bottom:0.9rem">'
-        f'<div style="font-size:0.8rem;font-weight:600;letter-spacing:0.06em;'
-        f'opacity:0.85;margin-bottom:0.2rem">RISCHIO COMPLESSIVO</div>'
-        f'<div style="font-size:2.4rem;font-weight:800;line-height:1.1">{label}</div>'
-        f"</div>",
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        f'<p style="font-size:0.9rem;line-height:1.55;margin-bottom:0.8rem">'
-        f"{_build_synthesis(risk)}</p>",
-        unsafe_allow_html=True,
-    )
-
-    with st.container(border=True):
-        st.markdown(
-            f'<div style="font-size:0.82rem;color:{COLOR_TEXT_SECONDARY};line-height:1.8">'
-            f"<b>Esposizione penali</b>&nbsp;&nbsp;{risk.max_penalty_exposure_pct:.1f}%<br>"
-            f"<b>Clausole auto-ris.</b>&nbsp;&nbsp;{len(risk.auto_termination_clauses)}<br>"
-            f"<b>Complessità SLA</b>&nbsp;&nbsp;"
-            f"{_SLA_LABELS.get(risk.sla_complexity, risk.sla_complexity)}<br>"
-            f"<b>Vendor lock-in</b>&nbsp;&nbsp;"
-            f"{'Sì' if risk.vendor_lock_in_detected else 'No'}"
-            f"</div>",
-            unsafe_allow_html=True,
-        )
-
-
-def _render_risk_factor_card(rf: RiskFactor, idx: int) -> None:
-    with st.container(border=True):
-        col_badge, col_type, col_cite = st.columns([1, 3, 2])
-
-        with col_badge:
-            risk_severity_badge(rf.severity)
-
-        with col_type:
-            type_label = rf.type.replace("_", " ").capitalize()
-            st.markdown(
-                f'<span style="font-weight:600;font-size:0.9rem">{type_label}</span>',
-                unsafe_allow_html=True,
-            )
-
-        with col_cite:
-            source_citation(source=rf.source, key=f"risk_cite_{idx}")
-
-        st.markdown(
-            f'<p style="font-size:0.88rem;line-height:1.5;'
-            f'margin-top:0.35rem;margin-bottom:0">{rf.description}</p>',
-            unsafe_allow_html=True,
-        )
-
-
-def _render_tab_rischi(decision: TenderDecision | None) -> None:
-    if decision is None:
-        st.info(
-            "Analisi dei rischi non ancora disponibile. "
-            "Avvia l'analisi completa per ottenere la valutazione."
-        )
-        return
-
-    risk = decision.risk_assessment
-
-    col_radar, col_card = st.columns([55, 45])
-    with col_radar:
-        _render_radar_chart(risk)
-    with col_card:
-        _render_overall_risk_card(risk)
-
-    st.divider()
-
-    sorted_factors = sorted(
-        risk.risk_factors, key=lambda rf: _SEV_ORDER.get(rf.severity, 99)
-    )
-    st.subheader(f"Fattori di rischio ({len(sorted_factors)})")
-
-    if not sorted_factors:
-        st.markdown(
-            f'<span style="color:{COLOR_TEXT_SECONDARY};font-size:0.9rem">'
-            "Nessun fattore di rischio specifico rilevato.</span>",
-            unsafe_allow_html=True,
-        )
-        return
-
-    for idx, rf in enumerate(sorted_factors):
-        _render_risk_factor_card(rf, idx)
-
-
-# ---------------------------------------------------------------------------
-# Tab Checklist amministrativa
-# ---------------------------------------------------------------------------
-
-_CL_COLS = [0.45, 1.7, 3.6, 1.5, 1.6, 1.5]
-_CL_KEY_PREFIX = "cl"
-
-
-def _cl_key(tender_id: str, doc: DocumentTodo) -> str:
-    """Chiave session_state stabile e unica per il checkbox di un documento."""
-    safe_type = doc.document_type.replace(" ", "_").replace(".", "")
-    return f"{_CL_KEY_PREFIX}_{tender_id}_{doc.source_requirement_id}_{safe_type}"
-
-
-def _init_checklist_state(tender_id: str, docs: list[DocumentTodo]) -> None:
-    """Inizializza le chiavi session_state a False solo se non già presenti."""
-    for doc in docs:
-        key = _cl_key(tender_id, doc)
-        if key not in st.session_state:
-            st.session_state[key] = False
-
-
-def _render_checklist_header_row() -> None:
-    cols = st.columns(_CL_COLS)
-    labels = ["✓", "DOCUMENTO", "DESCRIZIONE", "SCADENZA", "RESPONSABILE", "TEMPLATE"]
-    for col, label in zip(cols, labels):
-        with col:
-            st.markdown(
-                f'<span style="font-size:0.7rem;font-weight:700;'
-                f'color:{COLOR_TEXT_SECONDARY};letter-spacing:0.04em">{label}</span>',
-                unsafe_allow_html=True,
-            )
-    st.markdown(
-        f'<div style="border-bottom:1px solid {COLOR_BORDER};margin:0.2rem 0 0.4rem 0"></div>',
-        unsafe_allow_html=True,
-    )
-
-
-def _render_checklist_row(doc: DocumentTodo, tender_id: str, idx: int) -> None:
-    key = _cl_key(tender_id, doc)
-    is_done = st.session_state.get(key, False)
-
-    with st.container(border=True):
-        cols = st.columns(_CL_COLS)
-
-        with cols[0]:
-            st.checkbox(
-                label=doc.document_type,
-                key=key,
-                label_visibility="collapsed",
-            )
-
-        with cols[1]:
-            style = f"font-weight:600;font-size:0.85rem"
-            if is_done:
-                style += f";color:{COLOR_TEXT_SECONDARY};text-decoration:line-through"
-            st.markdown(f'<span style="{style}">{doc.document_type}</span>', unsafe_allow_html=True)
-
-        with cols[2]:
-            text = doc.description
-            if len(text) > 90:
-                text = text[:87] + "…"
-            st.markdown(f'<span style="font-size:0.82rem">{text}</span>', unsafe_allow_html=True)
-
-        with cols[3]:
-            if doc.deadline:
-                deadline_str = doc.deadline.strftime("%d/%m/%Y")
-                # Evidenzia in rosso se scadenza passata
-                from datetime import date as _date
-                color = COLOR_NO_GO if doc.deadline < _date.today() else COLOR_TEXT_PRIMARY
-                st.markdown(
-                    f'<span style="font-size:0.85rem;color:{color}">{deadline_str}</span>',
-                    unsafe_allow_html=True,
+        with col_score:
+            def _bar(label: str, pct: int, weight: float) -> str:
+                color = "#16A34A" if pct >= 80 else "#D97706" if pct >= 50 else "#DC2626"
+                text_color = COLOR_GN if pct >= 80 else COLOR_AM
+                return (
+                    f'<div style="margin-bottom:10px">'
+                    f'<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px">'
+                    f'<span style="color:{COLOR_T2}">{label}</span>'
+                    f'<span style="font-weight:600;font-family:\'JetBrains Mono\',monospace">'
+                    f'{pct}% → <span style="color:{text_color}">+{pct * weight:.1f}pt</span>'
+                    f"</span></div>"
+                    f'<div class="stca-score-bar">'
+                    f'<div class="stca-score-fill" style="width:{pct}%;background:{color}"></div>'
+                    f"</div></div>"
                 )
+
+            st.markdown(
+                f'<div class="stca-card">'
+                f'<div style="font-size:12px;font-weight:600;margin-bottom:11px">'
+                f"Scomposizione score per modulo</div>"
+                f'{_bar("M2 — Copertura normativa (30%)", sc.m2, 0.30)}'
+                f'{_bar("M3 — Gap certificazioni (40%)", sc.m3c, 0.40)}'
+                f'{_bar("M3 — Qualificazione economica (30%)", sc.m3q, 0.30)}'
+                f'<div class="stca-ai-box">'
+                f'<div style="font-size:10px;font-weight:600;color:{COLOR_AM};margin-bottom:2px">'
+                f"🤖 Motivazione AI</div>"
+                f'<div style="font-size:11px;color:{COLOR_T2};line-height:1.5">{motiv}</div>'
+                f"</div></div>",
+                unsafe_allow_html=True,
+            )
+
+        st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
+
+        # KPI grid (4 card)
+        kpis = [
+            ("Valore contratto", fmt_val(b.valore), COLOR_T1, "36 mesi"),
+            ("Gap escludenti", str(gaps.esc), COLOR_RD if gaps.esc else COLOR_GN, ""),
+            ("Gap preferenziali", str(gaps.pref), COLOR_AM if gaps.pref else COLOR_GN, ""),
+            ("Checklist", f"{cs.done}/{cs.total}", COLOR_GN if cs.pct >= 80 else COLOR_AM, ""),
+        ]
+        cards_html = "".join(
+            f'<div class="stca-kpi-card">'
+            f'<div class="stca-kpi-lbl">{lbl}</div>'
+            f'<div class="stca-kpi-val" style="color:{color}">{val}</div>'
+            + (
+                f'<div style="font-size:10px;color:{COLOR_T3};margin-top:2px">{sub}</div>'
+                if sub
+                else ""
+            )
+            + "</div>"
+            for (lbl, val, color, sub) in kpis
+        )
+        st.markdown(
+            f'<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;'
+            f'margin-bottom:14px">{cards_html}</div>',
+            unsafe_allow_html=True,
+        )
+
+        # 2 cols: gap pendenti + contesto strategico (single-line per safe rendering)
+        gap_pref_items = [r for r in b.requisiti if r.status == "gap-pref"]
+        parz_items = [r for r in b.requisiti if r.status == "parziale"]
+
+        gap_inner = ""
+        if gap_pref_items:
+            for r in gap_pref_items:
+                txt_short = r.txt[:50] + ("..." if len(r.txt) > 50 else "")
+                nota_block = (
+                    f'<div style="font-size:10px;color:{COLOR_T3}">{r.nota}</div>'
+                    if r.nota
+                    else ""
+                )
+                gap_inner += (
+                    f'<div style="display:flex;gap:7px;padding:6px 0;border-bottom:1px solid {COLOR_BD}">'
+                    f'<span class="stca-tag stca-tag-pref" style="flex-shrink:0;margin-top:1px">PREF.</span>'
+                    f"<div>"
+                    f'<div style="font-size:11.5px;font-weight:500">{txt_short}</div>'
+                    f"{nota_block}"
+                    f"</div></div>"
+                )
+        elif not parz_items:
+            gap_inner = f'<div style="font-size:11.5px;color:{COLOR_GN}">✓ Nessun gap attivo</div>'
+
+        for r in parz_items:
+            txt_short = r.txt[:50] + ("..." if len(r.txt) > 50 else "")
+            gap_inner += (
+                f'<div style="display:flex;gap:7px;padding:6px 0;border-bottom:1px solid {COLOR_BD}">'
+                f'<span class="stca-tag" style="background:#FEFCE8;color:{COLOR_AM};'
+                f'border:1px solid #FDE68A;flex-shrink:0;margin-top:1px">VERIFICA</span>'
+                f'<div style="font-size:11.5px">{txt_short}</div>'
+                f"</div>"
+            )
+
+        rischio_color = COLOR_RD if b.giorni_mancanti <= 14 else COLOR_AM
+        rischio_v = (
+            f"{b.giorni_mancanti} giorni alla scadenza"
+            if b.giorni_mancanti > 0
+            else "Chiuso"
+        )
+
+        st.markdown(
+            f'<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">'
+            f'<div class="stca-card-sm">'
+            f'<div class="stca-info-card-t">⚠ Gap e azioni pendenti</div>'
+            f"{gap_inner}"
+            f"</div>"
+            f'<div class="stca-card-sm">'
+            f'<div class="stca-info-card-t">🎯 Contesto strategico</div>'
+            f'<div class="stca-irow"><span class="k">Canale acquisto</span>'
+            f'<span class="v">MePA — concorrenza limitata</span></div>'
+            f'<div class="stca-irow"><span class="k">Vendor lock-in</span>'
+            f'<span class="v" style="color:{COLOR_GN}">Favorevole — Livello Elite</span></div>'
+            f'<div class="stca-irow"><span class="k">Gare simili vinte</span>'
+            f'<span class="v">2 su 3 (67%)</span></div>'
+            f'<div class="stca-irow"><span class="k">Marginalità stimata</span>'
+            f'<span class="v">Buona — licenze rinnovo</span></div>'
+            f'<div class="stca-irow"><span class="k">Rischio penali</span>'
+            f'<span class="v" style="color:{rischio_color}">{rischio_v}</span></div>'
+            f"</div></div>",
+            unsafe_allow_html=True,
+        )
+
+        # Decision bar
+        dec_color_esc = COLOR_RD if gaps.esc else COLOR_GN
+        dec_color_pref = COLOR_AM if gaps.pref else COLOR_T1
+        confermato_html = (
+            f' · <strong style="color:{COLOR_GN}">✓ Decisione confermata</strong>'
+            if b.gng_confermato
+            else ""
+        )
+        with st.container(key="tdet_gng_dec"):
+            if not b.gng_confermato:
+                col_info, col_no, col_yes = st.columns([3, 1.2, 1.8])
+                with col_info:
+                    st.markdown(
+                        f'<div style="font-size:11.5px;color:{COLOR_T3};padding-top:6px">'
+                        f'Checklist: <strong style="color:{COLOR_T1}">{cs.done}/{cs.total}</strong> · '
+                        f'Gap escludenti: <strong style="color:{dec_color_esc}">{gaps.esc}</strong> · '
+                        f'Gap pref.: <strong style="color:{dec_color_pref}">{gaps.pref}</strong>'
+                        f"{confermato_html}</div>",
+                        unsafe_allow_html=True,
+                    )
+                with col_no:
+                    if st.button("⊘ Segna No-Go", key="no_go", width="stretch"):
+                        b.status = "no-go"
+                        b.gng_confermato = True
+                        st.toast("⊘ No-Go registrato.", icon="⚠️")
+                        st.rerun(scope="fragment")
+                with col_yes:
+                    yes_lbl = (
+                        "✓ Conferma Go — Vai alla gara"
+                        if sc.ra == "GO"
+                        else "~ Conferma Go condizionale"
+                        if sc.ra == "GO_CONDIZIONALE"
+                        else "⊘ Conferma No-Go"
+                    )
+                    yes_type = (
+                        "primary" if sc.ra in ("GO", "GO_CONDIZIONALE") else "secondary"
+                    )
+                    if st.button(yes_lbl, type=yes_type, key="conferma_gng", width="stretch"):
+                        b.status = (
+                            "go" if sc.ra in ("GO", "GO_CONDIZIONALE") else "no-go"
+                        )
+                        b.gng_confermato = True
+                        st.toast(
+                            f"✓ GO confermato! Score: {sc.score}/100"
+                            if b.status == "go"
+                            else "⊘ No-Go registrato",
+                            icon="✅" if b.status == "go" else "⚠️",
+                        )
+                        st.rerun(scope="fragment")
             else:
-                st.markdown(
-                    f'<span style="color:{COLOR_TEXT_SECONDARY}">—</span>',
-                    unsafe_allow_html=True,
-                )
+                col_info, col_btn = st.columns([4, 1.3])
+                with col_info:
+                    st.markdown(
+                        f'<div style="font-size:11.5px;color:{COLOR_T3};padding-top:6px">'
+                        f'Checklist: <strong style="color:{COLOR_T1}">{cs.done}/{cs.total}</strong> · '
+                        f'Gap escludenti: <strong style="color:{dec_color_esc}">{gaps.esc}</strong> · '
+                        f'Gap pref.: <strong style="color:{dec_color_pref}">{gaps.pref}</strong>'
+                        f"{confermato_html}</div>",
+                        unsafe_allow_html=True,
+                    )
+                with col_btn:
+                    if st.button("Modifica decisione", key="reset_gng", width="stretch"):
+                        b.gng_confermato = False
+                        b.status = "analisi"
+                        st.rerun(scope="fragment")
 
-        with cols[4]:
-            st.markdown(
-                f'<span style="font-size:0.82rem;color:{COLOR_TEXT_SECONDARY}">'
-                f"{doc.owner_role}</span>",
-                unsafe_allow_html=True,
-            )
-
-        with cols[5]:
-            if doc.template_available:
-                if st.button(
-                    "↓ Scarica",
-                    key=f"tmpl_{tender_id}_{doc.source_requirement_id}",
-                    type="secondary",
-                    width="stretch",
-                ):
-                    st.toast("Template in arrivo — B6 ReportGenerator non ancora attivo.")
-            else:
-                st.markdown(
-                    f'<span style="color:{COLOR_TEXT_SECONDARY}">—</span>',
-                    unsafe_allow_html=True,
-                )
-
-
-def _render_tab_checklist(
-    checklist: AdminChecklist | None,
-    tender_id: str,
-    selected_roles: list[str],
-) -> None:
-    if checklist is None:
-        st.info(
-            "Checklist non disponibile. "
-            "Avvia l'analisi completa (B6) per generare la lista dei documenti da preparare."
-        )
-        return
-
-    docs = checklist.documents_required
-    if not docs:
-        st.info("Nessun documento richiesto per questa gara.")
-        return
-
-    _init_checklist_state(tender_id, docs)
-
-    # Conteggio su TUTTI i documenti (non filtrati) — il progresso è della gara, non della vista
-    done_count = sum(1 for doc in docs if st.session_state.get(_cl_key(tender_id, doc), False))
-    total_count = len(docs)
-
-    col_prog, col_spacer = st.columns([2, 3])
-    with col_prog:
-        st.markdown(
-            f'<p style="font-size:1rem;font-weight:600;margin-bottom:0.2rem">'
-            f"{done_count} di {total_count} documenti pronti</p>",
-            unsafe_allow_html=True,
-        )
-        st.progress(done_count / total_count)
-
-    st.markdown("<div style='margin-top:0.8rem'></div>", unsafe_allow_html=True)
-
-    # Filtro applicato alla vista
-    visible_docs = docs if not selected_roles else [d for d in docs if d.owner_role in selected_roles]
-
-    if not visible_docs:
-        st.info("Nessun documento corrisponde al filtro selezionato.")
-        return
-
-    _render_checklist_header_row()
-
-    for idx, doc in enumerate(visible_docs):
-        _render_checklist_row(doc, tender_id, idx)
-
-
-# ---------------------------------------------------------------------------
-# Tab Audit trail
-# ---------------------------------------------------------------------------
-
-_NOW = None  # lazily set at render time to keep relative timestamps consistent
-
-
-def _relative_time(ts: datetime) -> str:  # noqa: F821 — datetime imported via schemas
-    """Converte un timestamp in stringa relativa (es. '5 minuti fa')."""
-    from datetime import datetime as _dt
-
-    now = _dt.now(timezone.utc)
-    aware = ts.replace(tzinfo=timezone.utc) if ts.tzinfo is None else ts
-    delta_s = int((now - aware).total_seconds())
-
-    if delta_s < 60:
-        return f"{delta_s} secondi fa"
-    if delta_s < 3600:
-        m = delta_s // 60
-        return f"{m} {'minuto' if m == 1 else 'minuti'} fa"
-    if delta_s < 86400:
-        h = delta_s // 3600
-        return f"{h} {'ora' if h == 1 else 'ore'} fa"
-    if delta_s < 172800:
-        return f"ieri, {aware.strftime('%H:%M')}"
-    return aware.strftime("%d/%m/%Y")
-
-
-def _render_audit_entry(entry: AuditEntry, idx: int, is_last: bool) -> None:
-    col_line, col_content = st.columns([0.03, 0.97])
-
-    with col_line:
-        line_html = (
-            f'<div style="display:flex;flex-direction:column;align-items:center;height:100%">'
-            f'<span style="font-size:0.65rem;color:{COLOR_TEXT_SECONDARY};line-height:1">●</span>'
-        )
-        if not is_last:
-            line_html += (
-                f'<div style="width:1px;background:{COLOR_BORDER};'
-                f'flex:1;min-height:32px;margin-top:2px"></div>'
-            )
-        line_html += "</div>"
-        st.markdown(line_html, unsafe_allow_html=True)
-
-    with col_content:
-        # Timestamp con tooltip e actor
-        aware = entry.timestamp.replace(tzinfo=timezone.utc) if entry.timestamp.tzinfo is None else entry.timestamp
-        exact = aware.strftime("%d/%m/%Y %H:%M:%S UTC")
-        rel = _relative_time(entry.timestamp)
-        actor_label = "SISTEMA" if entry.actor == "SYSTEM" else entry.actor
-
-        st.markdown(
-            f'<p style="font-size:0.78rem;color:{COLOR_TEXT_SECONDARY};margin:0 0 0.15rem 0">'
-            f'<span title="{exact}" style="cursor:help">{rel}</span>'
-            f" &nbsp;·&nbsp; {actor_label}"
-            f"</p>",
-            unsafe_allow_html=True,
-        )
-
-        # Descrizione azione
-        st.markdown(
-            f'<p style="font-size:0.9rem;margin:0 0 0.15rem 0">{entry.detail}</p>',
-            unsafe_allow_html=True,
-        )
-
-        # Target (monospace inline)
-        if entry.target:
-            st.markdown(
-                f'<p style="font-size:0.78rem;color:{COLOR_TEXT_SECONDARY};'
-                f'font-family:monospace;margin:0 0 0.3rem 0">{entry.target}</p>',
-                unsafe_allow_html=True,
-            )
-
-        # Payload espandibile
-        if entry.payload:
-            with st.expander("Payload", expanded=False):
-                st.code(
-                    json.dumps(entry.payload, indent=2, ensure_ascii=False),
-                    language="json",
-                )
-
-        if not is_last:
-            st.markdown(
-                f'<div style="margin-bottom:0.6rem"></div>',
-                unsafe_allow_html=True,
-            )
-
-
-def _render_tab_audit(entries: list[AuditEntry]) -> None:
-    if not entries:
-        st.info("Nessun evento registrato per questa gara.")
-        return
-
-    # Più recenti prima
-    sorted_entries = sorted(entries, key=lambda e: e.timestamp, reverse=True)
-
-    for idx, entry in enumerate(sorted_entries):
-        _render_audit_entry(entry, idx, is_last=(idx == len(sorted_entries) - 1))
-
-
-# ---------------------------------------------------------------------------
-# Main page
-# ---------------------------------------------------------------------------
-
-inject_custom_css()
-
-if st.button("← Torna alla lista", type="secondary"):
-    st.switch_page("pages/home.py")
-
-tender_id = st.session_state.get("selected_tender_id")
-
-if not tender_id:
-    st.warning("Nessuna gara selezionata. Torna alla lista gare.")
-    st.stop()
-
-# Carica dati
-tender = _find_tender_metadata(tender_id)
-if not tender:
-    st.error(f"Gara non trovata: {tender_id}")
-    st.stop()
-
-decision = _load_decision(tender_id)
-requirements = _load_requirements(tender_id)
-
-client = get_api_client()
-gap_results = client.get_gap_results(tender_id)
-checklist = _load_admin_checklist(tender_id)
-audit_entries = _load_audit_trail(tender_id)
-
-# Sidebar — filtro checklist (visibile quando la checklist è disponibile)
-if checklist and checklist.documents_required:
-    _all_roles = sorted({doc.owner_role for doc in checklist.documents_required})
-    selected_roles: list[str] = st.sidebar.multiselect(
-        "Responsabile",
-        options=_all_roles,
-        default=[],
-        help="Filtra i documenti della checklist per responsabile. Vuoto = mostra tutti.",
-        key="checklist_role_filter",
-    )
-else:
-    selected_roles = []
-
-# Header
-_render_header(tender, decision)
-
-st.divider()
-
-# Tab
-tab_req, tab_gap, tab_risk, tab_check, tab_audit = st.tabs(
-    ["Requisiti", "Gap analysis", "Rischi", "Checklist", "Audit trail"]
-)
-
-with tab_req:
-    if requirements:
-        _render_tab_requisiti(requirements)
-    else:
-        st.info("Nessun requisito estratto per questa gara.")
-
-with tab_gap:
-    if gap_results:
-        _render_tab_gap_analysis(gap_results, requirements)
-    else:
-        st.info("Nessun risultato di gap analysis disponibile per questa gara.")
-
-with tab_risk:
-    _render_tab_rischi(decision)
-
-with tab_check:
-    _render_tab_checklist(checklist, tender_id, selected_roles)
-
-with tab_audit:
-    _render_tab_audit(audit_entries)
+    _tab_gng()
