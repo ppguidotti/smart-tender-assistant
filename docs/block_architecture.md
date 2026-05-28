@@ -51,8 +51,10 @@ flowchart LR
     B4 -.ambigui.-> B7[B7<br/>HITL<br/>Review Queue]
     B7 -.aggiorna.-> B3
 
-    B8 <-->|persistenza| B9[(B9<br/>Vector DB<br/>Qdrant)]
+    B8 <-->|persistenza| B9[B9<br/>Storage Layer]
     B3 <-->|persistenza| B9
+    B9 -->|dato strutturato| PG[(PostgreSQL<br/>system of record)]
+    B9 -.indice vettoriale.-> QD[(Qdrant<br/>ricerca semantica)]
     B9 -.path ref.-> FS[/Filesystem locale<br/>PDF + report/]
 
     style B1 fill:#e1f5ff
@@ -65,6 +67,8 @@ flowchart LR
     style B8 fill:#f0e1ff
     style B9 fill:#fff4e1
     style B10 fill:#e1ffe1
+    style PG fill:#e8f0fb
+    style QD fill:#f0e8fb,stroke-dasharray: 4 3
     style FS fill:#f5f5f0,stroke-dasharray: 4 3
 ```
 
@@ -509,11 +513,11 @@ class CompanyProfile:
 | `DUPLICATE_EVIDENCE` | Tentativo di creare evidence già esistente | 409 + suggerimento di update |
 
 #### Dipendenze
-- B9 Storage (Qdrant: collection `profile_evidences` per embedding + payload, `profile_revisions` per audit modifiche)
+- B9 Storage (PostgreSQL: tabelle `profile_evidences` e `profile_revisions` come record canonici + audit; Qdrant: collection `profile_evidences_idx` con gli embedding delle descrizioni per il RAG di B4)
 - Embedding model (locale o cloud)
 
 #### Stack suggerito
-- **Qdrant** (open source, ottimo per MVP locale) — vedi B9
+- **PostgreSQL** (record di profilo + revisioni) e **Qdrant** (indice vettoriale per il RAG) — vedi B9
 - Embedding: **multilingual-e5-large** (locale, gratis) o **OpenAI text-embedding-3-small** (cloud, multilingue, costo basso)
 
 #### Note importanti
@@ -898,7 +902,7 @@ GET    /review-queue/stats
 - Storage B9
 
 #### Stack suggerito
-- Collection Qdrant `review_queue_items` in B9 (con vettore dummy, payload = item completo)
+- Tabella PostgreSQL `review_queue_items` in B9 (stato HITL transazionale, nessun vettore)
 - Per la demo: UI Streamlit con tab "Review Queue"
 - Notifiche email/Slack via webhook (post-MVP)
 
@@ -968,7 +972,7 @@ class TenderView:
 - **FastAPI** (async, OpenAPI auto-generato)
 - **Celery** o **arq** per task asincroni (l'analisi richiede minuti)
 - **Pydantic** per i modelli API
-- **qdrant-client** + repository pattern per accesso a B9
+- **SQLAlchemy** (+ `qdrant-client` per l'indice semantico) + repository pattern per accesso a B9
 
 #### Note
 - Il workflow deve essere **ripristinabile**: se la pipeline fallisce a metà, deve poter ripartire dal punto giusto
@@ -983,30 +987,45 @@ class TenderView:
 **Priorità sviluppo:** 🔴 ALTA (infrastruttura abilitante)
 
 #### Scopo
-Persistenza di tutti i dati del sistema. Espone API CRUD ai blocchi che ne hanno bisogno. Architettura **single-store Qdrant** per minimizzare i servizi infrastrutturali, complementata dal filesystem locale per i file binari.
+Persistenza di tutti i dati del sistema. Espone API CRUD ai blocchi che ne hanno bisogno. Architettura **ibrida PostgreSQL + Qdrant**: PostgreSQL è il *system of record* per tutto il dato strutturato; Qdrant è usato **solo per ciò per cui nasce** — indicizzazione e ricerca vettoriale (semantica). Il filesystem locale ospita i file binari, referenziati per path.
+
+#### Principio guida
+- **PostgreSQL = verità.** Ogni entità (gare, documenti, requisiti, gap, decisioni, audit, job, profilo) è una riga relazionale con vincoli FK, transazioni ACID e query aggregate native.
+- **Qdrant = indice derivato.** Contiene solo il vettore + un payload minimo (id di join verso PG + 1-2 campi di filtro). Non è uno store di verità: può essere **ricostruito interamente da PostgreSQL** con un reindex job. Questo elimina sia il rischio di disallineamento permanente sia l'hack del "vettore dummy" per dati non semantici.
+- **Lettura RAG**: Qdrant restituisce gli id più simili (con filtri payload) → PostgreSQL idrata le righe canoniche complete.
+- **Scrittura**: write su PG (transazione, committata per prima) → upsert del vettore su Qdrant (best-effort). Se l'upsert vettoriale fallisce, `reindex_from_source` recupera dallo stato PG: nessun dato perso.
 
 #### Componenti
 
-**Vector DB (Qdrant)** — unico store per tutti i dati strutturati ed embedding
+**PostgreSQL** — system of record relazionale
 
-Ogni "tipo" di dato vive in una **collection** dedicata. Le collection con vettori semantici (`requirements`, `profile_evidences`) abilitano ricerca semantica + filtri; quelle senza necessità semantica (`audit_log`, `analysis_jobs`) usano Qdrant come document store con un vettore "dummy" zero-dimensionale o un vettore segnaposto (es. 4 dimensioni costanti).
+Ogni "tipo" di dato è una **tabella**. Tutto ciò che è strutturato, transazionale o auditabile vive qui — niente più vettori finti.
 
-| Collection | Vettore | Payload principali | Note |
+| Tabella | Colonne chiave | Note |
+|---|---|---|
+| `tenders` | tender_id (PK), nome, stato, cpv, valore, date | metadata gara; abilita aggregati per CPV/stato/periodo |
+| `documents` | document_id (PK), tender_id (FK), filename, mime_type, hash, fs_path | una riga per file ingerito; `fs_path` → filesystem |
+| `requirements` | requirement_id (PK), tender_id (FK), categoria, tipo, fonte (`SourceLocation`), testo | record canonico; l'embedding del testo vive in Qdrant |
+| `gap_results` | gap_id (PK), requirement_id (FK), match_status, evidenze (jsonb), reasoning | join relazionale con `requirements` |
+| `decisions` | decision_id (PK), tender_id (FK), decisione, score, motivazione, created_at | una per gara; abilita aggregati GO/NO-GO |
+| `analysis_jobs` | job_id (PK), tender_id (FK), status, progress_pct, timestamps, error | stato workflow transazionale/ripristinabile |
+| `audit_log` | event_id (PK), actor, action, target, ts, payload (jsonb) | append-only; vero audit trail con WAL |
+| `profile_evidences` | evidence_id (PK), tipo, titolo, descrizione, validità | record canonico; l'embedding della descrizione vive in Qdrant |
+| `profile_revisions` | revision_id (PK), evidence_id (FK), operation, source, ts | storia modifiche profilo (audit) |
+| `review_queue_items` | item_id (PK), tipo, payload (jsonb), priorità, status | coda HITL; stato transazionale |
+
+**Qdrant** — indice semantico (solo dove serve la ricerca vettoriale)
+
+Esistono **solo le 2 collection** che alimentano un RAG. Ogni punto è derivato da una riga PostgreSQL e porta nel payload l'id di join per idratare la verità da PG.
+
+| Collection | Vettore | Payload (minimo) | Sorgente |
 |---|---|---|---|
-| `tenders` | dummy | tender_id, nome, stato, CPV, valore, date | metadata di gara |
-| `documents` | dummy | document_id, tender_id, filename, mime_type, hash, path filesystem | una entry per file ingerito |
-| `requirements` | embedding del testo | requirement_id, categoria, tipo, fonte, testo originale | RAG-ready per ricerche cross-gara |
-| `gap_results` | dummy | gap_id, requirement_id, match_status, evidenze, reasoning | una entry per gap analizzato |
-| `decisions` | dummy | decision_id, tender_id, decisione, score, motivazione | una per gara |
-| `analysis_jobs` | dummy | job_id, tender_id, status, progress, timestamps | stato workflow ripristinabile |
-| `audit_log` | dummy | event_id, actor, action, target, timestamp, payload | append-only |
-| `profile_evidences` | embedding della descrizione | evidence_id, tipo, titolo, descrizione, validità | usata da B4 per RAG semantico |
-| `profile_revisions` | dummy | revision_id, evidence_id, operation, source, timestamp | storia modifiche profilo |
-| `review_queue_items` | dummy | item_id, tipo, payload, priorità, status | coda HITL |
+| `requirements_idx` | embedding del testo requisito | requirement_id, tender_id, categoria | PG `requirements` |
+| `profile_evidences_idx` | embedding della descrizione | evidence_id, tipo | PG `profile_evidences` |
 
 **Filesystem locale** — file binari
 
-I file binari (PDF originali, report generati, allegati di evidenze) non vivono in Qdrant ma sul filesystem del server. Il path è referenziato nel payload Qdrant della collection corrispondente.
+I file binari (PDF originali, report generati, allegati di evidenze) non vivono nel database ma sul filesystem del server. Il path è referenziato nella colonna `fs_path` della tabella PostgreSQL corrispondente.
 
 ```
 /data/files/
@@ -1022,52 +1041,71 @@ I file binari (PDF originali, report generati, allegati di evidenze) non vivono 
             └── *.pdf
 ```
 
-In produzione, il path stringato in payload Qdrant può essere sostituito senza modifiche di codice applicativo da una URL `s3://` o equivalente — la migrazione a object storage è una decisione operativa, non architetturale.
+In produzione, il path stringato nella colonna `fs_path` di PostgreSQL può essere sostituito senza modifiche di codice applicativo da una URL `s3://` o equivalente — la migrazione a object storage è una decisione operativa, non architetturale.
 
 #### Interfacce
-Esposte come **repository pattern** Python (no API HTTP interna):
+Esposte come **repository pattern** Python (no API HTTP interna). L'interfaccia pubblica è identica a quella del vecchio single-store: cambia solo l'implementazione sottostante.
 
 ```python
-class TenderRepository:
+class TenderRepository:                 # PostgreSQL
     def create(self, tender: TenderCreate) -> Tender: ...
     def get(self, tender_id: UUID) -> Tender | None: ...
     def list(self, filters: TenderFilters) -> list[Tender]: ...
-    def update_status(self, tender_id: UUID, status: str): ...
+    def update_status(self, tender_id: UUID, status: str) -> None: ...
 
-class RequirementRepository: ...      # semantic search abilitata
-class GapResultRepository: ...
-class ProfileRepository: ...           # semantic search abilitata
-class AuditLogRepository: ...
-class FileStore:                        # wrapper su filesystem
+class RequirementRepository:            # PG (canonico) + Qdrant (indice)
+    def upsert(self, req: Requirement, embedding: list[float]) -> Requirement: ...
+    def semantic_search(self, query_vec: list[float], filters) -> list[Requirement]: ...
+    # semantic_search: Qdrant → ids → idratazione righe da PostgreSQL
+
+class GapResultRepository: ...          # PostgreSQL
+class DecisionRepository: ...           # PostgreSQL (+ aggregati GO/NO-GO)
+class AnalysisJobRepository: ...        # PostgreSQL
+class AuditLogRepository: ...           # PostgreSQL, append-only
+class ProfileRepository: ...            # PG (canonico) + Qdrant (indice)
+class ReviewQueueRepository: ...        # PostgreSQL
+
+class VectorIndex:                      # wrapper Qdrant — indice derivato, ricostruibile
+    def upsert(self, collection: str, id: UUID, vector: list[float], payload: dict) -> None: ...
+    def search(self, collection: str, vector: list[float], filters, k: int) -> list[UUID]: ...
+    def reindex_from_source(self, collection: str) -> None: ...   # rigenera da PG
+
+class FileStore:                        # invariato — filesystem, domani S3
     def save(self, path: str, content: bytes) -> str: ...
     def load(self, path: str) -> bytes: ...
-    def delete(self, path: str): ...
+    def delete(self, path: str) -> None: ...
 ```
 
-Tutti i repository condividono un client Qdrant unico iniettato via dependency injection. Il `FileStore` è separato e oggi punta al filesystem; domani può essere sostituito con un'implementazione S3-compatible senza toccare i repository.
+Tutti i repository condividono una `Session`/engine SQLAlchemy iniettata via dependency injection; quelli con ricerca semantica ricevono **anche** la `VectorIndex` (client Qdrant). Il `FileStore` resta separato e oggi punta al filesystem; domani può essere sostituito con un'implementazione S3-compatible senza toccare i repository.
 
 #### Stack suggerito
-- **Qdrant** (Docker locale `qdrant/qdrant:latest`) — porta 6333
-- **qdrant-client** Python — client ufficiale
-- **Pydantic** per modelli dei payload
+- **PostgreSQL 16** (Docker `postgres:16`) — porta 5432
+- **SQLAlchemy 2.0** (Core/ORM) + **Alembic** per le migrazioni di schema
+- **psycopg 3** come driver
+- **Qdrant** (Docker `qdrant/qdrant:latest`) — porta 6333 + **qdrant-client**
+- **Pydantic v2** per i modelli/contratti
 - Filesystem standard Python (`pathlib`) per il `FileStore`
+
+#### Decisione aggiornata (29 mag 2026): da single-store a ibrido
+Superato il **single-store Qdrant** originario. Quel design costringeva a un vettore *dummy* su 8 collection su 10 (dato non semantico forzato dentro un vector DB) e rinunciava ad ACID, audit con WAL e query aggregate — proprio i requisiti di credibilità verso la PA. L'ibrido mette ogni dato dove rende: **PostgreSQL** per relazionale/transazionale/auditabile, **Qdrant** solo per la ricerca vettoriale.
+
+**Alternativa scartata: Postgres + `pgvector`** (un solo motore). Scartata deliberatamente: Qdrant offre filtri su payload e prestazioni ANN superiori su scala, e il costo di un container in più è marginale; restiamo coerenti col principio "ogni tecnologia per il suo mestiere". `pgvector` resta un fallback valido se in produzione si volesse collassare a un solo motore.
 
 #### Trade-off di questa scelta (espliciti per onestà intellettuale)
 
-| Cosa si perde rispetto a Postgres + S3 | Impatto MVP | Mitigazione |
+| Cosa costa l'ibrido | Impatto MVP | Mitigazione |
 |---|---|---|
-| Transazioni ACID multi-collection | Bassa: l'ordine delle operazioni è sequenziale nel workflow B8 | Saga pattern leggero in B8 se serve; per MVP nessun problema |
-| Query aggregate complesse (es. "media decisioni GO per CPV negli ultimi 6 mesi") | Bassa: non servono per il pitch | Si possono fare lato applicativo iterando sui punti Qdrant |
-| Audit trail con WAL/replication out-of-the-box | Bassa per MVP | Backup periodico della collection `audit_log`; per produzione enterprise valutare ripristino di Postgres |
-| File binari indicizzati e versionati | Bassa | Filesystem va benissimo per dimensione MVP (< 1 GB tipico) |
+| Un container in più (postgres) | Bassa | `docker-compose`: 4 servizi (app, tika, postgres, qdrant); niente MinIO, i binari restano su filesystem |
+| Doppia scrittura su `requirements` / `profile_evidences` | Bassa | PG committato per primo; Qdrant è derivato e reindicizzabile (`reindex_from_source`) |
+| Migrazioni di schema da gestire | Bassa | Alembic versiona lo schema; serviva comunque per il versionamento dei contratti |
+| Sync PG ↔ Qdrant | Bassa | Qdrant non è mai sorgente di verità: se diverge non si perde nulla, basta un reindex |
 
-Posizionamento nel pitch: questi diventano la slide "**Evolution path per produzione enterprise**" che dimostra di aver pensato oltre il PoC.
+Posizionamento nel pitch: l'ibrido **è** la slide "**Architettura production-ready**" — ACID, audit trail reale e aggregati nativi, con la ricerca semantica dove serve davvero.
 
 #### Note
-- Schema versionato sui payload (campo `schema_version` su ogni punto) abilita migration future
-- Audit log = obbligatorio per credibilità PA: chi ha fatto cosa quando
-- Backup: `qdrant-client` supporta snapshot per collection — schedulare cron job di backup quotidiano
-- Le collection con vettore dummy hanno dimensione vettore piccolissima (es. 4 dim) per minimizzare footprint
+- Schema versionato via **Alembic** (più il campo `schema_version` sui contratti Pydantic) abilita migration future
+- Audit log = obbligatorio per credibilità PA: chi ha fatto cosa quando — ora con garanzie WAL native
+- Backup: `pg_dump` schedulato per PostgreSQL (verità); le collection Qdrant non vanno backuppate, si rigenerano da PG con `reindex_from_source`
 
 ---
 
@@ -1173,7 +1211,7 @@ Crea un file `mocks/requirements_capitolato_edr.json` con i 30 requisiti del Mod
 | B6 | Test visivo: il PDF generato sul capitolato EDR è confrontabile col Modulo 1 di VEM |
 | B7 | Test API: push item → GET item → POST decisione → verify update propagato a B3 |
 | B8 | Test E2E: POST gara → upload documento → POST analyze → GET decision (timeout 5 min) |
-| B9 | Setup test: Qdrant raggiungibile su porta 6333, tutte le collection create con schema atteso; roundtrip CRUD su ogni repository; `FileStore` save+load file di test |
+| B9 | Setup test: PostgreSQL raggiungibile su 5432 con migrazioni Alembic applicate + Qdrant su 6333; roundtrip CRUD su ogni repository; `semantic_search` Qdrant→PG hydrate; `reindex_from_source` rigenera l'indice da PG; `FileStore` save+load file di test |
 | B10 | Test manuale di flusso utente (per MVP) |
 
 **Test golden della demo**: la pipeline end-to-end deve riprodurre il Modulo 1 VEM dal capitolato EDR con > 90% di precisione. Questo è **il test di accettazione del pitch**.
