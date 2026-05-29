@@ -1,5 +1,6 @@
 import json
 import sys
+from pathlib import Path
 
 from scoring.adapter import enriched_gap_analysis_to_scoring
 from scoring.engine import compute_scoring
@@ -56,6 +57,32 @@ def main():
     for item in result.recommended_actions:
         print(f"- {item}")
 
+
+    Path("outputs/scoring").mkdir(parents=True, exist_ok=True)
+
+    with open("outputs/scoring/enrichment.json", "w") as f:
+        json.dump(enrichment, f, indent=2, ensure_ascii=False)
+
+    with open("outputs/scoring/normalized_requirements.json", "w") as f:
+        json.dump(
+            [r.model_dump(mode="json") for r in requirements],
+            f,
+            indent=2,
+            ensure_ascii=False,
+        )
+
+    with open("outputs/scoring/scoring_result.json", "w") as f:
+        json.dump(
+            result.model_dump(mode="json"),
+            f,
+            indent=2,
+            ensure_ascii=False,
+        )
+    
+    print("\nSaved:")
+    print("- outputs/scoring/enrichment.json")
+    print("- outputs/scoring/normalized_requirements.json")
+    print("- outputs/scoring/scoring_result.json")
 
 if __name__ == "__main__":
     main()
