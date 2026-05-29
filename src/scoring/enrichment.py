@@ -1,13 +1,57 @@
+from dotenv import load_dotenv
+from openai import OpenAI
 import json
 import os
-from typing import Any
-
-from dotenv import load_dotenv
-from google import genai
-
 
 load_dotenv()
 
+ENRICHMENT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "requirements": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "requirement_id": {"type": "string"},
+                    "category": {
+                        "type": "string",
+                        "enum": [
+                            "TECHNICAL",
+                            "COMPLIANCE",
+                            "QUALIFICATION",
+                            "ADMINISTRATIVE",
+                        ],
+                    },
+                    "criticality": {
+                        "type": "string",
+                        "enum": [
+                            "BLOCKING",
+                            "PREFERENTIAL",
+                            "INFO",
+                        ],
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 5,
+                    },
+                    "reasoning": {"type": "string"},
+                },
+                "required": [
+                    "requirement_id",
+                    "category",
+                    "criticality",
+                    "weight",
+                    "reasoning",
+                ],
+                "additionalProperties": False,
+            },
+        }
+    },
+    "required": ["requirements"],
+    "additionalProperties": False,
+}
 
 ENRICHMENT_PROMPT = """
 You are a procurement requirements classification assistant.
@@ -47,35 +91,50 @@ Weight rules:
 """
 
 
-def _extract_json(text: str) -> dict[str, Any]:
-    cleaned = text.strip()
+def enrich_gap_analysis_with_llm(gap_analysis: dict) -> dict:
+    try:
+        client = OpenAI(
+            base_url=os.environ["GROK_ENDPOINT"],
+            api_key=os.environ["GROK_API_KEY"],
+            timeout=60,
+        )
 
-    if cleaned.startswith("```json"):
-        cleaned = cleaned.removeprefix("```json").strip()
+        completion = client.chat.completions.create(
+            model=os.getenv(
+                "GROK_MODEL",
+                "grok-4-1-fast-non-reasoning",
+            ),
+            temperature=0,
+            messages=[
+                {
+                    "role": "system",
+                    "content": ENRICHMENT_PROMPT,
+                },
+                {
+                    "role": "user",
+                    "content": json.dumps(
+                        gap_analysis,
+                        ensure_ascii=False,
+                    ),
+                },
+            ],
+            response_format={
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "requirement_enrichment",
+                    "schema": ENRICHMENT_SCHEMA,
+                },
+            },
+        )
 
-    if cleaned.startswith("```"):
-        cleaned = cleaned.removeprefix("```").strip()
+        content = completion.choices[0].message.content
 
-    if cleaned.endswith("```"):
-        cleaned = cleaned.removesuffix("```").strip()
+        if not content:
+            raise ValueError("Grok returned an empty response.")
 
-    return json.loads(cleaned)
+        return json.loads(content)
 
-
-def enrich_gap_analysis_with_llm(gap_analysis: dict[str, Any]) -> dict[str, Any]:
-    api_key = os.environ["GEMINI_API_KEY"]
-    model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
-
-    client = genai.Client(api_key=api_key)
-
-    payload = json.dumps(gap_analysis, ensure_ascii=False, indent=2)
-
-    response = client.models.generate_content(
-        model=model_name,
-        contents=f"{ENRICHMENT_PROMPT}\n\nInput JSON:\n{payload}",
-    )
-
-    if not response.text:
-        raise ValueError("Gemini returned an empty response.")
-
-    return _extract_json(response.text)
+    except Exception as exc:
+        raise RuntimeError(
+            f"Grok enrichment failed: {exc}"
+        ) from exc
