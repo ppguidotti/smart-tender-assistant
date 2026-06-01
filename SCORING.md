@@ -1,0 +1,1 @@
+python -m scoring.run_scoring /path/to/gap_analysis.json
