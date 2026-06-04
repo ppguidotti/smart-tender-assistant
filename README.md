@@ -121,7 +121,6 @@ cp env.example .env        # then fill in your real values — .env is gitignore
 ### Infrastructure
 
 ```bash
-docker compose up -d tika              # B1 only (Tika)
 docker compose up -d                   # tika + postgres + qdrant
 ```
 
