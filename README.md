@@ -124,6 +124,10 @@ cp env.example .env        # then fill in your real values — .env is gitignore
 docker compose up -d                   # tika + postgres + qdrant
 ```
 
+> `docker compose` starts only the **infrastructure** (Tika, PostgreSQL, Qdrant) —
+> not the app. Run the dashboard (`sta-frontend`) and the pipeline scripts
+> separately from your virtualenv (see **Run** below).
+
 > Apache Tika can time out on the first call (JVM cold start) — start it a few
 > seconds before the first parse, or retry.
 
@@ -133,8 +137,13 @@ docker compose up -d                   # tika + postgres + qdrant
 reads `tests/fixtures/`), no backend required:
 
 ```bash
-streamlit run src/smart_tender_assistant/frontend/app.py
+sta-frontend                                              # console script (preferred)
+streamlit run src/smart_tender_assistant/frontend/app.py  # equivalent, explicit
 ```
+
+`sta-frontend` is the `[project.scripts]` entry point installed by `pip install -e`;
+it runs the same Streamlit app headless on `http://localhost:8501`. There is also
+`sta-api` for the backend (B8).
 
 **Pipeline (CLI)** — each stage chains into the next:
 
