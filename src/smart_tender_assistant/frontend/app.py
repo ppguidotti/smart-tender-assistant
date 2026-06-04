@@ -93,7 +93,7 @@ def _render_sidebar(
     client = get_api_client()
     try:
         bandi = client.list_bandi_html()
-    except Exception:  # noqa: BLE001 — il client mock può non avere fixture al primo boot
+    except Exception:
         bandi = []
     n_bandi = len(bandi)
     n_pending = sum(1 for b in bandi if b.status == "pending")

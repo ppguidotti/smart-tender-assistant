@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Smart Tender Assistant — Workflow operativo</title>
+<style>
+  :root{
+    /* Palette semantica (ui/theme.py) */
+    --go:#1D9E75; --go-res:#BA7517; --nogo:#A32D2D; --info:#185FA5; --partial:#888780;
+    --bg:#FFFFFF; --bg2:#F5F4EF; --border:#D3D1C7; --t1:#2C2C2A; --t2:#5F5E5A;
+    /* Brand VEM */
+    --navy:#1B2440; --orange:#E97825;
+    --mono:'SF Mono',ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--t1);background:var(--bg2);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+
+  /* ---------- Hero ---------- */
+  header.hero{background:linear-gradient(135deg,var(--navy) 0%,#243056 100%);color:#fff;padding:46px 0 40px}
+  .hero .brand{display:flex;align-items:center;gap:13px;margin-bottom:26px}
+  .hero .mark{font-weight:800;letter-spacing:.06em;font-size:15px;background:var(--orange);
+    color:#fff;padding:6px 11px;border-radius:7px}
+  .hero .brand small{font-size:12.5px;color:#B9C0D4;letter-spacing:.02em}
+  .hero h1{font-size:33px;font-weight:700;letter-spacing:-.01em;max-width:760px}
+  .hero p.lede{margin-top:14px;font-size:16px;color:#C9CFE0;max-width:680px}
+  .hero .pills{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px}
+  .hero .pill{font-size:12px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);
+    padding:6px 12px;border-radius:100px;color:#E7EAF2}
+  .hero .pill b{color:#fff;font-weight:600}
+
+  /* ---------- Pipeline strip ---------- */
+  section.flow{padding:38px 0 8px}
+  .sec-kicker{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--orange);text-transform:uppercase}
+  .sec-title{font-size:23px;font-weight:700;margin:6px 0 4px}
+  .sec-sub{font-size:14.5px;color:var(--t2);max-width:720px;margin-bottom:26px}
+
+  .strip{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:8px}
+  .node{flex:1 0 0;min-width:150px;background:#fff;border:1px solid var(--border);border-radius:13px;
+    padding:15px 14px;position:relative;display:flex;flex-direction:column;gap:7px}
+  .node + .node{margin-left:30px}
+  .node::after{content:"→";position:absolute;right:-26px;top:50%;transform:translateY(-50%);
+    color:var(--partial);font-size:21px;font-weight:700}
+  .node:last-child::after{display:none}
+  .node .step{font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--t2)}
+  .node .ic{font-size:21px;line-height:1}
+  .node .nm{font-size:13.5px;font-weight:700}
+  .node .ds{font-size:11.5px;color:var(--t2)}
+  .node .tech{margin-top:2px;font-size:10px;font-family:var(--mono);color:var(--info)}
+  .node.b1{border-top:3px solid var(--info)}
+  .node.b2{border-top:3px solid var(--orange)}
+  .node.io{border-top:3px solid var(--partial)}
+  .node.out{border-top:3px solid var(--go)}
+
+  /* ---------- Stage detail cards ---------- */
+  section.stages{padding:34px 0}
+  .stage{background:#fff;border:1px solid var(--border);border-radius:15px;padding:24px 26px;margin-bottom:18px;
+    display:grid;grid-template-columns:48px 1fr;gap:18px}
+  .stage .badge{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    font-size:19px;font-weight:800;color:#fff}
+  .stage h3{font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .stage h3 .tag{font-size:10.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:100px;
+    background:var(--bg2);color:var(--t2);border:1px solid var(--border)}
+  .stage .role{font-size:13.5px;color:var(--t2);margin:7px 0 14px;max-width:760px}
+  .io-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .io-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:13px 15px}
+  .io-box .lbl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t2);margin-bottom:7px}
+  pre{font-family:var(--mono);font-size:11.5px;line-height:1.5;color:#33352F;white-space:pre-wrap;word-break:break-word}
+  .k{color:var(--info)} .s{color:var(--go-res)} .n{color:var(--nogo)} .c{color:var(--partial)}
+
+  /* badge colors per stage */
+  .bg-b1{background:var(--info)} .bg-b2{background:var(--orange)} .bg-io{background:var(--partial)}
+  .bg-mg{background:var(--go-res)} .bg-out{background:var(--go)}
+
+  /* ---------- Requirement card (traceability highlight) ---------- */
+  .reqcard{border:1px solid var(--border);border-radius:12px;padding:16px 18px;background:#fff;max-width:560px}
+  .reqcard .top{display:flex;gap:8px;margin-bottom:9px;flex-wrap:wrap;align-items:center}
+  .cat{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:6px;background:#EAF1F8;color:var(--info)}
+  .tipo{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:6px}
+  .tipo.esc{background:#F7E9E9;color:var(--nogo)}
+  .reqcard .qid{font-family:var(--mono);font-size:11px;color:var(--t2);margin-left:auto}
+  .reqcard .txt{font-size:14px;font-weight:600;color:var(--t1);margin-bottom:11px}
+  .cite{display:inline-flex;align-items:center;gap:7px;font-size:12px;background:var(--bg2);
+    border:1px solid var(--border);border-radius:100px;padding:5px 12px;color:var(--t2);cursor:pointer}
+  .cite b{color:var(--info);font-weight:600}
+  .cite .pin{color:var(--orange)}
+  .cite-src{margin-top:9px;font-family:var(--mono);font-size:11px;color:var(--t2);
+    border-left:3px solid var(--orange);padding:4px 0 4px 10px}
+  .conf{margin-top:10px;display:flex;align-items:center;gap:8px;font-size:11px;color:var(--t2)}
+  .bar{flex:1;height:6px;background:var(--bg2);border-radius:100px;overflow:hidden;max-width:160px}
+  .bar i{display:block;height:100%;background:var(--go);width:95%}
+
+  .note{margin-top:14px;font-size:12.5px;color:var(--t2);background:#FCF8F1;border:1px solid #EAD9BD;
+    border-radius:9px;padding:11px 14px}
+  .note b{color:var(--go-res)}
+
+  /* ---------- Result stats ---------- */
+  section.result{padding:20px 0 30px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+  .stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .stat .v{font-size:28px;font-weight:800;font-family:var(--mono)}
+  .stat .l{font-size:11px;color:var(--t2);margin-top:3px;text-transform:uppercase;letter-spacing:.06em}
+  .catbars{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+  .catrow{display:flex;align-items:center;gap:12px;margin:9px 0}
+  .catrow .cn{width:150px;font-size:12.5px;font-weight:600}
+  .catrow .cb{flex:1;height:10px;background:var(--bg2);border-radius:100px;overflow:hidden}
+  .catrow .cb i{display:block;height:100%}
+  .catrow .cv{font-family:var(--mono);font-size:12px;color:var(--t2);width:26px;text-align:right}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--navy);color:#C9CFE0;padding:26px 0;font-size:12.5px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  footer b{color:#fff}
+
+  @media(max-width:760px){.io-grid,.stats{grid-template-columns:1fr}.stage{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark">STCA</span>
+      <small>Smart Tender Compliance Assistant · VEM Sistemi — GenAI Innovation Sprint 2026</small>
+    </div>
+    <h1>Dal bando alla decisione: il workflow operativo di estrazione dei requisiti</h1>
+    <p class="lede">Una pipeline a due stadi che legge i documenti di una gara pubblica, ne estrae i
+      requisiti in modo strutturato e tracciabile, e li porta nella dashboard di analisi. Ore di lettura
+      manuale → minuti.</p>
+    <div class="pills">
+      <span class="pill">Input: <b>qualsiasi formato</b> (PDF, DOCX, XLSX, EML, ZIP)</span>
+      <span class="pill"><b>Apache Tika 3.3</b> · estrazione testo</span>
+      <span class="pill"><b>Grok 4.1 fast</b> · Azure AI Foundry (JSON-mode)</span>
+      <span class="pill">Contratti <b>Pydantic v2</b></span>
+      <span class="pill"><b>Traceability</b> per ogni requisito</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ PIPELINE STRIP ============ -->
+<section class="flow">
+  <div class="wrap">
+    <div class="sec-kicker">Pipeline a colpo d'occhio</div>
+    <div class="sec-title">Sei passi, un solo contratto di output</div>
+    <div class="sec-sub">Ogni stadio ha un input e un output espliciti. Le implementazioni sono
+      intercambiabili; le interfacce restano stabili.</div>
+
+    <div class="strip">
+      <div class="node io">
+        <div class="step">INPUT</div><div class="ic">📤</div>
+        <div class="nm">Caricamento</div>
+        <div class="ds">Documenti del bando trascinati nella dashboard</div>
+        <div class="tech">multi-file</div>
+      </div>
+      <div class="node b1">
+        <div class="step">B1</div><div class="ic">🧩</div>
+        <div class="nm">Document ingestor</div>
+        <div class="ds">Estrazione testo + metadati, MIME-agnostica</div>
+        <div class="tech">Apache Tika</div>
+      </div>
+      <div class="node b2">
+        <div class="step">B2 · stadio 1</div><div class="ic">🧠</div>
+        <div class="nm">Estrazione LLM</div>
+        <div class="ds">Requisiti strutturati via prompt JSON-mode</div>
+        <div class="tech">Grok / Foundry</div>
+      </div>
+      <div class="node io">
+        <div class="step">B2 · stadio 2</div><div class="ic">🔗</div>
+        <div class="nm">Merge &amp; dedup</div>
+        <div class="ds">Unione duplicati cross-documento</div>
+        <div class="tech">embeddings e5</div>
+      </div>
+      <div class="node b2">
+        <div class="step">B2 · mapping</div><div class="ic">🏷️</div>
+        <div class="nm">Normalizzazione</div>
+        <div class="ds">Tassonomia di contratto + fonte tracciabile</div>
+        <div class="tech">Pydantic v2</div>
+      </div>
+      <div class="node out">
+        <div class="step">OUTPUT</div><div class="ic">📊</div>
+        <div class="nm">Dashboard</div>
+        <div class="ds">Requisiti per categoria, pronti per gap analysis</div>
+        <div class="tech">Streamlit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STAGE DETAILS ============ -->
+<section class="stages">
+  <div class="wrap">
+    <div class="sec-kicker">Dettaglio operativo</div>
+    <div class="sec-title">Cosa succede ad ogni stadio</div>
+    <div class="sec-sub">Esempio reale: capitolato EDR anonimizzato (2 PDF, 11 pagine totali).</div>
+
+    <!-- INPUT -->
+    <div class="stage">
+      <div class="badge bg-io">0</div>
+      <div>
+        <h3>Caricamento documenti <span class="tag">UI · Repository</span></h3>
+        <div class="role">L'utente trascina i documenti di gara nella dashboard e avvia l'analisi con un
+          click. Nessuna preparazione manuale del file.</div>
+        <div class="io-grid">
+          <div class="io-box"><div class="lbl">Input</div>
+            <pre>Capitolato Gara - Anonimizzato.pdf   (7 pagine)
+Requisiti_Anonimizzato.pdf           (4 pagine)</pre></div>
+          <div class="io-box"><div class="lbl">Azione</div>
+            <pre>▶ Carica e analizza  →  avvia pipeline B1+B2</pre></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1 -->
+    <div class="stage">
+      <div class="badge bg-b1">1</div>
+      <div>
+        <h3>B1 — Document ingestor <span class="tag">Apache Tika</span></h3>
+        <div class="role">Tika fa da router universale dei formati (1400+ tipi): rileva il MIME dal
+          contenuto, estrae testo e metadati e produce un <code>ParsedDocument</code> uniforme. I blocchi
+          a valle non sanno né devono sapere se l'origine era un PDF, un DOCX o una email.</div>
+        <div class="io-grid">
+          <div class="io-box"><div class="lbl">Input</div>
+            <pre>file binario (qualsiasi formato)</pre></div>
+          <div class="io-box"><div class="lbl">Output · ParsedDocument</div>
+<pre>{
+  <span class="k">"document_id"</span>: "…",  <span class="c">// uuid deterministico (sha256)</span>
+  <span class="k">"source"</span>: {
+    <span class="k">"mime_type"</span>: <span class="s">"application/pdf"</span>,
+    <span class="k">"pages"</span>: <span class="n">7</span>,
+    <span class="k">"hash_sha256"</span>: "…"
+  },
+  <span class="k">"raw_text"</span>: <span class="s">"…Capitolato Speciale d'Appalto…"</span>
+}</pre></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2 stage 1 -->
+    <div class="stage">
+      <div class="badge bg-b2">2</div>
+      <div>
+        <h3>B2 · stadio 1 — Estrazione LLM <span class="tag">Grok 4.1 · JSON-mode</span></h3>
+        <div class="role">Il testo di ogni documento viene passato a un LLM con un prompt specializzato e
+          uno schema JSON vincolante (temperatura 0). L'LLM si concentra solo sulla semantica: identifica
+          i requisiti, li rende atomici, ne stima la confidenza e cita il passaggio testuale di origine.</div>
+        <div class="io-grid">
+          <div class="io-box"><div class="lbl">Input</div>
+            <pre>raw_text + prompt "estrazione requisiti"
+response_format = json_schema (vincolante)</pre></div>
+          <div class="io-box"><div class="lbl">Output · requisito grezzo</div>
+<pre>{
+  <span class="k">"categoria"</span>: <span class="s">"idoneita_professionale"</span>,
+  <span class="k">"descrizione"</span>: <span class="s">"Iscrizione MePA categoria
+                   Informatica…"</span>,
+  <span class="k">"obbligatorio"</span>: <span class="n">true</span>,
+  <span class="k">"fonte_testuale"</span>: <span class="s">"…iscritti al MePA…"</span>,
+  <span class="k">"confidenza"</span>: <span class="s">"alta"</span>
+}</pre></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2 stage 2 -->
+    <div class="stage">
+      <div class="badge bg-mg">3</div>
+      <div>
+        <h3>B2 · stadio 2 — Merge &amp; deduplica <span class="tag">embeddings · cosine</span></h3>
+        <div class="role">Lo stesso requisito può comparire in più documenti con formulazioni diverse.
+          Gli embedding multilingue (e5) misurano la similarità semantica; i requisiti vicini vengono
+          raggruppati (componenti connesse) e fusi, conservando la formulazione più completa e l'unione
+          delle fonti.</div>
+        <div class="io-grid">
+          <div class="io-box"><div class="lbl">Input</div>
+            <pre>requisiti grezzi di tutti i documenti
+soglia similarità = 0.93</pre></div>
+          <div class="io-box"><div class="lbl">Output</div>
+            <pre>requisiti deduplicati
++ documenti[]  (unione fonti)
++ fonti_testuali[]</pre></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2 mapping -->
+    <div class="stage">
+      <div class="badge bg-b2">4</div>
+      <div>
+        <h3>B2 · mapping — Normalizzazione al contratto <span class="tag">Pydantic v2</span></h3>
+        <div class="role">Ogni requisito viene mappato sul contratto applicativo:
+          tassonomia <code>QUALIFICAZIONE / NORMATIVA / TECNICA / AMMINISTRATIVA</code>,
+          tipo <code>ESCLUDENTE / PREFERENZIALE</code>, confidenza in [0,1] e — soprattutto — una
+          <code>SourceLocation</code> che riporta documento e offset del testo originale.</div>
+        <div class="reqcard">
+          <div class="top">
+            <span class="cat">QUALIFICAZIONE</span>
+            <span class="tipo esc">ESCLUDENTE</span>
+            <span class="qid">REQ-001</span>
+          </div>
+          <div class="txt">Iscrizione al MePA — categoria “Informatica, Elettronica, Telecomunicazioni”.</div>
+          <span class="cite"><span class="pin">📍</span> Fonte: <b>Capitolato Gara</b> · pag. 1</span>
+          <div class="cite-src">SourceLocation → document="Capitolato Gara.pdf", char_start=0, char_end=37</div>
+          <div class="conf">Confidenza estrazione
+            <span class="bar"><i></i></span> 0.95</div>
+        </div>
+        <div class="note"><b>Il differenziatore →</b> ogni requisito porta con sé la prova della sua
+          origine. In dashboard, dalla scheda del requisito si risale al punto esatto del documento.</div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="stage">
+      <div class="badge bg-out">5</div>
+      <div>
+        <h3>Output — Dashboard di analisi <span class="tag">Streamlit</span></h3>
+        <div class="role">I requisiti normalizzati alimentano la dashboard: raggruppati per categoria,
+          con badge di tipo e citazione della fonte. Da qui partono i blocchi successivi — gap analysis
+          contro il profilo aziendale e decisione GO / NO-GO.</div>
+        <div class="io-grid">
+          <div class="io-box"><div class="lbl">Output · ExtractionResult</div>
+<pre>{
+  <span class="k">"requirements"</span>: [ <span class="c">8 requisiti</span> ],
+  <span class="k">"extraction_summary"</span>: {
+    <span class="k">"by_category"</span>: {…},
+    <span class="k">"avg_confidence"</span>: <span class="n">0.95</span>
+  },
+  <span class="k">"needs_review"</span>: []
+}</pre></div>
+          <div class="io-box"><div class="lbl">Prossimi blocchi</div>
+            <pre>B4  Gap analysis  → coperto / gap
+B5  Scoring       → GO / NO-GO
+B6  Report PDF    → modulo VEM</pre></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULT ============ -->
+<section class="result">
+  <div class="wrap">
+    <div class="sec-kicker">Risultato sull'esempio</div>
+    <div class="sec-title">8 requisiti estratti dal capitolato EDR</div>
+    <div class="sec-sub">Estrazione end-to-end sui 2 PDF anonimizzati, in pochi minuti, senza intervento manuale.</div>
+
+    <div class="stats">
+      <div class="stat"><div class="v" style="color:var(--navy)">2</div><div class="l">Documenti</div></div>
+      <div class="stat"><div class="v" style="color:var(--navy)">11</div><div class="l">Pagine analizzate</div></div>
+      <div class="stat"><div class="v" style="color:var(--orange)">8</div><div class="l">Requisiti estratti</div></div>
+      <div class="stat"><div class="v" style="color:var(--go)">0.95</div><div class="l">Confidenza media</div></div>
+    </div>
+
+    <div class="catbars">
+      <div class="catrow"><span class="cn">Normativa</span>
+        <span class="cb"><i style="width:75%;background:var(--info)"></i></span><span class="cv">3</span></div>
+      <div class="catrow"><span class="cn">Qualificazione</span>
+        <span class="cb"><i style="width:50%;background:var(--go)"></i></span><span class="cv">2</span></div>
+      <div class="catrow"><span class="cn">Tecnica</span>
+        <span class="cb"><i style="width:50%;background:var(--go-res)"></i></span><span class="cv">2</span></div>
+      <div class="catrow"><span class="cn">Amministrativa</span>
+        <span class="cb"><i style="width:25%;background:var(--partial)"></i></span><span class="cv">1</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Smart Tender Assistant · <b>workflow operativo B1 → B2</b> · estrazione requisiti tracciabile</span>
+    <span><b>VEM Sistemi</b> — GenAI Innovation Sprint 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

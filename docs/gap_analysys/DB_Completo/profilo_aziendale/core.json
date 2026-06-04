@@ -1,0 +1,77 @@
+{
+  "_note": "Dati anagrafici e finanziari stabili. Aggiornamento: annuale o a evento (es. variazione fatturato, nuovo ATECO).",
+  "ragione_sociale": "TechServ Italia S.p.A.",
+  "nome_breve": "TechServ",
+  "partita_iva": "IT09876543210",
+  "codice_fiscale": "09876543210",
+  "sede_legale": {
+    "via": "Via dell'Innovazione 42",
+    "cap": "40100",
+    "citta": "Bologna",
+    "provincia": "BO",
+    "regione": "Emilia-Romagna"
+  },
+  "anno_fondazione": 1998,
+  "forma_giuridica": "S.p.A.",
+  "dipendenti": 280,
+  "fatturato": {
+    "2022": 38500000,
+    "2023": 43200000,
+    "2024": 47800000,
+    "_note": "Valori in euro. Dato da bilancio depositato."
+  },
+  "settori_attivita": [
+    "IT Infrastructure",
+    "Cybersecurity",
+    "Networking",
+    "Cloud Migration",
+    "Managed Services"
+  ],
+  "codici_ateco": [
+    {
+      "codice": "62.02.00",
+      "descrizione": "Consulenza nel settore delle tecnologie dell'informatica"
+    },
+    {
+      "codice": "62.09.09",
+      "descrizione": "Altre attività dei servizi connessi alle tecnologie dell'informatica"
+    }
+  ],
+  "iscrizioni": {
+    "CCIAA": {
+      "numero_rea": "BO-654321",
+      "data_iscrizione": "1998-05-14",
+      "stato": "ATTIVA"
+    },
+    "ANAC": {
+      "numero": "ANAC-2024-IT09876",
+      "data_scadenza": "2026-12-31",
+      "stato": "ATTIVA",
+      "_note": "PassOE generabile dal portale ANAC per ogni gara specifica"
+    },
+    "MEPA": {
+      "abilitato": true,
+      "data_abilitazione": "2015-03-10",
+      "categorie": [
+        "Informatica, Elettronica, Telecomunicazioni, Macchine per Ufficio",
+        "Sicurezza e Sorveglianza"
+      ],
+      "stato": "ATTIVA"
+    }
+  },
+  "conti_correnti_dedicati": [
+    {
+      "banca": "Banca Commerciale Italiana",
+      "iban": "IT60 X054 2811 1010 0000 0123 456",
+      "dedicato_appalti": true,
+      "_note": "Comunicare alla SA entro 7 giorni dall'accensione — L.136/2010"
+    }
+  ],
+  "ccnl_applicato": {
+    "codice": "C011",
+    "descrizione": "Metalmeccanico industria",
+    "_note": "Verificare corrispondenza con codice ATECO prevalente per ogni gara"
+  },
+  "ultimo_aggiornamento": "2025-01-15",
+  "aggiornato_da": "responsabile.qualita@techserv.it"
+}

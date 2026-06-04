@@ -1,0 +1,516 @@
+{
+  "analysis_type": "gap_analysis",
+  "summary": "Analisi completata su 63 requisiti. Coperti: 6; parzialmente coperti: 10; non coperti: 0; unknown: 47.",
+  "overall_gap_level": "high",
+  "total_requirements": 63,
+  "covered_count": 6,
+  "partially_covered_count": 10,
+  "not_covered_count": 0,
+  "unknown_count": 47,
+  "requirement_gap_analysis": [
+    {
+      "requirement_id": "REQ_001",
+      "coverage_status": "unknown",
+      "gap_description": "Non sono presenti evidenze sufficienti nella knowledge base relative alla specifica qualificazione sul lotto 7 dell'Accordo Quadro ICT (GARA SIMOG nr. 9222902)",
+      "categoria": "tecnico_professionale",
+      "tipo": "qualificazione",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_002",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative al sopralluogo obbligatorio presso i siti specificati (CF Ancona, CDR San Benedetto del Tronto, SOUP Ancona, CAPI Ancona, SOI capoluoghi provinciali, CFA Fabriano, Server Farm Leopardi Ancona) né attestazioni di richiesta via PEC",
+      "categoria": "tecnico_professionale",
+      "tipo": "sopralluogo",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_003",
+      "coverage_status": "covered",
+      "gap_description": "Evidenze sufficienti: competenze Qdrant esplicite su gestione e monitoraggio infrastrutture IT, High Availability (HA), impianti speciali (Protezione Civile Regionale, livello Avanzato); gare KG con oggetto identico (gara_533-25: servizi gestione infrastrutture tecnologiche, impianti speciali, HA)",
+      "categoria": "tecnico_professionale",
+      "tipo": "esperienza",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_004",
+      "coverage_status": "partially_covered",
+      "gap_description": "Presenti evidenze strutturate di ISO/IEC 27001:2022 (ATTIVA) e Cisco Gold Partner (ATTIVA); mancanti Uptime Institute, ISO 22301, Schneider Electric e CISCO Silver/Gold/Platinum espliciti",
+      "categoria": "tecnico_professionale",
+      "tipo": "certificazione",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_005",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a polizza assicurativa RCT con massimale minimo di € 2.500.000",
+      "categoria": "legale",
+      "tipo": "assicurazione",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_006",
+      "coverage_status": "unknown",
+      "gap_description": "Non sono presenti evidenze sufficienti nella knowledge base relative al mix di figure professionali standard previsto dall'Accordo Quadro ICT (AQ-ICT) per i servizi CONF, GESA, FAS e REM, come declinato nella Relazione tecnico illustrativa.",
+      "categoria": "tecnico_professionale",
+      "tipo": "mix figure professionali AQ-ICT",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_007",
+      "coverage_status": "partially_covered",
+      "gap_description": "Mancano evidenze strutturate di Responsabile del Servizio e Responsabile Tecnico Generale nominati con competenze effettive documentate; presenti competenze semantiche (Service Manager UNI 11621-2, Systems Administrator UNI 11621-2) ma assenti riferimenti espliciti alla conformità con le Policy per la sicurezza informatica DGR n. 1211 del 28/07/25.",
+      "categoria": "tecnico_professionale",
+      "tipo": "responsabile servizio e responsabile tecnico",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_008",
+      "coverage_status": "partially_covered",
+      "gap_description": "Evidenze Qdrant coprono gestione HA, infrastrutture tecnologiche e impianti speciali (livello avanzato, Protezione Civile Regionale). Manca copertura specifica per cluster virtuali, server farm, disaster recovery, videoconferenza HA, BMS e sistemi di pubblica utilità H24/365.",
+      "categoria": "esperienza",
+      "tipo": "gestione infrastrutture HA e sistemi critici",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_009",
+      "coverage_status": "partially_covered",
+      "gap_description": "Evidenze di esperienza con Regione Marche (gara_533-25), certificazioni cybersecurity (ISO 27001 attiva) e competenze generiche cybersecurity, ma assenti riferimenti specifici a Standard Regione Marche, Prescrizioni AGID-ACN, DGR n. 1211/2025, collaudi e SO/antivirus aggiornati.",
+      "categoria": "certificazione",
+      "tipo": "conformità standard e policy",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_010",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a help desk II livello con ticketing, tracciabilità, knowledge base, reperibilità H24 e presenza on-site entro 2 ore",
+      "categoria": "tecnico_professionale",
+      "tipo": "help desk II livello e ticketing",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_011",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'aggiudicazione dell'Accordo Quadro ICT – Numero gara SIMOG: 9222902 - LOTTO 7 – CIG: 9966202211",
+      "categoria": "legale",
+      "tipo": "qualificazione AQ-ICT Lotto 7",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_012",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla garanzia definitiva",
+      "categoria": "certificazione",
+      "tipo": "garanzia definitiva",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_013",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base di una certificazione specifica che riduce l’importo della garanzia ai sensi dell’art. 106 comma 8 del Codice",
+      "categoria": "certificazione",
+      "tipo": "certificazione qualità",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_014",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'interrogazione BDNA o ottenimento del nulla osta antimafia",
+      "categoria": "legale",
+      "tipo": "verifica antimafia",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_015",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla sottoscrizione del Patto di integrità",
+      "categoria": "legale",
+      "tipo": "patto di integrità",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_016",
+      "coverage_status": "partially_covered",
+      "gap_description": "Le evidenze mostrano certificazioni attive (ISO 9001, ISO 27001, Cisco Gold Partner, Microsoft Solutions Partner), 280 dipendenti, partecipazioni a gare IT complesse con copertura 85-87% e competenze in gestione ticket/infrastrutture, ma mancano dettagli specifici su organizzazione e attrezzature dedicate alle condizioni di questa gara.",
+      "categoria": "tecnico_professionale",
+      "tipo": "organizzazione e attrezzature",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_017",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base",
+      "categoria": "esperienza",
+      "tipo": "conoscenza documenti di gara",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_018",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative al possesso dei requisiti in capo all'offerente e all'assenza di cause di esclusione",
+      "categoria": "legale",
+      "tipo": "assenza cause esclusione",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_019",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a tariffe unitarie per profili professionali UNI 11621-2 o servizi GP (Giorno Persona)",
+      "categoria": "tecnico_professionale",
+      "tipo": "profilo professionale",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_020",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'onere a carico del subentrante per passaggio consegne (PASC)",
+      "categoria": "economico_finanziario",
+      "tipo": "oneri subentro",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_021",
+      "coverage_status": "partially_covered",
+      "gap_description": "Evidenze di singoli profili professionali (Database Administrator UNI 11621-2, Simulazione CFD) ma assenti mix predefiniti per servizi CONF secondo composizione GL nel CT",
+      "categoria": "tecnico_professionale",
+      "tipo": "mix profili",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_022",
+      "coverage_status": "partially_covered",
+      "gap_description": "Evidenze di competenze Help Desk II° livello assistenza remota e esperienze su infrastrutture tecnologiche HA, ma assenti evidenze esplicite di fornitura canone annuale infrastruttura per servizio REM.",
+      "categoria": "tecnico_professionale",
+      "tipo": "infrastruttura",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_023",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla dichiarazione delle percentuali di incidenza spese generali e utile per i servizi PASC, CONF, GESA, FAS, REM",
+      "categoria": "economico_finanziario",
+      "tipo": "dichiarazione anomalia",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_024",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a firma digitale o documenti informatici firmati digitalmente",
+      "categoria": "legale",
+      "tipo": "firma digitale",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_025",
+      "coverage_status": "partially_covered",
+      "gap_description": "Evidenze Qdrant coprono security-by-design, privacy-by-design e risposta emergenze su infrastrutture HA Protezione Civile; mancano evidenze dirette su fornitura campione, esperienza team specifica su infrastrutture simili, conformità modalità gestione.",
+      "categoria": "esperienza",
+      "tipo": "fornitura campione",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_026",
+      "coverage_status": "partially_covered",
+      "gap_description": "Evidenze di gestione infrastrutture tecnologiche, High Availability (HA) e supporto specialistico per Protezione Civile Regionale (gara_533-25), ma assenti evidenze specifiche per servizi CONF, GESA, FAS, REM e varietà di competenze del team.",
+      "categoria": "esperienza",
+      "tipo": "team esperienza",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_027",
+      "coverage_status": "partially_covered",
+      "gap_description": "Evidenze Qdrant mostrano competenze professionali con nomi, aree tecniche, livelli (es. 'Esperienza comprovata nel settore', 'Avanzato') e tag, ma mancano dettagli specifici richiesti: codici e-competence (A4, E2, etc.), conoscenze (K1,K2), capacità (S1,S2), full-time/part-time %, schema AQ-ICT e profilo RESPONSABILE PROGETTO esplicito. Nessuna evidenza strutturata nel Knowledge Graph.",
+      "categoria": "tecnico_professionale",
+      "tipo": "profili professionali",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_028",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a piano di subentro specifico con flessibilità riconfigurazione BMS/monitoraggio, continuità supporto ticket e numero sopralluoghi per presa in carico infrastruttura (entro 3 mesi + 2 anni parallelo)",
+      "categoria": "tecnico_professionale",
+      "tipo": "piano subentro",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_029",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a GP/anno aggiuntivi non onerosi per CONF, GESA e FAS",
+      "categoria": "esperienza",
+      "tipo": "GP migliorativi",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_030",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative al numero di sessioni di formazione parallele attivabili giornalmente per PASC",
+      "categoria": "tecnico_professionale",
+      "tipo": "sessioni formazione",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_031",
+      "coverage_status": "unknown",
+      "gap_description": "Non sono presenti evidenze sufficienti nella knowledge base relative ai requisiti di ordine generale (es. assenza di moralità professionale, non fallimento, ecc.) né verifica FVOE strutturata.",
+      "categoria": "altro",
+      "tipo": "Requisiti di ordine generale",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_032",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla verifica positiva dei requisiti di ordine speciale in sede di aggiudicazione dell’AQ-ICT",
+      "categoria": "altro",
+      "tipo": "Requisiti di ordine speciale",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_033",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative al punto 6 della Relazione tecnico-illustrativa, capitolato e schema di contratto",
+      "categoria": "altro",
+      "tipo": "Requisiti di partecipazione e/o condizioni di esecuzione",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_034",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative al sopralluogo obbligatorio o al punto 11 della Relazione tecnico-illustrativa (allegato A). Le evidenze recuperate riguardano certificazioni, audit di sicurezza e gap storici su altri requisiti, ma non coprono requisiti amministrativi/documentali di sopralluogo.",
+      "categoria": "altro",
+      "tipo": "Sopralluogo obbligatorio",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_035",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla Dichiarazione ai sensi dell’art. 76 del D.P.R. n. 445/2000",
+      "categoria": "legale",
+      "tipo": "Dichiarazione sostitutiva ai sensi degli artt. 46 e 47 DPR 445/2000",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_036",
+      "coverage_status": "covered",
+      "gap_description": "La knowledge base contiene la forma giuridica strutturata dell'azienda (S.p.A.)",
+      "categoria": "legale",
+      "tipo": "Forma di partecipazione ex art. 65 D.Lgs. 36/2023",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_037",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base",
+      "categoria": "legale",
+      "tipo": "Non partecipazione in più forme alla gara",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_038",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a elenco completo di amministratori, rappresentanti, direttori tecnici, soci con nome, CF, poteri; assenti indicazioni esplicite di banca dati/registro per tali dati identificativi ex art. 94 D.Lgs. 36/2023",
+      "categoria": "legale",
+      "tipo": "Dati identificativi soggetti ex art. 94 D.Lgs. 36/2023",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_039",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base",
+      "categoria": "legale",
+      "tipo": "Sanzioni AGCM o autorità di settore ex art. 98 comma 3 D.Lgs. 36/2023",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_040",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a ricevuta pagamento imposta di bollo o indicazione numero seriale marca da bollo",
+      "categoria": "legale",
+      "tipo": "Imposta di bollo",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_041",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a conferme dichiarazioni AQ-ICT o dichiarazioni modifiche soggettive ausiliario",
+      "categoria": "tecnico_professionale",
+      "tipo": "Conferma requisiti da Accordo Quadro ICT o modifiche",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_042",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base",
+      "categoria": "legale",
+      "tipo": "Misure di self-cleaning",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_043",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative a dichiarazione di ammissione, autorizzazione a partecipare o allegato relazione professionista per concordato preventivo con continuità aziendale",
+      "categoria": "legale",
+      "tipo": "Concordato preventivo con continuità aziendale",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_044",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base",
+      "categoria": "legale",
+      "tipo": "Sottoposizione a sequestro/confisca ex art. 240-bis c.p. o D.Lgs. 159/2011",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_045",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'impegno di comunicazione tempestiva delle modificazioni societarie ai sensi dell'art. 83 D.lgs. 159/2011",
+      "categoria": "legale",
+      "tipo": "dichiarazione antimafia",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_046",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'accettazione del patto di integrità approvato dalla Regione Marche",
+      "categoria": "legale",
+      "tipo": "patto di integrità",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_047",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'impegno ad osservare il Codice di comportamento adottato dalla stazione appaltante",
+      "categoria": "legale",
+      "tipo": "codice di comportamento",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_048",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'accettazione degli obblighi in materia di prevenzione della corruzione e trasparenza derivanti dal PIAO 2025/2027",
+      "categoria": "legale",
+      "tipo": "PIAO anticorruzione",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_049",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative al DGUE sottoscritto contenente le sezioni specificate",
+      "categoria": "certificazione",
+      "tipo": "DGUE",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_050",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla tracciabilità dei flussi finanziari ex Legge n. 136/2010",
+      "categoria": "legale",
+      "tipo": "tracciabilità flussi finanziari",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_051",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla responsabilità solidale ai sensi dell'art. 104, comma 4 del D.Lgs. 36/2023",
+      "categoria": "legale",
+      "tipo": "responsabilità solidale",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_052",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base",
+      "categoria": "altro",
+      "tipo": "sequestro confisca",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_053",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'offerta irrevocabile ed impegnativa sino al 120° giorno",
+      "categoria": "legale",
+      "tipo": "offerta irrevocabile",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_054",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative all'obbligo di produrre per iscritto le giustificazioni delle voci di prezzo più significative ai sensi dell'art. 110 comma 2 D.Lgs. 36/2023",
+      "categoria": "legale",
+      "tipo": "giustificazione prezzi",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_055",
+      "coverage_status": "covered",
+      "gap_description": "La knowledge base contiene evidenze strutturate esplicite sulla forma giuridica dell'azienda (S.p.A.) e sulla partecipazione a numerose gare pubbliche ICT come operatore economico autonomo, inclusa gara_533-25 con decisione aziendale GO.",
+      "categoria": "tecnico_professionale",
+      "tipo": "partecipazione come operatore economico qualificato",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_056",
+      "coverage_status": "covered",
+      "gap_description": "Evidenze sufficienti: Certificazione ISO 9001:2015 presente nel Knowledge Graph con stato ATTIVA, ente Bureau Veritas Italia S.p.A., scadenza 2027-02-28, scope 'Progettazione, sviluppo, installazione e manutenzione di soluzioni ICT e servizi di cybersecurity'. Confermata anche da evidenze Qdrant su certificazioni ISO 9001 in corso di validità.",
+      "categoria": "certificazione",
+      "tipo": "ISO 9001:2015",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_057",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative al formato dell'offerta tecnica (PDF/A, 35 facciate, carattere, interlinea, margini), indice riepilogativo, profili professionali UNI 11621-2 o livelli di prestazioni minimi Allegato F",
+      "categoria": "tecnico_professionale",
+      "tipo": "Offerta tecnica strutturata",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_058",
+      "coverage_status": "covered",
+      "gap_description": "La knowledge base contiene l'informazione strutturata esplicita sulla forma giuridica dell'operatore economico: S.p.A.",
+      "categoria": "legale",
+      "tipo": "Qualifica operatore economico",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_059",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla presentazione del Documento di Gara Unico Europeo (eDGUE)",
+      "categoria": "certificazione",
+      "tipo": "DGUE",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_060",
+      "coverage_status": "covered",
+      "gap_description": "Evidenze strutturate nel Knowledge Graph dimostrano esperienza consolidata con ricorso ad avvalimento (azioni rimedio multiple in gap storici: 'Ricorso ad Avvalimento', 'Costituzione RTI con partner') per certificazioni e competenze mancanti in gare analoghe.",
+      "categoria": "certificazione",
+      "tipo": "Avvalimento",
+      "obbligatorio": false
+    },
+    {
+      "requirement_id": "REQ_061",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla presentazione della domanda di partecipazione tramite modello fornito",
+      "categoria": "legale",
+      "tipo": "Domanda di partecipazione",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_062",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla presentazione dell'offerta economica con schemi e dichiarazioni forniti",
+      "categoria": "tecnico_professionale",
+      "tipo": "Offerta tecnica",
+      "obbligatorio": true
+    },
+    {
+      "requirement_id": "REQ_063",
+      "coverage_status": "unknown",
+      "gap_description": "non sono presenti evidenze sufficienti nella knowledge base relative alla partecipazione specifica dell'azienda all'Accordo Quadro ICT - LOTTO 7",
+      "categoria": "altro",
+      "tipo": "Parte dell'Accordo Quadro",
+      "obbligatorio": true
+    }
+  ]
+}

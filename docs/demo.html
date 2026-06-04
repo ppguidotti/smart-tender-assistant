@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STCA · Smart Tender Compliance Assistant</title><style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D0D1A;--navy2:#16162B;--navy3:#21213A;
+  --or:#E87722;--or2:#F5913A;--or-pale:#FEF3E8;--or-mid:#FDDCBB;
+  --bg:#F5F4F1;--sf:#fff;--sf2:#F8F7F5;
+  --bd:rgba(0,0,0,.07);--bd2:rgba(0,0,0,.12);
+  --t1:#0D0D1A;--t2:#4A4A62;--t3:#8A8AA4;
+  --gn:#15803D;--gn-bg:#F0FDF4;--gn-bd:#BBF7D0;
+  --am:#A16207;--am-bg:#FEFCE8;--am-bd:#FDE68A;
+  --rd:#B91C1C;--rd-bg:#FEF2F2;--rd-bd:#FECACA;
+  --bl:#1D4ED8;--bl-bg:#EFF6FF;--bl-bd:#BFDBFE;
+  --go:#78350F;--go-bg:#FEF3C7;--go-bd:#FDE68A;
+  --gr-bg:#F9FAFB;--gr-bd:#E5E7EB;--gr-t:#6B7280;
+  --r4:4px;--r8:8px;--r12:12px;
+  --font:"Plus Jakarta Sans",system-ui,sans-serif;
+  --mono:"JetBrains Mono",monospace
+}
+html,body{height:100%;font-family:var(--font);font-size:14px;color:var(--t1);-webkit-font-smoothing:antialiased;background:var(--navy)}
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* SIDEBAR */
+.sb{width:220px;background:var(--navy);display:flex;flex-direction:column;flex-shrink:0;border-right:1px solid rgba(255,255,255,.05)}
+.sb-logo{padding:16px 14px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+.sb-mark{font-size:14px;font-weight:600;color:#fff;letter-spacing:.02em}
+.sb-sub{font-size:10px;color:rgba(255,255,255,.38);margin-top:2px}
+.sb-nav{flex:1;padding:8px;overflow-y:auto}
+.sb-sec{font-size:9px;font-weight:600;color:rgba(255,255,255,.26);letter-spacing:.09em;padding:9px 10px 3px}
+.ni{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:var(--r8);cursor:pointer;font-size:12px;color:rgba(255,255,255,.48);transition:all .14s;margin-bottom:1px}
+.ni:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.8)}
+.ni.on{background:rgba(232,119,34,.16);color:var(--or2)}
+.ni-ic{font-size:14px;flex-shrink:0;width:16px;text-align:center}
+.ni-bdg{margin-left:auto;font-size:9px;padding:1px 5px;border-radius:100px;font-weight:600}
+.bdg-or{background:rgba(232,119,34,.24);color:var(--or2)}
+.bdg-rd{background:rgba(185,28,28,.28);color:#FCA5A5}
+.sb-user{padding:10px 12px;border-top:1px solid rgba(255,255,255,.06)}
+.av{width:28px;height:28px;border-radius:50%;background:rgba(232,119,34,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--or2);flex-shrink:0}
+
+/* MAIN */
+main{flex:1;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;min-width:0}
+.topbar{background:var(--sf);border-bottom:1px solid var(--bd);padding:12px 22px;flex-shrink:0}
+.view-body{flex:1;overflow-y:auto;padding:18px 22px}
+.view-wrap{display:flex;flex-direction:column;height:100%;overflow:hidden}
+
+/* CARDS */
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);padding:16px}
+.card-sm{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:12px}
+
+/* BUTTONS */
+button,.btn{font-family:var(--font);font-size:12px;font-weight:500;border:1px solid var(--bd2);border-radius:var(--r8);padding:6px 13px;cursor:pointer;background:var(--sf);color:var(--t1);transition:all .12s;display:inline-flex;align-items:center;gap:5px}
+button:hover{border-color:var(--t3);background:var(--sf2)}
+.btn-pr{background:var(--or);color:#fff;border-color:var(--or)}
+.btn-pr:hover{background:var(--or2);border-color:var(--or2)}
+.btn-gn{background:var(--gn-bg);color:var(--gn);border-color:var(--gn-bd)}
+.btn-gn:hover{background:#DCFCE7}
+.btn-rd{background:var(--rd-bg);color:var(--rd);border-color:var(--rd-bd)}
+.btn-rd:hover{background:#FEE2E2}
+.btn-sm{font-size:11px;padding:4px 9px}
+.btn-lg{font-size:13px;padding:9px 18px}
+
+/* BADGES */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:100px;font-size:10.5px;font-weight:500;white-space:nowrap}
+.b-analisi{background:var(--bl-bg);color:var(--bl);border:1px solid var(--bl-bd)}
+.b-go{background:var(--gn-bg);color:var(--gn);border:1px solid var(--gn-bd)}
+.b-nogo{background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd)}
+.b-vinta{background:var(--go-bg);color:var(--go);border:1px solid var(--go-bd)}
+.b-persa{background:var(--gr-bg);color:var(--gr-t);border:1px solid var(--gr-bd)}
+.b-pending{background:var(--sf2);color:var(--t3);border:1px solid var(--bd2)}
+.b-cond{background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA}
+
+/* CHIPS */
+.chip{font-size:11px;padding:4px 11px;border-radius:100px;cursor:pointer;border:1px solid var(--bd2);color:var(--t2);background:var(--sf);transition:all .12s;user-select:none;display:inline-block}
+.chip:hover{border-color:var(--or);color:var(--or)}
+.chip.on{background:var(--or-pale);border-color:var(--or-mid);color:var(--or);font-weight:500}
+
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
+.stat-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:11px 13px}
+.stat-lbl{font-size:9.5px;color:var(--t3);margin-bottom:3px;font-weight:500;letter-spacing:.02em}
+.stat-val{font-size:22px;font-weight:600;font-family:var(--mono);line-height:1}
+
+/* BANDI TABLE */
+.tbl-hd{display:grid;grid-template-columns:2fr 1fr 80px 90px 75px 85px;gap:6px;padding:5px 10px;font-size:9.5px;font-weight:600;color:var(--t3);letter-spacing:.07em}
+.brow{display:grid;grid-template-columns:2fr 1fr 80px 90px 75px 85px;gap:6px;padding:9px 10px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);margin-bottom:3px;cursor:pointer;align-items:center;transition:all .12s}
+.brow:hover{border-color:var(--or-mid);box-shadow:0 1px 6px rgba(232,119,34,.1)}
+.brow-name{font-size:12px;font-weight:500}
+.brow-cpv{font-size:10px;color:var(--t3);margin-top:1px}
+.brow-ente{font-size:11px;color:var(--t2)}
+.urgent-date{color:var(--rd);font-weight:600}
+
+/* TAB BAR */
+.tab-bar{background:var(--sf);border-bottom:1px solid var(--bd);padding:0 22px;display:flex;flex-shrink:0}
+.tb{padding:9px 16px;font-size:12px;font-weight:500;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .14s;display:flex;align-items:center;gap:5px;margin-bottom:-1px}
+.tb:hover{color:var(--t2)}
+.tb.on{color:var(--or);border-bottom-color:var(--or)}
+
+/* REQUIREMENTS TABLE */
+.req-table{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);overflow:hidden;margin-bottom:12px}
+.req-sec-hd{font-size:9.5px;font-weight:700;color:var(--t3);letter-spacing:.07em;padding:7px 12px;background:var(--sf2);border-bottom:1.5px solid var(--bd2);display:flex;justify-content:space-between;align-items:center}
+.req-cols{display:grid;grid-template-columns:20px 1fr 68px 110px 170px 80px;gap:0;align-items:start}
+.req-thead{padding:6px 12px;border-bottom:1px solid var(--bd)}
+.req-thead .cl{font-size:9px;font-weight:700;color:var(--t3);letter-spacing:.07em}
+.req-tr{padding:9px 12px;border-bottom:1px solid var(--bd);transition:background .1s}
+.req-tr:last-of-type{border-bottom:none}
+.req-tr:hover{background:var(--sf2)}
+.req-tr.warn-row{border-left:3px solid #D97706;background:#FFFDF4}
+.req-tr.warn-row:hover{background:var(--am-bg)}
+.req-tr.alert-row{border-left:3px solid var(--rd);background:#FFFBFB}
+.req-tr.alert-row:hover{background:var(--rd-bg)}
+.req-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.d-gn{background:#16A34A}.d-am{background:#D97706}.d-rd{background:#DC2626}.d-gr{background:#9CA3AF}
+.req-txt{font-size:12px;color:var(--t1);line-height:1.4;padding-right:8px}
+.req-note{font-size:10px;color:var(--t3);margin-top:2px;line-height:1.35}
+.req-note.wn{color:#92400E;font-weight:500}
+.req-note.rn{color:var(--rd);font-weight:600}
+.req-fonte{font-size:10.5px;color:var(--t3);font-family:var(--mono)}
+.mp{font-size:10px;padding:3px 8px;border-radius:100px;white-space:nowrap;display:inline-block;border:1px solid transparent}
+.mp-gn{background:var(--gn-bg);color:var(--gn);border-color:var(--gn-bd)}
+.mp-am{background:var(--am-bg);color:var(--am);border-color:var(--am-bd)}
+.mp-rd{background:var(--rd-bg);color:var(--rd);border-color:var(--rd-bd)}
+.mp-gr{background:var(--gr-bg);color:var(--gr-t);border-color:var(--gr-bd)}
+.tag-esc{font-size:9.5px;padding:2px 7px;border-radius:100px;background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd);white-space:nowrap;font-weight:600}
+.tag-pref{font-size:9.5px;padding:2px 7px;border-radius:100px;background:var(--am-bg);color:var(--am);border:1px solid var(--am-bd);white-space:nowrap;font-weight:600}
+.tag-info{font-size:9.5px;padding:2px 7px;border-radius:100px;background:var(--bl-bg);color:var(--bl);border:1px solid var(--bl-bd);white-space:nowrap;font-weight:600}
+.rev-panel{display:none;padding:12px 14px 14px 32px;border-bottom:1px solid var(--bd);background:var(--sf)}
+.rev-panel.open{display:block}
+.rev-panel-inner{background:var(--sf2);border:1px solid var(--bd2);border-radius:var(--r8);padding:12px 14px}
+.rev-title{font-size:12px;font-weight:600;margin-bottom:4px}
+.rev-body{font-size:11px;color:var(--t2);line-height:1.5;margin-bottom:10px}
+.rev-row{display:flex;gap:7px;flex-wrap:wrap;align-items:flex-start}
+
+/* CHECKLIST */
+.pb-wrap{height:6px;background:var(--bd);border-radius:100px;margin-bottom:14px;overflow:hidden}
+.pb-fill{height:100%;border-radius:100px;background:var(--gn);transition:width .5s ease}
+.chk-item{display:flex;align-items:flex-start;gap:9px;padding:8px 10px;border-radius:var(--r8);border:1px solid transparent;margin-bottom:2px;cursor:pointer;transition:all .12s}
+.chk-item:hover{background:var(--sf2);border-color:var(--bd)}
+.chk-item.done .chk-lbl{text-decoration:line-through;color:var(--t3)}
+.chk-item.urgente{background:var(--rd-bg);border-color:var(--rd-bd);cursor:default}
+.chk-item.warn-chk{background:var(--am-bg);border-color:var(--am-bd)}
+.chk-box{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--bd2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;transition:all .12s}
+.chk-item.done .chk-box{background:var(--gn);border-color:var(--gn)}
+.chk-lbl{font-size:12px;color:var(--t1);line-height:1.4}
+.chk-sub{font-size:10px;color:var(--t3);margin-top:1px}
+
+/* GO/NO-GO */
+.gng-grid{display:grid;grid-template-columns:195px 1fr;gap:16px;margin-bottom:14px}
+.gauge-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);padding:16px;text-align:center}
+.score-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);padding:14px}
+.score-row{margin-bottom:9px}
+.score-meta{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
+.score-bar{height:5px;background:var(--bd);border-radius:100px;overflow:hidden}
+.score-fill{height:100%;border-radius:100px;transition:width .7s ease}
+.ai-box{background:var(--am-bg);border-left:3px solid #D97706;border-radius:0 var(--r8) var(--r8) 0;padding:9px 11px;margin-top:10px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.kpi-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:11px 12px}
+.kpi-lbl{font-size:10px;color:var(--t3);margin-bottom:3px}
+.kpi-val{font-size:18px;font-weight:600;font-family:var(--mono);line-height:1}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.info-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:11px 13px}
+.info-card-t{font-size:11px;font-weight:600;margin-bottom:7px}
+.irow{display:flex;justify-content:space-between;gap:6px;padding:4px 0;border-bottom:1px solid var(--bd);font-size:11px}
+.irow:last-child{border-bottom:none}
+.irow-k{color:var(--t3)}.irow-v{color:var(--t1);font-weight:500;text-align:right;flex:1}
+.dec-bar{display:flex;align-items:center;gap:9px;padding:11px 13px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8)}
+
+/* UPLOAD */
+.uzone{border:2px dashed var(--bd2);border-radius:var(--r12);padding:28px;text-align:center;cursor:pointer;transition:all .15s;position:relative}
+.uzone:hover,.uzone.dragover{border-color:var(--or);background:var(--or-pale)}
+.uzone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.file-chip{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;padding:3px 9px;background:var(--sf2);border:1px solid var(--bd2);border-radius:var(--r8);margin:2px}
+.agent-bar{display:flex;align-items:center;gap:9px;padding:10px 13px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);margin-bottom:16px}
+.beta-tag{font-size:9px;font-weight:600;padding:1px 6px;border-radius:100px;background:var(--or-pale);color:var(--or);border:1px solid var(--or-mid);margin-left:5px}
+.notif-row{padding:10px 13px;border-bottom:1px solid var(--bd);display:flex;align-items:flex-start;gap:10px}
+.notif-row:last-child{border-bottom:none}
+
+/* ROADMAP */
+.road-cols{display:grid;grid-template-columns:2.3fr 55px 100px 92px 1fr;gap:6px;align-items:center}
+.road-hd{padding:5px 10px;font-size:9.5px;font-weight:600;color:var(--t3);letter-spacing:.07em}
+.road-row{padding:9px 10px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);margin-bottom:3px;transition:background .1s}
+.road-row.crit{background:var(--rd-bg);border-color:var(--rd-bd)}
+.road-row.warn{background:var(--am-bg);border-color:var(--am-bd)}
+.freq-bar{height:4px;border-radius:100px;margin-top:3px;overflow:hidden;background:var(--bd)}
+.freq-fill{height:100%;border-radius:100px}
+
+/* ALERTS */
+.alrt-hd{font-size:10.5px;font-weight:600;padding:7px 11px;border-radius:var(--r8) var(--r8) 0 0;display:flex;align-items:center;gap:5px}
+.alrt-body{border-radius:0 0 var(--r8) var(--r8);overflow:hidden;margin-bottom:14px}
+.alrt-row{padding:10px 13px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px}
+.alrt-row:last-child{border-bottom:none}
+.days-pill{font-size:10.5px;padding:2px 8px;border-radius:100px;font-weight:600;font-family:var(--mono);white-space:nowrap}
+
+/* ANALYSIS OVERLAY */
+#a-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:none;align-items:center;justify-content:center}
+#a-overlay.open{display:flex}
+.a-modal{background:var(--navy2);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:28px 32px;width:580px;max-width:90vw;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.a-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.a-step{margin-bottom:14px}
+.a-step-hd{font-size:11px;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.05em;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.a-step-hd.done{color:var(--or2)}
+.a-step-hd.active{color:#fff}
+.a-pb-wrap{height:4px;background:rgba(255,255,255,.08);border-radius:100px;overflow:hidden;margin-bottom:6px}
+.a-pb{height:100%;border-radius:100px;background:var(--or);transition:width .3s ease;width:0%}
+.a-out{font-family:var(--mono);font-size:10.5px;color:rgba(255,255,255,.5);min-height:36px;line-height:1.6}
+.a-out .a-line{display:block;animation:fadein .2s ease}
+.a-out .a-ok{color:#4ADE80}
+.a-out .a-warn{color:#FCD34D}
+@keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.a-score-reveal{text-align:center;padding:18px 0 4px;display:none}
+.a-score-num{font-size:48px;font-weight:700;font-family:var(--mono);line-height:1}
+.a-score-label{font-size:14px;font-weight:600;margin-top:4px}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:100;display:none;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(--sf);border-radius:var(--r12);padding:22px;width:460px;max-width:90vw;box-shadow:0 16px 50px rgba(0,0,0,.18)}
+.modal-t{font-size:13.5px;font-weight:600;margin-bottom:3px}
+.modal-s{font-size:11.5px;color:var(--t3);margin-bottom:14px}
+.mf{margin-bottom:10px}
+.mf-l{font-size:10.5px;font-weight:600;color:var(--t2);margin-bottom:4px}
+select.msel,textarea.mta,input.min{width:100%;font-family:var(--font);font-size:12px;padding:7px 10px;border:1px solid var(--bd2);border-radius:var(--r8);color:var(--t1);background:var(--sf);outline:none}
+select.msel:focus,textarea.mta:focus,input.min:focus{border-color:var(--or);box-shadow:0 0 0 2px rgba(232,119,34,.12)}
+textarea.mta{resize:vertical;min-height:60px}
+
+/* TOAST */
+#toast-c{position:fixed;bottom:24px;right:24px;z-index:300;display:flex;flex-direction:column;gap:7px;pointer-events:none}
+.toast{background:var(--navy);color:#fff;padding:10px 16px;border-radius:var(--r8);font-size:12px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;max-width:280px;display:flex;align-items:center;gap:7px}
+.toast.show{opacity:1;transform:none}
+.toast.t-ok{border-left:3px solid #4ADE80}
+.toast.t-warn{border-left:3px solid #FCD34D}
+.toast.t-err{border-left:3px solid #F87171}
+
+/* MISC */
+.breadcrumb{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--t3);margin-bottom:3px}
+.breadcrumb .sep{opacity:.5}.breadcrumb .lnk{cursor:pointer}.breadcrumb .lnk:hover{color:var(--or)}
+.breadcrumb .cur{color:var(--t1);font-weight:500}
+.topbar-meta{display:flex;gap:12px;font-size:11px;color:var(--t2);margin-top:3px;flex-wrap:wrap;align-items:center}
+.urgency{color:var(--rd);font-weight:600}
+.legend{display:flex;gap:12px;flex-wrap:wrap}
+.leg-i{display:flex;align-items:center;gap:4px;font-size:10.5px;color:var(--t3)}
+.leg-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.filter-bar{display:flex;gap:5px;flex-wrap:wrap}
+.insight{padding:9px 13px;background:var(--sf);border:1px solid var(--bd);border-left:3px solid var(--or);border-radius:0 var(--r8) var(--r8) 0;font-size:11.5px;color:var(--t2);line-height:1.5;margin-top:10px}
+.sec-hd{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:9px;display:flex;align-items:center;justify-content:space-between}
+.cert-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.cert-table th{font-size:9.5px;font-weight:600;color:var(--t3);letter-spacing:.06em;padding:6px 10px;text-align:left;background:var(--sf2);border-bottom:1px solid var(--bd)}
+.cert-table td{padding:8px 10px;border-bottom:1px solid var(--bd)}
+.cert-table tr:last-child td{border-bottom:none}
+.prio-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.prio-pill{font-size:11px;padding:4px 11px;border-radius:100px;font-weight:500}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sb" id="sidebar">
+    <div class="sb-logo">
+      <div class="sb-mark">STCA</div>
+      <div class="sb-sub">Smart Tender Compliance Assistant</div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-sec">GARE</div>
+      <div class="ni on" data-nav="dashboard"><span class="ni-ic">▦</span>Dashboard<span id="bdg-bandi" class="ni-bdg bdg-or" style="display:none"></span></div>
+      <div class="ni" data-nav="repository"><span class="ni-ic">📂</span>Repository<span id="bdg-pending" class="ni-bdg bdg-or" style="display:none"></span></div>
+      <div class="sb-sec">ANALISI</div>
+      <div class="ni" data-nav="roadmap"><span class="ni-ic">◎</span>Roadmap aziendale</div>
+      <div class="ni" data-nav="alerts"><span class="ni-ic">◉</span>Alert<span id="bdg-alerts" class="ni-bdg bdg-rd"></span></div>
+      <div class="ni" data-nav="storico"><span class="ni-ic">◷</span>Storico gare</div>
+      <div class="sb-sec">SISTEMA</div>
+      <div class="ni" data-nav="settings"><span class="ni-ic">⚙</span>Impostazioni</div>
+    </nav>
+    <div class="sb-user">
+      <div style="display:flex;align-items:center;gap:7px">
+        <div class="av">AB</div>
+        <div>
+          <div style="font-size:11px;font-weight:500;color:rgba(255,255,255,.8)">A. Boschetti</div>
+          <div style="font-size:9.5px;color:rgba(255,255,255,.35)">Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <main id="main" class="main"><div class="view-body" style="display:flex;align-items:center;justify-content:center;height:100%"><div style="color:var(--t3)">Caricamento...</div></div></main>
+</div>
+
+<!-- ANALYSIS OVERLAY -->
+<div id="a-overlay">
+  <div class="a-modal">
+    <div class="a-title">🤖 Analisi AI in corso — <span id="a-filename" style="color:var(--or2)"></span></div>
+    <div class="a-step" id="a-step1">
+      <div class="a-step-hd active" id="a-hd1">M1 — Estrazione e classificazione requisiti</div>
+      <div class="a-pb-wrap"><div class="a-pb" id="a-pb1"></div></div>
+      <div class="a-out" id="a-out1"></div>
+    </div>
+    <div class="a-step" id="a-step2">
+      <div class="a-step-hd" id="a-hd2">M2+M3 — Analisi normativa + Gap certificazioni</div>
+      <div class="a-pb-wrap"><div class="a-pb" id="a-pb2"></div></div>
+      <div class="a-out" id="a-out2"></div>
+    </div>
+    <div class="a-step" id="a-step3">
+      <div class="a-step-hd" id="a-hd3">Output — Score e raccomandazione Go/No-Go</div>
+      <div class="a-pb-wrap"><div class="a-pb" id="a-pb3"></div></div>
+      <div class="a-out" id="a-out3"></div>
+    </div>
+    <div class="a-score-reveal" id="a-result">
+      <div class="a-score-num" id="a-snum">76</div>
+      <div class="a-score-label" id="a-slabel">✓ GO — Presentare offerta</div>
+      <button class="btn-pr btn-lg" id="a-cta" style="margin-top:16px" onclick="closeAnalysis()">Apri analisi →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD ITEM MODAL -->
+<div class="modal-bg" id="modal-add">
+  <div class="modal">
+    <div class="modal-t">Aggiungi item alla checklist</div>
+    <div class="modal-s">Inserisci manualmente un adempimento non estratto automaticamente</div>
+    <div class="mf"><div class="mf-l">DESCRIZIONE</div><input class="min" id="new-item-txt" placeholder="Es. Comunicare nominativo referente tecnico..."></div>
+    <div class="mf"><div class="mf-l">CATEGORIA</div>
+      <select class="msel" id="new-item-cat">
+        <option>Privacy &amp; GDPR</option><option>Sicurezza &amp; Certificazioni</option>
+        <option>Fatturazione &amp; Tracciabilità</option><option>Delivery &amp; Contratto</option><option>Altro</option>
+      </select>
+    </div>
+    <div class="mf"><div class="mf-l">PRIORITÀ</div>
+      <select class="msel" id="new-item-prio"><option value="">Standard</option><option value="warn">Attenzione</option><option value="urgente">Urgente</option></select>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:7px;margin-top:14px;padding-top:12px;border-top:1px solid var(--bd)">
+      <button onclick="closeModal('modal-add')">Annulla</button>
+      <button class="btn-pr" onclick="saveNewItem()">Aggiungi item</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast-c"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA MODEL
+// ═══════════════════════════════════════════════
+
+const CERTS_EXPIRY = [
+  {nome:'ISO/IEC 20000-1 — IT Service Management', ente:'[Ente cert. C]', scad:'31/05/2026', giorni:9, stato:'urgent', bandi:4},
+  {nome:'[Vendor Cloud] Solutions Partner', ente:'[Vendor Cloud]', scad:'31/03/2026', giorni:-60, stato:'scaduta', bandi:2},
+  {nome:'[Vendor Networking] Gold Partner', ente:'[Vendor Networking]', scad:'31/12/2025', giorni:225, stato:'warn', bandi:4},
+  {nome:'ISO 9001:2015', ente:'[Ente cert. A]', scad:'28/02/2027', giorni:285, stato:'ok', bandi:0},
+  {nome:'ISO/IEC 27001:2022', ente:'[Ente cert. B]', scad:'14/09/2027', giorni:483, stato:'ok', bandi:0},
+]
+
+// Pre-computed requisiti for the EDR bando
+function buildEDRRequisiti() {
+  return [
+    // TECNICA
+    {id:'t1',cat:'TECNICA',txt:'Fornitura licenze [PIATTAFORMA EDR] — prodotto specifico, vendor lock-in con SKU definiti',fonte:'Art. 1',tipo:'ESCLUDENTE',status:'coperto',ml:'[Vendor EDR] — Livello Elite Partner ✓',mt:'gn'},
+    {id:'t2',cat:'TECNICA',txt:'Competenze EDR/XDR — configurazione endpoint security in modalità cloud, sostituzione on-premises',fonte:'Art. 1, 8',tipo:'ESCLUDENTE',status:'coperto',ml:'Competency XDR certificata + REF003 ✓',mt:'gn'},
+    {id:'t3',cat:'TECNICA',txt:'Attivazione SKU-001: 890 licenze Endpoint Security Essentials Cross-Upgrade entro 01/01/AAAA',fonte:'Art. 2',tipo:'ESCLUDENTE',status:'parziale',ml:'Parziale — stock da confermare',mt:'am',nota:'Confermare disponibilità stock con account vendor Government'},
+    {id:'t4',cat:'TECNICA',txt:'Attivazione SKU-002: 890 licenze Essentials Rinnovo Ente Pubblico 501-1000, 24 mesi entro 01/01/AAAA+1',fonte:'Art. 2',tipo:'ESCLUDENTE',status:'coperto',ml:'Livello Elite — gestibile ✓',mt:'gn'},
+    {id:'t5',cat:'TECNICA',txt:'Attivazione SKU-003: 10 licenze Endpoint Security Pro Rinnovo Ente Pubblico 1-50, 36 mesi',fonte:'Art. 2',tipo:'ESCLUDENTE',status:'coperto',ml:'Livello Elite — gestibile ✓',mt:'gn'},
+    {id:'t6',cat:'TECNICA',txt:'Attivazione 2.000 crediti CREM (Cyber Risk Exposure Management) — SKU-004 e SKU-005',fonte:'Art. 2',tipo:'ESCLUDENTE',status:'coperto',ml:'Crediti piattaforma — gestibile ✓',mt:'gn'},
+    {id:'t7',cat:'TECNICA',txt:'Fornitura in modalità cloud obbligatoria — sostituzione soluzioni on-premises esistenti',fonte:'Art. 1',tipo:'ESCLUDENTE',status:'coperto',ml:'Cloud-native — coperto ✓',mt:'gn'},
+    {id:'t8',cat:'TECNICA',txt:'Supporto tecnico post-attivazione e configurazione iniziale',fonte:'Art. 8',tipo:'ESCLUDENTE',status:'coperto',ml:'Team tecnico certificato ✓',mt:'gn'},
+    // NORMATIVA
+    {id:'n1',cat:'NORMATIVA',txt:'Accordo ex Art. 28 GDPR (DPA) tra fornitore e SA per trattamento dati personali',fonte:'Art. 8, 12, 13',tipo:'ESCLUDENTE',status:'coperto',ml:'CIPP/E + ISO/IEC 27001 ✓',mt:'gn',nota:'Penale 1‰ per mancata sottoscrizione'},
+    {id:'n2',cat:'NORMATIVA',txt:'Rispetto D.lgs. 36/2023 — Codice dei Contratti Pubblici e D.lgs. 82/2005 CAD',fonte:'Art. 5',tipo:'ESCLUDENTE',status:'coperto',ml:'Compliance automatica ✓',mt:'gn'},
+    {id:'n3',cat:'NORMATIVA',txt:'Piano Triennale Informatica 2024/2026 e circolari AgID',fonte:'Art. 5',tipo:'ESCLUDENTE',status:'coperto',ml:'Compliance automatica ✓',mt:'gn'},
+    {id:'n4',cat:'NORMATIVA',txt:'Fatturazione elettronica obbligatoria con CIG e CUP — split payment art. 17-ter DPR 633/1972',fonte:'Art. 17',tipo:'ESCLUDENTE',status:'coperto',ml:'Template fattura aggiornato ✓',mt:'gn',nota:'Codice Univoco Ufficio [OMESSO] — rifiuto automatico fatture non conformi'},
+    {id:'n5',cat:'NORMATIVA',txt:'Tracciabilità flussi finanziari — L. 136/2010. Risoluzione di diritto per mancata tracciabilità',fonte:'Art. 13, 18',tipo:'ESCLUDENTE',status:'coperto',ml:'C/C dedicato attivo ✓',mt:'gn'},
+    {id:'n6',cat:'NORMATIVA',txt:'ISO/IEC 20000-1:2018 Service Management certificato da ente terzo accreditato',fonte:'All. tecnico',tipo:'PREFERENZIALE',status:'gap-pref',ml:'IN_SCADENZA — gap attivo',mt:'rd',nota:'Certificazione scade il 31/05/2026 — solo 8 giorni — ~3 punti tecnici a rischio'},
+    {id:'n7',cat:'NORMATIVA',txt:'Riservatezza assoluta su documenti e informazioni acquisite — divieto di divulgazione',fonte:'Art. 8, 23',tipo:'ESCLUDENTE',status:'coperto',ml:'NDA standard aziendale ✓',mt:'gn'},
+    {id:'n8',cat:'NORMATIVA',txt:'Conformità al Regolamento GDPR Art. 13 — informativa trattamento dati obbligatoria per partecipazione',fonte:'Art. 23',tipo:'ESCLUDENTE',status:'coperto',ml:'Informativa GDPR disponibile ✓',mt:'gn'},
+    {id:'n9',cat:'NORMATIVA',txt:'Codice di comportamento dipendenti pubblici D.P.R. 62/2013 esteso ai collaboratori',fonte:'Art. 21',tipo:'ESCLUDENTE',status:'coperto',ml:'Clausola contrattuale standard ✓',mt:'gn'},
+    // QUALIFICAZIONE
+    {id:'q1',cat:'QUALIFICAZIONE',txt:'Iscrizione MePA — categoria merceologica "Informatica, Elettronica, Telecomunicazioni"',fonte:'Art. 1',tipo:'ESCLUDENTE',status:'coperto',ml:'Iscrizione MePA attiva ✓',mt:'gn',nota:'Allegato n.7 al capitolato d\'oneri MePA — Beni'},
+    {id:'q2',cat:'QUALIFICAZIONE',txt:'CCNL dichiarato: C011 Metalmeccanico industria — ai sensi D.lgs. 36/2023 art. 11 c.2',fonte:'Art. 4',tipo:'ESCLUDENTE',status:'coperto',ml:'Dichiarazione disponibile ✓',mt:'gn'},
+    {id:'q3',cat:'QUALIFICAZIONE',txt:'DURC regolare — prerequisito per autorizzazione emissione fattura da RUP',fonte:'Art. 17',tipo:'ESCLUDENTE',status:'coperto',ml:'DURC in corso di validità ✓',mt:'gn'},
+    {id:'q4',cat:'QUALIFICAZIONE',txt:'Personale con conoscenze tecniche adeguate per attività EDR/XDR e configurazione licenze',fonte:'Art. 8',tipo:'ESCLUDENTE',status:'coperto',ml:'Team certificato vendor ✓',mt:'gn'},
+    {id:'q5',cat:'QUALIFICAZIONE',txt:'Conto corrente dedicato comunicato entro 7 giorni — L.136/2010 art.3',fonte:'Art. 18',tipo:'ESCLUDENTE',status:'coperto',ml:'C/C dedicato comunicato ✓',mt:'gn'},
+    // AMMINISTRATIVA
+    {id:'a1',cat:'AMMINISTRATIVA',txt:'Unica fattura elettronica per tutte le licenze (non separata per SKU)',fonte:'Art. 17',tipo:'ESCLUDENTE',status:'coperto',ml:'Processo amministrativo ✓',mt:'gn'},
+    {id:'a2',cat:'AMMINISTRATIVA',txt:'Fattura con campi obbligatori: CIG, CUP, n. impegno, n. determina, IBAN, modalità pagamento',fonte:'Art. 17',tipo:'ESCLUDENTE',status:'coperto',ml:'Template fattura aggiornato ✓',mt:'gn'},
+    {id:'a3',cat:'AMMINISTRATIVA',txt:'Comunicazione scioperi con almeno 7 giorni naturali di anticipo — servizio di emergenza garantito',fonte:'Art. 8',tipo:'ESCLUDENTE',status:'coperto',ml:'Clausola contratto ✓',mt:'gn'},
+    {id:'a4',cat:'AMMINISTRATIVA',txt:'Comunicazione domicilio eletto per notifiche atti giudiziari',fonte:'Art. 20',tipo:'ESCLUDENTE',status:'coperto',ml:'Da comunicare post-aggiudicazione ✓',mt:'gn'},
+    {id:'a5',cat:'AMMINISTRATIVA',txt:'PassOE generato per questa specifica gara su portale [ente vigilanza appalti]',fonte:'Bando',tipo:'ESCLUDENTE',status:'parziale',ml:'Da generare prima della scadenza',mt:'am'},
+    {id:'a6',cat:'AMMINISTRATIVA',txt:'ANAC — iscrizione attiva con numero registrazione valido',fonte:'Bando',tipo:'ESCLUDENTE',status:'coperto',ml:'Iscrizione [Ente vigilanza] attiva ✓',mt:'gn'},
+    {id:'a7',cat:'AMMINISTRATIVA',txt:'Rispetto codice antimafia e normativa antiracket',fonte:'Art. 5',tipo:'ESCLUDENTE',status:'coperto',ml:'Dichiarazione disponibile ✓',mt:'gn'},
+    {id:'a8',cat:'AMMINISTRATIVA',txt:'Nessun DUVRI previsto — fornitura licenze e attività intellettuale',fonte:'Art. 3',tipo:'INFORMATIVA',status:'info',ml:'Non applicabile',mt:'gr'},
+  ]
+}
+
+function buildEDRChecklist() {
+  return [
+    // Privacy & GDPR
+    {id:'c1',cat:'Privacy & GDPR',txt:'Sottoscrizione DPA — accordo ex Art. 28 GDPR',sub:'Documento: DPA_firmato.pdf · Obbligatorio',done:true,urgente:false,warn:false},
+    {id:'c2',cat:'Privacy & GDPR',txt:'Nomina responsabile trattamento dati (RT)',sub:'Documento: Nomina_RT.pdf · Obbligatorio',done:true,urgente:false,warn:false},
+    {id:'c3',cat:'Privacy & GDPR',txt:'Registro attività di trattamento aggiornato — Art. 30 GDPR',sub:'Da produrre entro firma contratto',done:false,urgente:false,warn:true},
+    // Sicurezza & Certificazioni
+    {id:'c4',cat:'Sicurezza & Certificazioni',txt:'ISO/IEC 27001 in corso di validità — certificato da ente accreditato',sub:'Certificato valido fino al 14/09/2027 · [Ente cert. B]',done:true,urgente:false,warn:false},
+    {id:'c5',cat:'Sicurezza & Certificazioni',txt:'ISO 9001:2015 in corso di validità',sub:'Certificato valido fino al 28/02/2027 · [Ente cert. A]',done:true,urgente:false,warn:false},
+    {id:'c6',cat:'Sicurezza & Certificazioni',txt:'ISO/IEC 20000-1 — certificato valido (requisito preferenziale)',sub:'CRITICO: certificazione IN_SCADENZA 31/05/2026 — avviare rinnovo urgente',done:false,urgente:true,warn:false},
+    // Fatturazione & Tracciabilità
+    {id:'c7',cat:'Fatturazione & Tracciabilità',txt:'Conto corrente dedicato comunicato — L.136/2010 art.3',sub:'IBAN + generalità delegati comunicati entro 7 gg',done:true,urgente:false,warn:false},
+    {id:'c8',cat:'Fatturazione & Tracciabilità',txt:'Impegno tracciabilità flussi finanziari dichiarato',sub:'Dichiarazione allegata all\'offerta',done:true,urgente:false,warn:false},
+    {id:'c9',cat:'Fatturazione & Tracciabilità',txt:'PassOE generato su portale [ente vigilanza appalti] per questa gara',sub:'Da generare — portale [ente vigilanza]',done:false,urgente:false,warn:true},
+    {id:'c10',cat:'Fatturazione & Tracciabilità',txt:'DURC in corso di validità alla data di presentazione offerta',sub:'Verificato automaticamente prima della presentazione',done:true,urgente:false,warn:false},
+    // Delivery & Contratto
+    {id:'c11',cat:'Delivery & Contratto',txt:'Conferma disponibilità stock SKU-001 — 890 licenze Cross-Upgrade',sub:'Da verificare con account vendor Government · Scad. 01/01/AAAA',done:false,urgente:false,warn:true},
+    {id:'c12',cat:'Delivery & Contratto',txt:'Conferma calendarizzazione attivazioni entro date indicate all\'Art. 2',sub:'Da concordare con DEC post-aggiudicazione',done:false,urgente:false,warn:false},
+    {id:'c13',cat:'Delivery & Contratto',txt:'Comunicazione personale tecnico incaricato — Art. 8',sub:'Con conoscenze tecniche adeguate EDR/XDR',done:false,urgente:false,warn:false},
+    // Offerta & Amministrativo
+    {id:'c14',cat:'Offerta & Amministrativo',txt:'Offerta economica compilata con tutti i SKU richiesti',sub:'Importo complessivo: €52.500 + IVA 22%',done:true,urgente:false,warn:false},
+    {id:'c15',cat:'Offerta & Amministrativo',txt:'Domicilio eletto per notifiche atti giudiziari comunicato',sub:'Necessario per eventuali comunicazioni legali',done:true,urgente:false,warn:false},
+    {id:'c16',cat:'Offerta & Amministrativo',txt:'Dichiarazione rispetto codice di comportamento dipendenti pubblici',sub:'D.P.R. 62/2013 esteso ai collaboratori',done:true,urgente:false,warn:false},
+    {id:'c17',cat:'Offerta & Amministrativo',txt:'CCNL C011 Metalmeccanico dichiarato nell\'offerta',sub:'Ai sensi D.lgs. 36/2023 art. 11 c.2',done:true,urgente:false,warn:false},
+    {id:'c18',cat:'Offerta & Amministrativo',txt:'Schema contratto verificato e accettato',sub:'Nessun DUVRI — fornitura intellettuale',done:true,urgente:false,warn:false},
+  ]
+}
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+const S = {
+  view: 'dashboard',
+  bandoId: 'edr-001',
+  tab: 'req',
+  revOpen: null,
+  analysisResult: null,
+  pendingFiles: [],
+  filterReq: 'all',
+  filterDash: 'all',
+  bandi: [
+    {
+      id:'live-edr', nome:'Capitolato EDR — estrazione reale (pipeline B1+B2)', shortNome:'EDR — estrazione reale',
+      ente:'[PA locale]', valore:52500, scadenza:'30/05/2026', giorniMancanti:8,
+      canale:'MePA', cpv:'48730000-4', status:'analisi', uploadedAt:'03/06/2026',
+      files:['Capitolato Gara - Anonimizzato.pdf','Requisiti_Anonimizzato.pdf'],
+      analisiCompleta:true, gngConfermato:false,
+      requisiti:[
+        {id:"REQ-001",cat:"AMMINISTRATIVA",txt:"Iscrizione ai settori merceologici della categoria 'Informatica, Elettronica, Telecomunicazioni, Macchine per Ufficio' del bando MePA relativo ai Beni",fonte:"Capitolato",tipo:"ESCLUDENTE",status:"parziale",ml:"Estratto B1+B2 · conf. 0.95 — gap analysis da eseguire",mt:"am",nota:"Fonte testuale: Allegato n.7 al capitolato d'oneri per l'ammissione degli operatori economici iscritti ai settori merceologici…"},
+        {id:"REQ-002",cat:"QUALIFICAZIONE",txt:"Iscrizione al bando MePA — categoria merceologica 'Informatica, Elettronica, Telecomunicazioni, Macchine per Ufficio'",fonte:"Requisiti",tipo:"ESCLUDENTE",status:"parziale",ml:"Estratto B1+B2 · conf. 0.95 — gap analysis da eseguire",mt:"am",nota:"Fonte testuale: Iscrizione al bando MePA — categoria merceologica 'Informatica, Elettronica, Telecomunicazioni, Macchine per U…"},
+        {id:"REQ-003",cat:"QUALIFICAZIONE",txt:"Operatore economico abilitato al CPV 48730000-4 'Pacchetti software di sicurezza'",fonte:"Requisiti",tipo:"ESCLUDENTE",status:"parziale",ml:"Estratto B1+B2 · conf. 0.95 — gap analysis da eseguire",mt:"am",nota:"Fonte testuale: Operatore economico abilitato al CPV 48730000-4 'Pacchetti software di sicurezza'"},
+        {id:"REQ-004",cat:"TECNICA",txt:"Personale con conoscenze tecniche adeguate per attività inerenti all'oggetto dell'appalto (licenze e configurazione piattaforme EDR/XDR)",fonte:"Requisiti",tipo:"ESCLUDENTE",status:"parziale",ml:"Estratto B1+B2 · conf. 0.95 — gap analysis da eseguire",mt:"am",nota:"Fonte testuale: Personale con conoscenze tecniche adeguate per attività inerenti all'oggetto dell'appalto (licenze e configura…"},
+        {id:"REQ-005",cat:"NORMATIVA",txt:"CCNL applicato dichiarato: C011 Metalmeccanico industria — ai sensi D.lgs. 36/2023 art. 11 c.2",fonte:"Requisiti",tipo:"ESCLUDENTE",status:"parziale",ml:"Estratto B1+B2 · conf. 0.95 — gap analysis da eseguire",mt:"am",nota:"Fonte testuale: CCNL applicato dichiarato: C011 Metalmeccanico industria — ai sensi D.lgs. 36/2023 art. 11 c.2"},
+        {id:"REQ-006",cat:"NORMATIVA",txt:"Conto corrente dedicato per tracciabilità flussi finanziari ai sensi L. 136/2010",fonte:"Requisiti",tipo:"ESCLUDENTE",status:"parziale",ml:"Estratto B1+B2 · conf. 0.95 — gap analysis da eseguire",mt:"am",nota:"Fonte testuale: Conto corrente dedicato per tracciabilità flussi finanziari ai sensi L. 136/2010"},
+        {id:"REQ-007",cat:"NORMATIVA",txt:"Qualifica di rivenditore autorizzato Government [FORNITORE SOFTWARE] [PIATTAFORMA EDR]",fonte:"Requisiti",tipo:"ESCLUDENTE",status:"parziale",ml:"Estratto B1+B2 · conf. 0.95 — gap analysis da eseguire",mt:"am",nota:"Fonte testuale: Fornitura licenze specifiche [FORNITORE SOFTWARE] [PIATTAFORMA EDR] — bando con vendor lock-in: il capitolato …"},
+        {id:"REQ-008",cat:"TECNICA",txt:"Competenze EDR/XDR: configurazione e gestione piattaforme endpoint security in modalità cloud",fonte:"Requisiti",tipo:"ESCLUDENTE",status:"parziale",ml:"Estratto B1+B2 · conf. 0.95 — gap analysis da eseguire",mt:"am",nota:"Fonte testuale: Competenze EDR/XDR: configurazione e gestione piattaforme endpoint security in modalità cloud (sostituzione so…"}
+      ],
+      checklist:[]
+    },
+    {
+      id:'edr-001', nome:'Fornitura licenze piattaforma EDR — 36 mesi', shortNome:'Piattaforma EDR — 36m',
+      ente:'[PA locale — Unione di comuni]', valore:52500, scadenza:'30/05/2026', giorniMancanti:8,
+      canale:'MePA', cpv:'48730000-4', status:'analisi', uploadedAt:'12/05/2026',
+      files:['Capitolato_speciale.pdf','Allegato_tecnico.pdf','FAQ_ente.docx'],
+      analisiCompleta:true, gngConfermato:false,
+      requisiti: buildEDRRequisiti(),
+      checklist: buildEDRChecklist()
+    },
+    {id:'rete-001', nome:'Infrastruttura rete SD-WAN + SOC managed 24 mesi', shortNome:'Rete SD-WAN + SOC', ente:'[Comune capoluogo]', valore:980000, scadenza:'22/06/2026', giorniMancanti:31, canale:'MePA', cpv:'72710000-0', status:'go', analisiCompleta:true, gngConfermato:true, requisiti:[], checklist:[]},
+    {id:'cloud-001', nome:'Cloud migration su Azure + Identity & Access Management', shortNome:'Cloud migration + IAM', ente:'[PA regionale]', valore:1450000, scadenza:'15/07/2026', giorniMancanti:54, canale:'Gara aperta', cpv:'72220000-3', status:'go', analisiCompleta:true, gngConfermato:true, requisiti:[], checklist:[]},
+    {id:'edr-002', nome:'Endpoint Security + Threat Intelligence managed — 36m', shortNome:'Endpoint Sec. + Threat Intel', ente:'[PA sanitaria]', valore:180000, scadenza:'Chiuso', giorniMancanti:-1, canale:'MePA', cpv:'48730000-4', status:'no-go', analisiCompleta:true, gngConfermato:true, requisiti:[], checklist:[]},
+    {id:'dc-001', nome:'Managed datacenter, backup e disaster recovery — AUSL', shortNome:'Managed DC + DR', ente:'[PA sanitaria]', valore:2100000, scadenza:'Chiuso', giorniMancanti:-1, canale:'Gara aperta', cpv:'72710000-0', status:'vinta', analisiCompleta:true, gngConfermato:true, requisiti:[], checklist:[]},
+    {id:'wan-001', nome:'Rete SD-WAN + sicurezza perimetrale firewall NGFW', shortNome:'SD-WAN + Firewall NGFW', ente:'[PA locale]', valore:320000, scadenza:'Chiuso', giorniMancanti:-1, canale:'MePA', cpv:'72710000-0', status:'persa', analisiCompleta:true, gngConfermato:true, requisiti:[], checklist:[]}
+  ]
+}
+
+// ═══════════════════════════════════════════════
+// SCORE CALCULATION
+// ═══════════════════════════════════════════════
+function calcScore(bando) {
+  const reqs = bando.requisiti || []
+  if (!reqs.length) return {score:0, ra:'NO_GO', m2:0, m3c:0, m3q:100, gapEsc:0, gapPref:0}
+
+  // M2: normativa coverage from checklist done rate (30%)
+  const normReqs = reqs.filter(r=>r.cat==='NORMATIVA')
+  const normCov = normReqs.filter(r=>r.status==='coperto'||r.status==='automatico').length
+  const m2 = normReqs.length ? Math.round(normCov/normReqs.length*100) : 100
+
+  // M3: gap analysis (40%)
+  const allReqs = reqs.filter(r=>r.cat!=='AMMINISTRATIVA')
+  const gapEsc = allReqs.filter(r=>r.status==='gap-esc').length
+  const gapPref = allReqs.filter(r=>r.status==='gap-pref').length
+  const m3c = Math.max(0, 100 - gapEsc*20 - gapPref*5)
+
+  // M3: qualificazione economica (30%) — fixed for demo
+  const m3q = 100
+
+  const score = Math.round(m2*0.30 + m3c*0.40 + m3q*0.30)
+
+  if(gapEsc>0) return {score:0,ra:'NO_GO',m2,m3c,m3q,gapEsc,gapPref,override:true}
+  const ra = score>=75?'GO':score>=55?'GO_CONDIZIONALE':'NO_GO'
+  return {score,ra,m2,m3c,m3q,gapEsc,gapPref}
+}
+
+function gapCountLabel(bando) {
+  const reqs = bando.requisiti||[]
+  const esc = reqs.filter(r=>r.status==='gap-esc').length
+  const pref = reqs.filter(r=>r.status==='gap-pref').length
+  const parc = reqs.filter(r=>r.status==='parziale').length
+  return {esc,pref,parc}
+}
+
+function chkStats(bando) {
+  const c = bando.checklist||[]
+  const done = c.filter(x=>x.done).length
+  return {done, total:c.length, pct:c.length?Math.round(done/c.length*100):0}
+}
+
+// ═══════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════
+function getBando(id) { return S.bandi.find(b=>b.id===id) }
+
+function toast(msg, type='ok') {
+  const c=document.getElementById('toast-c')
+  const t=document.createElement('div')
+  t.className=`toast t-${type}`
+  const icon = type==='ok'?'✓':type==='warn'?'⚠':'✕'
+  t.innerHTML=`<span>${icon}</span>${msg}`
+  c.appendChild(t)
+  setTimeout(()=>t.classList.add('show'),10)
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),300)},3000)
+}
+
+function openModal(id) { document.getElementById(id).classList.add('open') }
+function closeModal(id) { document.getElementById(id).classList.remove('open') }
+
+function statusBadge(s) {
+  const m={
+    analisi:`<span class="badge b-analisi">● In analisi</span>`,
+    go:`<span class="badge b-go">✓ Go</span>`,
+    'no-go':`<span class="badge b-nogo">⊘ No-Go</span>`,
+    vinta:`<span class="badge b-vinta">🏆 Vinta</span>`,
+    persa:`<span class="badge b-persa">✕ Persa</span>`,
+    pending:`<span class="badge b-pending">○ Da analizzare</span>`,
+    go_cond:`<span class="badge b-cond">~ Go condizionale</span>`
+  }
+  return m[s]||`<span class="badge b-pending">${s}</span>`
+}
+
+function fmtVal(v) {
+  if(v>=1000000) return `€ ${(v/1000000).toFixed(2)}M`
+  if(v>=1000) return `€ ${Math.round(v/1000)}K`
+  return `€ ${v.toLocaleString('it-IT')}`
+}
+
+// ═══════════════════════════════════════════════
+// ROADMAP AGGREGATION
+// ═══════════════════════════════════════════════
+function getAggregatedGaps() {
+  const map = {}
+  S.bandi.forEach(b=>{
+    (b.requisiti||[]).forEach(r=>{
+      if(r.status==='gap-pref'||r.status==='gap-esc'||r.status==='parziale') {
+        const key = r.txt.substring(0,40)
+        if(!map[key]) map[key]={testo:r.txt,tipo:r.tipo,status:r.status,count:0,bandi:[]}
+        map[key].count++
+        if(!map[key].bandi.includes(b.id)) map[key].bandi.push(b.id)
+      }
+    })
+  })
+  return Object.values(map).sort((a,b)=>b.count-a.count)
+}
+
+// ═══════════════════════════════════════════════
+// VIEW: DASHBOARD
+// ═══════════════════════════════════════════════
+function viewDashboard() {
+  const filtered = S.filterDash==='all' ? S.bandi : S.bandi.filter(b=>b.status===S.filterDash)
+  const totale = S.bandi.length
+  const analisi = S.bandi.filter(b=>b.status==='analisi').length
+  const go = S.bandi.filter(b=>b.status==='go').length
+  const nogo = S.bandi.filter(b=>b.status==='no-go').length
+  const vinte = S.bandi.filter(b=>b.status==='vinta').length
+  const perse = S.bandi.filter(b=>b.status==='persa').length
+  const chiuse = vinte+perse
+  const wr = chiuse>0 ? Math.round(vinte/chiuse*100)+'%' : '—'
+  const filters = ['all','analisi','go','no-go','vinta','persa','pending']
+  const filterLabels = {'all':'Tutti','analisi':'In analisi','go':'Go','no-go':'No-Go','vinta':'Vinte','persa':'Perse','pending':'Da analizzare'}
+
+  return `
+  <div class="view-wrap">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div><div style="font-size:15px;font-weight:600">Dashboard bandi</div><div style="font-size:11.5px;color:var(--t3);margin-top:2px">${totale} bandi in gestione · Anno 2026</div></div>
+        <div style="display:flex;gap:7px">
+          <input type="text" placeholder="Cerca bando..." style="font-family:var(--font);font-size:12px;padding:6px 11px;border:1px solid var(--bd2);border-radius:var(--r8);color:var(--t1);outline:none;width:190px" onfocus="this.style.borderColor='var(--or)'" onblur="this.style.borderColor='var(--bd2)'">
+          <button class="btn-pr" data-action="nav" data-v="repository">+ Nuovo bando</button>
+        </div>
+      </div>
+    </div>
+    <div class="view-body">
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-lbl">TOTALE</div><div class="stat-val">${totale}</div></div>
+        <div class="stat-card"><div class="stat-lbl">IN ANALISI</div><div class="stat-val" style="color:var(--bl)">${analisi}</div></div>
+        <div class="stat-card"><div class="stat-lbl">GO CONFERMATI</div><div class="stat-val" style="color:var(--gn)">${go}</div></div>
+        <div class="stat-card"><div class="stat-lbl">NO-GO</div><div class="stat-val" style="color:var(--rd)">${nogo}</div></div>
+        <div class="stat-card"><div class="stat-lbl">WIN RATE</div><div class="stat-val" style="color:var(--am)">${wr}</div></div>
+      </div>
+      <div class="filter-bar" style="margin-bottom:12px">
+        ${filters.map(f=>`<div class="chip${S.filterDash===f?' on':''}" data-action="filter-dash" data-f="${f}">${filterLabels[f]}${f==='all'?` (${totale})`:''}</div>`).join('')}
+      </div>
+      <div class="tbl-hd"><span>BANDO</span><span>ENTE</span><span>VALORE</span><span>SCADENZA</span><span>CANALE</span><span>STATO</span></div>
+      ${filtered.map(b=>`
+      <div class="brow" data-action="open-bando" data-id="${b.id}">
+        <div><div class="brow-name">${b.nome}</div><div class="brow-cpv">CPV ${b.cpv}</div></div>
+        <div class="brow-ente">${b.ente}</div>
+        <div style="font-size:11.5px;font-weight:500;font-family:var(--mono)">${fmtVal(b.valore)}</div>
+        <div style="font-size:11.5px" class="${b.giorniMancanti>0&&b.giorniMancanti<=14?'urgent-date':''}">${b.scadenza}${b.giorniMancanti>0&&b.giorniMancanti<=14?` · ${b.giorniMancanti}gg`:''}</div>
+        <div style="font-size:11px;color:var(--t2)">${b.canale}</div>
+        ${statusBadge(b.status)}
+      </div>`).join('')}
+    </div>
+  </div>`
+}
+
+// ═══════════════════════════════════════════════
+// VIEW: REPOSITORY
+// ═══════════════════════════════════════════════
+function viewRepository() {
+  const pending = S.pendingFiles
+  const edrBando = getBando('edr-001')
+  const hasPending = edrBando.status==='pending'||edrBando.status==='analisi'
+  return `
+  <div class="view-wrap">
+    <div class="topbar">
+      <div style="font-size:15px;font-weight:600">Repository documenti</div>
+      <div style="font-size:11.5px;color:var(--t3);margin-top:2px">Caricamento e gestione documenti di gara · Agente di monitoraggio</div>
+    </div>
+    <div class="view-body">
+      <div class="uzone" id="uzone">
+        <input type="file" multiple accept=".pdf,.docx,.doc,.html,.xml" id="file-input" onchange="handleFiles(this.files)">
+        <div style="font-size:28px;color:var(--t3);margin-bottom:8px">☁</div>
+        <div style="font-size:13px;font-weight:500">Trascina i documenti del bando qui</div>
+        <div style="font-size:11.5px;color:var(--t3);margin-top:3px;margin-bottom:12px">Capitolato, allegati tecnici, FAQ ente appaltante · PDF, DOCX, HTML, XML</div>
+        <button class="btn-pr" style="pointer-events:none">↑ Sfoglia file</button>
+      </div>
+      ${pending.length>0?`<div style="margin-bottom:12px;padding:10px 12px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8)">
+        <div style="font-size:11.5px;font-weight:600;margin-bottom:7px">File selezionati (${pending.length})</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">${pending.map(f=>`<span class="file-chip">📄 ${f}</span>`).join('')}</div>
+        <div style="margin-top:10px;display:flex;gap:7px">
+          <button class="btn-pr" data-action="start-upload">▶ Avvia analisi AI</button>
+          <button data-action="clear-files">Rimuovi</button>
+        </div>
+      </div>`:''}
+      <div class="agent-bar">
+        <div style="font-size:20px;color:var(--t3)">🤖</div>
+        <div style="flex:1">
+          <div style="font-size:12.5px;font-weight:500">Agente monitoraggio bandi automatico<span class="beta-tag">Beta</span></div>
+          <div style="font-size:11px;color:var(--t3);margin-top:1px">Verifica periodica su [portale appalti], MePA, portali PA configurati · Notifica nuovi bandi con AI summary e match stimato</div>
+        </div>
+        <button>Configura sorgenti</button>
+        <button class="btn-pr">Attiva agente</button>
+      </div>
+      <div class="sec-hd">Da avviare — 1 bando in attesa di analisi</div>
+      <div class="card" style="margin-bottom:18px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:14px">
+          <div style="flex:1">
+            <div style="font-size:13px;font-weight:600;margin-bottom:3px">Fornitura licenze piattaforma EDR — 36 mesi</div>
+            <div style="font-size:11px;color:var(--t3);margin-bottom:9px">Caricato il 12/05/2026 · 3 file · 9 pagine totali · [PA locale]</div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap">
+              ${edrBando.files.map(f=>`<span class="file-chip">📄 ${f}</span>`).join('')}
+            </div>
+          </div>
+          <button class="btn-pr" data-action="start-analysis" data-id="edr-001" style="flex-shrink:0">▶ Avvia analisi AI</button>
+        </div>
+      </div>
+      <div class="sec-hd">Notifiche agente — 2 nuovi bandi rilevati</div>
+      <div class="card" style="padding:0">
+        <div class="notif-row">
+          <div style="flex:1">
+            <div style="font-size:12.5px;font-weight:500">Servizi cloud ibrido e migrazione — [Ente regionale X]</div>
+            <div style="font-size:10.5px;color:var(--t3);margin-top:2px">MePA · CPV 72220000-3 · Valore stimato ~€800K · Scadenza 30/06/2026</div>
+            <div style="font-size:11px;color:var(--t2);margin-top:3px;font-style:italic">AI: cloud migration [vendor cloud], IAM, [vendor cloud] 365. Match profilo stimato ~83%.</div>
+          </div>
+          <div style="display:flex;gap:5px;flex-shrink:0"><button class="btn-sm">Ignora</button><button class="btn-sm btn-pr" data-action="download-notif" data-nome="Servizi cloud ibrido — [Ente regionale X]">↓ Scarica</button></div>
+        </div>
+        <div class="notif-row">
+          <div style="flex:1">
+            <div style="font-size:12.5px;font-weight:500">Cybersecurity + SOC managed H24 — [Comune Y]</div>
+            <div style="font-size:10.5px;color:var(--t3);margin-top:2px">[Ente vigilanza] · CPV 79710000-4 · Valore stimato ~€450K · Scadenza 15/07/2026</div>
+            <div style="font-size:11px;color:var(--t2);margin-top:3px;font-style:italic">AI: SOC as a Service, SIEM, incident response NIS2-compliant. Match stimato ~71%.</div>
+          </div>
+          <div style="display:flex;gap:5px;flex-shrink:0"><button class="btn-sm">Ignora</button><button class="btn-sm btn-pr" data-action="download-notif" data-nome="Cybersecurity + SOC managed — [Comune Y]">↓ Scarica</button></div>
+        </div>
+      </div>
+    </div>
+  </div>`
+}
+
+// ═══════════════════════════════════════════════
+// VIEW: DETAIL
+// ═══════════════════════════════════════════════
+function viewDetail() {
+  const b = getBando(S.bandoId)
+  if(!b) return '<div class="view-body">Bando non trovato</div>'
+  const sc = calcScore(b)
+  const tabs = [{id:'req',label:'📋 Requisiti &amp; Gap'},{id:'chk',label:'☑ Checklist'},{id:'gng',label:'🎯 Go / No-Go'}]
+  return `
+  <div class="view-wrap">
+    <div class="topbar">
+      <div class="breadcrumb"><span class="lnk" data-action="nav" data-v="dashboard">Dashboard</span><span class="sep">›</span><span class="cur">${b.shortNome||b.nome}</span>${statusBadge(b.status)}</div>
+      <div class="topbar-meta">
+        <span>🏛 ${b.ente}</span><span>·</span><span>💶 ${fmtVal(b.valore)}</span><span>·</span>
+        <span>🗓 Scad. ${b.scadenza}</span><span>·</span>
+        ${b.giorniMancanti>0?`<span class="urgency">⏱ ${b.giorniMancanti} giorni alla scadenza</span><span>·</span>`:''}
+        <span>MePA · CPV ${b.cpv}</span>
+      </div>
+    </div>
+    <div class="tab-bar">
+      ${tabs.map(t=>`<div class="tb${S.tab===t.id?' on':''}" data-action="set-tab" data-t="${t.id}">${t.label}</div>`).join('')}
+    </div>
+    <div class="view-body" id="tab-body">
+      ${S.tab==='req'?tabRequisiti(b):S.tab==='chk'?tabChecklist(b):tabGoNoGo(b,sc)}
+    </div>
+  </div>`
+}
+
+// ── TAB: REQUISITI ──────────────────────────────
+function tabRequisiti(b) {
+  const reqs = b.requisiti||[]
+  const cats = ['TECNICA','NORMATIVA','QUALIFICAZIONE','AMMINISTRATIVA']
+  const catLabels = {TECNICA:'Tecnica',NORMATIVA:'Normativa',QUALIFICAZIONE:'Qualificazione',AMMINISTRATIVA:'Amministrativa'}
+  const gaps = reqs.filter(r=>r.status==='gap-esc'||r.status==='gap-pref').length
+  const parc = reqs.filter(r=>r.status==='parziale').length
+  const f = S.filterReq
+
+  const filteredReqs = f==='all' ? reqs :
+    f==='gap' ? reqs.filter(r=>r.status==='gap-esc'||r.status==='gap-pref') :
+    reqs.filter(r=>r.cat===f.toUpperCase())
+
+  const countByCat = cat => reqs.filter(r=>r.cat===cat).length
+  const covByCat = cat => {
+    const all = reqs.filter(r=>r.cat===cat)
+    const cov = all.filter(r=>r.status==='coperto'||r.status==='automatico'||r.status==='info').length
+    const par = all.filter(r=>r.status==='parziale').length
+    const gap = all.filter(r=>r.status==='gap-esc'||r.status==='gap-pref').length
+    return {cov,par,gap,all:all.length}
+  }
+
+  function reqRow(r) {
+    const dotCls = r.status==='coperto'||r.status==='automatico'?'d-gn':r.status==='parziale'?'d-am':r.status==='gap-esc'||r.status==='gap-pref'?'d-rd':'d-gr'
+    const rowCls = r.status==='gap-pref'||r.status==='gap-esc'?'alert-row':r.status==='parziale'?'warn-row':''
+    const notaCls = r.status==='gap-esc'||r.status==='gap-pref'?'rn':r.status==='parziale'?'wn':''
+    const needsAction = r.status==='parziale'||r.status==='gap-pref'||r.status==='gap-esc'
+    const isRevOpen = S.revOpen===r.id
+    return `
+    <div class="req-cols req-tr ${rowCls}" id="reqrow-${r.id}">
+      <div class="req-dot ${dotCls}" style="margin-top:5px"></div>
+      <div><div class="req-txt">${r.txt}</div>${r.nota?`<div class="req-note ${notaCls}">${r.nota}</div>`:''}</div>
+      <div class="req-fonte">${r.fonte}</div>
+      <div><span class="tag-${r.tipo==='ESCLUDENTE'?'esc':r.tipo==='PREFERENZIALE'?'pref':'info'}">${r.tipo}</span></div>
+      <span class="mp mp-${r.mt}">${r.ml}</span>
+      <div>${needsAction?`<button class="btn-sm${r.status==='gap-esc'||r.status==='gap-pref'?' btn-rd':''}" data-action="toggle-rev" data-rid="${r.id}" data-bid="${b.id}">${isRevOpen?'Chiudi':r.status==='gap-esc'||r.status==='gap-pref'?'⚠ Gestisci':'Revisiona'}</button>`:''}
+      </div>
+    </div>
+    ${isRevOpen?revPanel(r,b.id):'<div class="req-review-panel" id="rev-'+r.id+'"></div>'}`
+  }
+
+  function catSection(cat) {
+    const cv = covByCat(cat)
+    const catReqs = filteredReqs.filter(r=>r.cat===cat)
+    if(!catReqs.length) return ''
+    return `
+    <div class="req-table" id="cat-${cat}">
+      <div class="req-sec-hd">
+        <span>${catLabels[cat].toUpperCase()} — ${countByCat(cat)} REQUISITI</span>
+        <div style="display:flex;gap:10px">
+          ${cv.cov>0?`<span style="font-size:10.5px;color:var(--gn);font-weight:500">✓ ${cv.cov} coperti</span>`:''}
+          ${cv.par>0?`<span style="font-size:10.5px;color:var(--am);font-weight:500">~ ${cv.par} parziali</span>`:''}
+          ${cv.gap>0?`<span style="font-size:10.5px;color:var(--rd);font-weight:500">⚠ ${cv.gap} gap</span>`:''}
+        </div>
+      </div>
+      <div class="req-cols req-thead">
+        <div></div><div class="cl">REQUISITO</div><div class="cl">FONTE</div><div class="cl">TIPO</div><div class="cl">COMPETENZA / MATCH</div><div class="cl">AZIONE</div>
+      </div>
+      ${catReqs.map(reqRow).join('')}
+    </div>`
+  }
+
+  return `
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+    <div class="filter-bar">
+      <div class="chip${f==='all'?' on':''}" data-action="filter-req" data-f="all">Tutti (${reqs.length})</div>
+      ${cats.map(c=>`<div class="chip${f===c.toLowerCase()?' on':''}" data-action="filter-req" data-f="${c.toLowerCase()}">${catLabels[c]} (${countByCat(c)})</div>`).join('')}
+      <div class="chip${f==='gap'?' on':''}" data-action="filter-req" data-f="gap" style="${gaps>0?'background:var(--rd-bg);border-color:var(--rd-bd);color:var(--rd)':''}">⚠ Gap (${gaps+parc})</div>
+    </div>
+    <div class="legend">
+      <div class="leg-i"><div class="leg-dot d-gn"></div>Coperto</div>
+      <div class="leg-i"><div class="leg-dot d-am"></div>Parziale</div>
+      <div class="leg-i"><div class="leg-dot d-rd"></div>Gap</div>
+    </div>
+  </div>
+  ${cats.map(catSection).join('')}`
+}
+
+function revPanel(r, bandoId) {
+  const isGap = r.status==='gap-esc'||r.status==='gap-pref'
+  const opts = isGap
+    ? `<option value="">Seleziona azione...</option><option value="coperto">✓ Match trovato — coperto</option><option value="gap-pref">Gap preferenziale — accetta perdita punti</option><option value="gap-esc">Gap escludente — impossibile partecipare</option>`
+    : `<option value="">Seleziona stato aggiornato...</option><option value="coperto">✓ Coperto — evidenza confermata</option><option value="parziale">Parziale — verifica ancora in corso</option><option value="gap-pref">Gap preferenziale</option>`
+  return `
+  <div class="rev-panel open" id="rev-${r.id}">
+    <div class="rev-panel-inner">
+      <div class="rev-title">Revisione umana — ${r.txt.substring(0,55)}${r.txt.length>55?'...':''}</div>
+      <div class="rev-body">${isGap?`Questo requisito ha un gap attivo. Puoi aggiornare lo stato se hai trovato un\'evidenza nel profilo aziendale non riconosciuta dall\'AI.`:`L\'AI ha classificato questo come <em>${r.status}</em>. Se hai un\'evidenza che lo copre, aggiorna lo stato e inserisci una nota.`}</div>
+      <div class="rev-row">
+        <select class="msel" style="max-width:280px" id="sel-${r.id}">${opts}</select>
+        <textarea class="mta" rows="2" style="flex:1;min-width:160px" placeholder="Note (es. numero referenza, documento disponibile...)" id="note-${r.id}">${r.revNota||''}</textarea>
+        <button class="btn-sm btn-pr" data-action="save-review" data-rid="${r.id}" data-bid="${bandoId}">Salva</button>
+        <button class="btn-sm" data-action="toggle-rev" data-rid="${r.id}" data-bid="${bandoId}">Chiudi</button>
+      </div>
+    </div>
+  </div>`
+}
+
+// ── TAB: CHECKLIST ──────────────────────────────
+function tabChecklist(b) {
+  const st = chkStats(b)
+  const cats = [...new Set((b.checklist||[]).map(c=>c.cat))]
+
+  function catItems(cat) {
+    const items = (b.checklist||[]).filter(c=>c.cat===cat)
+    if(!items.length) return ''
+    const doneCnt = items.filter(i=>i.done).length
+    return `
+    <div style="font-size:9.5px;font-weight:700;color:var(--t3);letter-spacing:.07em;padding:7px 0 6px;border-bottom:1px solid var(--bd);margin-bottom:6px;display:flex;justify-content:space-between">
+      <span>${cat.toUpperCase()}</span>
+      <span style="color:${doneCnt===items.length?'var(--gn)':'var(--t3)'}">${doneCnt}/${items.length}</span>
+    </div>
+    ${items.map(i=>`
+    <div class="chk-item${i.done?' done':''}${i.urgente?' urgente':i.warn?' warn-chk':''}" data-action="${i.urgente?'':'toggle-check'}" data-bid="${b.id}" data-iid="${i.id}">
+      <div class="chk-box">${i.done?'✓':''}</div>
+      <div style="flex:1">
+        <div class="chk-lbl">${i.txt}</div>
+        <div class="chk-sub" style="${i.urgente?'color:var(--rd);font-weight:600':''}">${i.sub}</div>
+      </div>
+      ${i.urgente?`<button class="btn-sm btn-rd" style="flex-shrink:0;pointer-events:all" data-action="noop">Azione richiesta</button>`:`<span style="font-size:10px;padding:2px 8px;border-radius:100px;white-space:nowrap;${i.done?'background:var(--gn-bg);color:var(--gn)':i.warn?'background:var(--am-bg);color:var(--am)':'background:var(--sf2);color:var(--t3)'}">${i.done?'Completato':i.warn?'In corso':'Da fare'}</span>`}
+    </div>`).join('')}`
+  }
+
+  return `
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:9px">
+    <div>
+      <div style="font-size:13px;font-weight:600">Checklist conformità</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:1px">${st.done} / ${st.total} completati · ${st.pct}%</div>
+    </div>
+    <div style="display:flex;gap:6px">
+      <button data-action="open-add-item">+ Aggiungi item</button>
+      <button>↓ Esporta PDF</button>
+    </div>
+  </div>
+  <div class="pb-wrap"><div class="pb-fill" id="chk-pb" style="width:${st.pct}%"></div></div>
+  ${cats.map(catItems).join('')}
+  <div style="margin-top:12px;display:flex;align-items:center;gap:8px;padding:11px 13px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8)">
+    <div style="flex:1;font-size:11.5px;color:var(--t3)">Completamento: <strong style="color:var(--t1)">${st.done}/${st.total}</strong></div>
+    <button class="btn-gn" data-action="mark-all-done" data-bid="${b.id}">Segna tutti completati ✓</button>
+  </div>`
+}
+
+// ── TAB: GO/NO-GO ───────────────────────────────
+function tabGoNoGo(b, sc) {
+  const circ = 2*Math.PI*58
+  const arc = sc.score>0 ? circ*(sc.score/100) : 0
+  const gaugeColor = sc.override?'#DC2626':sc.ra==='GO'?'#16A34A':sc.ra==='GO_CONDIZIONALE'?'#D97706':'#DC2626'
+  const raLabel = sc.ra==='GO'?'✓ GO — Presentare offerta':sc.ra==='GO_CONDIZIONALE'?'~ GO CONDIZIONALE':sc.override?'⊘ NO-GO — Gap escludente':'⊘ NO-GO — Score insufficiente'
+  const raColor = sc.ra==='GO'?'var(--gn)':sc.ra==='GO_CONDIZIONALE'?'var(--am)':'var(--rd)'
+  const st = chkStats(b)
+  const gaps = gapCountLabel(b)
+
+  const raMotivazione = sc.override
+    ? 'Presenza di gap escludenti: la partecipazione alla gara non è possibile nelle condizioni attuali. Risolvere i gap prima di procedere.'
+    : sc.ra==='GO'
+    ? 'Profilo aziendale fortemente allineato su tutti i requisiti escludenti. Il vendor lock-in è favorevole (livello Elite Partner). Gap preferenziale ISO/IEC 20000-1 in scadenza incide sulla componente M3. Gara MePA sotto soglia: concorrenza limitata. Strategicamente conveniente.'
+    : 'Score borderline. Risolvere i gap preferenziali identificati per rafforzare la posizione competitiva prima della presentazione.'
+
+  return `
+  <div class="gng-grid">
+    <div class="gauge-card">
+      <svg width="158" height="158" viewBox="0 0 158 158" id="gauge-svg">
+        <circle cx="79" cy="79" r="58" fill="none" stroke="#E5E7EB" stroke-width="13"/>
+        <circle id="gauge-arc" cx="79" cy="79" r="58" fill="none" stroke="${gaugeColor}" stroke-width="13"
+          stroke-dasharray="${arc} ${circ}" stroke-dashoffset="${-circ*0.25}"
+          stroke-linecap="round" style="transition:stroke-dasharray .8s ease;transform:rotate(-90deg);transform-origin:79px 79px"/>
+        <text x="79" y="68" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="30" font-weight="600" fill="${gaugeColor}" id="gauge-num">${sc.score}</text>
+        <text x="79" y="85" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="11" fill="#8A8AA4">/100 punti</text>
+        <text x="79" y="104" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="12" font-weight="600" fill="${gaugeColor}">${sc.ra}</text>
+      </svg>
+      <div style="font-size:11px;color:var(--t3)">Score complessivo</div>
+      <div style="font-size:10px;color:var(--t3);margin-top:2px">Soglia Go ≥ 75</div>
+      ${sc.override?`<div style="margin-top:6px;font-size:10.5px;padding:4px 8px;background:var(--rd-bg);color:var(--rd);border-radius:var(--r8)">⚠ Override: gap escludente</div>`:''}
+    </div>
+    <div class="score-card">
+      <div style="font-size:12px;font-weight:600;margin-bottom:11px">Scomposizione score per modulo</div>
+      <div class="score-row">
+        <div class="score-meta">
+          <span style="color:var(--t2)">M2 — Copertura normativa (30%)</span>
+          <span style="font-weight:600;font-family:var(--mono)">${sc.m2}% → <span style="color:var(--gn)">+${(sc.m2*0.3).toFixed(1)}pt</span></span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:${sc.m2}%;background:${sc.m2>=80?'var(--gn)':sc.m2>=50?'#D97706':'var(--rd)'}"></div></div>
+      </div>
+      <div class="score-row">
+        <div class="score-meta">
+          <span style="color:var(--t2)">M3 — Gap certificazioni (40%)</span>
+          <span style="font-weight:600;font-family:var(--mono)">${sc.m3c}% → <span style="color:${sc.m3c>=80?'var(--gn)':'#D97706'}">+${(sc.m3c*0.4).toFixed(1)}pt</span></span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:${sc.m3c}%;background:${sc.m3c>=80?'var(--gn)':sc.m3c>=50?'#D97706':'var(--rd)'}"></div></div>
+      </div>
+      <div class="score-row">
+        <div class="score-meta">
+          <span style="color:var(--t2)">M3 — Qualificazione economica (30%)</span>
+          <span style="font-weight:600;font-family:var(--mono)">${sc.m3q}% → <span style="color:var(--gn)">+${(sc.m3q*0.3).toFixed(1)}pt</span></span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:${sc.m3q}%;background:var(--gn)"></div></div>
+      </div>
+      <div class="ai-box">
+        <div style="font-size:10px;font-weight:600;color:var(--am);margin-bottom:2px">🤖 Motivazione AI</div>
+        <div style="font-size:11px;color:var(--t2);line-height:1.5">${raMotivazione}</div>
+      </div>
+    </div>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-lbl">Valore contratto</div><div class="kpi-val">${fmtVal(b.valore)}</div><div style="font-size:10px;color:var(--t3);margin-top:2px">36 mesi</div></div>
+    <div class="kpi-card"><div class="kpi-lbl">Gap escludenti</div><div class="kpi-val" style="color:${gaps.esc>0?'var(--rd)':'var(--gn)'}">${gaps.esc}</div></div>
+    <div class="kpi-card"><div class="kpi-lbl">Gap preferenziali</div><div class="kpi-val" style="color:${gaps.pref>0?'var(--am)':'var(--gn)'}">${gaps.pref}</div></div>
+    <div class="kpi-card"><div class="kpi-lbl">Checklist</div><div class="kpi-val" style="font-size:15px;color:${st.pct>=80?'var(--gn)':'var(--am)'}">${st.done}/${st.total}</div></div>
+  </div>
+  <div class="two-col">
+    <div class="info-card">
+      <div class="info-card-t">⚠ Gap e azioni pendenti</div>
+      ${gaps.pref>0?(b.requisiti||[]).filter(r=>r.status==='gap-pref').map(r=>`
+        <div style="display:flex;align-items:flex-start;gap:7px;padding:6px 0;border-bottom:1px solid var(--bd)">
+          <span class="tag-pref" style="flex-shrink:0;margin-top:1px">PREF.</span>
+          <div><div style="font-size:11.5px;font-weight:500">${r.txt.substring(0,50)}${r.txt.length>50?'...':''}</div>${r.nota?`<div style="font-size:10px;color:var(--t3)">${r.nota}</div>`:''}</div>
+        </div>`).join(''):''}
+      ${gaps.pref===0&&gaps.esc===0?'<div style="font-size:11.5px;color:var(--gn)">✓ Nessun gap attivo</div>':''}
+      ${(b.requisiti||[]).filter(r=>r.status==='parziale').map(r=>`
+        <div style="display:flex;align-items:flex-start;gap:7px;padding:6px 0;border-bottom:1px solid var(--bd)">
+          <span style="font-size:9.5px;padding:2px 7px;border-radius:100px;background:var(--am-bg);color:var(--am);border:1px solid var(--am-bd);flex-shrink:0;margin-top:1px;white-space:nowrap">VERIFICA</span>
+          <div style="font-size:11.5px">${r.txt.substring(0,50)}${r.txt.length>50?'...':''}</div>
+        </div>`).join('')}
+    </div>
+    <div class="info-card">
+      <div class="info-card-t">🎯 Contesto strategico</div>
+      <div class="irow"><span class="irow-k">Canale acquisto</span><span class="irow-v">MePA — concorrenza limitata</span></div>
+      <div class="irow"><span class="irow-k">Vendor lock-in</span><span class="irow-v" style="color:var(--gn)">Favorevole — Livello Elite</span></div>
+      <div class="irow"><span class="irow-k">Gare simili vinte</span><span class="irow-v">2 su 3 (67%)</span></div>
+      <div class="irow"><span class="irow-k">Marginalità stimata</span><span class="irow-v">Buona — licenze rinnovo</span></div>
+      <div class="irow"><span class="irow-k">Rischio penali</span><span class="irow-v" style="color:${b.giorniMancanti<=14?'var(--rd)':'var(--am)'}">${b.giorniMancanti>0?b.giorniMancanti+' giorni alla scadenza':'Chiuso'}</span></div>
+    </div>
+  </div>
+  <div class="dec-bar">
+    <div style="flex:1;font-size:11.5px;color:var(--t3)">
+      Checklist: <strong style="color:var(--t1)">${st.done}/${st.total}</strong> · Gap escludenti: <strong style="color:${gaps.esc>0?'var(--rd)':'var(--gn)'}">${gaps.esc}</strong> · Gap pref.: <strong style="color:${gaps.pref>0?'var(--am)':'var(--t1)'}">${gaps.pref}</strong>
+      ${b.gngConfermato?` · <strong style="color:var(--gn)">✓ Decisione confermata</strong>`:''}
+    </div>
+    ${!b.gngConfermato?`
+    <button class="btn-rd" data-action="confirm-gng" data-bid="${b.id}" data-dec="no-go">⊘ Segna No-Go</button>
+    <button class="${sc.ra==='GO'||sc.ra==='GO_CONDIZIONALE'?'btn-gn':'btn-rd'}" data-action="confirm-gng" data-bid="${b.id}" data-dec="${sc.ra==='GO'||sc.ra==='GO_CONDIZIONALE'?'go':'no-go'}">
+      ${sc.ra==='GO'?'✓ Conferma Go — Vai alla gara':sc.ra==='GO_CONDIZIONALE'?'~ Conferma Go condizionale':'⊘ Conferma No-Go'}
+    </button>`:`<button data-action="reset-gng" data-bid="${b.id}">Modifica decisione</button>`}
+  </div>`
+}
+
+// ═══════════════════════════════════════════════
+// VIEW: ROADMAP
+// ═══════════════════════════════════════════════
+function viewRoadmap() {
+  const dynGaps = getAggregatedGaps()
+  const staticRows = [
+    {testo:'ISO/IEC 20000-1:2018 — IT Service Management certificato',stato:'IN_SCADENZA',stCol:'b-analisi',freq:4,imp:'Critico · 4 gare',azione:'Rinnovo urgente · [Ente cert. C] · ~€4.000 · Q2 2026',cls:'crit'},
+    {testo:'ISO/IEC 27017:2015 — Cloud Security Controls specifica',stato:'ASSENTE',stCol:'b-nogo',freq:3,imp:'Critico · 3 gare',azione:'Iter certificazione · ~6 mesi · ~€8.000 · Q3 2026',cls:'crit'},
+    {testo:'ISO 45001:2018 — Salute e Sicurezza',stato:'SCADUTA',stCol:'b-persa',freq:3,imp:'Medio · 3 gare pref.',azione:'Valutare rinnovo · ~€3.500 · Q3 2026',cls:'warn'},
+    {testo:'Partnership SIEM — competenza vendor certificata',stato:'DICHIARATO',stCol:'b-pending',freq:2,imp:'Medio · 2 gare',azione:'Formalizzare partnership · coda revisione · Q3 2026',cls:'warn'},
+    {testo:'[Vendor Networking] Gold Partner o superiore',stato:'COPERTO',stCol:'b-go',freq:5,imp:'Risolto',azione:'Partnership [Vendor Networking] Preferred attiva ✓',cls:''},
+    {testo:'Esperienza PA ente >500.000 abitanti verificabile',stato:'COPERTO',stCol:'b-go',freq:5,imp:'Risolto',azione:'REF001 — [Comune capoluogo] ✓',cls:''},
+    {testo:'[Vendor EDR] Partner livello Elite o superiore',stato:'COPERTO',stCol:'b-go',freq:2,imp:'Risolto',azione:'Livello Elite attivo ✓',cls:''},
+  ]
+  const allRows = [...dynGaps.map(g=>({testo:g.testo,stato:g.status==='gap-esc'?'GAP ESC.':'GAP PREF.',stCol:g.status==='gap-esc'?'b-nogo':'b-cond',freq:g.count,imp:`${g.count} gare`,azione:'Da risolvere — coda revisione',cls:g.status==='gap-esc'?'crit':'warn'})), ...staticRows]
+
+  return `
+  <div class="view-wrap">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div><div style="font-size:15px;font-weight:600">Roadmap aziendale gap</div><div style="font-size:11.5px;color:var(--t3);margin-top:2px">Requisiti trasversali · ${S.bandi.length} bandi analizzati · Impatto sul win rate</div></div>
+        <div style="display:flex;gap:7px"><button>↓ Esporta Excel</button><button class="btn-pr">+ Aggiungi azione</button></div>
+      </div>
+    </div>
+    <div class="view-body">
+      <div style="background:var(--bl-bg);border:1px solid var(--bl-bd);border-radius:var(--r8);padding:9px 13px;margin-bottom:14px;font-size:12px;color:var(--bl)">ℹ I requisiti con gap attivi (in rosso/arancio) sono aggiornati in tempo reale dalle revisioni effettuate nella tab Requisiti &amp; Gap.</div>
+      <div class="road-cols road-hd"><span>REQUISITO / CATEGORIA</span><span>FREQ.</span><span>STATO</span><span>IMPATTO</span><span>AZIONE CONSIGLIATA</span></div>
+      ${allRows.map(r=>`
+      <div class="road-cols road-row ${r.cls}">
+        <div><div style="font-size:12px;font-weight:500">${r.testo.substring(0,70)}${r.testo.length>70?'...':''}</div></div>
+        <div><div style="font-size:16px;font-weight:700;font-family:var(--mono);color:${r.cls==='crit'?'var(--rd)':r.cls==='warn'?'var(--am)':'var(--gn)'}">${r.freq}</div><div class="freq-bar"><div class="freq-fill" style="width:${Math.min(r.freq/5*100,100)}%;background:${r.cls==='crit'?'var(--rd)':r.cls==='warn'?'#D97706':'var(--gn)'}"></div></div></div>
+        <span class="badge ${r.stCol}">${r.stato}</span>
+        <div style="font-size:11.5px;font-weight:500;color:${r.cls==='crit'?'var(--rd)':r.cls==='warn'?'var(--am)':'var(--gn)'}">${r.imp}</div>
+        <div style="font-size:11px;color:var(--t2)">${r.azione}</div>
+      </div>`).join('')}
+      <div class="prio-pills">
+        <div style="font-size:11.5px;font-weight:600;color:var(--t2);width:100%;margin-bottom:4px">Piano azioni prioritarie — impatto stimato:</div>
+        <span class="prio-pill" style="background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd)">1. Rinnovo ISO 20000-1 → +4 gare</span>
+        <span class="prio-pill" style="background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd)">2. ISO 27017 cloud → +3 gare PA sanitaria</span>
+        <span class="prio-pill" style="background:var(--am-bg);color:var(--am);border:1px solid var(--am-bd)">3. ISO 45001 rinnovo → +3 punti tecnici</span>
+        <span class="prio-pill" style="background:var(--gn-bg);color:var(--gn);border:1px solid var(--gn-bd)">Win rate atteso post azioni: 67% → 85%+</span>
+      </div>
+    </div>
+  </div>`
+}
+
+// ═══════════════════════════════════════════════
+// VIEW: ALERTS
+// ═══════════════════════════════════════════════
+function viewAlerts() {
+  const urgent = CERTS_EXPIRY.filter(c=>c.stato==='urgent'||c.stato==='scaduta')
+  const normal = CERTS_EXPIRY.filter(c=>c.stato==='warn'||c.stato==='ok')
+  return `
+  <div class="view-wrap">
+    <div class="topbar"><div style="font-size:15px;font-weight:600">Alert e notifiche</div><div style="font-size:11.5px;color:var(--t3);margin-top:2px">Certificazioni in scadenza, bandi urgenti, azioni richieste</div></div>
+    <div class="view-body">
+      <div class="alrt-hd" style="background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd);border-bottom:none">⚠ Urgente — azione richiesta</div>
+      <div class="alrt-body" style="border:1px solid var(--rd-bd)">
+        ${urgent.map(c=>`
+        <div class="alrt-row" style="background:var(--rd-bg)">
+          <div style="flex:1">
+            <div style="font-size:12.5px;font-weight:500">${c.nome}</div>
+            <div style="font-size:10.5px;color:var(--t3);margin-top:2px">Ente: ${c.ente} · Scadenza: ${c.scad}${c.stato==='scaduta'?' · <strong style="color:var(--rd)">SCADUTA</strong>':''}</div>
+            <div style="font-size:10.5px;color:var(--rd);margin-top:2px">Impatta ${c.bandi} bandi attivi</div>
+          </div>
+          <span class="days-pill" style="background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd)">${c.stato==='scaduta'?'SCAD.':c.giorni+' gg'}</span>
+          <div style="display:flex;gap:5px;flex-shrink:0">
+            <button class="btn-sm btn-rd" data-action="alert-action" data-nome="${c.nome}">Avvia rinnovo</button>
+          </div>
+        </div>`).join('')}
+      </div>
+      <div class="alrt-hd" style="background:var(--sf2);color:var(--t2);border:1px solid var(--bd);border-bottom:none">🔔 Prossime scadenze — entro 6 mesi</div>
+      <div class="alrt-body" style="border:1px solid var(--bd)">
+        <table class="cert-table">
+          <thead><tr><th>CERTIFICAZIONE</th><th>ENTE</th><th>SCADENZA</th><th>GIORNI</th><th>BANDI</th></tr></thead>
+          <tbody>${normal.map(c=>`<tr>
+            <td style="font-weight:500">${c.nome}</td>
+            <td style="color:var(--t3)">${c.ente}</td>
+            <td>${c.scad}</td>
+            <td style="font-family:var(--mono);font-weight:600;color:${c.giorni<90?'var(--am)':'var(--gn)'}">${c.giorni} gg</td>
+            <td style="color:var(--t3)">${c.bandi>0?c.bandi+' bandi':'—'}</td>
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>
+      <div class="alrt-hd" style="background:var(--sf2);color:var(--t2);border:1px solid var(--bd);border-bottom:none">📋 Scadenza bandi — prossimi 60 giorni</div>
+      <div class="alrt-body" style="border:1px solid var(--bd)">
+        ${S.bandi.filter(b=>b.giorniMancanti>0&&b.giorniMancanti<=60).map(b=>`
+        <div class="alrt-row">
+          <div style="flex:1">
+            <div style="font-size:12.5px;font-weight:500">${b.nome}</div>
+            <div style="font-size:10.5px;color:var(--t3);margin-top:2px">${b.ente} · Scadenza: ${b.scadenza} · ${statusBadge(b.status)}</div>
+          </div>
+          <span class="days-pill" style="background:${b.giorniMancanti<=14?'var(--rd-bg)':'var(--am-bg)'};color:${b.giorniMancanti<=14?'var(--rd)':'var(--am)'};border:1px solid ${b.giorniMancanti<=14?'var(--rd-bd)':'var(--am-bd)'}">${b.giorniMancanti} gg</span>
+          <button class="btn-sm btn-pr" data-action="open-bando" data-id="${b.id}">Apri</button>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>`
+}
+
+// ═══════════════════════════════════════════════
+// VIEW: STORICO
+// ═══════════════════════════════════════════════
+function viewStorico() {
+  const closed = S.bandi.filter(b=>b.status==='vinta'||b.status==='persa'||b.status==='no-go')
+  const vinte = closed.filter(b=>b.status==='vinta').length
+  const perse = closed.filter(b=>b.status==='persa').length
+  const nogo = closed.filter(b=>b.status==='no-go').length
+  const wr = (vinte+perse)>0?Math.round(vinte/(vinte+perse)*100)+'%':'—'
+  const scoreMap = {'vinta':[91,87],'persa':[73],'no-go':[0]}
+  let si = 0
+  return `
+  <div class="view-wrap">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div><div style="font-size:15px;font-weight:600">Storico gare</div><div style="font-size:11.5px;color:var(--t3);margin-top:2px">Win rate ${wr} · ${closed.length} gare chiuse</div></div>
+        <button>↓ Esporta storico</button>
+      </div>
+    </div>
+    <div class="view-body">
+      <div class="stat-grid" style="grid-template-columns:repeat(4,1fr)">
+        <div class="stat-card"><div class="stat-lbl">VINTE</div><div class="stat-val" style="color:var(--gn)">${vinte}</div></div>
+        <div class="stat-card"><div class="stat-lbl">PERSE</div><div class="stat-val" style="color:var(--rd)">${perse}</div></div>
+        <div class="stat-card"><div class="stat-lbl">NO-GO</div><div class="stat-val" style="color:var(--rd)">${nogo}</div></div>
+        <div class="stat-card"><div class="stat-lbl">WIN RATE</div><div class="stat-val" style="color:var(--am)">${wr}</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 90px 100px 65px 1fr;gap:6px;padding:5px 10px;font-size:9.5px;font-weight:600;color:var(--t3);letter-spacing:.07em"><span>BANDO</span><span>VALORE</span><span>ESITO</span><span>SCORE</span><span>MOTIVAZIONE</span></div>
+      ${closed.map(b=>{
+        const scores = {'dc-001':91,'rete-001':87,'wan-001':73,'edr-002':0}
+        const motivi = {'dc-001':'Referenza PA sanitaria, tutte certificazioni coperte, punteggio tecnico massimo','rete-001':'[Vendor Networking] Gold + SOC certificato, prezzo competitivo','wan-001':'Gap ISO 20000-1 (-3pt pref.) · Concorrente più economico · SIEM non certificato','edr-002':'Gap escludente: ISO/IEC 27017 obbligatoria — assente in portfolio'}
+        const sc = scores[b.id]||0
+        return `<div style="display:grid;grid-template-columns:2fr 90px 100px 65px 1fr;gap:6px;padding:9px 10px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);margin-bottom:3px;align-items:center">
+          <div><div style="font-size:12px;font-weight:500">${b.nome}</div><div style="font-size:10px;color:var(--t3);margin-top:1px">${b.ente} · ${b.canale}</div></div>
+          <div style="font-size:12px;font-weight:500;font-family:var(--mono)">${fmtVal(b.valore)}</div>
+          ${statusBadge(b.status)}
+          <div style="font-size:14px;font-weight:700;font-family:var(--mono);color:${b.status==='vinta'?'var(--gn)':b.status==='persa'?'var(--gr-t)':'var(--rd)'}">${sc}</div>
+          <div style="font-size:11px;color:var(--t2)">${motivi[b.id]||'—'}</div>
+        </div>`}).join('')}
+      <div class="insight"><strong>💡 Insight:</strong> Le gare perse/no-go condividono: ISO 20000-1 (scaduta), ISO 27017 (assente), SIEM partnership non formalizzata. Questi 3 elementi sono nella roadmap come priorità 1-3. Risolverli stima +18% win rate.</div>
+    </div>
+  </div>`
+}
+
+// ═══════════════════════════════════════════════
+// VIEW: SETTINGS
+// ═══════════════════════════════════════════════
+function viewSettings() {
+  return `<div class="view-wrap">
+    <div class="topbar"><div style="font-size:15px;font-weight:600">Impostazioni piattaforma</div></div>
+    <div class="view-body">
+      <div class="card" style="margin-bottom:12px">
+        <div style="font-size:13px;font-weight:600;margin-bottom:11px">Profilo aziendale</div>
+        <div class="irow"><span class="irow-k">Ragione sociale</span><span class="irow-v">[Azienda configurata]</span></div>
+        <div class="irow"><span class="irow-k">File competenze</span><span class="irow-v" style="color:var(--gn)">competenze_v2026.json ✓</span></div>
+        <div class="irow"><span class="irow-k">Certificazioni</span><span class="irow-v">6 aziendali + 10 [Business unit sicurezza]</span></div>
+        <div class="irow"><span class="irow-k">Referenze portfolio</span><span class="irow-v">5 referenze attive</span></div>
+        <div style="margin-top:11px;display:flex;gap:7px"><button>Aggiorna profilo</button><button class="btn-pr">Carica nuovo JSON competenze</button></div>
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:600;margin-bottom:11px">Modello AI</div>
+        <div class="irow"><span class="irow-k">Endpoint</span><span class="irow-v" style="font-family:var(--mono);font-size:11px">https://[endpoint-ai].openai.azure.com/</span></div>
+        <div class="irow"><span class="irow-k">Modello LLM</span><span class="irow-v">gpt-4o-mini (Standard)</span></div>
+        <div class="irow"><span class="irow-k">Embedding</span><span class="irow-v">text-embedding-3-small</span></div>
+        <div class="irow"><span class="irow-k">Stato</span><span class="irow-v" style="color:var(--gn)">● Connesso</span></div>
+      </div>
+    </div>
+  </div>`
+}
+
+// ═══════════════════════════════════════════════
+// RENDER ENGINE
+// ═══════════════════════════════════════════════
+function render(preserveScroll) {
+  const m = document.getElementById('main')
+  const sy = preserveScroll ? m.scrollTop : 0
+  const views = {dashboard:viewDashboard,repository:viewRepository,detail:viewDetail,roadmap:viewRoadmap,alerts:viewAlerts,storico:viewStorico,settings:viewSettings}
+  m.innerHTML = (views[S.view]||viewDashboard)()
+  if(preserveScroll) m.scrollTop = sy
+  updateSidebar()
+  setupDragDrop()
+}
+
+function updateSidebar() {
+  document.querySelectorAll('.ni[data-nav]').forEach(n=>n.classList.toggle('on', n.dataset.nav===S.view))
+  // Badges
+  const pend = S.bandi.filter(b=>b.status==='pending').length + S.pendingFiles.length
+  const pb = document.getElementById('bdg-pending')
+  if(pb){pb.style.display=pend>0?'':'none'; pb.textContent=pend}
+  const ab = document.getElementById('bdg-alerts'); if(ab)ab.textContent='2'
+  const bb = document.getElementById('bdg-bandi'); if(bb){bb.textContent=S.bandi.length;bb.style.display=''}
+}
+
+// ═══════════════════════════════════════════════
+// ANALYSIS SIMULATION
+// ═══════════════════════════════════════════════
+function startAnalysis(bandoId, filename) {
+  const o = document.getElementById('a-overlay')
+  document.getElementById('a-filename').textContent = filename||'Capitolato_speciale.pdf'
+  o.classList.add('open')
+  // Reset
+  ;['1','2','3'].forEach(i=>{
+    document.getElementById('a-pb'+i).style.width='0%'
+    document.getElementById('a-out'+i).innerHTML=''
+    document.getElementById('a-hd'+i).className='a-step-hd'
+  })
+  document.getElementById('a-result').style.display='none'
+  document.getElementById('a-hd1').classList.add('active')
+
+  function addLine(outId, text, cls='') {
+    const out = document.getElementById(outId)
+    const span = document.createElement('span')
+    span.className='a-line'+(cls?' '+cls:'')
+    span.textContent=text
+    out.appendChild(span)
+  }
+  function pb(id,pct,ms) { return new Promise(r=>setTimeout(()=>{document.getElementById('a-pb'+id).style.width=pct+'%';r()},ms)) }
+
+  // PHASE 1: M1
+  Promise.resolve()
+  .then(()=>pb('1',30,200))
+  .then(()=>{addLine('a-out1','Caricamento e parsing documento in corso...');return pb('1',60,400)})
+  .then(()=>{addLine('a-out1','Identificazione sezioni: Capitolato, Allegati, FAQ...');return pb('1',80,600)})
+  .then(()=>{addLine('a-out1','Classificazione requisiti per categoria...');return pb('1',100,800)})
+  .then(()=>{
+    addLine('a-out1','✓ 30 requisiti estratti: 5 qualificazione, 9 normativa, 8 tecnica, 8 amm.','a-ok')
+    document.getElementById('a-hd1').className='a-step-hd done'
+    document.getElementById('a-hd2').className='a-step-hd active'
+    return pb('2',20,200)
+  })
+  // PHASE 2: M2+M3
+  .then(()=>{addLine('a-out2','[M2] Caricamento KB normativo: GDPR, D.lgs.36/2023, CAD...');return pb('2',35,500)})
+  .then(()=>{addLine('a-out2','[M2] Analisi conformità normativa: 9 requisiti...');return pb('2',50,600)})
+  .then(()=>{addLine('a-out2','[M3] Confronto certificazioni con registry aziendale...');return pb('2',65,600)})
+  .then(()=>{addLine('a-out2','[M3] Fuzzy matching: ISO/IEC 27001 ✓, ISO 9001 ✓, [Vendor EDR] Elite ✓...','a-ok');return pb('2',80,500)})
+  .then(()=>{addLine('a-out2','⚠ Gap rilevato: ISO/IEC 20000-1 — IN_SCADENZA 31/05/2026','a-warn');return pb('2',100,400)})
+  .then(()=>{
+    addLine('a-out2','✓ M2: copertura normativa 87% · M3: 1 gap preferenziale, 0 escludenti','a-ok')
+    document.getElementById('a-hd2').className='a-step-hd done'
+    document.getElementById('a-hd3').className='a-step-hd active'
+    return pb('3',50,400)
+  })
+  // PHASE 3: Output
+  .then(()=>{addLine('a-out3','Calcolo score composito: M2×0.30 + M3×0.40 + Qual×0.30...');return pb('3',80,600)})
+  .then(()=>{addLine('a-out3','Score: 76/100 — soglia GO (≥75) raggiunta','a-ok');return pb('3',100,400)})
+  .then(()=>{
+    document.getElementById('a-hd3').className='a-step-hd done'
+    // Update bando status
+    const b = getBando(bandoId)
+    if(b){b.status='analisi';b.analisiCompleta=true}
+    // Reveal result
+    const res = document.getElementById('a-result')
+    const sc = getBando(bandoId)?calcScore(getBando(bandoId)):{score:76,ra:'GO'}
+    document.getElementById('a-snum').textContent = sc.score
+    document.getElementById('a-snum').style.color = sc.ra==='GO'?'#4ADE80':'#F87171'
+    document.getElementById('a-slabel').textContent = sc.ra==='GO'?'✓ GO — Presentare offerta':'⊘ NO-GO'
+    document.getElementById('a-slabel').style.color = sc.ra==='GO'?'#4ADE80':'#F87171'
+    res.style.display='block'
+    S.analysisResult = {bandoId}
+  })
+}
+
+function closeAnalysis() {
+  document.getElementById('a-overlay').classList.remove('open')
+  if(S.analysisResult) {
+    S.bandoId = S.analysisResult.bandoId
+    S.view = 'detail'
+    S.tab = 'req'
+    S.analysisResult = null
+    render()
+  }
+}
+
+// ═══════════════════════════════════════════════
+// DRAG & DROP
+// ═══════════════════════════════════════════════
+function setupDragDrop() {
+  const z = document.getElementById('uzone')
+  if(!z) return
+  z.addEventListener('dragover', e=>{e.preventDefault();z.classList.add('dragover')})
+  z.addEventListener('dragleave', ()=>z.classList.remove('dragover'))
+  z.addEventListener('drop', e=>{
+    e.preventDefault(); z.classList.remove('dragover')
+    handleFiles(e.dataTransfer.files)
+  })
+}
+
+function handleFiles(files) {
+  const names = Array.from(files).map(f=>f.name)
+  S.pendingFiles = [...new Set([...S.pendingFiles, ...names])]
+  render(true)
+}
+
+// ═══════════════════════════════════════════════
+// EVENT HANDLERS
+// ═══════════════════════════════════════════════
+document.addEventListener('click', e=>{
+  const el = e.target.closest('[data-action]')
+  if(!el) {
+    // Sidebar nav
+    const ni = e.target.closest('.ni[data-nav]')
+    if(ni){S.view=ni.dataset.nav;S.revOpen=null;render();return}
+    return
+  }
+  const a = el.dataset.action
+
+  if(a==='nav'){S.view=el.dataset.v;S.revOpen=null;render();return}
+
+  if(a==='open-bando'){
+    const b = getBando(el.dataset.id)
+    if(!b) return
+    if(b.status==='pending'){S.view='repository';render();return}
+    S.bandoId=el.dataset.id; S.view='detail'; S.tab='req'; S.revOpen=null; render(); return
+  }
+
+  if(a==='filter-dash'){S.filterDash=el.dataset.f;render(true);return}
+  if(a==='filter-req'){S.filterReq=el.dataset.f;render(true);return}
+
+  if(a==='set-tab'){
+    S.tab=el.dataset.t; S.revOpen=null
+    const b = document.getElementById('tab-body')
+    if(b){ const bando=getBando(S.bandoId); b.innerHTML=S.tab==='req'?tabRequisiti(bando):S.tab==='chk'?tabChecklist(bando):tabGoNoGo(bando,calcScore(bando)) }
+    document.querySelectorAll('.tb').forEach(t=>{t.classList.toggle('on',t.dataset.t===S.tab)})
+    return
+  }
+
+  if(a==='start-analysis'){
+    const b = getBando(el.dataset.id)
+    startAnalysis(el.dataset.id, b?b.files[0]:'Capitolato.pdf'); return
+  }
+
+  if(a==='start-upload'){
+    if(S.pendingFiles.length>0) startAnalysis('edr-001', S.pendingFiles[0])
+    return
+  }
+
+  if(a==='clear-files'){S.pendingFiles=[];render(true);return}
+
+  if(a==='download-notif'){
+    const nome = el.dataset.nome
+    const newId = 'new-'+Date.now()
+    S.bandi.push({id:newId,nome,shortNome:nome.substring(0,25)+'...',ente:'[PA]',valore:500000,scadenza:'30/06/2026',giorniMancanti:34,canale:'MePA',cpv:'72220000-3',status:'pending',analisiCompleta:false,gngConfermato:false,requisiti:[],checklist:[],files:[nome.replace(/[^\w]/g,'-')+'.pdf']})
+    S.pendingFiles=[]
+    toast(`Bando scaricato: ${nome.substring(0,30)}...`, 'ok')
+    render(true); return
+  }
+
+  if(a==='toggle-rev'){
+    const rid=el.dataset.rid; const bid=el.dataset.bid
+    S.revOpen = S.revOpen===rid ? null : rid
+    const b=getBando(bid); const tb=document.getElementById('tab-body')
+    if(tb&&b) tb.innerHTML=tabRequisiti(b)
+    document.querySelectorAll('.tb').forEach(t=>{t.classList.toggle('on',t.dataset.t===S.tab)})
+    return
+  }
+
+  if(a==='save-review'){
+    const rid=el.dataset.rid; const bid=el.dataset.bid
+    const b=getBando(bid); if(!b) return
+    const sel=document.getElementById('sel-'+rid); const noteEl=document.getElementById('note-'+rid)
+    if(!sel||!sel.value) {toast('Seleziona uno stato prima di salvare','warn');return}
+    const req=b.requisiti.find(r=>r.id===rid); if(!req) return
+    const prevStatus=req.status
+    req.status=sel.value
+    req.revNota=noteEl?noteEl.value:''
+    req.ml = sel.value==='coperto'?'✓ Coperto — revisione umana':sel.value==='gap-pref'?'Gap preferenziale confermato':sel.value==='gap-esc'?'Gap escludente — azione richiesta':req.ml
+    req.mt = sel.value==='coperto'?'gn':sel.value==='gap-pref'||sel.value==='gap-esc'?'rd':'am'
+    req.nota = noteEl&&noteEl.value?noteEl.value:req.nota
+    S.revOpen=null
+    const sc = calcScore(b)
+    if(sc.ra!==prevStatus) {
+      toast(`Requisito aggiornato — Score ricalcolato: ${sc.score}/100 (${sc.ra})`,'ok')
+    } else { toast('Revisione salvata — Score aggiornato','ok') }
+    // Update tab + possibly gng if open
+    const tb=document.getElementById('tab-body')
+    if(tb) tb.innerHTML=tabRequisiti(b)
+    return
+  }
+
+  if(a==='toggle-check'){
+    const bid=el.dataset.bid; const iid=el.dataset.iid
+    const b=getBando(bid); if(!b) return
+    const item=b.checklist.find(c=>c.id===iid); if(!item||item.urgente) return
+    item.done=!item.done
+    // Update progress bar without full re-render
+    const st=chkStats(b)
+    const pb=document.getElementById('chk-pb')
+    if(pb) pb.style.width=st.pct+'%'
+    // Toggle visual on item
+    el.closest('.chk-item')&&el.closest('.chk-item').classList.toggle('done',item.done)
+    const box=el.querySelector('.chk-box'); if(box){box.textContent=item.done?'✓':'';box.style.background=item.done?'var(--gn)':'';box.style.borderColor=item.done?'var(--gn)':'var(--bd2)'}
+    const lbl=el.querySelector('.chk-lbl'); if(lbl) lbl.style.textDecoration=item.done?'line-through':''
+    const statEl=el.querySelector('span:last-child'); if(statEl&&!item.urgente) {statEl.textContent=item.done?'Completato':'Da fare';statEl.style.cssText=item.done?'font-size:10px;padding:2px 8px;border-radius:100px;background:var(--gn-bg);color:var(--gn)':'font-size:10px;padding:2px 8px;border-radius:100px;background:var(--sf2);color:var(--t3)'}
+    return
+  }
+
+  if(a==='mark-all-done'){
+    const b=getBando(el.dataset.bid); if(!b) return
+    b.checklist.forEach(c=>{if(!c.urgente) c.done=true})
+    const tb=document.getElementById('tab-body'); if(tb) tb.innerHTML=tabChecklist(b)
+    toast('Tutti gli item non urgenti segnati come completati','ok'); return
+  }
+
+  if(a==='confirm-gng'){
+    const b=getBando(el.dataset.bid); if(!b) return
+    const dec=el.dataset.dec
+    b.status=dec==='go'?'go':dec==='no-go'?'no-go':'go'
+    b.gngConfermato=true
+    const sc=calcScore(b)
+    const msg = b.status==='go'?`✓ GO confermato! Score: ${sc.score}/100. Il bando è stato spostato in stato GO.`:`⊘ No-Go registrato. Il bando è stato archiviato.`
+    toast(msg, b.status==='go'?'ok':'warn')
+    render(); return
+  }
+
+  if(a==='reset-gng'){
+    const b=getBando(el.dataset.bid); if(!b) return
+    b.gngConfermato=false; b.status='analisi'
+    const tb=document.getElementById('tab-body'); if(tb) tb.innerHTML=tabGoNoGo(b,calcScore(b))
+    return
+  }
+
+  if(a==='open-add-item'){openModal('modal-add');return}
+
+  if(a==='alert-action'){
+    toast(`Procedura rinnovo avviata per: ${el.dataset.nome.substring(0,40)}`,'ok'); return
+  }
+  if(a==='noop') return
+})
+
+// ═══════════════════════════════════════════════
+// SAVE NEW CHECKLIST ITEM
+// ═══════════════════════════════════════════════
+function saveNewItem() {
+  const txt=document.getElementById('new-item-txt').value.trim()
+  if(!txt){toast('Inserisci una descrizione','warn');return}
+  const cat=document.getElementById('new-item-cat').value
+  const prio=document.getElementById('new-item-prio').value
+  const b=getBando(S.bandoId); if(!b){closeModal('modal-add');return}
+  const id='usr-'+Date.now()
+  b.checklist.push({id,cat,txt,sub:'Aggiunto manualmente',done:false,urgente:prio==='urgente',warn:prio==='warn'})
+  closeModal('modal-add')
+  document.getElementById('new-item-txt').value=''
+  toast('Item aggiunto alla checklist','ok')
+  const tb=document.getElementById('tab-body'); if(tb) tb.innerHTML=tabChecklist(b)
+}
+
+// Close modals on overlay click
+document.querySelectorAll('.modal-bg').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')})})
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-bg.open,.modal-overlay.open').forEach(m=>m.classList.remove('open'))}})
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+render()
+</script>
+</body>
+</html>

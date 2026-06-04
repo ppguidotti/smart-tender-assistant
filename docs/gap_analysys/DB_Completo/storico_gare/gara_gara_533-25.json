@@ -1,0 +1,79 @@
+{
+    "oggetto": "Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale",
+    "ente_appaltante": "Regione Marche - Settore SUAM e Soggetto Aggregatore",
+    "cpv": "72250000-2",
+    "canale": "Gara pubblica",
+    "valore_stimato_eur": 1049782,
+    "durata_mesi": 36,
+    "scadenza_offerta": "2024-05-13",
+    "data_analisi": "2023-10-11",
+    "esito_reale": "Analizzata",
+    "decisione_aziendale": "GO",
+    "output_m1": {
+        "bando_oggetto": "Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale",
+        "n_amministrativa": 5,
+        "n_normativa": 3,
+        "n_qualificazione": 2,
+        "n_tecnica": 10,
+        "n_requisiti_totali": 20
+    },
+    "output_m2": {
+        "copertura_percentuale": 85.0,
+        "framework_identificati": [
+            "ISO 27001",
+            "ISO 22301",
+            "Schneider Electric",
+            "CISCO"
+        ],
+        "item_coperti": [
+            "Gestione sistemi HA",
+            "Supporto specialistico",
+            "Formazione"
+        ],
+        "item_non_coperti": [
+            "Certificazione ISO 22301",
+            "Certificazione ISO 27001"
+        ]
+    },
+    "output_m3": {
+        "totale_gap_escludenti": 2,
+        "gap_escludenti": [
+            {
+                "requisito": "Certificazione ISO 22301 per la gestione della continuità operativa",
+                "impatto": "Escludente",
+                "azione_rimedio": "Ricorso ad Avvalimento per ISO 22301",
+                "stato": "Non soddisfatto"
+            },
+            {
+                "requisito": "Certificazione ISO 27001 per la gestione della sicurezza delle informazioni",
+                "impatto": "Escludente",
+                "azione_rimedio": "Costituzione RTI con partner qualificato",
+                "stato": "Non soddisfatto"
+            }
+        ],
+        "gap_preferenziali": [
+            {
+                "requisito": "Partnership Gold con CISCO",
+                "impatto": "Preferenziale",
+                "azione_rimedio": "Accordo con partner CISCO Gold",
+                "stato": "Non soddisfatto"
+            }
+        ]
+    },
+    "nuove_evidenze_emerse": [
+        {
+            "requisito": "Certificazione ISO 22301",
+            "tipo": "Certificazione",
+            "soddisfatto": false,
+            "validato_da": "Analisi interna"
+        },
+        {
+            "requisito": "Certificazione ISO 27001",
+            "tipo": "Certificazione",
+            "soddisfatto": false,
+            "validato_da": "Analisi interna"
+        }
+    ],
+    "id": "gara_533-25",
+    "file_bando": "BANDO_UNIFICATO.pdf"
+}

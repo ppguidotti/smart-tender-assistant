@@ -130,9 +130,9 @@ def aggregate_gaps(bandi: list[BandoHTML]) -> list[AggregatedGap]:
 # Helpers session-state per bandi (carica + modifica in memoria)
 # ---------------------------------------------------------------------------
 
-import streamlit as st  # noqa: E402
+import streamlit as st
 
-from smart_tender_assistant.frontend.services.api_client import get_api_client  # noqa: E402
+from smart_tender_assistant.frontend.services.api_client import get_api_client
 
 _BANDI_KEY = "stca_bandi"
 

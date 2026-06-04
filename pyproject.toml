@@ -63,9 +63,14 @@ backend = [
     # B1 — Document ingestion
     "tika>=2.6,<3.0",                          # Apache Tika client
     # B2, B4 — LLM extraction & reasoning
-    "google-generativeai>=0.7,<1.0",           # Gemini API
+    "openai>=1.40,<2.0",                       # OpenAI-compatible client (Azure Foundry/OpenAI)
+    "google-generativeai>=0.7,<1.0",           # Gemini API (alternative provider)
+    "numpy>=1.26,<3.0",                        # cosine similarity for requirement dedup
     # B3, B9 — Vector store
     "qdrant-client>=1.10,<2.0",
+    # B4 — Gap analysis: KB su PostgreSQL + retrieval semantico
+    "psycopg[binary]>=3.1,<4.0",
+    "sentence-transformers>=3.0,<4.0",         # embeddings multilingue (richiede torch)
     # B8 — API & orchestration
     "fastapi>=0.111,<1.0",
     "uvicorn[standard]>=0.30,<1.0",
@@ -116,9 +121,9 @@ sta-frontend = "smart_tender_assistant.frontend.app:run"
 # ---------------------------------------------------------------------------
 
 [project.urls]
-Homepage = "https://github.com/<your-org>/smart-tender-assistant"
-Repository = "https://github.com/<your-org>/smart-tender-assistant"
-Documentation = "https://github.com/<your-org>/smart-tender-assistant/tree/main/docs"
+Homepage = "https://github.com/ppguidotti/smart-tender-assistant"
+Repository = "https://github.com/ppguidotti/smart-tender-assistant"
+Documentation = "https://github.com/ppguidotti/smart-tender-assistant/tree/main/docs"
 
 # ---------------------------------------------------------------------------
 # Hatch — package discovery
@@ -180,7 +185,7 @@ disallow_untyped_defs = false
 
 [[tool.mypy.overrides]]
 # 3rd-party libs without type stubs
-module = ["tika.*", "weasyprint.*", "qdrant_client.*"]
+module = ["tika.*", "weasyprint.*", "qdrant_client.*", "sentence_transformers.*"]
 ignore_missing_imports = true
 
 [tool.pydantic-mypy]

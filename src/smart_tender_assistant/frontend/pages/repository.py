@@ -13,9 +13,17 @@ Tutta la pagina è dentro un singolo `@st.fragment` per evitare reload globale.
 
 from __future__ import annotations
 
+from datetime import date
+from pathlib import Path
+
 import streamlit as st
 
-from smart_tender_assistant.frontend.ui.stca_helpers import get_bando
+from smart_tender_assistant.frontend.services.pipeline import (
+    BandoMeta,
+    UploadedDoc,
+    analyze_uploads,
+)
+from smart_tender_assistant.frontend.ui.stca_helpers import get_bando, load_bandi, save_bandi
 from smart_tender_assistant.frontend.ui.theme import inject_custom_css
 
 inject_custom_css()
@@ -44,44 +52,79 @@ st.markdown(
 
 @st.fragment
 def _repository() -> None:
-    # ===== Upload zone (puramente decorativa, mirror del .uzone HTML) =====
+    # ===== Upload zone (file_uploader reale → pipeline B1+B2) =====
     st.markdown(
         """
-        <div class="stca-uzone">
+        <div class="stca-uzone" style="padding-bottom:8px">
           <div class="cloud">☁</div>
-          <div class="title">Trascina i documenti del bando qui</div>
-          <div class="sub">Capitolato, allegati tecnici, FAQ ente appaltante · PDF, DOCX, HTML, XML</div>
+          <div class="title">Carica i documenti del bando</div>
+          <div class="sub">Capitolato, allegati tecnici, FAQ ente appaltante · PDF, DOCX, HTML, XML, TXT</div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    pending = st.session_state.get("pending_files", [])
+    uploaded = st.file_uploader(
+        "Documenti del bando",
+        type=["pdf", "docx", "doc", "html", "xml", "txt", "csv", "eml", "odt", "rtf", "xlsx"],
+        accept_multiple_files=True,
+        label_visibility="collapsed",
+        key="rep_uploader",
+    )
 
-    # ===== Pending files card =====
-    if pending:
-        with st.container(key="rep_pending"):
-            chips = "".join(f'<span class="stca-file-chip">📄 {n}</span>' for n in pending)
+    if uploaded:
+        with st.container(key="rep_meta"):
             st.markdown(
-                f"""
-                <div style="font-size:11.5px;font-weight:600;margin-bottom:7px">
-                  File selezionati ({len(pending)})
-                </div>
-                <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">{chips}</div>
-                """,
+                f'<div style="font-size:11.5px;font-weight:600;margin:4px 0 6px">'
+                f"Metadati gara · {len(uploaded)} file selezionato/i</div>",
                 unsafe_allow_html=True,
             )
-            c_start, c_clear, _ = st.columns([1.5, 1, 4])
-            with c_start:
-                if st.button("▶ Avvia analisi AI", type="primary", key="rep_start_pending"):
-                    st.session_state["start_analysis_bid"] = "edr-001"
-                    st.session_state["start_analysis_file"] = pending[0]
-                    st.session_state["pending_files"] = []
-                    st.switch_page("pages/tender_detail.py")
-            with c_clear:
-                if st.button("Rimuovi", key="rep_clear_pending"):
-                    st.session_state["pending_files"] = []
-                    st.rerun(scope="fragment")
+            c1, c2 = st.columns([3, 2])
+            nome = c1.text_input("Nome bando", value=Path(uploaded[0].name).stem, key="rep_nome")
+            ente = c2.text_input("Ente appaltante", value="[PA locale]", key="rep_ente")
+            c3, c4, c5 = st.columns(3)
+            valore = c3.number_input(
+                "Valore (€)", min_value=0.0, value=50000.0, step=1000.0, key="rep_valore"
+            )
+            scad = c4.date_input("Scadenza", key="rep_scad")
+            cpv = c5.text_input("CPV", value="48730000-4", key="rep_cpv")
+
+            run = st.button(
+                "▶ Carica e analizza", type="primary", key="rep_run", width="stretch"
+            )
+
+        if run:
+            docs = [UploadedDoc(name=f.name, data=f.getvalue()) for f in uploaded]
+            meta = BandoMeta(
+                nome=nome.strip() or "Bando senza nome",
+                ente=ente.strip() or "[PA]",
+                valore=float(valore),
+                scadenza=scad.strftime("%d/%m/%Y"),
+                giorni_mancanti=(scad - date.today()).days,
+                canale="MePA",
+                cpv=cpv.strip() or "—",
+            )
+            bando = None
+            with st.status("Analisi AI in corso…", expanded=True) as status:
+                try:
+                    bando = analyze_uploads(docs, meta, progress=status.write)
+                    status.update(label="Analisi completata ✓", state="complete")
+                except Exception as exc:
+                    status.update(label="Analisi fallita", state="error")
+                    st.error(
+                        f"**Analisi fallita:** {exc}\n\n"
+                        "Verifica che Tika sia attivo (`docker compose up -d tika`) "
+                        "e che `LLM_API_KEY` sia nel `.env`."
+                    )
+            if bando is not None:
+                bandi = load_bandi()
+                bandi.insert(0, bando)
+                save_bandi(bandi)
+                st.session_state["selected_bando_id"] = bando.id
+                st.success(
+                    f"✓ {len(bando.requisiti)} requisiti estratti — apro il dettaglio…"
+                )
+                st.switch_page("pages/tender_detail.py")
 
     # ===== Agent bar =====
     with st.container(key="rep_agent"):

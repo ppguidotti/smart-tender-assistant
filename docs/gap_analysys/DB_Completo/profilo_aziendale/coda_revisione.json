@@ -1,0 +1,74 @@
+{
+  "_note": "Requisiti nuovi o non mappati emersi dalle gare analizzate. Il responsabile qualità deve esaminare ogni item e decidere se aggiungere l'informazione al profilo o confermare il gap. Aggiornamento: automatico dopo ogni analisi gara.",
+  "_stati_revisione": {
+    "DA_ESAMINARE": "Non ancora valutato dal responsabile qualità",
+    "IN_CORSO": "Certificazione / referenza in fase di acquisizione",
+    "RISOLTO": "Gap colmato — profilo aggiornato",
+    "ACCETTATO": "Gap confermato ma accettato (non strategico)"
+  },
+  "items": [
+    {
+      "id": "REV001",
+      "requisito": "ISO/IEC 27017 — Sicurezza cloud per settore sanitario",
+      "prima_rilevazione": "2025-01-08",
+      "gare_interessate": [
+        "GARA_202501_OSPEDALE_EDR"
+      ],
+      "frequenza_rilevazione": 2,
+      "tipo": "ESCLUDENTE",
+      "stato_revisione": "IN_CORSO",
+      "soddisfatto": false,
+      "azione_rimedio": "Avviato iter di certificazione con Bureau Veritas. Completamento previsto Q3 2025.",
+      "validato_da": "responsabile.qualita@techserv.it",
+      "data_validazione": "2025-01-15",
+      "scadenza_azione": "2025-09-30"
+    },
+    {
+      "id": "REV002",
+      "requisito": "Esperienza documentata con gare sopra €2M in ambito cybersecurity PA",
+      "prima_rilevazione": "2025-02-20",
+      "gare_interessate": [
+        "GARA_202502_REGIONE_CYBER"
+      ],
+      "frequenza_rilevazione": 1,
+      "tipo": "PREFERENZIALE",
+      "stato_revisione": "DA_ESAMINARE",
+      "soddisfatto": null,
+      "azione_rimedio": null,
+      "validato_da": null,
+      "data_validazione": null,
+      "note": "Verificare se REF002 (Regione ER, €1.45M) è avvicinabile con aggiunta contratto in corso"
+    },
+    {
+      "id": "REV003",
+      "requisito": "Iscrizione all'Albo Fornitori CONSIP — Lotto Sicurezza",
+      "prima_rilevazione": "2024-11-05",
+      "gare_interessate": [
+        "GARA_202411_CONSIP_PROVA"
+      ],
+      "frequenza_rilevazione": 1,
+      "tipo": "ESCLUDENTE",
+      "stato_revisione": "RISOLTO",
+      "soddisfatto": true,
+      "evidenza": "Iscrizione completata dicembre 2024 — aggiunta a core.json",
+      "validato_da": "responsabile.qualita@techserv.it",
+      "data_validazione": "2024-12-10"
+    },
+    {
+      "id": "REV004",
+      "requisito": "Certificazione SPLUNK Partner — esperienza SIEM con Splunk Enterprise",
+      "prima_rilevazione": "2025-03-15",
+      "gare_interessate": [
+        "GARA_202503_COMUNE_BOLOGNA_RETE"
+      ],
+      "frequenza_rilevazione": 1,
+      "tipo": "PREFERENZIALE",
+      "stato_revisione": "DA_ESAMINARE",
+      "soddisfatto": null,
+      "azione_rimedio": null,
+      "validato_da": null,
+      "data_validazione": null,
+      "note": "Abbiamo competenze SIEM interne ma non certificazione ufficiale Splunk. Valutare."
+    }
+  ]
+}

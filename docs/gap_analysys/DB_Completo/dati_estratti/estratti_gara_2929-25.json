@@ -1,0 +1,62 @@
+{
+    "per_collection_referenze": {
+        "societa_esecutrice": "Gruppo VEM",
+        "tipo_cliente": "Pubblica Amministrazione",
+        "anno": 2025,
+        "oggetto_progetto": "Sostituzione componenti di raffreddamento e alimentazione del Data Center",
+        "nome_cliente": "Provincia Autonoma di Bolzano - Alto Adige",
+        "valore_euro": 980000,
+        "requisiti": "ISO/IEC 27001 (Sicurezza Informatica), Sistema di Gestione della Sicurezza delle Informazioni (SGSI) (Sicurezza Informatica), Audit annuale sul sistema di sicurezza (Sicurezza Informatica), Certificazione EcoExpert Schneider Electric (Sicurezza Informatica)",
+        "testo_vettorializzato": "Progetto: Sostituzione componenti di raffreddamento e alimentazione del Data Center. Cliente: Provincia Autonoma di Bolzano - Alto Adige, settore: Utilities, tipo: Pubblica Amministrazione. Valore: 980000 euro. Requisiti tecnici estratti: ISO/IEC 27001 (Sicurezza Informatica), Sistema di Gestione della Sicurezza delle Informazioni (SGSI) (Sicurezza Informatica), Audit annuale sul sistema di sicurezza (Sicurezza Informatica), Certificazione EcoExpert Schneider Electric (Sicurezza Informatica)."
+    },
+    "per_collection_competenze": [
+        {
+            "area_tecnica": "Sicurezza Informatica",
+            "nome_competenza": "ISO/IEC 27001",
+            "livello": "Certificazione obbligatoria in corso di validità",
+            "tag_gara": [
+                "sicurezza",
+                "certificazione",
+                "ISO27001"
+            ],
+            "riferimento_progetto": "gara_2929-25",
+            "testo_vettorializzato": "Area Tecnica: Sicurezza Informatica. Competenza: ISO/IEC 27001. Livello richiesto: Certificazione obbligatoria in corso di validità. Tag ricavati: sicurezza, certificazione, ISO27001. Progetto d'origine: gara_2929-25."
+        },
+        {
+            "area_tecnica": "Sicurezza Informatica",
+            "nome_competenza": "Sistema di Gestione della Sicurezza delle Informazioni (SGSI)",
+            "livello": "Implementazione e aggiornamento continuo richiesto",
+            "tag_gara": [
+                "sicurezza",
+                "gestione",
+                "SGSI"
+            ],
+            "riferimento_progetto": "gara_2929-25",
+            "testo_vettorializzato": "Area Tecnica: Sicurezza Informatica. Competenza: Sistema di Gestione della Sicurezza delle Informazioni (SGSI). Livello richiesto: Implementazione e aggiornamento continuo richiesto. Tag ricavati: sicurezza, gestione, SGSI. Progetto d'origine: gara_2929-25."
+        },
+        {
+            "area_tecnica": "Sicurezza Informatica",
+            "nome_competenza": "Audit annuale sul sistema di sicurezza",
+            "livello": "Esecuzione obbligatoria da parte di società specializzata",
+            "tag_gara": [
+                "sicurezza",
+                "audit",
+                "annuale"
+            ],
+            "riferimento_progetto": "gara_2929-25",
+            "testo_vettorializzato": "Area Tecnica: Sicurezza Informatica. Competenza: Audit annuale sul sistema di sicurezza. Livello richiesto: Esecuzione obbligatoria da parte di società specializzata. Tag ricavati: sicurezza, audit, annuale. Progetto d'origine: gara_2929-25."
+        },
+        {
+            "area_tecnica": "Sicurezza Informatica",
+            "nome_competenza": "Certificazione EcoExpert Schneider Electric",
+            "livello": "Certificazione obbligatoria per punteggio premiale",
+            "tag_gara": [
+                "certificazione",
+                "Schneider",
+                "EcoExpert"
+            ],
+            "riferimento_progetto": "gara_2929-25",
+            "testo_vettorializzato": "Area Tecnica: Sicurezza Informatica. Competenza: Certificazione EcoExpert Schneider Electric. Livello richiesto: Certificazione obbligatoria per punteggio premiale. Tag ricavati: certificazione, Schneider, EcoExpert. Progetto d'origine: gara_2929-25."
+        }
+    ]
+}

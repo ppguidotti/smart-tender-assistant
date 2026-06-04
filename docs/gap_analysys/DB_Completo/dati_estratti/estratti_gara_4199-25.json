@@ -1,0 +1,50 @@
+{
+    "per_collection_referenze": {
+        "societa_esecutrice": "Gruppo VEM",
+        "tipo_cliente": "Pubblica Amministrazione",
+        "anno": 2026,
+        "oggetto_progetto": "Appalto per servizi di gestione e manutenzione",
+        "nome_cliente": "Ente Pubblico Locale",
+        "valore_euro": 150000,
+        "requisiti": "Attestazione SOA per lavori pubblici (Certificazioni e Qualificazioni), Certificazione ISO 14001 (Gestione Ambientale), Certificazione ISO 9001 (Gestione Qualità)",
+        "testo_vettorializzato": "Progetto: Appalto per servizi di gestione e manutenzione. Cliente: Ente Pubblico Locale, settore: Enti Locali, tipo: Pubblica Amministrazione. Valore: 150000 euro. Requisiti tecnici estratti: Attestazione SOA per lavori pubblici (Certificazioni e Qualificazioni), Certificazione ISO 14001 (Gestione Ambientale), Certificazione ISO 9001 (Gestione Qualità)."
+    },
+    "per_collection_competenze": [
+        {
+            "area_tecnica": "Certificazioni e Qualificazioni",
+            "nome_competenza": "Attestazione SOA per lavori pubblici",
+            "livello": "Obbligatoria per importi superiori a 150.000 euro",
+            "tag_gara": [
+                "qualificazione",
+                "SOA",
+                "lavori pubblici"
+            ],
+            "riferimento_progetto": "gara_4199-25",
+            "testo_vettorializzato": "Area Tecnica: Certificazioni e Qualificazioni. Competenza: Attestazione SOA per lavori pubblici. Livello richiesto: Obbligatoria per importi superiori a 150.000 euro. Tag ricavati: qualificazione, SOA, lavori pubblici. Progetto d'origine: gara_4199-25."
+        },
+        {
+            "area_tecnica": "Gestione Ambientale",
+            "nome_competenza": "Certificazione ISO 14001",
+            "livello": "Obbligatoria per la gestione ambientale",
+            "tag_gara": [
+                "ISO",
+                "ambiente",
+                "certificazione"
+            ],
+            "riferimento_progetto": "gara_4199-25",
+            "testo_vettorializzato": "Area Tecnica: Gestione Ambientale. Competenza: Certificazione ISO 14001. Livello richiesto: Obbligatoria per la gestione ambientale. Tag ricavati: ISO, ambiente, certificazione. Progetto d'origine: gara_4199-25."
+        },
+        {
+            "area_tecnica": "Gestione Qualità",
+            "nome_competenza": "Certificazione ISO 9001",
+            "livello": "Obbligatoria per la qualità",
+            "tag_gara": [
+                "ISO",
+                "qualità",
+                "certificazione"
+            ],
+            "riferimento_progetto": "gara_4199-25",
+            "testo_vettorializzato": "Area Tecnica: Gestione Qualità. Competenza: Certificazione ISO 9001. Livello richiesto: Obbligatoria per la qualità. Tag ricavati: ISO, qualità, certificazione. Progetto d'origine: gara_4199-25."
+        }
+    ]
+}

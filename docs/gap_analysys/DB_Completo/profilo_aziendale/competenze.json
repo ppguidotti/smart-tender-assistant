@@ -1,0 +1,2808 @@
+{
+    "_note": "Competenze tecniche aggiornate con dati reali dal documento 'Certificazioni Gruppo VEM rev. 20-04-2026'. Livelli: CERTIFICATO = certificazione/partnership ufficiale di terza parte; DIMOSTRATO = supportato da referenza contrattuale; DICHIARATO = competenza interna non ancora formalizzata.",
+    "_fonte": "Certificazioni_per_offerte_gruppo_VEM_rev_20-04-2026_WIP.docx",
+    "_data_aggiornamento": "2026-04-20",
+    "_societa_coperte": [
+        "VEM Sistemi S.p.A.",
+        "Certego S.r.l."
+    ],
+    "certificazioni_aziendali_indipendenti": {
+        "_note": "Certificazioni di sistema (ISO, rating, attestazioni) — valide per qualsiasi gara indipendentemente dal vendor.",
+        "vem_sistemi": [
+            {
+                "nome": "UNI EN ISO 9001:2015",
+                "nome_normalizzato": "iso 9001",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "iso_9001",
+                    "qualita_certificata",
+                    "sistema_gestione_qualita"
+                ],
+                "note": "Sistema di gestione della qualità. Valida per prodotti e servizi ICT."
+            },
+            {
+                "nome": "UNI CEI EN ISO/IEC 27001:2017",
+                "nome_normalizzato": "iso 27001",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "iso_27001",
+                    "isms_certificato",
+                    "sicurezza_informazioni_certificata"
+                ],
+                "note": "Information Security Management System (ISMS). Copre asset informativi, proprietà intellettuale, dati personali."
+            },
+            {
+                "nome": "ISO 26000:2010",
+                "nome_normalizzato": "iso 26000",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "responsabilita_sociale",
+                    "sostenibilita",
+                    "iso_26000"
+                ],
+                "note": "Responsabilità sociale e sostenibilità."
+            },
+            {
+                "nome": "Rating di Legalità — AGCM",
+                "nome_normalizzato": "rating legalita agcm",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "rating_legalita",
+                    "agcm",
+                    "legalita_trasparenza"
+                ],
+                "note": "Strumento AGCM che riconosce legalità, trasparenza e responsabilità sociale. Rilevante per gare PA con criteri di selezione qualitativa."
+            },
+            {
+                "nome": "KNX Partner",
+                "nome_normalizzato": "knx partner",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "building_automation",
+                    "knx",
+                    "smart_building"
+                ],
+                "note": "Tecnologia KNX per sistemi di controllo illuminazione e building automation."
+            },
+            {
+                "nome": "SOA OS19 — Pubblica utilità e infrastrutture",
+                "nome_normalizzato": "soa os19",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "soa_attestazione",
+                    "lavori_pubblici",
+                    "qualificazione_oo_pp"
+                ],
+                "note": "Attestazione SOA per operatori economici qualificati per lavori pubblici. Classificazione OS19."
+            }
+        ],
+        "certego": [
+            {
+                "nome": "UNI EN ISO 9001:2015",
+                "nome_normalizzato": "iso 9001 certego",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "iso_9001",
+                    "qualita_certificata"
+                ],
+                "note": "Sistema di gestione qualità — Certego S.r.l."
+            },
+            {
+                "nome": "UNI CEI EN ISO/IEC 27001:2017",
+                "nome_normalizzato": "iso 27001 certego",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "iso_27001",
+                    "isms_certificato"
+                ],
+                "note": "ISMS certificato — Certego S.r.l."
+            },
+            {
+                "nome": "Autorizzazione uso marchio CERT — Carnegie Mellon University",
+                "nome_normalizzato": "cert cmu certego",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "csirt_certificato",
+                    "incident_response_certificato"
+                ],
+                "note": "Marchio CERT autorizzato da CMU. Rilevante per gare SOC/CSIRT."
+            },
+            {
+                "nome": "FIRST.org — Forum of Incident Response and Security Teams",
+                "nome_normalizzato": "first org member",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "incident_response",
+                    "csirt_membro_first",
+                    "threat_intelligence"
+                ],
+                "note": "Membro FIRST. CVSS, PSIRT, vulnerability management."
+            },
+            {
+                "nome": "EC3 Europol Supporting Partner",
+                "nome_normalizzato": "europol ec3 partner",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "europol_partner",
+                    "cybercrime_support",
+                    "law_enforcement_partner"
+                ],
+                "note": "Partner di supporto Europol European Cybercrime Centre."
+            },
+            {
+                "nome": "Trusted Introducer — TF-CSIRT Accredited",
+                "nome_normalizzato": "trusted introducer tf-csirt",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "csirt_accreditato",
+                    "trusted_introducer",
+                    "incident_response_maturo"
+                ],
+                "note": "Accreditamento basato su SIM3 (Security Incident Management Maturity Model)."
+            },
+            {
+                "nome": "ENISA CSIRT Inventory",
+                "nome_normalizzato": "enisa csirt",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "enisa_csirt",
+                    "nis2_compliance",
+                    "csirt_europeo"
+                ],
+                "note": "Incluso nell'inventario ENISA dei CSIRT europei."
+            },
+            {
+                "nome": "Gartner Regional Player — Worldwide Threat Intelligence Services",
+                "nome_normalizzato": "gartner regional player",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "threat_intelligence",
+                    "gartner_riconoscimento",
+                    "intelligence_services"
+                ],
+                "note": "Riconoscimento Gartner nei report 2015 e 2017 per Threat Intelligence."
+            },
+            {
+                "nome": "MSSP Alert — Top 250 Managed Security Services Providers",
+                "nome_normalizzato": "mssp alert top 250",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "mssp_certificato",
+                    "managed_security_services",
+                    "soc_as_a_service"
+                ],
+                "note": "Nella lista globale MSSP Alert Top 250."
+            },
+            {
+                "nome": "ECSO Cybersecurity Made in Europe Label",
+                "nome_normalizzato": "ecso made in europe",
+                "livello": "CERTIFICATO",
+                "tag_gara": [
+                    "ecso_label",
+                    "cybersecurity_europea",
+                    "gdpr_compliance"
+                ],
+                "note": "Label europeo ECSO per standard di data protection e sicurezza."
+            }
+        ]
+    },
+    "aree_tecniche": [
+        {
+            "area": "Cybersecurity — Network & Endpoint Security",
+            "competenze": [
+                {
+                    "skill": "Check Point — Elite Partner",
+                    "nome_normalizzato": "checkpoint partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "CCSP Partner",
+                        "Harmony Partner",
+                        "CloudGuard Partner",
+                        "Quantum Maestro Partner"
+                    ],
+                    "tag_gara": [
+                        "checkpoint_partner",
+                        "ngfw",
+                        "endpoint_protection",
+                        "cloud_security"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Massimo livello partnership Check Point (Advanced → Professional → Premier → Elite)."
+                },
+                {
+                    "skill": "Fortinet — Expert Integrator Reseller Partner",
+                    "nome_normalizzato": "fortinet expert partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Operational Technology Security (OT)",
+                        "SD-WAN",
+                        "Secure Networking Firewall"
+                    ],
+                    "tag_gara": [
+                        "fortinet_partner",
+                        "expert_fortinet",
+                        "sd_wan",
+                        "ot_security",
+                        "firewall_ngfw",
+                        "secure_networking"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Expert su scala (Advocate → Select → Advanced → Expert). Tre specializzazioni attive."
+                },
+                {
+                    "skill": "Cisco — Preferred Security Partner",
+                    "nome_normalizzato": "cisco preferred security",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Extended Detection and Response (XDR) Competency",
+                        "Secure Enterprise Infrastructure Competency"
+                    ],
+                    "tag_gara": [
+                        "cisco_security_partner",
+                        "edr_xdr",
+                        "cisco_preferred",
+                        "xdr_competency"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Partner Preferred Cisco per security. XDR Competency particolarmente rilevante per gare EDR/XDR."
+                },
+                {
+                    "skill": "Palo Alto Networks — Registered Reseller Partner",
+                    "nome_normalizzato": "palo alto partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "palo_alto_partner",
+                        "palo_alto_ngfw",
+                        "network_security"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Registered su scala (Registered → Innovator → Platinum → Diamond)."
+                },
+                {
+                    "skill": "Trend Micro (TrendAI) — Elite Partner",
+                    "nome_normalizzato": "trend micro elite partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "trend_micro_partner",
+                        "edr_xdr",
+                        "endpoint_security_partner",
+                        "elite_partner_trend"
+                    ],
+                    "evidenza_id": [
+                        "REF003"
+                    ],
+                    "note": "Massimo livello partnership (Registered → Skilled → Expert → Elite). Direttamente correlato al capitolato EDR Vision One."
+                },
+                {
+                    "skill": "Cyber Guru — Platinum Partner",
+                    "nome_normalizzato": "cyber guru platinum",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "security_awareness",
+                        "cyber_guru",
+                        "formazione_cybersecurity"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Massimo livello partnership per piattaforme di Security Awareness Training."
+                },
+                {
+                    "skill": "RSA — Platinum Partner",
+                    "nome_normalizzato": "rsa platinum",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "RSA SecurID Access"
+                    ],
+                    "tag_gara": [
+                        "rsa_partner",
+                        "identity_access_management",
+                        "mfa_autenticazione"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Platinum (Gold → Platinum → Titanium)."
+                },
+                {
+                    "skill": "Netwrix — Premium Partner",
+                    "nome_normalizzato": "netwrix premium",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "netwrix_partner",
+                        "data_security",
+                        "privileged_access"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Premium su scala (Premium → Elite)."
+                },
+                {
+                    "skill": "Tufin — Authorized Partner",
+                    "nome_normalizzato": "tufin partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "tufin_partner",
+                        "network_policy_management",
+                        "firewall_management"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Network security policy management."
+                },
+                {
+                    "skill": "Forcepoint / Websense — Authorized Partner",
+                    "nome_normalizzato": "forcepoint partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "forcepoint_partner",
+                        "web_security",
+                        "dlp_security"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Data Loss Prevention e web security."
+                },
+                {
+                    "skill": "Certego — SOC as a Service / MDR / MSSP",
+                    "nome_normalizzato": "certego soc mssp",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "soc_managed",
+                        "mssp_top250",
+                        "mdr_service",
+                        "csirt_accreditato",
+                        "threat_intelligence"
+                    ],
+                    "evidenza_id": [
+                        "REF001"
+                    ],
+                    "note": "Società del Gruppo con MSSP Alert Top 250, Trusted Introducer, ENISA CSIRT, FIRST.org, Europol EC3."
+                }
+            ]
+        },
+        {
+            "area": "Networking & SD-WAN",
+            "competenze": [
+                {
+                    "skill": "Cisco — Preferred Networking Partner",
+                    "nome_normalizzato": "cisco networking partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Hybrid Cloud Networking Competency",
+                        "Industrial IOT Competency",
+                        "Managed Services Practice Maturity: Intermediate",
+                        "Customer Success Practice Maturity: Expert",
+                        "Cisco Powered Services: Meraki Access"
+                    ],
+                    "tag_gara": [
+                        "cisco_networking",
+                        "cisco_preferred",
+                        "sd_wan",
+                        "hybrid_cloud_networking",
+                        "industrial_iot"
+                    ],
+                    "evidenza_id": [
+                        "REF001"
+                    ],
+                    "note": "Partner Preferred con Cisco per Networking. Livelli di maturità Managed Services e Customer Success verificati."
+                },
+                {
+                    "skill": "Fortinet — SD-WAN Specialization",
+                    "nome_normalizzato": "fortinet sd-wan",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "sd_wan",
+                        "fortinet_sd_wan",
+                        "wan_optimization",
+                        "hybrid_network"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Specializzazione SD-WAN Fortinet per partner Expert."
+                },
+                {
+                    "skill": "Radware — Signature Partnership",
+                    "nome_normalizzato": "radware signature",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Radware Certified Application Delivery Expert",
+                        "Radware Certified Application Protection Expert"
+                    ],
+                    "tag_gara": [
+                        "radware_partner",
+                        "application_delivery",
+                        "ddos_protection",
+                        "load_balancing"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Massimo livello partnership (Certified → Spotlight → Signature). Due specializzazioni tecniche personali."
+                },
+                {
+                    "skill": "Commscope — Select Partner (SYSTIMAX + NETCONNECT)",
+                    "nome_normalizzato": "commscope partner systimax",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Installer Authorization SYSTIMAX",
+                        "Installer Authorization NETCONNECT"
+                    ],
+                    "tag_gara": [
+                        "cablaggio_strutturato",
+                        "systimax",
+                        "netconnect",
+                        "infrastruttura_fisica_rete"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Autorizzato all'installazione dei principali sistemi Commscope."
+                },
+                {
+                    "skill": "Panduit — Gold Partner",
+                    "nome_normalizzato": "panduit gold",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "EMEA Network Infrastructure Cabling Develop",
+                        "EMEA Network Infrastructure Cabling Deploy"
+                    ],
+                    "tag_gara": [
+                        "panduit_partner",
+                        "cablaggio_strutturato",
+                        "network_infrastructure_cabling"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Gold (Registered → Silver → Gold → Platinum). Doppia specializzazione cablaggio EMEA."
+                },
+                {
+                    "skill": "HPE / Aruba — Business Partner",
+                    "nome_normalizzato": "hpe aruba partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Aruba Business Partner"
+                    ],
+                    "tag_gara": [
+                        "hpe_partner",
+                        "aruba_partner",
+                        "wireless_enterprise",
+                        "switching_hpe"
+                    ],
+                    "evidenza_id": [],
+                    "note": "HPE Business Partner con specializzazione Aruba per wireless enterprise."
+                },
+                {
+                    "skill": "Competenze personali Cisco — CCIE / CCNP / CCNA",
+                    "nome_normalizzato": "cisco certifications personali",
+                    "livello": "CERTIFICATO",
+                    "certificazioni_personali": {
+                        "CCIE_Enterprise_Infrastructure": 3,
+                        "CCIE_Enterprise_Wireless": 1,
+                        "CCIE_Security": 2,
+                        "CCIE_Collaboration": 4,
+                        "CCNP_Data_Center": 6,
+                        "CCNP_Enterprise": 20,
+                        "CCNP_Collaboration": 6,
+                        "CCNP_Wireless": 3,
+                        "CCNP_Security_Specialized": 3,
+                        "CCNA": "65+"
+                    },
+                    "tag_gara": [
+                        "ccie_certificati",
+                        "ccnp_certificati",
+                        "cisco_expert_personale",
+                        "networking_certificato"
+                    ],
+                    "evidenza_id": [
+                        "REF001"
+                    ],
+                    "note": "Conteggi aggiornati al documento WIP 20-04-2026."
+                }
+            ]
+        },
+        {
+            "area": "Cloud & Virtualizzazione",
+            "competenze": [
+                {
+                    "skill": "Microsoft — Solutions Partner (Modern Work)",
+                    "nome_normalizzato": "microsoft solutions partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Modern Work"
+                    ],
+                    "tag_gara": [
+                        "microsoft_partner",
+                        "microsoft_365",
+                        "teams",
+                        "azure",
+                        "modern_work"
+                    ],
+                    "evidenza_id": [
+                        "REF002",
+                        "REF005"
+                    ],
+                    "note": "Solutions Partner con specializzazione Modern Work. Competenze Azure tramite certificazioni personali."
+                },
+                {
+                    "skill": "VMware by Broadcom — Select Partner",
+                    "nome_normalizzato": "vmware select partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "vmware_partner",
+                        "virtualizzazione",
+                        "vsphere",
+                        "datacenter_virtualizzazione"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Select (Registered → Select → Premier → Pinnacle)."
+                },
+                {
+                    "skill": "Citrix — Authorized Partner",
+                    "nome_normalizzato": "citrix partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "citrix_partner",
+                        "virtual_desktop",
+                        "vdi",
+                        "app_delivery"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Partner Citrix per virtualizzazione desktop e application delivery."
+                },
+                {
+                    "skill": "Red Hat — Advanced Business Partner",
+                    "nome_normalizzato": "red hat advanced partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "red_hat_partner",
+                        "linux_enterprise",
+                        "openshift",
+                        "ansible"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Advanced (Ready → Advanced → Premier)."
+                },
+                {
+                    "skill": "AWS — competenze personali (Solutions Architect Associate)",
+                    "nome_normalizzato": "aws solutions architect",
+                    "livello": "DICHIARATO",
+                    "tag_gara": [
+                        "aws_competenza",
+                        "cloud_aws",
+                        "cloud_multicloud"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Certificazione personale AWS Solutions Architect – Associate presente. Partnership AWS non formalizzata a livello aziendale."
+                },
+                {
+                    "skill": "Microsoft Azure — certificazioni personali",
+                    "nome_normalizzato": "azure architect expert",
+                    "livello": "CERTIFICATO",
+                    "certificazioni_personali": [
+                        "Microsoft Certified: Azure Solutions Architect Expert",
+                        "Teams Administrator Associate"
+                    ],
+                    "tag_gara": [
+                        "azure_architect",
+                        "azure_expert",
+                        "cloud_azure",
+                        "microsoft_azure"
+                    ],
+                    "evidenza_id": [
+                        "REF002"
+                    ],
+                    "note": "Certificazioni personali Microsoft Azure a livello Expert."
+                },
+                {
+                    "skill": "Cisco — Hybrid Cloud Computing & Networking Competency",
+                    "nome_normalizzato": "cisco hybrid cloud",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "hybrid_cloud",
+                        "cisco_cloud_competency",
+                        "cloud_networking"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Competency Cisco specifica per cloud ibrido."
+                }
+            ]
+        },
+        {
+            "area": "Data Center & Storage",
+            "competenze": [
+                {
+                    "skill": "APC-Schneider Electric — Master EcoXpert (multiple)",
+                    "nome_normalizzato": "schneider ecoxpert master",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Master Partner EcoXpert Precision Cooling",
+                        "Master Partner EcoXpert Power Continuity",
+                        "Master Partner EcoXpert Critical IT Infrastructure",
+                        "Certified Partner EcoXpert Building Automation",
+                        "EcoXpert Datacenter Specialization"
+                    ],
+                    "tag_gara": [
+                        "schneider_master",
+                        "datacenter_cooling",
+                        "ups_continuita",
+                        "critical_it_infrastructure",
+                        "datacenter_specialization"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Tre specializzazioni a livello Master (massimo). Rilevante per gare datacenter fisici."
+                },
+                {
+                    "skill": "NetApp — Reseller Prestige Partner",
+                    "nome_normalizzato": "netapp prestige partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Hybrid Multicloud with VMware",
+                        "FlexPod Converged Infrastructure with Cisco",
+                        "Data Protection with Rubrik",
+                        "Sustainability with NetApp",
+                        "Block Storage Solutions with NetApp ASA"
+                    ],
+                    "certificazioni_personali_servizi": [
+                        "Integration Services Certified - ONTAP",
+                        "Integration Services Certified - Cloud",
+                        "Integration Services Certified - StorageGRID",
+                        "Integration Services Certified - ONTAP SAN",
+                        "Integration Services Certified - FlexPod",
+                        "Integration Services Certified - EF-Series",
+                        "Lifecycle Services Certified",
+                        "Optimization Services Certified - ONTAP Data Protection",
+                        "NetApp Certified Hybrid Cloud Administrator",
+                        "NetApp Certified Implementation Engineer – SAN",
+                        "NetApp Certified Data Administrator ONTAP"
+                    ],
+                    "tag_gara": [
+                        "netapp_prestige",
+                        "storage_enterprise",
+                        "ontap",
+                        "flexPod",
+                        "storagegrid",
+                        "data_protection_storage"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Prestige (massimo su scala Approved → Preferred → Prestige). Ampio set di competenze personali certificate."
+                },
+                {
+                    "skill": "HPE — Business Partner (server e storage)",
+                    "nome_normalizzato": "hpe business partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "hpe_server",
+                        "hpe_storage",
+                        "proliant"
+                    ],
+                    "evidenza_id": [],
+                    "note": "HPE Business Partner per server e storage (Fujitsu Select Expert Servers da verificare)."
+                }
+            ]
+        },
+        {
+            "area": "Data Protection, Backup & Business Continuity",
+            "competenze": [
+                {
+                    "skill": "Cohesity — Reseller Premier Partner",
+                    "nome_normalizzato": "cohesity premier partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Data Protection (PS Authorization)"
+                    ],
+                    "certificazioni_personali": [
+                        "Cohesity Certified Data Protection Implementation Professional",
+                        "Cohesity Certified Installation Professional",
+                        "Cohesity Service Provider Operator Professional",
+                        "Cohesity File and Object Associate",
+                        "Cohesity Certified Data Security Professional"
+                    ],
+                    "tag_gara": [
+                        "cohesity_premier",
+                        "data_protection_backup",
+                        "ransomware_recovery",
+                        "backup_as_a_service"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Premier (Associate → Preferred → Premier). Stack completo di certificazioni personali."
+                },
+                {
+                    "skill": "Rubrik — Elite Reseller Partner",
+                    "nome_normalizzato": "rubrik elite reseller",
+                    "livello": "CERTIFICATO",
+                    "certificazioni_personali": [
+                        "Rubrik Technical Associate (RTA)",
+                        "Rubrik Certified Engineer (RCE)",
+                        "Rubrik Certified Implementation Engineer (RCIE)",
+                        "Rubrik Certified Systems Administrator (RCSA)",
+                        "Rubrik Ransomware Recovery Expert (RRE)",
+                        "Rubrik Technical Professional (RTP)"
+                    ],
+                    "tag_gara": [
+                        "rubrik_elite",
+                        "cloud_data_management",
+                        "ransomware_recovery",
+                        "cyber_resilience"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Elite (Authorized → Elite → Elite+). Stack completo pre/post-sales e tecnico."
+                },
+                {
+                    "skill": "Veeam — Silver Reseller Partner",
+                    "nome_normalizzato": "veeam silver partner",
+                    "livello": "CERTIFICATO",
+                    "certificazioni_personali": [
+                        "Veeam Certified Engineer (VMCE)"
+                    ],
+                    "tag_gara": [
+                        "veeam_partner",
+                        "backup_veeam",
+                        "disaster_recovery"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Silver (Registered → Silver → Gold → Platinum)."
+                },
+                {
+                    "skill": "Commvault — Authorized Solution Provider",
+                    "nome_normalizzato": "commvault authorized partner",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "commvault_partner",
+                        "backup_enterprise",
+                        "data_management"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Authorized (Authorized → Gold → Platinum)."
+                }
+            ]
+        },
+        {
+            "area": "Collaboration, AV & Unified Communications",
+            "competenze": [
+                {
+                    "skill": "Cisco — Preferred Collaboration Partner + Preferred Services",
+                    "nome_normalizzato": "cisco collaboration partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Hybrid Work Competency",
+                        "Webex Contact Center Authorization",
+                        "Webex Calling Administration Professional (3)",
+                        "Webex Contact Center Expert (1)"
+                    ],
+                    "tag_gara": [
+                        "cisco_collaboration",
+                        "webex",
+                        "contact_center",
+                        "unified_communications",
+                        "hybrid_work"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Partner Preferred Cisco per Collaboration e Services. CCIE Collaboration (4) + CCNP Collaboration (6)."
+                },
+                {
+                    "skill": "Citrix — Virtualizzazione e App Delivery",
+                    "nome_normalizzato": "citrix app delivery",
+                    "livello": "CERTIFICATO",
+                    "certificazioni_personali": [
+                        "Citrix Certified Professional App Delivery and Security",
+                        "Citrix Certified Expert App Delivery and Security",
+                        "Citrix Certified Professional - Virtualization",
+                        "Citrix Certified Expert - Virtualization (CCE-V)",
+                        "Citrix SD-WAN Certified",
+                        "Citrix Virtual Apps and Desktops Service on Citrix Cloud"
+                    ],
+                    "tag_gara": [
+                        "citrix_expert",
+                        "virtual_desktop",
+                        "app_delivery_security",
+                        "citrix_sd_wan"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Stack completo certificazioni personali Citrix incluse le Expert."
+                },
+                {
+                    "skill": "Milestone — Premier Partner",
+                    "nome_normalizzato": "milestone premier partner",
+                    "livello": "CERTIFICATO",
+                    "specializzazioni": [
+                        "Milestone Certified Design Engineer (MCDE)",
+                        "Milestone Certified Integration Technician (MCIT)",
+                        "Milestone Certified Integration Engineer"
+                    ],
+                    "tag_gara": [
+                        "milestone_premier",
+                        "videosorveglianza_ip",
+                        "vms_milestone",
+                        "physical_security"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Massimo livello partnership (Authorized → Advanced → Premier). Tre livelli di certificazione personale design/integration."
+                },
+                {
+                    "skill": "Axis Communications — Gold Partner",
+                    "nome_normalizzato": "axis gold partner",
+                    "livello": "CERTIFICATO",
+                    "certificazioni_personali": [
+                        "Axis Certified Professional"
+                    ],
+                    "tag_gara": [
+                        "axis_gold_partner",
+                        "network_video",
+                        "videosorveglianza"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Gold (Authorized → Silver → Gold)."
+                },
+                {
+                    "skill": "Barco — ClickShare Certified Specialist",
+                    "nome_normalizzato": "barco clickshare",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "barco_partner",
+                        "collaboration_display",
+                        "wireless_presentation"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Specializzazione ClickShare per sale meeting e presentazioni wireless."
+                }
+            ]
+        },
+        {
+            "area": "OT / Industrial & Building Automation",
+            "competenze": [
+                {
+                    "skill": "Fortinet — OT Security Specialization",
+                    "nome_normalizzato": "fortinet ot security",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "ot_security",
+                        "industrial_security",
+                        "infrastrutture_critiche_ot",
+                        "scada_security"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Specializzazione OT di Fortinet Expert Partner. Copre sistemi industriali SCADA/ICS."
+                },
+                {
+                    "skill": "Cisco — Industrial IOT Competency",
+                    "nome_normalizzato": "cisco industrial iot",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "industrial_iot",
+                        "iot_networking",
+                        "edge_computing"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Competency Cisco specifica per Industrial IoT."
+                },
+                {
+                    "skill": "KNX Partner — Building Automation",
+                    "nome_normalizzato": "knx building automation",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "building_automation",
+                        "smart_building",
+                        "knx",
+                        "controllo_edificio"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Controllo illuminazione e room control systems digitali."
+                },
+                {
+                    "skill": "APC-Schneider — EcoXpert Building Automation (Certified)",
+                    "nome_normalizzato": "schneider building automation",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "building_automation",
+                        "schneider_building",
+                        "smartstruxure"
+                    ],
+                    "evidenza_id": [],
+                    "note": "Livello Certified EcoXpert Building Automation + SmartStruxure Lite."
+                }
+            ]
+        },
+        {
+            "area": "Cybersecurity — Certificazioni Personali Avanzate",
+            "_note": "Certificazioni personali del personale tecnico VEM e Certego. Particolarmente rilevanti per gare con requisiti di competenze tecniche individuali.",
+            "competenze": [
+                {
+                    "skill": "CISSP — Certified Information Systems Security Professional (ISC2)",
+                    "nome_normalizzato": "cissp isc2",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "cissp_certificato",
+                        "security_management",
+                        "risk_management"
+                    ],
+                    "note": "Presente in VEM Sistemi e Certego."
+                },
+                {
+                    "skill": "CISM — Certified Information Security Manager (ISACA)",
+                    "nome_normalizzato": "cism isaca",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "cism_certificato",
+                        "security_management",
+                        "governance_sicurezza"
+                    ]
+                },
+                {
+                    "skill": "CISA — Certified Information System Auditor (ISACA)",
+                    "nome_normalizzato": "cisa isaca",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "cisa_certificato",
+                        "it_audit",
+                        "compliance_audit"
+                    ]
+                },
+                {
+                    "skill": "CEH — Certified Ethical Hacker (EC-Council)",
+                    "nome_normalizzato": "ceh ec-council",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "ethical_hacker",
+                        "penetration_test",
+                        "vulnerability_assessment"
+                    ]
+                },
+                {
+                    "skill": "ISACA COBIT 2019 Foundation",
+                    "nome_normalizzato": "cobit 2019",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "cobit",
+                        "it_governance",
+                        "it_management_framework"
+                    ]
+                },
+                {
+                    "skill": "CIPP/E — Certified Information Privacy Professional Europe (IAPP)",
+                    "nome_normalizzato": "cipp/e iapp",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "privacy_certificato",
+                        "gdpr_expert",
+                        "dpo_competenza",
+                        "cipp_e"
+                    ]
+                },
+                {
+                    "skill": "ISO 27001 Lead Auditor",
+                    "nome_normalizzato": "iso 27001 lead auditor",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "iso_27001_auditor",
+                        "isms_auditor",
+                        "audit_sicurezza"
+                    ]
+                },
+                {
+                    "skill": "ISO 22301 Lead Auditor (Business Continuity)",
+                    "nome_normalizzato": "iso 22301 lead auditor",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "business_continuity",
+                        "iso_22301",
+                        "bcms_auditor"
+                    ]
+                },
+                {
+                    "skill": "CBCP — Certified Business Continuity Professional (DRI)",
+                    "nome_normalizzato": "cbcp dri",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "business_continuity",
+                        "disaster_recovery_certificato",
+                        "cbcp"
+                    ]
+                },
+                {
+                    "skill": "Fortinet — Stack completo FCF → FCA → FCP → FCSS → FCX Expert",
+                    "nome_normalizzato": "fortinet certified stack",
+                    "livello": "CERTIFICATO",
+                    "certificazioni": [
+                        "Fortinet Certified Fundamentals (FCF)",
+                        "Fortinet Certified Associate (FCA)",
+                        "FCP Network Security",
+                        "FCP Security Operations",
+                        "FCP Public Cloud Security",
+                        "FCSS Network Security",
+                        "FCSS Public Cloud Security",
+                        "FCSS OT Security",
+                        "Fortinet Certified Expert (FCX)"
+                    ],
+                    "tag_gara": [
+                        "fortinet_certified",
+                        "fcx_expert",
+                        "fortinet_network_security",
+                        "fortinet_ot",
+                        "fortinet_cloud"
+                    ]
+                },
+                {
+                    "skill": "Check Point — CCSE / CCSM / CCTE / CCME",
+                    "nome_normalizzato": "checkpoint certifications personali",
+                    "livello": "CERTIFICATO",
+                    "certificazioni": [
+                        "CCSE Security Expert",
+                        "CCSM Security Master",
+                        "CCTE Troubleshooting Expert",
+                        "CCME Maestro Expert"
+                    ],
+                    "tag_gara": [
+                        "checkpoint_certified",
+                        "checkpoint_expert",
+                        "network_security_checkpoint"
+                    ]
+                },
+                {
+                    "skill": "GIAC — GPEN, GXPN, GREM (Certego)",
+                    "nome_normalizzato": "giac certifications certego",
+                    "livello": "CERTIFICATO",
+                    "certificazioni": [
+                        "GIAC Penetration Tester (GPEN)",
+                        "GIAC Exploit Researcher and Advanced Penetration Tester (GXPN)",
+                        "GIAC Reverse Engineering Malware (GREM)",
+                        "GCSA Cloud Security Automation"
+                    ],
+                    "tag_gara": [
+                        "penetration_test_avanzato",
+                        "malware_analysis",
+                        "exploit_research",
+                        "red_team"
+                    ],
+                    "note": "Certego. Particolarmente rilevante per gare con requisiti SOC/CSIRT avanzati."
+                },
+                {
+                    "skill": "ISECOM OPST — OSSTMM Professional Security Tester (Certego)",
+                    "nome_normalizzato": "opst isecom",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "penetration_test",
+                        "osstmm",
+                        "security_testing_metodologia"
+                    ],
+                    "note": "Certego."
+                },
+                {
+                    "skill": "ITIL 4 — Foundation + Specialist CDS",
+                    "nome_normalizzato": "itil 4",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "itil4",
+                        "it_service_management",
+                        "itsm_certificato"
+                    ]
+                },
+                {
+                    "skill": "IIP — Maestro protezione dati e Data Protection Designer",
+                    "nome_normalizzato": "iip data protection",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "data_protection_designer",
+                        "gdpr_dpo_competenza",
+                        "protezione_dati"
+                    ]
+                }
+            ]
+        },
+        {
+            "area": "Project Management & Governance",
+            "competenze": [
+                {
+                    "skill": "PRINCE2 Foundation (APMG)",
+                    "nome_normalizzato": "prince2 foundation",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "project_management",
+                        "prince2",
+                        "gestione_progetti"
+                    ],
+                    "evidenza_id": []
+                },
+                {
+                    "skill": "Uptime Institute — ATS Accredited Tier Specialist + ATD Tier Design",
+                    "nome_normalizzato": "uptime institute ats atd",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "datacenter_uptime",
+                        "tier_design",
+                        "datacenter_availability"
+                    ],
+                    "evidenza_id": [],
+                    "note": "ATS per uptime management; ATD per progettazione datacenters a specifica Tier."
+                },
+                {
+                    "skill": "DC Professional — Data Center Practitioner & Specialist",
+                    "nome_normalizzato": "dc professional",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "datacenter_management",
+                        "energy_efficiency_datacenter"
+                    ],
+                    "evidenza_id": []
+                },
+                {
+                    "skill": "BICSI — RCDD (Registered Communications Distribution Designer)",
+                    "nome_normalizzato": "bicsi rcdd",
+                    "livello": "CERTIFICATO",
+                    "tag_gara": [
+                        "cabling_design",
+                        "structured_cabling_design",
+                        "telecommunications_design"
+                    ],
+                    "evidenza_id": []
+                }
+            ]
+        },
+        {
+            "area": "Infrastrutture Tecnologiche",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione e supporto infrastrutture tecnologiche",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "supporto",
+                        "infrastrutture",
+                        "tecnologiche"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Sistemi High Availability (HA)",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "protezione civile",
+                        "alta affidabilità",
+                        "infrastrutture tecnologiche",
+                        "servizi di gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione infrastrutture tecnologiche",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "infrastrutture",
+                        "tecnologiche",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione e supporto infrastrutture tecnologiche",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "supporto",
+                        "infrastrutture",
+                        "tecnologiche"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Sistemi High Availability (HA)",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "protezione civile",
+                        "alta affidabilità",
+                        "infrastrutture tecnologiche",
+                        "servizi di gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione infrastrutture tecnologiche",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "infrastrutture",
+                        "tecnologiche",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione e supporto infrastrutture tecnologiche",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "supporto",
+                        "infrastrutture",
+                        "tecnologiche"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Sistemi High Availability (HA)",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "protezione civile",
+                        "alta affidabilità",
+                        "infrastrutture tecnologiche"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Formazione",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Formazione tecnica",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "formazione",
+                        "tecnica",
+                        "personale"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Formazione tecnica",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "formazione",
+                        "tecnica",
+                        "personale"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Formazione tecnica",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "formazione",
+                        "tecnica",
+                        "personale"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Sistemi High Availability",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Supporto specialistico sistemi HA",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "supporto",
+                        "specialistico",
+                        "sistemi",
+                        "HA"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione sistemi High Availability (HA)",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "sistemi",
+                        "High",
+                        "Availability",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione sistemi High Availability (HA)",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "sistemi",
+                        "High",
+                        "Availability",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Supporto specialistico sistemi HA",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "supporto",
+                        "specialistico",
+                        "sistemi",
+                        "HA"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "ICT",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione passaggio consegne dati e documentazione tecnica",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "passaggio consegne",
+                        "dati",
+                        "documentazione tecnica",
+                        "ICT"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione passaggio consegne dati e documentazione tecnica",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "passaggio consegne",
+                        "dati",
+                        "documentazione tecnica",
+                        "ICT"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione servizi ICT",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "servizi",
+                        "ICT",
+                        "gestione",
+                        "regione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Passaggio consegne dati e documentazione tecnica",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "passaggio",
+                        "consegne",
+                        "dati",
+                        "documentazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Reti e Telecomunicazioni",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Sistema Integrato Regionale di Telecomunicazioni di Emergenza",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "telecomunicazioni",
+                        "emergenza",
+                        "videosorveglianza",
+                        "rete"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Sistema Integrato Regionale di Telecomunicazioni di Emergenza",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "telecomunicazioni",
+                        "emergenza",
+                        "videosorveglianza",
+                        "rete"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Sistema Integrato Regionale di Telecomunicazioni di Emergenza",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "telecomunicazioni",
+                        "emergenza",
+                        "videosorveglianza"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Infrastrutture IT",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione di infrastrutture di Disaster Recovery",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "disaster recovery",
+                        "infrastrutture IT",
+                        "continuità operativa"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione di infrastrutture di Disaster Recovery",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "disaster recovery",
+                        "infrastrutture IT",
+                        "continuità operativa"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Centro di Disaster Recovery",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "disaster recovery",
+                        "infrastruttura",
+                        "continuità operativa"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Sicurezza Informatica",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione della sicurezza ICT",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "sicurezza ICT",
+                        "gestione",
+                        "infrastrutture"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione della sicurezza ICT",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "sicurezza informatica",
+                        "gestione sicurezza",
+                        "ICT"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "ICT Security Specialist",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "sicurezza",
+                        "ICT",
+                        "specialista"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Sistemi Operativi",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Amministrazione di sistemi",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "sistemi operativi",
+                        "amministrazione",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Amministrazione di Sistemi",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "sistemi operativi",
+                        "amministrazione sistemi",
+                        "gestione server"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Networking",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Specialista di rete",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "networking",
+                        "specialista di rete",
+                        "infrastrutture"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Network Specialist",
+                    "livello": "Certificazione Cisco",
+                    "tag_gara": [
+                        "networking",
+                        "Cisco",
+                        "protezione civile"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Network Specialist",
+                    "livello": "Certificazione Cisco",
+                    "tag_gara": [
+                        "networking",
+                        "Cisco",
+                        "certificazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Network Specialist",
+                    "livello": "Certificazione Cisco",
+                    "tag_gara": [
+                        "networking",
+                        "Cisco",
+                        "certificazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Configurazione di sistemi di condizionamento con ventole hot-swappable",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "condizionamento",
+                        "ventole",
+                        "hot-swap"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Configurazione di sistemi di condizionamento con valvole a 2-vie e 3-vie",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "condizionamento",
+                        "valvole",
+                        "2-vie"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Configurazione di sistemi di condizionamento con doppia alimentazione",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "condizionamento",
+                        "alimentazione",
+                        "doppia"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Configurazione di sistemi di condizionamento con modulazione dinamica",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "condizionamento",
+                        "modulazione",
+                        "dinamica"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Configurazione di quadri di distribuzione con moduli interruttore hot-swappable",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "quadri",
+                        "interruttore",
+                        "hot-swap"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Configurazione di interruttori monitorabili da remoto",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "interruttori",
+                        "monitoraggio",
+                        "remoto"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Configurazione di quadri di distribuzione con display locale",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "quadri",
+                        "display",
+                        "locale"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Infrastrutture",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione e configurazione infrastrutture",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "infrastrutture",
+                        "configurazione",
+                        "esperienza"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione e configurazione infrastrutture",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "infrastrutture",
+                        "configurazione",
+                        "esperienza"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione di infrastrutture con tecnologie simili o compatibili",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "infrastrutture",
+                        "tecnologie",
+                        "compatibili"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Incidenti",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Risposta a incidenti e calamità",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "incidenti",
+                        "calamità",
+                        "risposta",
+                        "intervento"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione ticket",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "ticket",
+                        "gestione",
+                        "incidenti",
+                        "supporto"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Risposta a incidenti e calamità",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "incidenti",
+                        "calamità",
+                        "risposta",
+                        "intervento"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione ticket",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "ticket",
+                        "gestione",
+                        "incidenti",
+                        "supporto"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Analisi approfondita delle segnalazioni",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "analisi",
+                        "incidenti",
+                        "gestione",
+                        "segnalazioni"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Sicurezza e Privacy",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Security-by-design e privacy-by-design",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "sicurezza",
+                        "privacy",
+                        "design",
+                        "competenze"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Security-by-design e privacy-by-design",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "sicurezza",
+                        "privacy",
+                        "design",
+                        "competenze"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Documentazione",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Piano di subentro e documentazione tecnica",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "subentro",
+                        "documentazione",
+                        "piano",
+                        "flessibilità"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Piano di subentro e documentazione tecnica",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "subentro",
+                        "documentazione",
+                        "piano",
+                        "flessibilità"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Personalizzazione Software",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Parametrizzazione di software e sistemi",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "personalizzazione",
+                        "software",
+                        "parametrizzazione",
+                        "certificazioni"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Parametrizzazione di software e sistemi",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "personalizzazione",
+                        "software",
+                        "parametrizzazione",
+                        "certificazioni"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione e Monitoraggio",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione e monitoraggio del sistema",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "monitoraggio",
+                        "supporto",
+                        "diagnostica"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione e monitoraggio del sistema",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "monitoraggio",
+                        "supporto",
+                        "diagnostica"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Formazione e Supporto",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Formazione, assistenza on site e supporto specialistico",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "formazione",
+                        "assistenza",
+                        "supporto",
+                        "specialistico"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Formazione, assistenza e supporto specialistico",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "formazione",
+                        "assistenza",
+                        "supporto",
+                        "specialistico"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Formazione, assistenza on site e supporto specialistico",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "formazione",
+                        "assistenza",
+                        "supporto",
+                        "specialistico"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Formazione, assistenza e supporto specialistico",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "formazione",
+                        "assistenza",
+                        "supporto",
+                        "specialistico"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Formazione e assistenza specialistica",
+                    "livello": "Esperienza multidisciplinare",
+                    "tag_gara": [
+                        "formazione",
+                        "supporto",
+                        "specialistico"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Training and Support",
+                    "livello": "Esperienza Multidisciplinare",
+                    "tag_gara": [
+                        "formazione",
+                        "supporto",
+                        "multidisciplinare"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Help Desk",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Help desk di II° livello – assistenza da remoto",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "help desk",
+                        "assistenza",
+                        "remoto",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Help desk di II° livello – assistenza da remoto",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "help desk",
+                        "assistenza",
+                        "remoto",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Assistenza Tecnica",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Assistenza in remoto",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "assistenza",
+                        "remoto",
+                        "supporto",
+                        "ticketing"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Assistenza in remoto",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "assistenza",
+                        "remoto",
+                        "supporto",
+                        "ticketing"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Assistenza in remoto",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "assistenza",
+                        "remoto",
+                        "supporto",
+                        "ticketing"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Monitoraggio",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Monitoraggio automatico",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "monitoraggio",
+                        "automatico",
+                        "sistemi",
+                        "log"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Monitoraggio automatico",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "monitoraggio",
+                        "automatico",
+                        "sistemi",
+                        "log"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Strumenti software di monitoraggio",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "monitoraggio",
+                        "software",
+                        "strumenti",
+                        "qualità"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Conoscenza",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Knowledge base",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "knowledge",
+                        "base",
+                        "documentazione",
+                        "report"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Knowledge base",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "knowledge",
+                        "base",
+                        "documentazione",
+                        "report"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Sistemi",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione sistemi ed applicativi software (GESA)",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "sistemi",
+                        "applicativi",
+                        "software"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione sistemi ed applicativi software (GESA)",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "sistemi",
+                        "applicativi",
+                        "software"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Progetti",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione del Progetto e del Portfolio",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione progetti",
+                        "portfolio",
+                        "competenze multidisciplinari"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Project Management",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "project management",
+                        "gestione progetti",
+                        "PMI"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione del Progetto e del Portfolio",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "progetto",
+                        "portfolio",
+                        "competenza"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Project Manager",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "progetti",
+                        "manager"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione del Progetto e del Portfolio",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione progetto",
+                        "portfolio",
+                        "competenza avanzata"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione del Rischio",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione rischio",
+                        "competenza avanzata"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione della Relazione",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione relazione",
+                        "competenza avanzata"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Rischio",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione del Rischio",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione rischio",
+                        "competenze multidisciplinari"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione del Rischio",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "rischio",
+                        "competenza",
+                        "progetto"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Relazioni",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione della Relazione",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione relazioni",
+                        "competenze multidisciplinari"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione della Relazione",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "relazione",
+                        "competenza",
+                        "progetto"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Livelli di Servizio",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione dei Livelli di Servizio",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "livelli di servizio",
+                        "monitoraggio",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione dei Livelli di Servizio",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "gestione",
+                        "livelli",
+                        "servizio",
+                        "competenza"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Erogazione Servizi",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Erogazione del Servizio",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "erogazione servizi",
+                        "monitoraggio",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Erogazione del Servizio",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "erogazione",
+                        "servizio",
+                        "competenza",
+                        "progetto"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Erogazione del Servizio",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "erogazione servizio",
+                        "base"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Monitoraggio Software",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Strumenti software di monitoraggio",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "monitoraggio",
+                        "software",
+                        "qualità"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Ticket",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione dei ticket",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "gestione ticket",
+                        "multicanalità",
+                        "software"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Gestione dei ticket",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "gestione",
+                        "ticket",
+                        "multicanalità",
+                        "strumentazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Assistenza",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Assistenza specialistica",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "assistenza",
+                        "specialistica",
+                        "sistemi"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "High Availability",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Sistemi High Availability",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "high",
+                        "availability",
+                        "sistemi",
+                        "protezione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Datacenter",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Manutenzione Data Center",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "data center",
+                        "manutenzione",
+                        "refurbishment"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Refurbishment di sala data center",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "data center",
+                        "refurbishment",
+                        "manutenzione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Manutenzione di sala data center",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "manutenzione",
+                        "data center",
+                        "servizi"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Manutenzione data center",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "manutenzione",
+                        "data center",
+                        "12 mesi"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Sala data center",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "datacenter",
+                        "refurbishment",
+                        "manutenzione",
+                        "condizionamento"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Unità di condizionamento",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "condizionamento",
+                        "ventole",
+                        "hot-swap",
+                        "modulazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Interruttori monitorabili da remoto",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "interruttori",
+                        "monitorabili",
+                        "remoto",
+                        "DCIM"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Display sui quadri",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "display",
+                        "quadri",
+                        "locale",
+                        "distribuzione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Condizionamento data center",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "data center",
+                        "condizionamento",
+                        "manutenzione",
+                        "refurbishment"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Quadri elettrici",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "quadri elettrici",
+                        "distribuzione",
+                        "data center"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Gestione SLA",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "SLA",
+                        "manutenzione",
+                        "tempo di intervento",
+                        "tempo di ripristino"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Manutenzione Data Center",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "manutenzione",
+                        "data center",
+                        "refurbishment"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Refurbishment di una sala data center",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "data center",
+                        "manutenzione",
+                        "refurbishment"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Manutenzione di 12 mesi",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "manutenzione",
+                        "data center",
+                        "12 mesi"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Sala data center",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "data center",
+                        "refurbishment",
+                        "manutenzione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Unità di condizionamento",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "condizionamento",
+                        "ventole hot-swap",
+                        "modulazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Display sui quadri",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "display",
+                        "quadri di distribuzione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Condizionamento data center",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "data center",
+                        "condizionamento",
+                        "manutenzione",
+                        "DCIM"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Simulazione CFD",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "simulazione",
+                        "CFD",
+                        "progettazione",
+                        "analisi"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Unità di condizionamento hot-swappable",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "unità condizionamento",
+                        "hot-swappable",
+                        "manutenzione",
+                        "sostituzione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Quadri modulari di distribuzione elettrica",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "distribuzione",
+                        "elettrica",
+                        "quadri",
+                        "modulari"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Chiller per refrigerazione",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "chiller",
+                        "refrigerazione",
+                        "acqua",
+                        "ridondanza"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Manutenzione in garanzia",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "manutenzione",
+                        "garanzia",
+                        "SLA",
+                        "tempestività"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                },
+                {
+                    "nome_normalizzato": "Ripristino funzionale",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "ripristino",
+                        "funzionale",
+                        "tempi",
+                        "intervento"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                }
+            ]
+        },
+        {
+            "area": "Cybersecurity",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Certificato di firma digitale",
+                    "livello": "Certificazione Specifica",
+                    "tag_gara": [
+                        "firma digitale",
+                        "certificazione",
+                        "sicurezza informatica"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Fornitura del refurbishment di una sala data center e relativa manutenzione di 12 mesi"
+                }
+            ]
+        },
+        {
+            "area": "Sviluppo Software",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Developer",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "sviluppo",
+                        "software",
+                        "programmazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Reti",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Network Specialist",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "reti",
+                        "specialista",
+                        "infrastruttura"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Infrastrutture IT",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione e monitoraggio del sistema",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "monitoraggio",
+                        "gestione",
+                        "infrastrutture",
+                        "IT"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Formazione, assistenza on site e supporto specialistico",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "formazione",
+                        "assistenza",
+                        "supporto",
+                        "specialistico"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Passaggio consegne – dati e documentazione tecnica",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "passaggio",
+                        "consegne",
+                        "documentazione",
+                        "tecnica"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Configurazione e Personalizzazione",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Personalizzazione e parametrizzazione di software e sistemi",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "personalizzazione",
+                        "parametrizzazione",
+                        "software",
+                        "sistemi"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Ticketing",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Sistema di rendicontazione e ticketing",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "rendicontazione",
+                        "ticketing",
+                        "sistema",
+                        "gestione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione della Qualità",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Documentazione e knowledge base",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "documentazione",
+                        "qualità",
+                        "knowledge",
+                        "base"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Sistemi e Applicativi",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione sistemi ed applicativi software (GESA)",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "gestione",
+                        "sistemi",
+                        "applicativi",
+                        "software"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Supporto e Assistenza",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Servizi di Passaggio consegne – dati e documentazione tecnica – parallelo",
+                    "livello": "Avanzato",
+                    "tag_gara": [
+                        "passaggio",
+                        "consegne",
+                        "dati",
+                        "documentazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Servizi",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Gestione dei Livelli di Servizio",
+                    "livello": "Base",
+                    "tag_gara": [
+                        "livelli di servizio",
+                        "gestione",
+                        "base"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Gestione Progetti ICT",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Project Management",
+                    "livello": "Certificazione UNI 11621-2",
+                    "tag_gara": [
+                        "project management",
+                        "ICT",
+                        "protezione civile"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Project Management",
+                    "livello": "Certificazione UNI 11621-2",
+                    "tag_gara": [
+                        "project management",
+                        "ICT",
+                        "certificazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "Project Management",
+                    "livello": "Certificazione UNI 11621-2",
+                    "tag_gara": [
+                        "project management",
+                        "ICT",
+                        "certificazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Sicurezza ICT",
+            "competenze": [
+                {
+                    "nome_normalizzato": "ICT Security Management",
+                    "livello": "Certificazione ISO 27001",
+                    "tag_gara": [
+                        "sicurezza ICT",
+                        "ISO 27001",
+                        "protezione civile"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "ICT Security Management",
+                    "livello": "Certificazione ISO 27001",
+                    "tag_gara": [
+                        "sicurezza ICT",
+                        "ISO 27001",
+                        "certificazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, gli impianti speciali ed i sistemi High Availability (HA) delle Protezione Civile Regionale"
+                },
+                {
+                    "nome_normalizzato": "ICT Security Management",
+                    "livello": "Certificazione ISO 27001",
+                    "tag_gara": [
+                        "sicurezza ICT",
+                        "ISO 27001",
+                        "certificazione"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale"
+                }
+            ]
+        },
+        {
+            "area": "Formazione ICT",
+            "competenze": [
+                {
+                    "nome_normalizzato": "Training Specialist",
+                    "livello": "Esperienza documentata",
+                    "tag_gara": [
+                        "formazione",
+                        "ICT",
+                        "protezione civile"
+                    ],
+                    "skill": "Competenza dimostrata nel progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale"
+                }
+            ]
+        }
+    ]
+}

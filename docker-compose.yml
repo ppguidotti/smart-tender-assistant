@@ -1,0 +1,46 @@
+# Smart Tender Assistant — stack infrastrutturale (B9 + B1 Tika).
+# Si appoggia al contesto Docker attivo: con Docker Desktop avviato e
+# `docker context use desktop-linux`, gira interamente lì.
+#
+#   docker compose up -d tika                 # solo Tika (serve a B1)
+#   docker compose up -d                      # tika + postgres + qdrant
+#
+# I container app/frontend non sono qui: per ora girano nel venv locale.
+name: smart-tender
+
+services:
+  tika:
+    image: apache/tika:latest
+    container_name: sta-tika
+    ports:
+      - "9998:9998"
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16
+    container_name: sta-postgres
+    environment:
+      POSTGRES_USER: sta
+      POSTGRES_PASSWORD: sta
+      POSTGRES_DB: smart_tender
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Applica lo schema (B9) al primo avvio del volume:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: sta-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrantdata:/qdrant/storage
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  qdrantdata:

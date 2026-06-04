@@ -1,0 +1,72 @@
+{
+    "oggetto": "Servizi di gestione e manutenzione di infrastrutture IT",
+    "ente_appaltante": "Ministero delle Infrastrutture e dei Trasporti",
+    "cpv": "50324100-3",
+    "canale": "Gara pubblica",
+    "valore_stimato_eur": 2000000,
+    "durata_mesi": 36,
+    "scadenza_offerta": "2023-12-15",
+    "data_analisi": "2023-10-10",
+    "esito_reale": "Analizzata",
+    "decisione_aziendale": "GO",
+    "output_m1": {
+        "bando_oggetto": "Servizi di gestione e manutenzione di infrastrutture IT",
+        "n_amministrativa": 5,
+        "n_normativa": 3,
+        "n_qualificazione": 4,
+        "n_tecnica": 6,
+        "n_requisiti_totali": 18
+    },
+    "output_m2": {
+        "copertura_percentuale": 85.0,
+        "framework_identificati": [
+            "ISO 9001",
+            "ISO 14001",
+            "ITIL"
+        ],
+        "item_coperti": [
+            "Certificazione ISO 9001",
+            "Certificazione ISO 14001",
+            "Esperienza triennale in servizi analoghi"
+        ],
+        "item_non_coperti": [
+            "Certificazione ISO 27001",
+            "Referenze specifiche per contratti di manutenzione IT superiori a 500k"
+        ]
+    },
+    "output_m3": {
+        "totale_gap_escludenti": 1,
+        "gap_escludenti": [
+            {
+                "requisito": "Certificazione ISO 27001",
+                "impatto": "Escludente",
+                "azione_rimedio": "Ricorso ad Avvalimento per ISO 27001",
+                "stato": "Non soddisfatto"
+            }
+        ],
+        "gap_preferenziali": [
+            {
+                "requisito": "Referenze specifiche per contratti di manutenzione IT superiori a 500k",
+                "impatto": "Preferenziale",
+                "azione_rimedio": "Collaborazione con partner che possiede le referenze richieste",
+                "stato": "Non soddisfatto"
+            }
+        ]
+    },
+    "nuove_evidenze_emerse": [
+        {
+            "requisito": "Certificazione ISO 27001",
+            "tipo": "Certificazione",
+            "soddisfatto": false,
+            "validato_da": "Ente di certificazione accreditato"
+        },
+        {
+            "requisito": "Referenze specifiche per contratti di manutenzione IT superiori a 500k",
+            "tipo": "Referenza",
+            "soddisfatto": false,
+            "validato_da": "Stazione appaltante"
+        }
+    ],
+    "id": "gara_4199-25",
+    "file_bando": "BANDO_UNIFICATO.pdf"
+}

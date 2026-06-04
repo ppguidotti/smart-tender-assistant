@@ -1,0 +1,62 @@
+{
+  "_note": "Record di una gara persa — utile per capire i gap ricorrenti e migliorare il profilo.",
+  "id": "GARA_202501_OSPEDALE_EDR",
+  "data_analisi": "2025-01-08",
+  "ente_appaltante": "[PA_SANITARIA_NORD_ITALIA]",
+  "oggetto": "Fornitura licenze piattaforma EDR/XDR e servizio di Threat Intelligence managed 36 mesi",
+  "valore_stimato_eur": 180000,
+  "durata_mesi": 36,
+  "cpv": "48730000-4",
+  "canale": "MePA",
+  "scadenza_offerta": "2025-02-10",
+  "file_bando": "bandi/202501_ospedale_edr.pdf",
+  "output_m1": {
+    "bando_oggetto": "EDR/XDR + Threat Intelligence managed — PA sanitaria",
+    "n_requisiti_totali": 18,
+    "n_qualificazione": 4,
+    "n_normativa": 7,
+    "n_tecnica": 5,
+    "n_amministrativa": 2
+  },
+  "output_m2": {
+    "framework_identificati": [
+      "GDPR",
+      "ISO 27001",
+      "NIS2",
+      "D.lgs 36/2023"
+    ],
+    "item_coperti": 5,
+    "item_non_coperti": 2,
+    "copertura_percentuale": 71.4
+  },
+  "output_m3": {
+    "gap_escludenti": [
+      {
+        "requisito": "Certificazione ISO/IEC 27017 — sicurezza cloud specifica per settore sanitario",
+        "stato": "NON_COPERTO",
+        "tipo": "ESCLUDENTE",
+        "impatto": "Esclusione dalla gara",
+        "azione_rimedio": "Ottenere ISO 27017 — iter ~6 mesi, costo stimato €8.000"
+      }
+    ],
+    "gap_preferenziali": [],
+    "totale_gap_escludenti": 1
+  },
+  "score_finale": 0,
+  "raccomandazione_sistema": "NO_GO",
+  "motivo_override": "Gap escludente rilevato — ISO 27017 obbligatoria per settore sanitario",
+  "decisione_aziendale": "NO_GO",
+  "esito_reale": "NON_PARTECIPATO",
+  "note_responsabile": "Corretta la raccomandazione NO_GO del sistema. ISO 27017 non presente nel nostro portfolio. Da valutare se ottenere la certificazione considerando la frequenza di gare analoghe nel settore sanitario.",
+  "nuove_evidenze_emerse": [
+    {
+      "tipo": "GAP_CRITICO_RICORRENTE",
+      "requisito": "ISO/IEC 27017 — cloud security specifica",
+      "soddisfatto": false,
+      "azione_rimedio": "Avviare iter certificazione ISO 27017 entro Q2 2025",
+      "aggiunto_a_profilo": "coda_revisione.json",
+      "validato_da": "direttore.commerciale@techserv.it",
+      "data_validazione": "2025-01-09"
+    }
+  ]
+}

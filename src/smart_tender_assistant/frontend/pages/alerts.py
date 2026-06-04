@@ -87,8 +87,8 @@ for c in urgent_certs:
 # ---------------------------------------------------------------------------
 
 st.markdown(
-    f'<div class="stca-alrt-hd" style="background:#F8F7F5;color:#4A4A62;'
-    f"border:1px solid rgba(0,0,0,0.07);border-bottom:none;border-radius:8px 8px 0 0\">"
+    '<div class="stca-alrt-hd" style="background:#F8F7F5;color:#4A4A62;'
+    "border:1px solid rgba(0,0,0,0.07);border-bottom:none;border-radius:8px 8px 0 0\">"
     "🔔 Prossime scadenze — entro 6 mesi</div>",
     unsafe_allow_html=True,
 )

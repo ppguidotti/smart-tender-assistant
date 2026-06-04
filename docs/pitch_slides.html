@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STCA · Pitch · GenAI Innovation Sprint 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F4F1; --navy:#0D0D1A; --or:#E87722; --or-pale:#FEF3E8; --or-mid:#FDDCBB;
+    --gn:#15803D; --gn-bg:#F0FDF4; --gn-bd:#BBF7D0;
+    --rd:#B91C1C; --rd-bg:#FEF2F2; --rd-bd:#FECACA;
+    --bl:#1D4ED8; --bl-bg:#EFF6FF; --bl-bd:#BFDBFE;
+    --gr-t:#6B7280; --gr-bd:#E5E7EB; --sf:#fff;
+    --font:"Plus Jakarta Sans",system-ui,sans-serif; --mono:"JetBrains Mono",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:var(--font);background:var(--navy);color:var(--navy);overflow:hidden}
+  #deck{position:relative;width:100vw;height:100vh}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:6vh 9vw;background:var(--bg);opacity:0;transition:opacity .35s ease}
+  .slide.active{display:flex;opacity:1}
+  .slide.dark{background:var(--navy);color:#fff}
+  .kicker{font-size:.8rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:1.1rem}
+  .slide.dark .kicker{color:var(--or)}
+  h1{font-size:4.2rem;font-weight:800;line-height:1.04;letter-spacing:-.02em}
+  h2{font-size:2.9rem;font-weight:800;line-height:1.08;letter-spacing:-.015em;margin-bottom:1.6rem}
+  .sub{font-size:1.35rem;font-weight:500;color:var(--gr-t);margin-top:1.4rem;max-width:46ch}
+  .slide.dark .sub{color:#A9A9BC}
+  .lead{font-size:1.6rem;font-weight:500;line-height:1.5;max-width:34ch}
+  .lead strong{color:var(--or);font-weight:700}
+  .accent{color:var(--or)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:.4rem}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+  .card{background:var(--sf);border:1px solid var(--gr-bd);border-radius:16px;padding:1.5rem 1.6rem}
+  .card .t{font-size:1.15rem;font-weight:700;margin-bottom:.4rem}
+  .card .d{font-size:1rem;color:var(--gr-t);line-height:1.45}
+  .card .ic{font-size:1.5rem;margin-bottom:.6rem;display:block}
+  ul.clean{list-style:none;margin-top:.5rem}
+  ul.clean li{font-size:1.3rem;line-height:1.85;padding-left:2rem;position:relative}
+  ul.clean li::before{content:"→";position:absolute;left:0;color:var(--or);font-weight:700}
+  ul.clean li b{font-weight:700}
+  .steps{display:flex;gap:.8rem;margin-top:.5rem;flex-wrap:wrap}
+  .step{flex:1;min-width:180px;background:var(--sf);border:1px solid var(--gr-bd);border-radius:14px;padding:1.2rem 1.2rem;position:relative}
+  .step .n{font-family:var(--mono);font-size:.85rem;font-weight:600;color:var(--or);margin-bottom:.5rem}
+  .step .st{font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
+  .step .sd{font-size:.92rem;color:var(--gr-t);line-height:1.4}
+  table{width:100%;border-collapse:collapse;margin-top:.5rem;font-size:1.12rem}
+  th,td{text-align:left;padding:1rem 1.1rem;border-bottom:1px solid var(--gr-bd);vertical-align:top}
+  th{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gr-t)}
+  td b{font-weight:700}
+  .lim{color:var(--rd);font-weight:600}
+  .badge{display:inline-block;font-family:var(--mono);font-size:.8rem;font-weight:600;padding:.28rem .7rem;border-radius:999px;border:1px solid}
+  .b-esc{background:var(--rd-bg);color:var(--rd);border-color:var(--rd-bd)}
+  .b-go{background:var(--gn-bg);color:var(--gn);border-color:var(--gn-bd)}
+  .b-tr{background:var(--bl-bg);color:var(--bl);border-color:var(--bl-bd)}
+  .kpis{display:flex;gap:2.6rem;margin-top:2rem}
+  .kpi .v{font-size:3.2rem;font-weight:800;color:var(--or);line-height:1}
+  .kpi .l{font-size:1rem;color:var(--gr-t);margin-top:.4rem;max-width:16ch}
+  .demo-box{margin-top:2rem;background:var(--navy);color:#fff;border-radius:18px;padding:2.4rem 2.6rem;max-width:40ch}
+  .demo-box .big{font-size:1.5rem;font-weight:700;line-height:1.4}
+  .demo-seq{display:flex;gap:.6rem;margin-top:1.6rem;flex-wrap:wrap}
+  .demo-seq span{font-family:var(--mono);font-size:.82rem;background:rgba(232,119,34,.15);color:var(--or);border:1px solid rgba(232,119,34,.4);padding:.3rem .7rem;border-radius:8px}
+  .team{display:flex;gap:1.1rem;margin-top:.5rem}
+  .team .m{flex:1;background:var(--sf);border:1px solid var(--gr-bd);border-radius:14px;padding:1.4rem}
+  .team .m .nm{font-size:1.2rem;font-weight:700}
+  .team .m .rl{font-size:.95rem;color:var(--or);font-weight:600;margin-top:.2rem}
+  .team .m .ds{font-size:.9rem;color:var(--gr-t);margin-top:.5rem;line-height:1.4}
+  .footer{position:fixed;bottom:1.4rem;left:9vw;right:9vw;display:flex;justify-content:space-between;
+    font-family:var(--mono);font-size:.74rem;color:var(--gr-t);letter-spacing:.04em}
+  .slide.dark ~ .footer{color:#6B6B80}
+  .logo{font-family:var(--mono);font-weight:600}
+  .logo .dot{color:var(--or)}
+  .time{color:var(--or);font-weight:600}
+  .ph{color:var(--gr-t);font-style:italic}
+  .progress{position:fixed;top:0;left:0;height:4px;background:var(--or);transition:width .3s}
+  .hint{position:fixed;bottom:1.3rem;left:50%;transform:translateX(-50%);font-family:var(--mono);
+    font-size:.68rem;color:#bbb;opacity:.5}
+  .big-num{font-family:var(--mono);font-weight:600;color:var(--or)}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div id="deck">
+
+  <!-- 1 · HOOK -->
+  <section class="slide dark active" data-time="0:00">
+    <div class="kicker">GenAI Innovation Sprint 2026 · VEM Sistemi</div>
+    <h1>Da <span class="accent">ore</span> a <span class="accent">minuti</span>:<br>la decisione GO/NO-GO<br>su un bando PA.</h1>
+    <p class="sub">80 pagine, 30 requisiti nascosti tra rinvii normativi e tabelle. Un requisito escludente non visto = offerta persa prima di scriverla. Noi lo risolviamo in minuti — tracciabile e auditabile.</p>
+    <div style="margin-top:2.4rem" class="logo">Smart Tender Compliance Assistant <span class="dot">●</span> STCA</div>
+  </section>
+
+  <!-- 2 · PROBLEMA -->
+  <section class="slide" data-time="0:30">
+    <div class="kicker">Il problema</div>
+    <h2>Analizzare un bando PA oggi è<br>lento, fragile e non ripetibile.</h2>
+    <div class="grid2">
+      <div class="card"><span class="ic">⏳</span><div class="t">Tempo</div><div class="d">Ore-uomo di un pre-sales senior per ogni bando. Collo di bottiglia sulla risorsa più costosa.</div></div>
+      <div class="card"><span class="ic">⚠️</span><div class="t">Errore costoso</div><div class="d">Match requisiti ↔ certificazioni fatto a mano: una svista su un <b>requisito escludente</b> = esclusione in gara.</div></div>
+      <div class="card"><span class="ic">📊</span><div class="t">Zero standard</div><div class="d">Ogni analista ha il suo metodo. Decisioni GO/NO-GO non confrontabili nel tempo.</div></div>
+      <div class="card"><span class="ic">🧠</span><div class="t">Knowledge loss</div><div class="d">Referenze, gap risolti, esiti delle gare passate restano nella testa delle persone, non in un sistema.</div></div>
+    </div>
+  </section>
+
+  <!-- 3 · CHI / TARGET -->
+  <section class="slide" data-time="1:15">
+    <div class="kicker">Chi ha questo dolore</div>
+    <h2>Marco, ufficio gare.<br>E con lui ogni fornitore IT<br>che vende alla PA.</h2>
+    <div class="grid3" style="margin-top:.6rem">
+      <div class="card"><div class="t">Utente interno</div><div class="d">Pre-sales / ufficio gare / business developer di system integrator e fornitori IT.</div></div>
+      <div class="card"><div class="t">Segmento</div><div class="d"><b>B2B → B2B2G</b>: il nostro cliente vende, il cliente finale è la Pubblica Amministrazione.</div></div>
+      <div class="card"><div class="t">Perché conta</div><div class="d">Per chi vive di gare PA, velocità e accuratezza dell'analisi GO/NO-GO <b>sono</b> il vantaggio competitivo.</div></div>
+    </div>
+    <p class="sub">Ogni gara non valutata, o valutata male, è fatturato potenziale perso.</p>
+  </section>
+
+  <!-- 4 · SOLUZIONE -->
+  <section class="slide" data-time="2:00">
+    <div class="kicker">La soluzione</div>
+    <h2>Non un estrattore di requisiti.<br>Un <span class="accent">assistente decisionale</span>.</h2>
+    <p class="lead" style="margin-bottom:1.6rem">Legge il bando, lo confronta col profilo aziendale, produce una decisione <strong>GO/NO-GO motivata, tracciabile e auditabile</strong> in pochi minuti.</p>
+    <div class="steps">
+      <div class="step"><div class="n">01 · INGESTION</div><div class="st">Qualsiasi formato</div><div class="sd">PDF, DOCX, allegati, scansioni → testo strutturato che preserva articoli, tabelle e riferimenti.</div></div>
+      <div class="step"><div class="n">02 · ESTRAZIONE</div><div class="st">Requisiti + classe</div><div class="sd">Categoria, tipo (escludente/preferenziale), fonte, riferimenti normativi, evidenze, penali.</div></div>
+      <div class="step"><div class="n">03 · GAP ANALYSIS</div><div class="st">Match sul profilo</div><div class="sd">full / partial / none, severità e rimedio. Gap critici separati dai minori.</div></div>
+      <div class="step"><div class="n">04 · SCORING</div><div class="st">GO / NO-GO</div><div class="sd">Hard gate sugli escludenti + checklist amministrativa auto-generata.</div></div>
+    </div>
+  </section>
+
+  <!-- 5 · DIFFERENZIATORE -->
+  <section class="slide dark" data-time="3:00">
+    <div class="kicker">Il differenziatore</div>
+    <h2 style="font-size:3.4rem">Tracciabilità<br><span class="accent">non negoziabile.</span></h2>
+    <p class="lead" style="color:#fff;max-width:40ch">Ogni singola affermazione del sistema <strong>linka all'articolo e alla pagina</strong> di origine.</p>
+    <p class="sub" style="color:#A9A9BC">Per la PA non è un nice-to-have: è la differenza tra un output usabile in gara e un black-box inutilizzabile. È il nostro vantaggio rispetto a un LLM generico, che allucina i riferimenti normativi.</p>
+    <div style="margin-top:1.8rem"><span class="badge b-tr">fonte: Art. 8 · Capitolato · p.14</span></div>
+  </section>
+
+  <!-- 6 · DEMO -->
+  <section class="slide" data-time="3:30">
+    <div class="kicker">⭐ Demo live · ~2:45</div>
+    <h2>Vediamolo sul capitolato<br>EDR reale (anonimizzato).</h2>
+    <div style="display:flex;gap:3rem;align-items:flex-start">
+      <div class="demo-box">
+        <div class="big">🤖 Dal PDF alla<br>decisione GO/NO-GO,<br>dal vivo.</div>
+        <div class="demo-seq">
+          <span>1 · Caricamento</span><span>2 · M1 estrazione</span><span>3 · M2+M3 gap</span><span>4 · Score</span>
+        </div>
+      </div>
+      <ul class="clean" style="margin-top:.5rem">
+        <li><b>30 requisiti</b> estratti, ognuno con fonte cliccabile</li>
+        <li>In questa gara <b>tutti escludenti</b> → è un pass/fail</li>
+        <li>Gap certificazioni + vendor lock-in <b>flaggato auto</b></li>
+        <li>Decisione <span class="badge b-go">✓ GO</span> + checklist (CIG, CUP, MePA)</li>
+      </ul>
+    </div>
+    <p class="footer ph" style="position:static;margin-top:2rem">▸ Backup screenshot pronti se la live cade — niente debugging dal vivo.</p>
+  </section>
+
+  <!-- 7 · MERCATO -->
+  <section class="slide" data-time="6:15">
+    <div class="kicker">Mercato &amp; business case</div>
+    <h2>Un mercato grande,<br>un costo per gara minimo.</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="v">€<span class="ph">[…]</span> mld</div><div class="l">spesa pubblica IT/anno via gare (TAM)</div></div>
+      <div class="kpi"><div class="v"><span class="ph">[…]</span></div><div class="l">fornitori IT che fanno gare PA in Italia (SAM)</div></div>
+      <div class="kpi"><div class="v">&lt; 5 min</div><div class="l">vs ~<span class="ph">[…]</span> ore/uomo per analisi</div></div>
+      <div class="kpi"><div class="v">€<span class="ph">[…]</span></div><div class="l">costo compute LLM per gara analizzata</div></div>
+    </div>
+    <p class="sub" style="max-width:60ch">Modello <b>SaaS B2B</b> (per posti / per gara) oppure <b>on-prem</b> per chi ha vincoli di confidenzialità su profilo e storico gare. Margine enorme rispetto alle ore-uomo risparmiate.</p>
+  </section>
+
+  <!-- 8 · COMPETITOR -->
+  <section class="slide" data-time="7:45">
+    <div class="kicker">Competitor &amp; differenziazione</div>
+    <h2>Nessuno fa estrazione tracciabile<br>+ gap sul profilo + decisione auditabile.</h2>
+    <table>
+      <tr><th>Alternativa</th><th>Limite</th></tr>
+      <tr><td><b>ChatGPT / LLM generico</b></td><td class="lim">Nessuna tracciabilità, allucina i riferimenti normativi, non conosce il tuo profilo → inutilizzabile in gara.</td></tr>
+      <tr><td><b>Analisi manuale</b> (status quo)</td><td class="lim">Lenta, non standardizzata, knowledge persa, soggetta a sviste sugli escludenti.</td></tr>
+      <tr><td><b>Piattaforme di monitoraggio bandi</b></td><td class="lim">Ti <i>trovano</i> il bando, non ti dicono se puoi/devi parteciparci né dove sei carente.</td></tr>
+    </table>
+    <p class="sub" style="max-width:62ch">La nostra wedge: il sistema <b>impara</b> — ogni gara chiusa arricchisce il profilo aziendale come knowledge base.</p>
+  </section>
+
+  <!-- 9 · TEAM -->
+  <section class="slide" data-time="8:45">
+    <div class="kicker">Il team</div>
+    <h2>Competenze su LLM, dati<br>e dominio gare PA.</h2>
+    <div class="team">
+      <div class="m"><div class="nm"><span class="ph">[Nome]</span></div><div class="rl">Architettura · LLM strategy</div><div class="ds">Document processing, pipeline a contratti stabili.</div></div>
+      <div class="m"><div class="nm"><span class="ph">[Nome]</span></div><div class="rl">[Block ownership]</div><div class="ds"><span class="ph">[contributo]</span></div></div>
+      <div class="m"><div class="nm"><span class="ph">[Nome]</span></div><div class="rl">[Block ownership]</div><div class="ds"><span class="ph">[contributo]</span></div></div>
+    </div>
+    <p class="sub" style="max-width:60ch">Architettura <b>modulare a 10 blocchi</b> con contratti stabili — costruita per evolvere oltre l'hackathon, non solo per la demo.</p>
+  </section>
+
+  <!-- 10 · VISION / CLOSE -->
+  <section class="slide dark" data-time="9:30">
+    <div class="kicker">Vision</div>
+    <h1 style="font-size:3.6rem">Oggi: da ore a minuti.<br>Domani: un profilo che<br><span class="accent">si arricchisce da solo</span><br>a ogni gara.</h1>
+    <p class="sub" style="color:#A9A9BC;max-width:50ch">Un sistema che ti dice <b style="color:#fff">prima</b> quali bandi vincerai, e quali gap colmare per vincerne di più.</p>
+    <div style="margin-top:2.4rem;font-size:1.4rem;font-weight:700">La decisione GO/NO-GO, tracciabile, in minuti. <span class="accent">Grazie.</span></div>
+  </section>
+
+</div>
+
+<div class="footer">
+  <span class="logo">STCA <span class="dot">●</span> Smart Tender Compliance Assistant</span>
+  <span><span id="snum">1</span>/<span id="stot">10</span> · target <span class="time" id="stime">0:00</span></span>
+</div>
+<div class="hint">← → / spazio per navigare · F schermo intero</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  const snum=document.getElementById('snum'),stot=document.getElementById('stot'),
+        stime=document.getElementById('stime'),prog=document.getElementById('prog');
+  stot.textContent=slides.length;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    snum.textContent=i+1;
+    stime.textContent=slides[i].dataset.time||'';
+    prog.style.width=((i+1)/slides.length*100)+'%';
+  }
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();show(i-1);}
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(slides.length-1);
+    else if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+  document.addEventListener('click',e=>{if(e.clientX>window.innerWidth*0.5)show(i+1);else show(i-1);});
+  show(0);
+</script>
+</body>
+</html>

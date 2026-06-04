@@ -9,7 +9,6 @@ import streamlit as st
 
 from smart_tender_assistant.frontend.ui.stca_helpers import load_bandi
 from smart_tender_assistant.frontend.ui.theme import (
-    COLOR_AM,
     COLOR_GN,
     COLOR_RD,
     COLOR_T3,

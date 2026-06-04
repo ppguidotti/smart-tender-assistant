@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import time
 from math import pi
-from typing import Iterable
 
 import streamlit as st
 
@@ -370,19 +369,18 @@ with tab_req:
         ] + [("gap", f"⚠ Gap ({gaps_n + parc_n})")]
 
         col_chips, col_legend = st.columns([3, 1])
-        with col_chips:
-            with st.container(key="tdet_req_chips"):
-                cols = st.columns(len(filters))
-                for i, (k, lbl) in enumerate(filters):
-                    is_on = st.session_state["req_filter"] == k
-                    with cols[i]:
-                        if st.button(
-                            lbl,
-                            key=f"req_chip_{k}",
-                            type="primary" if is_on else "secondary",
-                        ):
-                            st.session_state["req_filter"] = k
-                            st.rerun(scope="fragment")
+        with col_chips, st.container(key="tdet_req_chips"):
+            cols = st.columns(len(filters))
+            for i, (k, lbl) in enumerate(filters):
+                is_on = st.session_state["req_filter"] == k
+                with cols[i]:
+                    if st.button(
+                        lbl,
+                        key=f"req_chip_{k}",
+                        type="primary" if is_on else "secondary",
+                    ):
+                        st.session_state["req_filter"] = k
+                        st.rerun(scope="fragment")
         with col_legend:
             st.markdown(
                 """

@@ -1,0 +1,70 @@
+{
+    "oggetto": "Sostituzione componenti di raffreddamento e alimentazione del Data Center",
+    "ente_appaltante": "Provincia Autonoma di Bolzano - Alto Adige",
+    "cpv": "45331230-7",
+    "canale": "Bandi Alto Adige",
+    "valore_stimato_eur": 980000,
+    "durata_mesi": 8,
+    "scadenza_offerta": "2025-12-23",
+    "data_analisi": "2023-10-11",
+    "esito_reale": "Analizzata",
+    "decisione_aziendale": "GO",
+    "output_m1": {
+        "bando_oggetto": "Sostituzione componenti di raffreddamento e alimentazione del Data Center",
+        "n_amministrativa": 5,
+        "n_normativa": 3,
+        "n_qualificazione": 4,
+        "n_tecnica": 7,
+        "n_requisiti_totali": 19
+    },
+    "output_m2": {
+        "copertura_percentuale": 85.0,
+        "framework_identificati": [
+            "Schneider Electric EcoExpert",
+            "ISO 27001"
+        ],
+        "item_coperti": [
+            "Certificazione EcoExpert",
+            "Certificazione ISO 27001"
+        ],
+        "item_non_coperti": [
+            "Certificazione Elite Partner",
+            "Certificazione Premier Partner"
+        ]
+    },
+    "output_m3": {
+        "totale_gap_escludenti": 1,
+        "gap_escludenti": [
+            {
+                "requisito": "Certificazione Elite Partner Schneider Electric",
+                "impatto": "Escludente",
+                "azione_rimedio": "Ricorso ad Avvalimento per Certificazione Elite Partner",
+                "stato": "Non soddisfatto"
+            }
+        ],
+        "gap_preferenziali": [
+            {
+                "requisito": "Certificazione Premier Partner Schneider Electric",
+                "impatto": "Preferenziale",
+                "azione_rimedio": "Costituzione RTI con partner qualificato",
+                "stato": "Non soddisfatto"
+            }
+        ]
+    },
+    "nuove_evidenze_emerse": [
+        {
+            "requisito": "Certificazione EcoExpert Schneider Electric",
+            "tipo": "Certificazione",
+            "soddisfatto": true,
+            "validato_da": "Documentazione interna"
+        },
+        {
+            "requisito": "Certificazione ISO 27001",
+            "tipo": "Certificazione",
+            "soddisfatto": true,
+            "validato_da": "Audit interno"
+        }
+    ],
+    "id": "gara_2929-25",
+    "file_bando": "BANDO_UNIFICATO.pdf"
+}

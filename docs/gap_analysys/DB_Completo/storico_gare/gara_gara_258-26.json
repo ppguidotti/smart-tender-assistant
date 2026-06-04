@@ -1,0 +1,62 @@
+{
+    "oggetto": "Acquisizione di un Sistema Storage comprensivo di componenti hardware, software e servizi.",
+    "ente_appaltante": "Venis Spa",
+    "cpv": "30236000-2",
+    "canale": "Sistema Dinamico di Acquisizione della Pubblica Amministrazione",
+    "valore_stimato_eur": 121575,
+    "durata_mesi": 60,
+    "scadenza_offerta": "2026-03-05",
+    "data_analisi": "2023-10-11",
+    "esito_reale": "Analizzata",
+    "decisione_aziendale": "GO",
+    "output_m1": {
+        "bando_oggetto": "Acquisizione di un Sistema Storage comprensivo di componenti hardware, software e servizi.",
+        "n_amministrativa": 5,
+        "n_normativa": 3,
+        "n_qualificazione": 4,
+        "n_tecnica": 6,
+        "n_requisiti_totali": 18
+    },
+    "output_m2": {
+        "copertura_percentuale": 85.0,
+        "framework_identificati": [
+            "NetApp",
+            "GDPR"
+        ],
+        "item_coperti": [
+            "Partner ufficiale NetApp livello Prestige",
+            "Certificazioni tecniche NetApp richieste"
+        ],
+        "item_non_coperti": [
+            "Requisiti di cybersecurity e gestione del rischio della supply chain ICT"
+        ]
+    },
+    "output_m3": {
+        "totale_gap_escludenti": 1,
+        "gap_escludenti": [
+            {
+                "requisito": "Requisiti di cybersecurity e gestione del rischio della supply chain ICT come da Allegato 8 bis.",
+                "impatto": "Escludente",
+                "azione_rimedio": "Ricorso ad Avvalimento per requisiti di cybersecurity.",
+                "stato": "Non soddisfatto"
+            }
+        ],
+        "gap_preferenziali": []
+    },
+    "nuove_evidenze_emerse": [
+        {
+            "requisito": "Certificazioni tecniche NetApp richieste (NS0-005, NS0-164, NS0-528, NS0-185).",
+            "tipo": "Certificazione",
+            "soddisfatto": true,
+            "validato_da": "Documentazione del produttore"
+        },
+        {
+            "requisito": "Partner ufficiale NetApp livello Prestige.",
+            "tipo": "Certificazione",
+            "soddisfatto": true,
+            "validato_da": "Documentazione del produttore"
+        }
+    ],
+    "id": "gara_258-26",
+    "file_bando": "BANDO_UNIFICATO.pdf"
+}

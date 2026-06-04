@@ -1,0 +1,78 @@
+{
+    "oggetto": "Refurbishment di una sala data center e relativa manutenzione di 12 mesi",
+    "ente_appaltante": "Insiel S.p.A.",
+    "cpv": "30200000-1",
+    "canale": "Procedura negoziata",
+    "valore_stimato_eur": 500000,
+    "durata_mesi": 12,
+    "scadenza_offerta": "2023-11-15",
+    "data_analisi": "2023-10-10",
+    "esito_reale": "Analizzata",
+    "decisione_aziendale": "GO",
+    "output_m1": {
+        "bando_oggetto": "Refurbishment di una sala data center e relativa manutenzione di 12 mesi",
+        "n_amministrativa": 5,
+        "n_normativa": 3,
+        "n_qualificazione": 2,
+        "n_tecnica": 9,
+        "n_requisiti_totali": 19
+    },
+    "output_m2": {
+        "copertura_percentuale": 85.0,
+        "framework_identificati": [
+            "ISO/IEC 27001",
+            "GDPR",
+            "CIRCOLARE AgID 2/2017"
+        ],
+        "item_coperti": [
+            "Iscrizione al Registro delle Imprese",
+            "Requisiti di sicurezza ICT",
+            "Certificazione ISO/IEC 27001"
+        ],
+        "item_non_coperti": [
+            "Simulazione CFD per prestazioni di condizionamento",
+            "Ventole hot-swappable"
+        ]
+    },
+    "output_m3": {
+        "totale_gap_escludenti": 2,
+        "gap_escludenti": [
+            {
+                "requisito": "Simulazione CFD per prestazioni di condizionamento",
+                "impatto": "Escludente",
+                "azione_rimedio": "Ricorso ad avvalimento per simulazione CFD",
+                "stato": "Non risolto"
+            },
+            {
+                "requisito": "Ventole hot-swappable",
+                "impatto": "Escludente",
+                "azione_rimedio": "Costituzione RTI con partner qualificato",
+                "stato": "Non risolto"
+            }
+        ],
+        "gap_preferenziali": [
+            {
+                "requisito": "Doppia alimentazione unità di condizionamento",
+                "impatto": "Preferenziale",
+                "azione_rimedio": "Acquisizione di unità conformi",
+                "stato": "Non risolto"
+            }
+        ]
+    },
+    "nuove_evidenze_emerse": [
+        {
+            "requisito": "Certificazione ISO/IEC 27001",
+            "tipo": "Certificazione",
+            "soddisfatto": true,
+            "validato_da": "Documentazione interna"
+        },
+        {
+            "requisito": "Requisiti di sicurezza ICT secondo CIRCOLARE AgID 2/2017",
+            "tipo": "Normativa",
+            "soddisfatto": true,
+            "validato_da": "Audit interno"
+        }
+    ],
+    "id": "gara_1778-23",
+    "file_bando": "BANDO_UNIFICATO.pdf"
+}

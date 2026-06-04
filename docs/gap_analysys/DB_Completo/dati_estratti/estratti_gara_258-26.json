@@ -1,0 +1,74 @@
+{
+    "per_collection_referenze": {
+        "societa_esecutrice": "Gruppo VEM",
+        "tipo_cliente": "Partecipata",
+        "anno": 2026,
+        "oggetto_progetto": "Acquisizione di un Sistema Storage comprensivo di componenti hardware, software e servizi, con inclusione del servizio di manutenzione e supporto hardware",
+        "nome_cliente": "Venis Spa",
+        "valore_euro": 121575,
+        "requisiti": "NetApp Certified Technology Solutions Professional (NS0-005 NCTSP) (Storage e Data Management), NetApp Certified Data Administrator, ONTAP (NS0-164 NCDA) (Storage e Data Management), NetApp Certified Implementation Engineer - Data Protection Specialist (NS0-528 NCIE Data Protection) (Storage e Data Management), NetApp Certified Storage Installation Engineer, ONTAP (NS0-185 NCSIE ONTAP) (Storage e Data Management), Requisiti di cybersecurity e gestione del rischio della supply chain ICT (Cybersecurity)",
+        "testo_vettorializzato": "Progetto: Acquisizione di un Sistema Storage comprensivo di componenti hardware, software e servizi, con inclusione del servizio di manutenzione e supporto hardware. Cliente: Venis Spa, settore: Informatica e Telecomunicazioni, tipo: Partecipata. Valore: 121575 euro. Requisiti tecnici estratti: NetApp Certified Technology Solutions Professional (NS0-005 NCTSP) (Storage e Data Management), NetApp Certified Data Administrator, ONTAP (NS0-164 NCDA) (Storage e Data Management), NetApp Certified Implementation Engineer - Data Protection Specialist (NS0-528 NCIE Data Protection) (Storage e Data Management), NetApp Certified Storage Installation Engineer, ONTAP (NS0-185 NCSIE ONTAP) (Storage e Data Management), Requisiti di cybersecurity e gestione del rischio della supply chain ICT (Cybersecurity)."
+    },
+    "per_collection_competenze": [
+        {
+            "area_tecnica": "Storage e Data Management",
+            "nome_competenza": "NetApp Certified Technology Solutions Professional (NS0-005 NCTSP)",
+            "livello": "Certificazione obbligatoria in corso di validità",
+            "tag_gara": [
+                "NetApp",
+                "certificazione",
+                "storage"
+            ],
+            "riferimento_progetto": "gara_258-26",
+            "testo_vettorializzato": "Area Tecnica: Storage e Data Management. Competenza: NetApp Certified Technology Solutions Professional (NS0-005 NCTSP). Livello richiesto: Certificazione obbligatoria in corso di validità. Tag ricavati: NetApp, certificazione, storage. Progetto d'origine: gara_258-26."
+        },
+        {
+            "area_tecnica": "Storage e Data Management",
+            "nome_competenza": "NetApp Certified Data Administrator, ONTAP (NS0-164 NCDA)",
+            "livello": "Certificazione obbligatoria in corso di validità",
+            "tag_gara": [
+                "NetApp",
+                "certificazione",
+                "data management"
+            ],
+            "riferimento_progetto": "gara_258-26",
+            "testo_vettorializzato": "Area Tecnica: Storage e Data Management. Competenza: NetApp Certified Data Administrator, ONTAP (NS0-164 NCDA). Livello richiesto: Certificazione obbligatoria in corso di validità. Tag ricavati: NetApp, certificazione, data management. Progetto d'origine: gara_258-26."
+        },
+        {
+            "area_tecnica": "Storage e Data Management",
+            "nome_competenza": "NetApp Certified Implementation Engineer - Data Protection Specialist (NS0-528 NCIE Data Protection)",
+            "livello": "Certificazione obbligatoria in corso di validità",
+            "tag_gara": [
+                "NetApp",
+                "certificazione",
+                "data protection"
+            ],
+            "riferimento_progetto": "gara_258-26",
+            "testo_vettorializzato": "Area Tecnica: Storage e Data Management. Competenza: NetApp Certified Implementation Engineer - Data Protection Specialist (NS0-528 NCIE Data Protection). Livello richiesto: Certificazione obbligatoria in corso di validità. Tag ricavati: NetApp, certificazione, data protection. Progetto d'origine: gara_258-26."
+        },
+        {
+            "area_tecnica": "Storage e Data Management",
+            "nome_competenza": "NetApp Certified Storage Installation Engineer, ONTAP (NS0-185 NCSIE ONTAP)",
+            "livello": "Certificazione obbligatoria in corso di validità",
+            "tag_gara": [
+                "NetApp",
+                "certificazione",
+                "installation"
+            ],
+            "riferimento_progetto": "gara_258-26",
+            "testo_vettorializzato": "Area Tecnica: Storage e Data Management. Competenza: NetApp Certified Storage Installation Engineer, ONTAP (NS0-185 NCSIE ONTAP). Livello richiesto: Certificazione obbligatoria in corso di validità. Tag ricavati: NetApp, certificazione, installation. Progetto d'origine: gara_258-26."
+        },
+        {
+            "area_tecnica": "Cybersecurity",
+            "nome_competenza": "Requisiti di cybersecurity e gestione del rischio della supply chain ICT",
+            "livello": "Conformità alla normativa vigente (Legge 28 giugno 2024 n. 90, Decreto legislativo 4 settembre 2024 n. 138)",
+            "tag_gara": [
+                "cybersecurity",
+                "supply chain",
+                "ICT"
+            ],
+            "riferimento_progetto": "gara_258-26",
+            "testo_vettorializzato": "Area Tecnica: Cybersecurity. Competenza: Requisiti di cybersecurity e gestione del rischio della supply chain ICT. Livello richiesto: Conformità alla normativa vigente (Legge 28 giugno 2024 n. 90, Decreto legislativo 4 settembre 2024 n. 138). Tag ricavati: cybersecurity, supply chain, ICT. Progetto d'origine: gara_258-26."
+        }
+    ]
+}

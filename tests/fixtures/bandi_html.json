@@ -1,5 +1,24 @@
 [
   {
+    "id": "live-edr",
+    "nome": "Capitolato EDR — estrazione B2 reale",
+    "short_nome": "EDR — estrazione reale",
+    "ente": "[PA locale]",
+    "valore": 52500,
+    "scadenza": "30/05/2026",
+    "giorni_mancanti": 8,
+    "canale": "MePA",
+    "cpv": "48730000-4",
+    "status": "analisi",
+    "uploaded_at": null,
+    "files": [
+      "Capitolato Gara - Anonimizzato.pdf",
+      "Requisiti_Anonimizzato.pdf"
+    ],
+    "analisi_completa": true,
+    "gng_confermato": false
+  },
+  {
     "id": "edr-001",
     "nome": "Fornitura licenze piattaforma EDR — 36 mesi",
     "short_nome": "Piattaforma EDR — 36m",
@@ -11,7 +30,11 @@
     "cpv": "48730000-4",
     "status": "analisi",
     "uploaded_at": "12/05/2026",
-    "files": ["Capitolato_speciale.pdf", "Allegato_tecnico.pdf", "FAQ_ente.docx"],
+    "files": [
+      "Capitolato_speciale.pdf",
+      "Allegato_tecnico.pdf",
+      "FAQ_ente.docx"
+    ],
     "analisi_completa": true,
     "gng_confermato": false
   },

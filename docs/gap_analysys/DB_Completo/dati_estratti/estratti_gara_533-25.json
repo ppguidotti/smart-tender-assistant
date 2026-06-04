@@ -1,0 +1,206 @@
+{
+    "per_collection_referenze": {
+        "societa_esecutrice": "Gruppo VEM",
+        "tipo_cliente": "Pubblica Amministrazione",
+        "anno": 2024,
+        "oggetto_progetto": "Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale",
+        "nome_cliente": "Regione Marche",
+        "valore_euro": 1049782,
+        "requisiti": "Project Manager (UNI 11621-2) (Gestione Progetti ICT), Business Information Manager (UNI 11621-2) (Analisi Funzionale), Database Administrator (UNI 11621-2) (Database), Developer (UNI 11621-2) (Sviluppo Software), Digital Media Specialist (UNI 11621-2) (Media Digitali), Enterprise Architect (UNI 11621-2) (Architettura Enterprise), ICT Consultant (UNI 11621-2) (Consulenza ICT), ICT Security Manager (UNI 11621-2) (Sicurezza ICT), ICT Security Specialist (UNI 11621-2) (Sicurezza ICT), Network Specialist (UNI 11621-2) (Networking), Quality Assurance Manager (UNI 11621-2) (Assicurazione Qualità), Service Manager (UNI 11621-2) (Gestione Servizi), Systems Administrator (UNI 11621-2) (Amministrazione Sistemi), Systems Analyst (UNI 11621-2) (Analisi Sistemi), Systems Architect (UNI 11621-2) (Architettura Sistemi), Test Specialist (UNI 11621-2) (Testing)",
+        "testo_vettorializzato": "Progetto: Servizi di gestione, formazione, assistenza e supporto specialistico sulle infrastrutture tecnologiche, impianti speciali e sistemi High Availability (HA) della Protezione Civile Regionale. Cliente: Regione Marche, settore: Protezione Civile, tipo: Pubblica Amministrazione. Valore: 1049782 euro. Requisiti tecnici estratti: Project Manager (UNI 11621-2) (Gestione Progetti ICT), Business Information Manager (UNI 11621-2) (Analisi Funzionale), Database Administrator (UNI 11621-2) (Database), Developer (UNI 11621-2) (Sviluppo Software), Digital Media Specialist (UNI 11621-2) (Media Digitali), Enterprise Architect (UNI 11621-2) (Architettura Enterprise), ICT Consultant (UNI 11621-2) (Consulenza ICT), ICT Security Manager (UNI 11621-2) (Sicurezza ICT), ICT Security Specialist (UNI 11621-2) (Sicurezza ICT), Network Specialist (UNI 11621-2) (Networking), Quality Assurance Manager (UNI 11621-2) (Assicurazione Qualità), Service Manager (UNI 11621-2) (Gestione Servizi), Systems Administrator (UNI 11621-2) (Amministrazione Sistemi), Systems Analyst (UNI 11621-2) (Analisi Sistemi), Systems Architect (UNI 11621-2) (Architettura Sistemi), Test Specialist (UNI 11621-2) (Testing)."
+    },
+    "per_collection_competenze": [
+        {
+            "area_tecnica": "Gestione Progetti ICT",
+            "nome_competenza": "Project Manager (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "project management",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Gestione Progetti ICT. Competenza: Project Manager (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: project management, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Analisi Funzionale",
+            "nome_competenza": "Business Information Manager (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "analisi funzionale",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Analisi Funzionale. Competenza: Business Information Manager (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: analisi funzionale, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Database",
+            "nome_competenza": "Database Administrator (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "database",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Database. Competenza: Database Administrator (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: database, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Sviluppo Software",
+            "nome_competenza": "Developer (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "sviluppo software",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Sviluppo Software. Competenza: Developer (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: sviluppo software, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Media Digitali",
+            "nome_competenza": "Digital Media Specialist (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "media digitali",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Media Digitali. Competenza: Digital Media Specialist (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: media digitali, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Architettura Enterprise",
+            "nome_competenza": "Enterprise Architect (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "architettura enterprise",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Architettura Enterprise. Competenza: Enterprise Architect (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: architettura enterprise, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Consulenza ICT",
+            "nome_competenza": "ICT Consultant (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "consulenza ICT",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Consulenza ICT. Competenza: ICT Consultant (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: consulenza ICT, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Sicurezza ICT",
+            "nome_competenza": "ICT Security Manager (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "sicurezza ICT",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Sicurezza ICT. Competenza: ICT Security Manager (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: sicurezza ICT, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Sicurezza ICT",
+            "nome_competenza": "ICT Security Specialist (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "sicurezza ICT",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Sicurezza ICT. Competenza: ICT Security Specialist (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: sicurezza ICT, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Networking",
+            "nome_competenza": "Network Specialist (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "networking",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Networking. Competenza: Network Specialist (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: networking, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Assicurazione Qualità",
+            "nome_competenza": "Quality Assurance Manager (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "assicurazione qualità",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Assicurazione Qualità. Competenza: Quality Assurance Manager (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: assicurazione qualità, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Gestione Servizi",
+            "nome_competenza": "Service Manager (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "gestione servizi",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Gestione Servizi. Competenza: Service Manager (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: gestione servizi, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Amministrazione Sistemi",
+            "nome_competenza": "Systems Administrator (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "amministrazione sistemi",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Amministrazione Sistemi. Competenza: Systems Administrator (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: amministrazione sistemi, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Analisi Sistemi",
+            "nome_competenza": "Systems Analyst (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "analisi sistemi",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Analisi Sistemi. Competenza: Systems Analyst (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: analisi sistemi, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Architettura Sistemi",
+            "nome_competenza": "Systems Architect (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "architettura sistemi",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Architettura Sistemi. Competenza: Systems Architect (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: architettura sistemi, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        },
+        {
+            "area_tecnica": "Testing",
+            "nome_competenza": "Test Specialist (UNI 11621-2)",
+            "livello": "Esperienza comprovata nel settore",
+            "tag_gara": [
+                "testing",
+                "ICT",
+                "protezione civile"
+            ],
+            "riferimento_progetto": "gara_533-25",
+            "testo_vettorializzato": "Area Tecnica: Testing. Competenza: Test Specialist (UNI 11621-2). Livello richiesto: Esperienza comprovata nel settore. Tag ricavati: testing, ICT, protezione civile. Progetto d'origine: gara_533-25."
+        }
+    ]
+}

@@ -453,6 +453,19 @@ CREATE TABLE IF NOT EXISTS checklist_html (
 CREATE INDEX IF NOT EXISTS idx_checklist_html_bando ON checklist_html (bando_id);
 
 -- =============================================================================
+-- company_profile_kb — knowledge base aziendale (B4 Gap Analysis).
+-- System of record per il profilo (core, certificazioni, competenze, referenze,
+-- coda_revisione, storico_gare). Caricata da scripts/load_company_kb.py.
+-- L'indice vettoriale (portfolio_competenze/referenze) vive su Qdrant ed è
+-- ricostruibile da qui — coerente con §B9 (Qdrant = indice derivato).
+-- =============================================================================
+CREATE TABLE IF NOT EXISTS company_profile_kb (
+    section    TEXT PRIMARY KEY,                 -- 'core' | 'certificazioni' | 'competenze' | ...
+    data       JSONB NOT NULL,
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- =============================================================================
 -- cert_expiry — CertExpiry (alerts page: certifications nearing expiry)
 -- =============================================================================
 CREATE TABLE IF NOT EXISTS cert_expiry (

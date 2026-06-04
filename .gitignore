@@ -4,6 +4,8 @@
 .env
 .env.local
 .env.*.local
+# Bare-named env files (e.g. prototype dumps) — these can hold real API keys
+env
 *.pem
 *.key
 
@@ -95,6 +97,12 @@ CLAUDE.local.md
 # Generated fixtures from real LLM runs (regenerable)
 tests/fixtures/generated/
 
+# macOS archive cruft (shipped inside the gap_analysys prototype zip)
+__MACOSX/
+
+# Organizer-provided material — not our code/docs, kept out of the repo
+docs/BOOM x GEN AI INNOVATION SPRINT - Info.pptx
+
 # ---------------------------------------------------------------------------
 # IDE & editors
 # ---------------------------------------------------------------------------
@@ -127,7 +135,7 @@ desktop.ini
 # ---------------------------------------------------------------------------
 .ipynb_checkpoints/
 *.ipynb
-
+tca_1_2.py
 
 
 # ---------------------------------------------------------------------------

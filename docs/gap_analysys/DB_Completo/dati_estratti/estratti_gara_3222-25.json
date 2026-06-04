@@ -1,0 +1,62 @@
+{
+    "per_collection_referenze": {
+        "societa_esecutrice": "Gruppo VEM",
+        "tipo_cliente": "Partecipata",
+        "anno": 2025,
+        "oggetto_progetto": "Allestimento sito di Disaster Recovery InfoCamere presso CINECA: fornitura e messa in servizio di nuova infrastruttura informatica",
+        "nome_cliente": "InfoCamere",
+        "valore_euro": 139600,
+        "requisiti": "Certificazione EcoXpert IT Critical Infrastructure e Power Continuity - Livello Master (Datacenter), Certificazione ISO 9001 (Qualità e Gestione), PDU con connessione trifase IEC 309 da 32 A e monofase IEC 309 da 16 A (Networking), Sonde di temperatura e umidità integrate con piattaforma di monitoraggio (Datacenter)",
+        "testo_vettorializzato": "Progetto: Allestimento sito di Disaster Recovery InfoCamere presso CINECA: fornitura e messa in servizio di nuova infrastruttura informatica. Cliente: InfoCamere, settore: Utilities, tipo: Partecipata. Valore: 139600 euro. Requisiti tecnici estratti: Certificazione EcoXpert IT Critical Infrastructure e Power Continuity - Livello Master (Datacenter), Certificazione ISO 9001 (Qualità e Gestione), PDU con connessione trifase IEC 309 da 32 A e monofase IEC 309 da 16 A (Networking), Sonde di temperatura e umidità integrate con piattaforma di monitoraggio (Datacenter)."
+    },
+    "per_collection_competenze": [
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Certificazione EcoXpert IT Critical Infrastructure e Power Continuity - Livello Master",
+            "livello": "Certificazione obbligatoria in corso di validità",
+            "tag_gara": [
+                "datacenter",
+                "certificazione",
+                "ecoxpert"
+            ],
+            "riferimento_progetto": "gara_3222-25",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Certificazione EcoXpert IT Critical Infrastructure e Power Continuity - Livello Master. Livello richiesto: Certificazione obbligatoria in corso di validità. Tag ricavati: datacenter, certificazione, ecoxpert. Progetto d'origine: gara_3222-25."
+        },
+        {
+            "area_tecnica": "Qualità e Gestione",
+            "nome_competenza": "Certificazione ISO 9001",
+            "livello": "Certificazione obbligatoria in corso di validità",
+            "tag_gara": [
+                "qualità",
+                "iso",
+                "gestione"
+            ],
+            "riferimento_progetto": "gara_3222-25",
+            "testo_vettorializzato": "Area Tecnica: Qualità e Gestione. Competenza: Certificazione ISO 9001. Livello richiesto: Certificazione obbligatoria in corso di validità. Tag ricavati: qualità, iso, gestione. Progetto d'origine: gara_3222-25."
+        },
+        {
+            "area_tecnica": "Networking",
+            "nome_competenza": "PDU con connessione trifase IEC 309 da 32 A e monofase IEC 309 da 16 A",
+            "livello": "Requisiti tecnici specifici per le apparecchiature",
+            "tag_gara": [
+                "pdu",
+                "networking",
+                "alimentazione"
+            ],
+            "riferimento_progetto": "gara_3222-25",
+            "testo_vettorializzato": "Area Tecnica: Networking. Competenza: PDU con connessione trifase IEC 309 da 32 A e monofase IEC 309 da 16 A. Livello richiesto: Requisiti tecnici specifici per le apparecchiature. Tag ricavati: pdu, networking, alimentazione. Progetto d'origine: gara_3222-25."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Sonde di temperatura e umidità integrate con piattaforma di monitoraggio",
+            "livello": "Requisiti tecnici specifici per le apparecchiature",
+            "tag_gara": [
+                "monitoraggio",
+                "sonde",
+                "datacenter"
+            ],
+            "riferimento_progetto": "gara_3222-25",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Sonde di temperatura e umidità integrate con piattaforma di monitoraggio. Livello richiesto: Requisiti tecnici specifici per le apparecchiature. Tag ricavati: monitoraggio, sonde, datacenter. Progetto d'origine: gara_3222-25."
+        }
+    ]
+}

@@ -1,0 +1,134 @@
+{
+    "per_collection_referenze": {
+        "societa_esecutrice": "Gruppo VEM",
+        "tipo_cliente": "Partecipata",
+        "anno": 2024,
+        "oggetto_progetto": "Refurbishment di una sala data center e relativa manutenzione di 12 mesi",
+        "nome_cliente": "Insiel S.p.A.",
+        "valore_euro": 0,
+        "requisiti": "Certificazione ISO/IEC 27001 (Datacenter), Misure minime di sicurezza ICT (Circolare AgID n. 2/2017) (Datacenter), Simulazione CFD per prestazioni e ridondanze (Datacenter), Ventole hot-swappable per unità di condizionamento (Datacenter), Unità di condizionamento con valvole a 2-vie e 3-vie (Datacenter), Doppia alimentazione per unità di condizionamento di fila (Datacenter), Modulazione dinamica del sistema di condizionamento (Datacenter), Moduli interruttore hot-swappable nei quadri di distribuzione (Datacenter), Interruttori monitorabili da remoto integrati al DCIM (Datacenter), Display locale sui quadri di distribuzione (Datacenter)",
+        "testo_vettorializzato": "Progetto: Refurbishment di una sala data center e relativa manutenzione di 12 mesi. Cliente: Insiel S.p.A., settore: Utilities, tipo: Partecipata. Valore: 0 euro. Requisiti tecnici estratti: Certificazione ISO/IEC 27001 (Datacenter), Misure minime di sicurezza ICT (Circolare AgID n. 2/2017) (Datacenter), Simulazione CFD per prestazioni e ridondanze (Datacenter), Ventole hot-swappable per unità di condizionamento (Datacenter), Unità di condizionamento con valvole a 2-vie e 3-vie (Datacenter), Doppia alimentazione per unità di condizionamento di fila (Datacenter), Modulazione dinamica del sistema di condizionamento (Datacenter), Moduli interruttore hot-swappable nei quadri di distribuzione (Datacenter), Interruttori monitorabili da remoto integrati al DCIM (Datacenter), Display locale sui quadri di distribuzione (Datacenter)."
+    },
+    "per_collection_competenze": [
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Certificazione ISO/IEC 27001",
+            "livello": "Certificazione obbligatoria in corso di validità",
+            "tag_gara": [
+                "sicurezza",
+                "certificazione",
+                "ISO27001"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Certificazione ISO/IEC 27001. Livello richiesto: Certificazione obbligatoria in corso di validità. Tag ricavati: sicurezza, certificazione, ISO27001. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Misure minime di sicurezza ICT (Circolare AgID n. 2/2017)",
+            "livello": "Conformità obbligatoria",
+            "tag_gara": [
+                "sicurezza",
+                "ICT",
+                "AgID"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Misure minime di sicurezza ICT (Circolare AgID n. 2/2017). Livello richiesto: Conformità obbligatoria. Tag ricavati: sicurezza, ICT, AgID. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Simulazione CFD per prestazioni e ridondanze",
+            "livello": "Richiesta specifica per offerta tecnica",
+            "tag_gara": [
+                "CFD",
+                "simulazione",
+                "prestazioni"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Simulazione CFD per prestazioni e ridondanze. Livello richiesto: Richiesta specifica per offerta tecnica. Tag ricavati: CFD, simulazione, prestazioni. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Ventole hot-swappable per unità di condizionamento",
+            "livello": "Richiesta specifica per offerta tecnica",
+            "tag_gara": [
+                "ventole",
+                "hot-swap",
+                "condizionamento"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Ventole hot-swappable per unità di condizionamento. Livello richiesto: Richiesta specifica per offerta tecnica. Tag ricavati: ventole, hot-swap, condizionamento. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Unità di condizionamento con valvole a 2-vie e 3-vie",
+            "livello": "Richiesta specifica per offerta tecnica",
+            "tag_gara": [
+                "condizionamento",
+                "valvole",
+                "2-vie"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Unità di condizionamento con valvole a 2-vie e 3-vie. Livello richiesto: Richiesta specifica per offerta tecnica. Tag ricavati: condizionamento, valvole, 2-vie. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Doppia alimentazione per unità di condizionamento di fila",
+            "livello": "Richiesta specifica per offerta tecnica",
+            "tag_gara": [
+                "condizionamento",
+                "alimentazione",
+                "doppia"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Doppia alimentazione per unità di condizionamento di fila. Livello richiesto: Richiesta specifica per offerta tecnica. Tag ricavati: condizionamento, alimentazione, doppia. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Modulazione dinamica del sistema di condizionamento",
+            "livello": "Richiesta specifica per offerta tecnica",
+            "tag_gara": [
+                "modulazione",
+                "condizionamento",
+                "dinamica"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Modulazione dinamica del sistema di condizionamento. Livello richiesto: Richiesta specifica per offerta tecnica. Tag ricavati: modulazione, condizionamento, dinamica. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Moduli interruttore hot-swappable nei quadri di distribuzione",
+            "livello": "Richiesta specifica per offerta tecnica",
+            "tag_gara": [
+                "interruttori",
+                "hot-swap",
+                "quadri"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Moduli interruttore hot-swappable nei quadri di distribuzione. Livello richiesto: Richiesta specifica per offerta tecnica. Tag ricavati: interruttori, hot-swap, quadri. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Interruttori monitorabili da remoto integrati al DCIM",
+            "livello": "Richiesta specifica per offerta tecnica",
+            "tag_gara": [
+                "interruttori",
+                "monitoraggio",
+                "DCIM"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Interruttori monitorabili da remoto integrati al DCIM. Livello richiesto: Richiesta specifica per offerta tecnica. Tag ricavati: interruttori, monitoraggio, DCIM. Progetto d'origine: gara_1778-23."
+        },
+        {
+            "area_tecnica": "Datacenter",
+            "nome_competenza": "Display locale sui quadri di distribuzione",
+            "livello": "Richiesta specifica per offerta tecnica",
+            "tag_gara": [
+                "display",
+                "quadri",
+                "distribuzione"
+            ],
+            "riferimento_progetto": "gara_1778-23",
+            "testo_vettorializzato": "Area Tecnica: Datacenter. Competenza: Display locale sui quadri di distribuzione. Livello richiesto: Richiesta specifica per offerta tecnica. Tag ricavati: display, quadri, distribuzione. Progetto d'origine: gara_1778-23."
+        }
+    ]
+}

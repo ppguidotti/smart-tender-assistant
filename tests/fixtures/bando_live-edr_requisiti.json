@@ -1,0 +1,90 @@
+[
+  {
+    "id": "REQ-001",
+    "cat": "AMMINISTRATIVA",
+    "txt": "Iscrizione ai settori merceologici della categoria 'Informatica, Elettronica, Telecomunicazioni, Macchine per Ufficio' del bando MePA relativo ai Beni",
+    "fonte": "Capitolato Gara - Anonim",
+    "tipo": "ESCLUDENTE",
+    "status": "parziale",
+    "ml": "Estratto da B2 — gap analysis non eseguita",
+    "mt": "am",
+    "nota": "Fonte: \"Allegato n.7 al capitolato d'oneri per l'ammissione degli operatori economici iscritti ai settori merceologici della categoria merceologica …\""
+  },
+  {
+    "id": "REQ-002",
+    "cat": "QUALIFICAZIONE",
+    "txt": "Iscrizione al bando MePA — categoria merceologica 'Informatica, Elettronica, Telecomunicazioni, Macchine per Ufficio'",
+    "fonte": "Requisiti_Anonimizzato",
+    "tipo": "ESCLUDENTE",
+    "status": "parziale",
+    "ml": "Estratto da B2 — gap analysis non eseguita",
+    "mt": "am",
+    "nota": "Fonte: \"Iscrizione al bando MePA — categoria merceologica 'Informatica, Elettronica, Telecomunicazioni, Macchine per Ufficio' (Allegato n.7 al capit…\""
+  },
+  {
+    "id": "REQ-003",
+    "cat": "QUALIFICAZIONE",
+    "txt": "Operatore economico abilitato al CPV 48730000-4 'Pacchetti software di sicurezza'",
+    "fonte": "Requisiti_Anonimizzato",
+    "tipo": "ESCLUDENTE",
+    "status": "parziale",
+    "ml": "Estratto da B2 — gap analysis non eseguita",
+    "mt": "am",
+    "nota": "Fonte: \"Operatore economico abilitato al CPV 48730000-4 'Pacchetti software di sicurezza'\""
+  },
+  {
+    "id": "REQ-004",
+    "cat": "TECNICA",
+    "txt": "Personale con conoscenze tecniche adeguate per attività inerenti all'oggetto dell'appalto (licenze e configurazione piattaforme EDR/XDR)",
+    "fonte": "Requisiti_Anonimizzato",
+    "tipo": "ESCLUDENTE",
+    "status": "parziale",
+    "ml": "Estratto da B2 — gap analysis non eseguita",
+    "mt": "am",
+    "nota": "Fonte: \"Personale con conoscenze tecniche adeguate per attività inerenti all'oggetto dell'appalto (licenze e configurazione piattaforme EDR/XDR)\""
+  },
+  {
+    "id": "REQ-005",
+    "cat": "NORMATIVA",
+    "txt": "CCNL applicato dichiarato: C011 Metalmeccanico industria — ai sensi D.lgs. 36/2023 art. 11 c.2",
+    "fonte": "Requisiti_Anonimizzato",
+    "tipo": "ESCLUDENTE",
+    "status": "parziale",
+    "ml": "Estratto da B2 — gap analysis non eseguita",
+    "mt": "am",
+    "nota": "Fonte: \"CCNL applicato dichiarato: C011 Metalmeccanico industria — ai sensi D.lgs. 36/2023 art. 11 c.2\""
+  },
+  {
+    "id": "REQ-006",
+    "cat": "NORMATIVA",
+    "txt": "Conto corrente dedicato per tracciabilità flussi finanziari ai sensi L. 136/2010",
+    "fonte": "Requisiti_Anonimizzato",
+    "tipo": "ESCLUDENTE",
+    "status": "parziale",
+    "ml": "Estratto da B2 — gap analysis non eseguita",
+    "mt": "am",
+    "nota": "Fonte: \"Conto corrente dedicato per tracciabilità flussi finanziari ai sensi L. 136/2010\""
+  },
+  {
+    "id": "REQ-007",
+    "cat": "NORMATIVA",
+    "txt": "Qualifica di rivenditore autorizzato Government [FORNITORE SOFTWARE] [PIATTAFORMA EDR]",
+    "fonte": "Requisiti_Anonimizzato",
+    "tipo": "ESCLUDENTE",
+    "status": "parziale",
+    "ml": "Estratto da B2 — gap analysis non eseguita",
+    "mt": "am",
+    "nota": "Fonte: \"Fornitura licenze specifiche [FORNITORE SOFTWARE] [PIATTAFORMA EDR] — bando con vendor lock-in: il capitolato indica esplicitamente il prodo…\""
+  },
+  {
+    "id": "REQ-008",
+    "cat": "TECNICA",
+    "txt": "Competenze EDR/XDR: configurazione e gestione piattaforme endpoint security in modalità cloud",
+    "fonte": "Requisiti_Anonimizzato",
+    "tipo": "ESCLUDENTE",
+    "status": "parziale",
+    "ml": "Estratto da B2 — gap analysis non eseguita",
+    "mt": "am",
+    "nota": "Fonte: \"Competenze EDR/XDR: configurazione e gestione piattaforme endpoint security in modalità cloud (sostituzione soluzioni on-premises esistenti)\""
+  }
+]

@@ -1,0 +1,64 @@
+{
+  "_note": "Record storico di una gara analizzata e vinta. Esempio di gara andata a buon fine con nuovi requisiti emersi.",
+  "id": "GARA_202503_COMUNE_BOLOGNA_RETE",
+  "data_analisi": "2025-03-10",
+  "ente_appaltante": "[PA_LOCALE_BOLOGNA]",
+  "oggetto": "Fornitura e gestione infrastruttura di rete, sicurezza perimetrale e servizio SOC managed",
+  "valore_stimato_eur": 980000,
+  "durata_mesi": 24,
+  "cpv": "72710000-0",
+  "canale": "MePA",
+  "scadenza_offerta": "2025-04-15",
+  "file_bando": "bandi/202503_bologna_rete.pdf",
+  "output_m1": {
+    "bando_oggetto": "Infrastruttura rete e SOC managed PA locale",
+    "n_requisiti_totali": 22,
+    "n_qualificazione": 5,
+    "n_normativa": 8,
+    "n_tecnica": 6,
+    "n_amministrativa": 3
+  },
+  "output_m2": {
+    "framework_identificati": [
+      "GDPR",
+      "ISO 27001",
+      "D.lgs 36/2023",
+      "CAD"
+    ],
+    "item_coperti": 7,
+    "item_non_coperti": 1,
+    "copertura_percentuale": 87.5
+  },
+  "output_m3": {
+    "gap_escludenti": [],
+    "gap_preferenziali": [
+      {
+        "requisito": "ISO 45001 — requisito preferenziale per punteggio tecnico",
+        "stato": "NON_COPERTO",
+        "impatto": "Perdita 3 punti su 100 nel punteggio tecnico",
+        "azione_rimedio": "Non recuperabile per questa gara"
+      }
+    ],
+    "totale_gap_escludenti": 0
+  },
+  "score_finale": 91,
+  "raccomandazione_sistema": "GO",
+  "decisione_aziendale": "GO",
+  "esito_reale": "VINTA",
+  "punteggio_tecnico_ottenuto": 87,
+  "punteggio_economico_ottenuto": 95,
+  "punteggio_totale": 89.2,
+  "posizione_classifica": 1,
+  "note_responsabile": "Gap ISO 45001 non ha inciso significativamente. Punteggio tecnico elevato grazie a referenze PA e certificazione Cisco Gold. Strategia prezzo competitiva.",
+  "nuove_evidenze_emerse": [
+    {
+      "tipo": "REQUISITO_NUOVO_SODDISFATTO",
+      "requisito": "Esperienza documentata con infrastrutture PA sopra 500.000 abitanti",
+      "soddisfatto": true,
+      "evidenza": "Bologna è sopra soglia — referenza REF001 aggiunta",
+      "aggiunto_a_profilo": "referenze.json → REF001.requisiti_dimostrati",
+      "validato_da": "responsabile.qualita@techserv.it",
+      "data_validazione": "2025-03-11"
+    }
+  ]
+}

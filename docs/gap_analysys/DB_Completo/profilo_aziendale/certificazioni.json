@@ -1,0 +1,139 @@
+{
+  "_note": "Registry certificazioni con storico rinnovi e stato validità. Aggiornamento: a ogni rinnovo o nuova certificazione.",
+  "_logica_stato": {
+    "ATTIVA": "Valida, scadenza > 90 giorni",
+    "IN_SCADENZA": "Valida, scadenza entro 90 giorni — avviare rinnovo",
+    "SCADUTA": "Non più valida — gap critico per le gare che la richiedono"
+  },
+  "certificazioni": [
+    {
+      "id": "CERT001",
+      "nome": "ISO 9001:2015",
+      "nome_normalizzato": "iso 9001",
+      "ente_certificatore": "Bureau Veritas Italia S.p.A.",
+      "accreditamento_ente": "Accredia",
+      "numero_certificato": "IT-QMS-234567",
+      "data_emissione": "2024-03-01",
+      "data_scadenza": "2027-02-28",
+      "stato": "ATTIVA",
+      "scope": "Progettazione, sviluppo, installazione e manutenzione di soluzioni ICT e servizi di cybersecurity",
+      "storico_rinnovi": [
+        "2015-03-01",
+        "2018-03-01",
+        "2021-03-01",
+        "2024-03-01"
+      ],
+      "documenti": [
+        "certificati/ISO9001_2024.pdf"
+      ],
+      "note": "Sorveglianza annuale prevista marzo 2026. Rinnovo triennale."
+    },
+    {
+      "id": "CERT002",
+      "nome": "ISO/IEC 27001:2022",
+      "nome_normalizzato": "iso 27001",
+      "ente_certificatore": "DNV Business Assurance Italy S.r.l.",
+      "accreditamento_ente": "Accredia",
+      "numero_certificato": "IT-ISMS-7654",
+      "data_emissione": "2024-09-15",
+      "data_scadenza": "2027-09-14",
+      "stato": "ATTIVA",
+      "scope": "Gestione della sicurezza delle informazioni per erogazione di servizi cloud, networking e cybersecurity a clienti pubblici e privati",
+      "storico_rinnovi": [
+        "2018-09-15",
+        "2021-09-15",
+        "2024-09-15"
+      ],
+      "documenti": [
+        "certificati/ISO27001_2024.pdf"
+      ],
+      "note": "Aggiornato alla versione 2022. Scope include servizi cloud."
+    },
+    {
+      "id": "CERT003",
+      "nome": "ISO/IEC 20000-1:2018",
+      "nome_normalizzato": "iso 20000",
+      "ente_certificatore": "TÜV Italia S.r.l.",
+      "accreditamento_ente": "Accredia",
+      "numero_certificato": "IT-ITSM-9988",
+      "data_emissione": "2023-06-01",
+      "data_scadenza": "2026-05-31",
+      "stato": "IN_SCADENZA",
+      "scope": "Gestione dei servizi IT per clienti enterprise e PA",
+      "storico_rinnovi": [
+        "2020-06-01",
+        "2023-06-01"
+      ],
+      "documenti": [
+        "certificati/ISO20000_2023.pdf"
+      ],
+      "note": "ATTENZIONE: scadenza entro 90 giorni. Avviare procedura di rinnovo."
+    },
+    {
+      "id": "CERT004",
+      "nome": "ISO 45001:2018",
+      "nome_normalizzato": "iso 45001",
+      "ente_certificatore": "Bureau Veritas Italia S.p.A.",
+      "accreditamento_ente": "Accredia",
+      "numero_certificato": "IT-OH&S-11223",
+      "data_emissione": "2022-11-01",
+      "data_scadenza": "2025-10-31",
+      "stato": "SCADUTA",
+      "scope": "Sistema di gestione per la salute e sicurezza sul lavoro",
+      "storico_rinnovi": [
+        "2019-11-01",
+        "2022-11-01"
+      ],
+      "documenti": [
+        "certificati/ISO45001_2022.pdf"
+      ],
+      "note": "SCADUTA. Non rinnovata per scelta strategica. Gap da segnalare nelle gare che la richiedono come requisito preferenziale.",
+      "gap_noto": true,
+      "tipo_gap": "PREFERENZIALE",
+      "azione_rimedio": "Valutare avvio iter certificazione se richiesta come preferenziale in gare strategiche"
+    },
+    {
+      "id": "CERT005",
+      "nome": "Certificazione Cisco Gold Partner",
+      "nome_normalizzato": "cisco gold partner",
+      "ente_certificatore": "Cisco Systems Italy",
+      "accreditamento_ente": "Cisco",
+      "numero_certificato": "CISCO-GOLD-IT-2024-7890",
+      "data_emissione": "2024-01-15",
+      "data_scadenza": "2025-12-31",
+      "stato": "ATTIVA",
+      "scope": "Fornitura, installazione e manutenzione di soluzioni di networking e sicurezza Cisco",
+      "storico_rinnovi": [
+        "2018-01-15",
+        "2020-01-15",
+        "2022-01-15",
+        "2024-01-15"
+      ],
+      "documenti": [
+        "certificati/Cisco_Gold_2024.pdf"
+      ],
+      "note": "Rinnovo annuale. Include specializzazione Advanced Security Architecture."
+    },
+    {
+      "id": "CERT006",
+      "nome": "Microsoft Solutions Partner — Infrastructure",
+      "nome_normalizzato": "microsoft solutions partner",
+      "ente_certificatore": "Microsoft Corporation",
+      "accreditamento_ente": "Microsoft",
+      "numero_certificato": "MS-SP-INF-IT-2024-45678",
+      "data_emissione": "2024-04-01",
+      "data_scadenza": "2025-03-31",
+      "stato": "ATTIVA",
+      "scope": "Progettazione e implementazione soluzioni Microsoft Azure e Microsoft 365",
+      "storico_rinnovi": [
+        "2020-04-01",
+        "2022-04-01",
+        "2024-04-01"
+      ],
+      "documenti": [
+        "certificati/Microsoft_Partner_2024.pdf"
+      ],
+      "note": "Specializzazione Azure Infrastructure inclusa."
+    }
+  ]
+}

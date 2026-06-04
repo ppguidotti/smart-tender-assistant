@@ -1,0 +1,78 @@
+{
+    "oggetto": "Allestimento sito di Disaster Recovery InfoCamere presso CINECA",
+    "ente_appaltante": "InfoCamere",
+    "cpv": "30200000-1",
+    "canale": "Richiesta di preventivo",
+    "valore_stimato_eur": 139600,
+    "durata_mesi": 3,
+    "scadenza_offerta": "2025-11-07",
+    "data_analisi": "2023-10-11",
+    "esito_reale": "Analizzata",
+    "decisione_aziendale": "GO",
+    "output_m1": {
+        "bando_oggetto": "Allestimento sito di Disaster Recovery InfoCamere presso CINECA",
+        "n_amministrativa": 3,
+        "n_normativa": 2,
+        "n_qualificazione": 4,
+        "n_tecnica": 10,
+        "n_requisiti_totali": 19
+    },
+    "output_m2": {
+        "copertura_percentuale": 85.0,
+        "framework_identificati": [
+            "ANSI/TIA-942 Rated 3",
+            "EcoXpert",
+            "ISO 9001"
+        ],
+        "item_coperti": [
+            "Certificazione ISO 9001",
+            "Esperienze pregresse idonee",
+            "Iscrizione registro Camera di Commercio"
+        ],
+        "item_non_coperti": [
+            "Certificazione EcoXpert livello MASTER",
+            "Certificazione ANSI/TIA-942 Rated 3"
+        ]
+    },
+    "output_m3": {
+        "totale_gap_escludenti": 2,
+        "gap_escludenti": [
+            {
+                "requisito": "Certificazione EcoXpert livello MASTER per IT Critical Infrastructure e Power Continuity",
+                "impatto": "Escludente",
+                "azione_rimedio": "Ricorso ad Avvalimento con partner certificato EcoXpert livello MASTER",
+                "stato": "Non soddisfatto"
+            },
+            {
+                "requisito": "Certificazione ANSI/TIA-942 Rated 3 Constructed Facility",
+                "impatto": "Escludente",
+                "azione_rimedio": "Costituzione RTI con partner certificato ANSI/TIA-942 Rated 3",
+                "stato": "Non soddisfatto"
+            }
+        ],
+        "gap_preferenziali": [
+            {
+                "requisito": "Esperienze pregresse idonee nel triennio precedente",
+                "impatto": "Preferenziale",
+                "azione_rimedio": "Presentazione referenze dettagliate",
+                "stato": "Soddisfatto"
+            }
+        ]
+    },
+    "nuove_evidenze_emerse": [
+        {
+            "requisito": "Certificazione EcoXpert livello MASTER per IT Critical Infrastructure e Power Continuity",
+            "tipo": "Certificazione",
+            "soddisfatto": false,
+            "validato_da": "Richiesta di preventivo"
+        },
+        {
+            "requisito": "Certificazione ANSI/TIA-942 Rated 3 Constructed Facility",
+            "tipo": "Certificazione",
+            "soddisfatto": false,
+            "validato_da": "Richiesta di preventivo"
+        }
+    ],
+    "id": "gara_3222-25",
+    "file_bando": "BANDO_UNIFICATO.pdf"
+}
