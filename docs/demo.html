@@ -21,7 +21,7 @@
   --font:"Plus Jakarta Sans",system-ui,sans-serif;
   --mono:"JetBrains Mono",monospace
 }
-html,body{height:100%;font-family:var(--font);font-size:14px;color:var(--t1);-webkit-font-smoothing:antialiased;background:var(--navy)}
+html,body{height:100%;font-family:var(--font);font-size:16.5px;color:var(--t1);-webkit-font-smoothing:antialiased;background:var(--navy)}
 .app{display:flex;height:100vh;overflow:hidden}
 
 /* SIDEBAR */
@@ -31,7 +31,7 @@ html,body{height:100%;font-family:var(--font);font-size:14px;color:var(--t1);-we
 .sb-sub{font-size:10px;color:rgba(255,255,255,.38);margin-top:2px}
 .sb-nav{flex:1;padding:8px;overflow-y:auto}
 .sb-sec{font-size:9px;font-weight:600;color:rgba(255,255,255,.26);letter-spacing:.09em;padding:9px 10px 3px}
-.ni{display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:var(--r8);cursor:pointer;font-size:12px;color:rgba(255,255,255,.48);transition:all .14s;margin-bottom:1px}
+.ni{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:var(--r8);cursor:pointer;font-size:14.5px;color:rgba(255,255,255,.48);transition:all .14s;margin-bottom:1px}
 .ni:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.8)}
 .ni.on{background:rgba(232,119,34,.16);color:var(--or2)}
 .ni-ic{font-size:14px;flex-shrink:0;width:16px;text-align:center}
@@ -64,7 +64,7 @@ button:hover{border-color:var(--t3);background:var(--sf2)}
 .btn-lg{font-size:13px;padding:9px 18px}
 
 /* BADGES */
-.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:100px;font-size:10.5px;font-weight:500;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:100px;font-size:13.5px;font-weight:500;white-space:nowrap}
 .b-analisi{background:var(--bl-bg);color:var(--bl);border:1px solid var(--bl-bd)}
 .b-go{background:var(--gn-bg);color:var(--gn);border:1px solid var(--gn-bd)}
 .b-nogo{background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd)}
@@ -74,37 +74,37 @@ button:hover{border-color:var(--t3);background:var(--sf2)}
 .b-cond{background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA}
 
 /* CHIPS */
-.chip{font-size:11px;padding:4px 11px;border-radius:100px;cursor:pointer;border:1px solid var(--bd2);color:var(--t2);background:var(--sf);transition:all .12s;user-select:none;display:inline-block}
+.chip{font-size:14px;padding:6px 14px;border-radius:100px;cursor:pointer;border:1px solid var(--bd2);color:var(--t2);background:var(--sf);transition:all .12s;user-select:none;display:inline-block}
 .chip:hover{border-color:var(--or);color:var(--or)}
 .chip.on{background:var(--or-pale);border-color:var(--or-mid);color:var(--or);font-weight:500}
 
 /* STAT GRID */
 .stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px}
 .stat-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:11px 13px}
-.stat-lbl{font-size:9.5px;color:var(--t3);margin-bottom:3px;font-weight:500;letter-spacing:.02em}
-.stat-val{font-size:22px;font-weight:600;font-family:var(--mono);line-height:1}
+.stat-lbl{font-size:12.5px;color:var(--t3);margin-bottom:3px;font-weight:500;letter-spacing:.02em}
+.stat-val{font-size:30px;font-weight:600;font-family:var(--mono);line-height:1}
 
 /* BANDI TABLE */
 .tbl-hd{display:grid;grid-template-columns:2fr 1fr 80px 90px 75px 85px;gap:6px;padding:5px 10px;font-size:9.5px;font-weight:600;color:var(--t3);letter-spacing:.07em}
 .brow{display:grid;grid-template-columns:2fr 1fr 80px 90px 75px 85px;gap:6px;padding:9px 10px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);margin-bottom:3px;cursor:pointer;align-items:center;transition:all .12s}
 .brow:hover{border-color:var(--or-mid);box-shadow:0 1px 6px rgba(232,119,34,.1)}
-.brow-name{font-size:12px;font-weight:500}
-.brow-cpv{font-size:10px;color:var(--t3);margin-top:1px}
-.brow-ente{font-size:11px;color:var(--t2)}
+.brow-name{font-size:16px;font-weight:500}
+.brow-cpv{font-size:12.5px;color:var(--t3);margin-top:1px}
+.brow-ente{font-size:14px;color:var(--t2)}
 .urgent-date{color:var(--rd);font-weight:600}
 
 /* TAB BAR */
 .tab-bar{background:var(--sf);border-bottom:1px solid var(--bd);padding:0 22px;display:flex;flex-shrink:0}
-.tb{padding:9px 16px;font-size:12px;font-weight:500;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .14s;display:flex;align-items:center;gap:5px;margin-bottom:-1px}
+.tb{padding:11px 20px;font-size:15.5px;font-weight:500;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .14s;display:flex;align-items:center;gap:5px;margin-bottom:-1px}
 .tb:hover{color:var(--t2)}
 .tb.on{color:var(--or);border-bottom-color:var(--or)}
 
 /* REQUIREMENTS TABLE */
 .req-table{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);overflow:hidden;margin-bottom:12px}
-.req-sec-hd{font-size:9.5px;font-weight:700;color:var(--t3);letter-spacing:.07em;padding:7px 12px;background:var(--sf2);border-bottom:1.5px solid var(--bd2);display:flex;justify-content:space-between;align-items:center}
-.req-cols{display:grid;grid-template-columns:20px 1fr 68px 110px 170px 80px;gap:0;align-items:start}
+.req-sec-hd{font-size:12.5px;font-weight:700;color:var(--t3);letter-spacing:.07em;padding:10px 15px;background:var(--sf2);border-bottom:1.5px solid var(--bd2);display:flex;justify-content:space-between;align-items:center}
+.req-cols{display:grid;grid-template-columns:22px 1fr 90px 134px 210px 108px;gap:0;align-items:start}
 .req-thead{padding:6px 12px;border-bottom:1px solid var(--bd)}
-.req-thead .cl{font-size:9px;font-weight:700;color:var(--t3);letter-spacing:.07em}
+.req-thead .cl{font-size:11.5px;font-weight:700;color:var(--t3);letter-spacing:.07em}
 .req-tr{padding:9px 12px;border-bottom:1px solid var(--bd);transition:background .1s}
 .req-tr:last-of-type{border-bottom:none}
 .req-tr:hover{background:var(--sf2)}
@@ -114,19 +114,19 @@ button:hover{border-color:var(--t3);background:var(--sf2)}
 .req-tr.alert-row:hover{background:var(--rd-bg)}
 .req-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px}
 .d-gn{background:#16A34A}.d-am{background:#D97706}.d-rd{background:#DC2626}.d-gr{background:#9CA3AF}
-.req-txt{font-size:12px;color:var(--t1);line-height:1.4;padding-right:8px}
-.req-note{font-size:10px;color:var(--t3);margin-top:2px;line-height:1.35}
+.req-txt{font-size:15.5px;color:var(--t1);line-height:1.5;padding-right:8px}
+.req-note{font-size:13px;color:var(--t3);margin-top:3px;line-height:1.45}
 .req-note.wn{color:#92400E;font-weight:500}
 .req-note.rn{color:var(--rd);font-weight:600}
-.req-fonte{font-size:10.5px;color:var(--t3);font-family:var(--mono)}
-.mp{font-size:10px;padding:3px 8px;border-radius:100px;white-space:nowrap;display:inline-block;border:1px solid transparent}
+.req-fonte{font-size:13px;color:var(--t3);font-family:var(--mono)}
+.mp{font-size:13px;padding:4px 10px;border-radius:100px;display:inline-block;border:1px solid transparent;line-height:1.4}
 .mp-gn{background:var(--gn-bg);color:var(--gn);border-color:var(--gn-bd)}
 .mp-am{background:var(--am-bg);color:var(--am);border-color:var(--am-bd)}
 .mp-rd{background:var(--rd-bg);color:var(--rd);border-color:var(--rd-bd)}
 .mp-gr{background:var(--gr-bg);color:var(--gr-t);border-color:var(--gr-bd)}
-.tag-esc{font-size:9.5px;padding:2px 7px;border-radius:100px;background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd);white-space:nowrap;font-weight:600}
-.tag-pref{font-size:9.5px;padding:2px 7px;border-radius:100px;background:var(--am-bg);color:var(--am);border:1px solid var(--am-bd);white-space:nowrap;font-weight:600}
-.tag-info{font-size:9.5px;padding:2px 7px;border-radius:100px;background:var(--bl-bg);color:var(--bl);border:1px solid var(--bl-bd);white-space:nowrap;font-weight:600}
+.tag-esc{font-size:12.5px;padding:3px 9px;border-radius:100px;background:var(--rd-bg);color:var(--rd);border:1px solid var(--rd-bd);white-space:nowrap;font-weight:600}
+.tag-pref{font-size:12.5px;padding:3px 9px;border-radius:100px;background:var(--am-bg);color:var(--am);border:1px solid var(--am-bd);white-space:nowrap;font-weight:600}
+.tag-info{font-size:12.5px;padding:3px 9px;border-radius:100px;background:var(--bl-bg);color:var(--bl);border:1px solid var(--bl-bd);white-space:nowrap;font-weight:600}
 .rev-panel{display:none;padding:12px 14px 14px 32px;border-bottom:1px solid var(--bd);background:var(--sf)}
 .rev-panel.open{display:block}
 .rev-panel-inner{background:var(--sf2);border:1px solid var(--bd2);border-radius:var(--r8);padding:12px 14px}
@@ -144,29 +144,29 @@ button:hover{border-color:var(--t3);background:var(--sf2)}
 .chk-item.warn-chk{background:var(--am-bg);border-color:var(--am-bd)}
 .chk-box{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--bd2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;transition:all .12s}
 .chk-item.done .chk-box{background:var(--gn);border-color:var(--gn)}
-.chk-lbl{font-size:12px;color:var(--t1);line-height:1.4}
-.chk-sub{font-size:10px;color:var(--t3);margin-top:1px}
+.chk-lbl{font-size:15.5px;color:var(--t1);line-height:1.5}
+.chk-sub{font-size:13px;color:var(--t3);margin-top:2px}
 
 /* GO/NO-GO */
-.gng-grid{display:grid;grid-template-columns:195px 1fr;gap:16px;margin-bottom:14px}
-.gauge-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);padding:16px;text-align:center}
-.score-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);padding:14px}
-.score-row{margin-bottom:9px}
-.score-meta{display:flex;justify-content:space-between;font-size:11px;margin-bottom:3px}
-.score-bar{height:5px;background:var(--bd);border-radius:100px;overflow:hidden}
+.gng-grid{display:grid;grid-template-columns:240px 1fr;gap:18px;margin-bottom:16px}
+.gauge-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);padding:20px;text-align:center}
+.score-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r12);padding:18px}
+.score-row{margin-bottom:12px}
+.score-meta{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+.score-bar{height:7px;background:var(--bd);border-radius:100px;overflow:hidden}
 .score-fill{height:100%;border-radius:100px;transition:width .7s ease}
-.ai-box{background:var(--am-bg);border-left:3px solid #D97706;border-radius:0 var(--r8) var(--r8) 0;padding:9px 11px;margin-top:10px}
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
-.kpi-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:11px 12px}
-.kpi-lbl{font-size:10px;color:var(--t3);margin-bottom:3px}
-.kpi-val{font-size:18px;font-weight:600;font-family:var(--mono);line-height:1}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.info-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:11px 13px}
-.info-card-t{font-size:11px;font-weight:600;margin-bottom:7px}
-.irow{display:flex;justify-content:space-between;gap:6px;padding:4px 0;border-bottom:1px solid var(--bd);font-size:11px}
+.ai-box{background:var(--am-bg);border-left:3px solid #D97706;border-radius:0 var(--r8) var(--r8) 0;padding:11px 13px;margin-top:12px}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.kpi-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:14px 15px}
+.kpi-lbl{font-size:12px;color:var(--t3);margin-bottom:4px}
+.kpi-val{font-size:24px;font-weight:600;font-family:var(--mono);line-height:1}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.info-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8);padding:14px 16px}
+.info-card-t{font-size:13.5px;font-weight:600;margin-bottom:9px}
+.irow{display:flex;justify-content:space-between;gap:6px;padding:6px 0;border-bottom:1px solid var(--bd);font-size:13px}
 .irow:last-child{border-bottom:none}
 .irow-k{color:var(--t3)}.irow-v{color:var(--t1);font-weight:500;text-align:right;flex:1}
-.dec-bar{display:flex;align-items:center;gap:9px;padding:11px 13px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8)}
+.dec-bar{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--sf);border:1px solid var(--bd);border-radius:var(--r8)}
 
 /* UPLOAD */
 .uzone{border:2px dashed var(--bd2);border-radius:var(--r12);padding:28px;text-align:center;cursor:pointer;transition:all .15s;position:relative}
@@ -300,13 +300,15 @@ textarea.mta{resize:vertical;min-height:60px}
       <div class="a-out" id="a-out2"></div>
     </div>
     <div class="a-step" id="a-step3">
-      <div class="a-step-hd" id="a-hd3">Output — Score e raccomandazione Go/No-Go</div>
+      <div class="a-step-hd" id="a-hd3">Output — Valutazione qualitativa preliminare</div>
       <div class="a-pb-wrap"><div class="a-pb" id="a-pb3"></div></div>
       <div class="a-out" id="a-out3"></div>
     </div>
     <div class="a-score-reveal" id="a-result">
-      <div class="a-score-num" id="a-snum">76</div>
-      <div class="a-score-label" id="a-slabel">✓ GO — Presentare offerta</div>
+      <div style="font-size:12px;color:#8A8AA4;margin-bottom:8px">Orientamento preliminare</div>
+      <div class="a-score-num" id="a-snum" style="font-size:32px;font-family:'Plus Jakarta Sans',sans-serif">◆ FAVOREVOLE</div>
+      <div class="a-score-label" id="a-slabel">87% copertura · 1 gap preferenziale · 0 escludenti</div>
+      <div style="font-size:11px;color:#8A8AA4;margin-top:11px;line-height:1.5;max-width:320px;margin-left:auto;margin-right:auto">Il punteggio Go/No-Go definitivo sarà calcolato dopo la revisione umana dei requisiti.</div>
       <button class="btn-pr btn-lg" id="a-cta" style="margin-top:16px" onclick="closeAnalysis()">Apri analisi →</button>
     </div>
   </div>
@@ -728,7 +730,7 @@ function tabRequisiti(b) {
   const f = S.filterReq
 
   const filteredReqs = f==='all' ? reqs :
-    f==='gap' ? reqs.filter(r=>r.status==='gap-esc'||r.status==='gap-pref') :
+    f==='gap' ? reqs.filter(r=>r.status==='gap-esc'||r.status==='gap-pref'||r.status==='parziale') :
     reqs.filter(r=>r.cat===f.toUpperCase())
 
   const countByCat = cat => reqs.filter(r=>r.cat===cat).length
@@ -759,10 +761,13 @@ function tabRequisiti(b) {
     ${isRevOpen?revPanel(r,b.id):'<div class="req-review-panel" id="rev-'+r.id+'"></div>'}`
   }
 
+  const CAP = 5  // con filtro "Tutti" mostra solo i primi N per categoria (leggibilità demo)
   function catSection(cat) {
     const cv = covByCat(cat)
     const catReqs = filteredReqs.filter(r=>r.cat===cat)
     if(!catReqs.length) return ''
+    const shown = f==='all' && catReqs.length>CAP ? catReqs.slice(0,CAP) : catReqs
+    const hidden = catReqs.length - shown.length
     return `
     <div class="req-table" id="cat-${cat}">
       <div class="req-sec-hd">
@@ -776,7 +781,8 @@ function tabRequisiti(b) {
       <div class="req-cols req-thead">
         <div></div><div class="cl">REQUISITO</div><div class="cl">FONTE</div><div class="cl">TIPO</div><div class="cl">COMPETENZA / MATCH</div><div class="cl">AZIONE</div>
       </div>
-      ${catReqs.map(reqRow).join('')}
+      ${shown.map(reqRow).join('')}
+      ${hidden>0?`<div style="padding:10px 14px;font-size:12px;color:var(--t3);background:var(--sf2);border-top:1px solid var(--bd);text-align:center">+ altri ${hidden} requisiti — usa il filtro <strong>“${catLabels[cat]}”</strong> per vederli tutti</div>`:''}
     </div>`
   }
 
@@ -879,7 +885,7 @@ function tabGoNoGo(b, sc) {
   return `
   <div class="gng-grid">
     <div class="gauge-card">
-      <svg width="158" height="158" viewBox="0 0 158 158" id="gauge-svg">
+      <svg width="200" height="200" viewBox="0 0 158 158" id="gauge-svg">
         <circle cx="79" cy="79" r="58" fill="none" stroke="#E5E7EB" stroke-width="13"/>
         <circle id="gauge-arc" cx="79" cy="79" r="58" fill="none" stroke="${gaugeColor}" stroke-width="13"
           stroke-dasharray="${arc} ${circ}" stroke-dashoffset="${-circ*0.25}"
@@ -888,12 +894,12 @@ function tabGoNoGo(b, sc) {
         <text x="79" y="85" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="11" fill="#8A8AA4">/100 punti</text>
         <text x="79" y="104" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="12" font-weight="600" fill="${gaugeColor}">${sc.ra}</text>
       </svg>
-      <div style="font-size:11px;color:var(--t3)">Score complessivo</div>
-      <div style="font-size:10px;color:var(--t3);margin-top:2px">Soglia Go ≥ 75</div>
+      <div style="font-size:13px;color:var(--t3)">Score complessivo</div>
+      <div style="font-size:12px;color:var(--t3);margin-top:3px">Soglia Go ≥ 75</div>
       ${sc.override?`<div style="margin-top:6px;font-size:10.5px;padding:4px 8px;background:var(--rd-bg);color:var(--rd);border-radius:var(--r8)">⚠ Override: gap escludente</div>`:''}
     </div>
     <div class="score-card">
-      <div style="font-size:12px;font-weight:600;margin-bottom:11px">Scomposizione score per modulo</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:13px">Scomposizione score per modulo</div>
       <div class="score-row">
         <div class="score-meta">
           <span style="color:var(--t2)">M2 — Copertura normativa (30%)</span>
@@ -916,8 +922,8 @@ function tabGoNoGo(b, sc) {
         <div class="score-bar"><div class="score-fill" style="width:${sc.m3q}%;background:var(--gn)"></div></div>
       </div>
       <div class="ai-box">
-        <div style="font-size:10px;font-weight:600;color:var(--am);margin-bottom:2px">🤖 Motivazione AI</div>
-        <div style="font-size:11px;color:var(--t2);line-height:1.5">${raMotivazione}</div>
+        <div style="font-size:12px;font-weight:600;color:var(--am);margin-bottom:3px">🤖 Motivazione AI</div>
+        <div style="font-size:13px;color:var(--t2);line-height:1.55">${raMotivazione}</div>
       </div>
     </div>
   </div>
@@ -925,7 +931,7 @@ function tabGoNoGo(b, sc) {
     <div class="kpi-card"><div class="kpi-lbl">Valore contratto</div><div class="kpi-val">${fmtVal(b.valore)}</div><div style="font-size:10px;color:var(--t3);margin-top:2px">36 mesi</div></div>
     <div class="kpi-card"><div class="kpi-lbl">Gap escludenti</div><div class="kpi-val" style="color:${gaps.esc>0?'var(--rd)':'var(--gn)'}">${gaps.esc}</div></div>
     <div class="kpi-card"><div class="kpi-lbl">Gap preferenziali</div><div class="kpi-val" style="color:${gaps.pref>0?'var(--am)':'var(--gn)'}">${gaps.pref}</div></div>
-    <div class="kpi-card"><div class="kpi-lbl">Checklist</div><div class="kpi-val" style="font-size:15px;color:${st.pct>=80?'var(--gn)':'var(--am)'}">${st.done}/${st.total}</div></div>
+    <div class="kpi-card"><div class="kpi-lbl">Checklist</div><div class="kpi-val" style="font-size:20px;color:${st.pct>=80?'var(--gn)':'var(--am)'}">${st.done}/${st.total}</div></div>
   </div>
   <div class="two-col">
     <div class="info-card">
@@ -933,13 +939,13 @@ function tabGoNoGo(b, sc) {
       ${gaps.pref>0?(b.requisiti||[]).filter(r=>r.status==='gap-pref').map(r=>`
         <div style="display:flex;align-items:flex-start;gap:7px;padding:6px 0;border-bottom:1px solid var(--bd)">
           <span class="tag-pref" style="flex-shrink:0;margin-top:1px">PREF.</span>
-          <div><div style="font-size:11.5px;font-weight:500">${r.txt.substring(0,50)}${r.txt.length>50?'...':''}</div>${r.nota?`<div style="font-size:10px;color:var(--t3)">${r.nota}</div>`:''}</div>
+          <div><div style="font-size:13px;font-weight:500">${r.txt.substring(0,50)}${r.txt.length>50?'...':''}</div>${r.nota?`<div style="font-size:11.5px;color:var(--t3)">${r.nota}</div>`:''}</div>
         </div>`).join(''):''}
-      ${gaps.pref===0&&gaps.esc===0?'<div style="font-size:11.5px;color:var(--gn)">✓ Nessun gap attivo</div>':''}
+      ${gaps.pref===0&&gaps.esc===0?'<div style="font-size:13px;color:var(--gn)">✓ Nessun gap attivo</div>':''}
       ${(b.requisiti||[]).filter(r=>r.status==='parziale').map(r=>`
         <div style="display:flex;align-items:flex-start;gap:7px;padding:6px 0;border-bottom:1px solid var(--bd)">
-          <span style="font-size:9.5px;padding:2px 7px;border-radius:100px;background:var(--am-bg);color:var(--am);border:1px solid var(--am-bd);flex-shrink:0;margin-top:1px;white-space:nowrap">VERIFICA</span>
-          <div style="font-size:11.5px">${r.txt.substring(0,50)}${r.txt.length>50?'...':''}</div>
+          <span style="font-size:12.5px;padding:3px 9px;border-radius:100px;background:var(--am-bg);color:var(--am);border:1px solid var(--am-bd);flex-shrink:0;margin-top:1px;white-space:nowrap">VERIFICA</span>
+          <div style="font-size:13px">${r.txt.substring(0,50)}${r.txt.length>50?'...':''}</div>
         </div>`).join('')}
     </div>
     <div class="info-card">
@@ -952,7 +958,7 @@ function tabGoNoGo(b, sc) {
     </div>
   </div>
   <div class="dec-bar">
-    <div style="flex:1;font-size:11.5px;color:var(--t3)">
+    <div style="flex:1;font-size:13.5px;color:var(--t3)">
       Checklist: <strong style="color:var(--t1)">${st.done}/${st.total}</strong> · Gap escludenti: <strong style="color:${gaps.esc>0?'var(--rd)':'var(--gn)'}">${gaps.esc}</strong> · Gap pref.: <strong style="color:${gaps.pref>0?'var(--am)':'var(--t1)'}">${gaps.pref}</strong>
       ${b.gngConfermato?` · <strong style="color:var(--gn)">✓ Decisione confermata</strong>`:''}
     </div>
@@ -1206,8 +1212,8 @@ function startAnalysis(bandoId, filename) {
     return pb('3',50,400)
   })
   // PHASE 3: Output
-  .then(()=>{addLine('a-out3','Calcolo score composito: M2×0.30 + M3×0.40 + Qual×0.30...');return pb('3',80,600)})
-  .then(()=>{addLine('a-out3','Score: 76/100 — soglia GO (≥75) raggiunta','a-ok');return pb('3',100,400)})
+  .then(()=>{addLine('a-out3','Sintesi qualitativa segnali: copertura normativa, gap, vendor lock-in...');return pb('3',80,600)})
+  .then(()=>{addLine('a-out3','Orientamento preliminare: FAVOREVOLE — punteggio definitivo post-revisione umana','a-ok');return pb('3',100,400)})
   .then(()=>{
     document.getElementById('a-hd3').className='a-step-hd done'
     // Update bando status
@@ -1215,11 +1221,15 @@ function startAnalysis(bandoId, filename) {
     if(b){b.status='analisi';b.analisiCompleta=true}
     // Reveal result
     const res = document.getElementById('a-result')
-    const sc = getBando(bandoId)?calcScore(getBando(bandoId)):{score:76,ra:'GO'}
-    document.getElementById('a-snum').textContent = sc.score
-    document.getElementById('a-snum').style.color = sc.ra==='GO'?'#4ADE80':'#F87171'
-    document.getElementById('a-slabel').textContent = sc.ra==='GO'?'✓ GO — Presentare offerta':'⊘ NO-GO'
-    document.getElementById('a-slabel').style.color = sc.ra==='GO'?'#4ADE80':'#F87171'
+    const sc = getBando(bandoId)?calcScore(getBando(bandoId)):{score:76,ra:'GO',m2:87,gapPref:1,gapEsc:0}
+    // Qualitative preliminary orientation — NOT the definitive score (that comes post-HITL)
+    const critico = sc.override || sc.ra==='NO_GO'
+    const verdetto = critico?'◆ CRITICO':sc.ra==='GO_CONDIZIONALE'?'◆ PROMETTENTE':'◆ FAVOREVOLE'
+    const colore = critico?'#F87171':sc.ra==='GO_CONDIZIONALE'?'#FCD34D':'#4ADE80'
+    document.getElementById('a-snum').textContent = verdetto
+    document.getElementById('a-snum').style.color = colore
+    document.getElementById('a-slabel').textContent = `${sc.m2}% copertura · ${sc.gapPref} gap preferenziale${sc.gapPref===1?'':'i'} · ${sc.gapEsc} escludent${sc.gapEsc===1?'e':'i'}`
+    document.getElementById('a-slabel').style.color = '#8A8AA4'
     res.style.display='block'
     S.analysisResult = {bandoId}
   })
